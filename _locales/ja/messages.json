@@ -1,0 +1,22 @@
+{
+  "appName": {"message": "Open Youtube 設定"},
+  "appDesc": {"message": "YouTube エンハンサー"},
+  "brightness": {"message": "明るさ"},
+  "blueLightFilter": {"message": "ブルーライトフィルター"},
+  "hideHomeFeed": {"message": "ホームフィードを非表示"},
+  "hideSidebar": {"message": "サイドバーを非表示"},
+  "autoHideControls": {"message": "コントロールを自動的に隠す"},
+  "hidePlayPauseAnim": {"message": "再生/一時停止アニメーションを非表示"},
+  "hideSkipAnim": {"message": "スキップアニメーションを非表示"},
+  "resetDefaults": {"message": "デフォルトに戻す"},
+  "tabSettings": {"message": "設定"},
+  "tabShortcuts": {"message": "ショートカット"},
+  "tabLanguage": {"message": "言語"},
+  "modalTitle": {"message": "再読み込みが必要です"},
+  "modalDesc": {"message": "設定を有効にするにはページを再読み込みする必要があります。今すぐ再読み込みしますか？"},
+  "modalCancel": {"message": "キャンセル"},
+  "modalConfirm": {"message": "再読み込み"},
+  "shortcutToggleFilters": {"message": "フィルターを切り替え"},
+  "shortcutNotSet": {"message": "設定する"},
+  "shortcutRecording": {"message": "キーを押す..."}
+}

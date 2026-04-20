@@ -1,0 +1,22 @@
+{
+  "appName": {"message": "Configurações do Open Youtube"},
+  "appDesc": {"message": "Otimizador do YouTube"},
+  "brightness": {"message": "Brilho"},
+  "blueLightFilter": {"message": "Filtro de Luz Azul"},
+  "hideHomeFeed": {"message": "Ocultar Feed Inicial"},
+  "hideSidebar": {"message": "Ocultar Barra Lateral"},
+  "autoHideControls": {"message": "Ocultar Controles"},
+  "hidePlayPauseAnim": {"message": "Ocultar Animação Play/Pause"},
+  "hideSkipAnim": {"message": "Ocultar Animação de Pulo"},
+  "resetDefaults": {"message": "Restaurar Padrões"},
+  "tabSettings": {"message": "Configurações"},
+  "tabShortcuts": {"message": "Atalhos"},
+  "tabLanguage": {"message": "Idioma"},
+  "modalTitle": {"message": "Atualização Necessária"},
+  "modalDesc": {"message": "A página precisa ser atualizada para aplicar as configurações. Atualizar agora?"},
+  "modalCancel": {"message": "Cancelar"},
+  "modalConfirm": {"message": "Atualizar Agora"},
+  "shortcutToggleFilters": {"message": "Alternar Filtros"},
+  "shortcutNotSet": {"message": "Definir"},
+  "shortcutRecording": {"message": "Pressione..."}
+}

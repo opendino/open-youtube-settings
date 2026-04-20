@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "__MSG_appName__",
+  "version": "2.0",
+  "description": "__MSG_appDesc__",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.youtube.com/*"
+  ],
+  "icons": {
+    "48": "icon.png",
+    "96": "icon.png",
+    "128": "icon.png"
+  },
+  "default_locale": "en",
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "__MSG_appName__",
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
+        "content.js"
+      ]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "yt-visual-adjuster@example.com",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
+    }
+  }
+}
