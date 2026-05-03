@@ -1,11 +1,23 @@
 :root {
-  --primary-color: #FF8C00;
-  --bg-color: #0f0f0f;
-  --card-bg: rgba(255, 255, 255, 0.05);
-  --text-color: #ffffff;
-  --accent-color: #3ea6ff;
-  --tab-bg: rgba(255, 255, 255, 0.08);
-  --tab-active-bg: rgba(255, 140, 0, 0.2);
+  --bg: #0f1115;
+  --bg-elevated: #171b23;
+  --surface: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(255, 255, 255, 0.1);
+  --text: #e8eaf0;
+  --text-muted: rgba(232, 234, 240, 0.7);
+  --accent: #ff5a3d;
+  --accent-2: #ff7a2f;
+  --accent-soft: rgba(255, 90, 61, 0.22);
+  --border: rgba(255, 255, 255, 0.14);
+  --glow: 0 0 14px rgba(255, 90, 61, 0.35);
+
+  --primary-color: var(--accent);
+  --bg-color: var(--bg);
+  --card-bg: var(--surface);
+  --text-color: var(--text);
+  --accent-color: var(--accent-2);
+  --tab-bg: var(--surface);
+  --tab-active-bg: var(--accent-soft);
 }
 
 body {
@@ -21,7 +33,7 @@ body {
 
 .container {
   padding: 20px;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+  background: radial-gradient(circle at top right, rgba(255, 90, 61, 0.18), transparent 40%), linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 100%);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   min-height: 400px;
@@ -36,7 +48,7 @@ header h1 {
   font-size: 1.2rem;
   margin: 0;
   font-weight: 600;
-  background: linear-gradient(90deg, #FF8C00, #FFA500);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -44,7 +56,8 @@ header h1 {
 header p {
   font-size: 0.75rem;
   margin: 4px 0 0;
-  opacity: 0.6;
+  color: var(--text-muted);
+  opacity: 1;
 }
 
 /* Tabs */
@@ -54,7 +67,7 @@ header p {
   border-radius: 10px;
   padding: 4px;
   margin-bottom: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
 }
 
 .tab-btn {
@@ -73,7 +86,7 @@ header p {
 
 .tab-btn:hover {
   opacity: 0.9;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .tab-btn.active {
@@ -128,8 +141,8 @@ header p {
   background: var(--primary-color);
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
-  border: 2px solid #fff;
+  box-shadow: var(--glow);
+  border: 2px solid #f5f6fa;
 }
 
 .slider::-moz-range-thumb {
@@ -138,8 +151,8 @@ header p {
   background: var(--primary-color);
   cursor: pointer;
   border-radius: 50%;
-  box-shadow: 0 0 10px rgba(255, 140, 0, 0.4);
-  border: 2px solid #fff;
+  box-shadow: var(--glow);
+  border: 2px solid #f5f6fa;
 }
 
 .divider {
@@ -195,8 +208,10 @@ header p {
 }
 
 input:checked+.toggle-slider {
-  background-color: var(--primary-color);
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  box-shadow: var(--glow);
 }
+
 
 input:checked+.toggle-slider:before {
   transform: translateX(16px);
@@ -234,7 +249,7 @@ input:checked+.toggle-slider:before {
   background: var(--card-bg);
   padding: 10px 12px;
   border-radius: 8px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
 }
 
 .shortcut-btn {
@@ -270,7 +285,7 @@ input:checked+.toggle-slider:before {
 
 .lang-btn {
   background: var(--card-bg);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
   color: var(--text-color);
   padding: 10px;
   border-radius: 8px;
@@ -287,7 +302,7 @@ input:checked+.toggle-slider:before {
 }
 
 .lang-btn.active {
-  background: rgba(255, 140, 0, 0.15);
+  background: var(--accent-soft);
   border-color: var(--primary-color);
   color: var(--primary-color);
   font-weight: 600;
@@ -322,7 +337,7 @@ input:checked+.toggle-slider:before {
 }
 
 .modal-card {
-  background: #1a1a1a;
+  background: var(--bg-elevated);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 16px;
   padding: 24px;
@@ -377,7 +392,7 @@ input:checked+.toggle-slider:before {
 }
 
 .modal-btn.primary:hover {
-  background: #e67e22;
+  background: #ff6b46;
 }
 
 .modal-btn.secondary {
