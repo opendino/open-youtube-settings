@@ -13,7 +13,7 @@
   "tabShortcuts": {"message": "शॉर्टकट"},
   "tabLanguage": {"message": "भाषा"},
   "modalTitle": {"message": "रिफ्रेश आवश्यक"},
-  "modalDesc": {"message": "परिवर्तनों को लागू करने के लिए पृष्ठ को रिफ्रेश करने की आवश्यकता है। अभी रिफ्रेश करें?"},
+  "modalDesc": {"message": "स्किप एनीमेशन छिपाने के लिए YouTube पेज को रीफ्रेश करने की आवश्यकता है। अभी रीफ्रेश करें?"},
   "modalCancel": {"message": "रद्द करें"},
   "modalConfirm": {"message": "रिफ्रेश करें"},
   "shortcutToggleFilters": {"message": "फ़िल्टर टॉगल करें"},

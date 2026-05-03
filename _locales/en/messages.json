@@ -13,7 +13,7 @@
   "tabShortcuts": {"message": "Shortcuts"},
   "tabLanguage": {"message": "Language"},
   "modalTitle": {"message": "Refresh Required"},
-  "modalDesc": {"message": "The page needs to be refreshed for the settings to take effect. Refresh now?"},
+  "modalDesc": {"message": "The YouTube page needs to be refreshed to hide the skip animation. Refresh now?"},
   "modalCancel": {"message": "Cancel"},
   "modalConfirm": {"message": "Refresh Now"},
   "shortcutToggleFilters": {"message": "Toggle Filters"},

@@ -13,7 +13,7 @@
   "tabShortcuts": {"message": "Tastenkombinationen"},
   "tabLanguage": {"message": "Sprache"},
   "modalTitle": {"message": "Aktualisierung erforderlich"},
-  "modalDesc": {"message": "Die Seite muss aktualisiert werden, um die Einstellungen zu übernehmen. Jetzt aktualisieren?"},
+  "modalDesc": {"message": "Die YouTube-Seite muss aktualisiert werden, um die Überspringen-Animation auszublenden. Jetzt aktualisieren?"},
   "modalCancel": {"message": "Abbrechen"},
   "modalConfirm": {"message": "Aktualisieren"},
   "shortcutToggleFilters": {"message": "Filter Umschalten"},

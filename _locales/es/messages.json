@@ -13,7 +13,7 @@
   "tabShortcuts": {"message": "Atajos"},
   "tabLanguage": {"message": "Idioma"},
   "modalTitle": {"message": "Requiere Actualizar"},
-  "modalDesc": {"message": "Es necesario actualizar la página para que los cambios surtan efecto. ¿Actualizar ahora?"},
+  "modalDesc": {"message": "La página de YouTube necesita ser actualizada para ocultar la animación de salto. ¿Actualizar ahora?"},
   "modalCancel": {"message": "Cancelar"},
   "modalConfirm": {"message": "Actualizar"},
   "shortcutToggleFilters": {"message": "Alternar Filtros"},

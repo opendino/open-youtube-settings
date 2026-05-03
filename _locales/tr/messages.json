@@ -13,7 +13,7 @@
   "tabShortcuts": {"message": "Kısayollar"},
   "tabLanguage": {"message": "Dil"},
   "modalTitle": {"message": "Yenileme Gerekiyor"},
-  "modalDesc": {"message": "Ayarların geçerli olması için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?"},
+  "modalDesc": {"message": "Atlama animasyonu gizlemek için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?"},
   "modalCancel": {"message": "Vazgeç"},
   "modalConfirm": {"message": "Şimdi Yenile"},
   "shortcutToggleFilters": {"message": "Filtreleri Aç/Kapat"},

@@ -13,7 +13,7 @@
   "tabShortcuts": {"message": "Atalhos"},
   "tabLanguage": {"message": "Idioma"},
   "modalTitle": {"message": "Atualização Necessária"},
-  "modalDesc": {"message": "A página precisa ser atualizada para aplicar as configurações. Atualizar agora?"},
+  "modalDesc": {"message": "A página do YouTube precisa ser atualizada para ocultar a animação de pular. Atualizar agora?"},
   "modalCancel": {"message": "Cancelar"},
   "modalConfirm": {"message": "Atualizar Agora"},
   "shortcutToggleFilters": {"message": "Alternar Filtros"},

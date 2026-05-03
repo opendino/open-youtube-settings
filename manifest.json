@@ -10,15 +10,21 @@
     "*://*.youtube.com/*"
   ],
   "icons": {
-    "48": "icon.png",
-    "96": "icon.png",
-    "128": "icon.png"
+    "16": "icon_16.png",
+    "32": "icon_32.png",
+    "48": "icon_48.png",
+    "96": "icon_96.png",
+    "128": "icon_128.png"
   },
   "default_locale": "en",
   "action": {
     "default_popup": "popup.html",
     "default_title": "__MSG_appName__",
-    "default_icon": "icon.png"
+    "default_icon": {
+      "16": "icon_16.png",
+      "32": "icon_32.png",
+      "48": "icon_48.png"
+    }
   },
   "content_scripts": [
     {
