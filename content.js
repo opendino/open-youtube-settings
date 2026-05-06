@@ -9,6 +9,37 @@ let currentHideSkipAnim = false;
 let currentShortcuts = {};
 let filtersEnabled = true;
 
+function applyAllSettings() {
+  applyFilters();
+  updateDynamicStyles();
+}
+
+function loadSettingsFromStorage() {
+  return browser.storage.local
+    .get([
+      'brightness',
+      'bluelight',
+      'hideHome',
+      'hideSidebar',
+      'hidePlaylist',
+      'autoHideControls',
+      'hidePlayPause',
+      'hideSkipAnim',
+      'shortcuts'
+    ])
+    .then((result) => {
+      if (result.brightness !== undefined) currentBrightness = result.brightness;
+      if (result.bluelight !== undefined) currentBlueLight = result.bluelight;
+      currentHideHome = result.hideHome || false;
+      currentHideSidebar = result.hideSidebar || false;
+      currentHidePlaylist = result.hidePlaylist !== undefined ? result.hidePlaylist : true;
+      currentAutoHideControls = result.autoHideControls || false;
+      currentHidePlayPause = result.hidePlayPause || false;
+      currentHideSkipAnim = result.hideSkipAnim || false;
+      if (result.shortcuts) currentShortcuts = result.shortcuts;
+    });
+}
+
 // Inject a style element to control visibility via CSS
 const styleElement = document.createElement('style');
 document.head.appendChild(styleElement);
@@ -108,19 +139,8 @@ function applyFilters() {
 }
 
 // Initial load from storage
-browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar', 'hidePlaylist', 'autoHideControls', 'hidePlayPause', 'hideSkipAnim', 'shortcuts']).then((result) => {
-  if (result.brightness) currentBrightness = result.brightness;
-  if (result.bluelight) currentBlueLight = result.bluelight;
-  currentHideHome = result.hideHome || false;
-  currentHideSidebar = result.hideSidebar || false;
-  currentHidePlaylist = result.hidePlaylist !== undefined ? result.hidePlaylist : true;
-  currentAutoHideControls = result.autoHideControls || false;
-  currentHidePlayPause = result.hidePlayPause || false;
-  currentHideSkipAnim = result.hideSkipAnim || false;
-  if (result.shortcuts) currentShortcuts = result.shortcuts;
-  
-  applyFilters();
-  updateDynamicStyles();
+loadSettingsFromStorage().then(() => {
+  applyAllSettings();
 });
 
 // Listen for messages from popup
@@ -136,9 +156,24 @@ browser.runtime.onMessage.addListener((message) => {
     currentHideSkipAnim = message.hideSkipAnim;
     if (message.shortcuts) currentShortcuts = message.shortcuts;
     
-    applyFilters();
-    updateDynamicStyles();
+    applyAllSettings();
   }
+});
+
+browser.storage.onChanged.addListener((changes, areaName) => {
+  if (areaName !== 'local') return;
+
+  if (changes.brightness) currentBrightness = changes.brightness.newValue;
+  if (changes.bluelight) currentBlueLight = changes.bluelight.newValue;
+  if (changes.hideHome) currentHideHome = changes.hideHome.newValue;
+  if (changes.hideSidebar) currentHideSidebar = changes.hideSidebar.newValue;
+  if (changes.hidePlaylist) currentHidePlaylist = changes.hidePlaylist.newValue;
+  if (changes.autoHideControls) currentAutoHideControls = changes.autoHideControls.newValue;
+  if (changes.hidePlayPause) currentHidePlayPause = changes.hidePlayPause.newValue;
+  if (changes.hideSkipAnim) currentHideSkipAnim = changes.hideSkipAnim.newValue;
+  if (changes.shortcuts) currentShortcuts = changes.shortcuts.newValue || {};
+
+  applyAllSettings();
 });
 
 // Shortcut formatting and listening
@@ -290,3 +325,17 @@ setInterval(() => {
   applyFilters();
   setupOptimizedObserver();
 }, 2000);
+
+function syncAndReapply() {
+  loadSettingsFromStorage().then(() => {
+    applyAllSettings();
+    setupOptimizedObserver();
+  });
+}
+
+window.addEventListener('focus', syncAndReapply);
+window.addEventListener('pageshow', syncAndReapply);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) syncAndReapply();
+});
+window.addEventListener('yt-navigate-finish', syncAndReapply);
