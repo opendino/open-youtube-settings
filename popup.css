@@ -168,6 +168,22 @@ header p {
   font-size: 0.85rem;
 }
 
+.sub-toggle-group {
+  margin-top: -10px;
+  margin-left: 14px;
+  opacity: 0.9;
+}
+
+.sub-toggle-group span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.sub-toggle-group.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
 /* Switch Styles */
 .switch {
   position: relative;

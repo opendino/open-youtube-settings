@@ -4,6 +4,8 @@ const brightnessVal = document.getElementById('brightness-val');
 const bluelightVal = document.getElementById('bluelight-val');
 const hideHomeToggle = document.getElementById('hide-home');
 const hideSidebarToggle = document.getElementById('hide-sidebar');
+const hidePlaylistToggle = document.getElementById('hide-playlist');
+const hidePlaylistGroup = document.querySelector('.sub-toggle-group');
 const autoHideControlsToggle = document.getElementById('auto-hide-controls');
 const hidePlayPauseToggle = document.getElementById('hide-play-pause');
 const hideSkipAnimToggle = document.getElementById('hide-skip-anim');
@@ -30,7 +32,7 @@ let pendingTabId = null;
 let revertSkipAnimState = false;
 
 // --- Initialization ---
-browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar', 'autoHideControls', 'hidePlayPause', 'hideSkipAnim', 'language', 'shortcuts']).then((result) => {
+browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar', 'hidePlaylist', 'autoHideControls', 'hidePlayPause', 'hideSkipAnim', 'language', 'shortcuts']).then((result) => {
   // Restore Settings
   if (result.brightness) {
     brightnessSlider.value = result.brightness;
@@ -42,9 +44,11 @@ browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar',
   }
   hideHomeToggle.checked = result.hideHome || false;
   hideSidebarToggle.checked = result.hideSidebar || false;
+  hidePlaylistToggle.checked = result.hidePlaylist !== undefined ? result.hidePlaylist : true;
   autoHideControlsToggle.checked = result.autoHideControls || false;
   hidePlayPauseToggle.checked = result.hidePlayPause || false;
   hideSkipAnimToggle.checked = result.hideSkipAnim || false;
+  updateSidebarSubToggleState();
 
   // Restore Language
   if (result.language) {
@@ -99,6 +103,7 @@ function updateSettings() {
   const bluelight = bluelightSlider.value;
   const hideHome = hideHomeToggle.checked;
   const hideSidebar = hideSidebarToggle.checked;
+  const hidePlaylist = hidePlaylistToggle.checked;
   const autoHideControls = autoHideControlsToggle.checked;
   const hidePlayPause = hidePlayPauseToggle.checked;
   const hideSkipAnim = hideSkipAnimToggle.checked;
@@ -106,23 +111,33 @@ function updateSettings() {
   brightnessVal.textContent = brightness + '%';
   bluelightVal.textContent = bluelight + '%';
 
-  browser.storage.local.set({ brightness, bluelight, hideHome, hideSidebar, autoHideControls, hidePlayPause, hideSkipAnim });
+  browser.storage.local.set({ brightness, bluelight, hideHome, hideSidebar, hidePlaylist, autoHideControls, hidePlayPause, hideSkipAnim });
 
   browser.tabs.query({ url: "*://*.youtube.com/*" }).then((tabs) => {
     for (const tab of tabs) {
       browser.tabs.sendMessage(tab.id, {
         type: 'UPDATE_SETTINGS',
-        brightness, bluelight, hideHome, hideSidebar, autoHideControls, hidePlayPause, hideSkipAnim,
+        brightness, bluelight, hideHome, hideSidebar, hidePlaylist, autoHideControls, hidePlayPause, hideSkipAnim,
         shortcuts: currentShortcuts
       }).catch(err => console.log('Tab not ready:', err));
     }
   });
 }
 
+function updateSidebarSubToggleState() {
+  const sidebarEnabled = hideSidebarToggle.checked;
+  hidePlaylistGroup.classList.toggle('disabled', !sidebarEnabled);
+  hidePlaylistToggle.disabled = !sidebarEnabled;
+}
+
 brightnessSlider.addEventListener('input', () => updateSettings());
 bluelightSlider.addEventListener('input', () => updateSettings());
 hideHomeToggle.addEventListener('change', () => updateSettings());
-hideSidebarToggle.addEventListener('change', () => updateSettings());
+hideSidebarToggle.addEventListener('change', () => {
+  updateSidebarSubToggleState();
+  updateSettings();
+});
+hidePlaylistToggle.addEventListener('change', () => updateSettings());
 autoHideControlsToggle.addEventListener('change', () => updateSettings());
 hidePlayPauseToggle.addEventListener('change', () => updateSettings());
 
@@ -136,8 +151,10 @@ resetBtn.addEventListener('click', () => {
   bluelightSlider.value = 0;
   hideHomeToggle.checked = false;
   hideSidebarToggle.checked = false;
+  hidePlaylistToggle.checked = true;
   autoHideControlsToggle.checked = false;
   hidePlayPauseToggle.checked = false;
+  updateSidebarSubToggleState();
 
   let wasSkipAnimChecked = hideSkipAnimToggle.checked;
   hideSkipAnimToggle.checked = false;

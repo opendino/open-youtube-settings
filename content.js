@@ -2,6 +2,7 @@ let currentBrightness = 100;
 let currentBlueLight = 0;
 let currentHideHome = false;
 let currentHideSidebar = false;
+let currentHidePlaylist = true;
 let currentAutoHideControls = false;
 let currentHidePlayPause = false;
 let currentHideSkipAnim = false;
@@ -33,14 +34,25 @@ function updateDynamicStyles() {
   }
 
   if (currentHideSidebar) {
-    css += `
-      ytd-watch-flexy #secondary {
-        display: none !important;
-      }
-      ytd-watch-flexy[flexy] #primary {
-        max-width: 100% !important;
-      }
-    `;
+    if (currentHidePlaylist) {
+      css += `
+        ytd-watch-flexy #secondary {
+          display: none !important;
+        }
+        ytd-watch-flexy[flexy] #primary {
+          max-width: 100% !important;
+        }
+      `;
+    } else {
+      css += `
+        ytd-watch-flexy #secondary ytd-watch-next-secondary-results-renderer {
+          display: none !important;
+        }
+        ytd-watch-flexy #secondary ytd-playlist-panel-renderer {
+          display: block !important;
+        }
+      `;
+    }
   }
 
   if (currentAutoHideControls) {
@@ -96,11 +108,12 @@ function applyFilters() {
 }
 
 // Initial load from storage
-browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar', 'autoHideControls', 'hidePlayPause', 'hideSkipAnim', 'shortcuts']).then((result) => {
+browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar', 'hidePlaylist', 'autoHideControls', 'hidePlayPause', 'hideSkipAnim', 'shortcuts']).then((result) => {
   if (result.brightness) currentBrightness = result.brightness;
   if (result.bluelight) currentBlueLight = result.bluelight;
   currentHideHome = result.hideHome || false;
   currentHideSidebar = result.hideSidebar || false;
+  currentHidePlaylist = result.hidePlaylist !== undefined ? result.hidePlaylist : true;
   currentAutoHideControls = result.autoHideControls || false;
   currentHidePlayPause = result.hidePlayPause || false;
   currentHideSkipAnim = result.hideSkipAnim || false;
@@ -117,6 +130,7 @@ browser.runtime.onMessage.addListener((message) => {
     currentBlueLight = message.bluelight;
     currentHideHome = message.hideHome;
     currentHideSidebar = message.hideSidebar;
+    currentHidePlaylist = message.hidePlaylist !== undefined ? message.hidePlaylist : true;
     currentAutoHideControls = message.autoHideControls;
     currentHidePlayPause = message.hidePlayPause;
     currentHideSkipAnim = message.hideSkipAnim;
@@ -185,6 +199,7 @@ window.addEventListener('keydown', (e) => {
     browser.storage.local.set({
       hideHome: currentHideHome,
       hideSidebar: currentHideSidebar,
+      hidePlaylist: currentHidePlaylist,
       autoHideControls: currentAutoHideControls,
       hidePlayPause: currentHidePlayPause,
       hideSkipAnim: currentHideSkipAnim

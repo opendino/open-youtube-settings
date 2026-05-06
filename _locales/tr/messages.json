@@ -5,6 +5,7 @@
   "blueLightFilter": {"message": "Mavi Işık Filtresi"},
   "hideHomeFeed": {"message": "Ana Sayfa Akışını Gizle"},
   "hideSidebar": {"message": "Yan Çubuğu Gizle"},
+  "hidePlaylist": {"message": "Oynatma Listesini Gizle"},
   "autoHideControls": {"message": "Kontrolleri Otomatik Gizle"},
   "hidePlayPauseAnim": {"message": "Oynat/Duraklat Animasyonunu Gizle"},
   "hideSkipAnim": {"message": "Atlama Animasyonunu Gizle"},

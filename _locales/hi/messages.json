@@ -5,6 +5,7 @@
   "blueLightFilter": {"message": "ब्लू लाइट फ़िल्टर"},
   "hideHomeFeed": {"message": "होम फ़ीड छिपाएं"},
   "hideSidebar": {"message": "साइडबार छिपाएं"},
+  "hidePlaylist": {"message": "प्लेलिस्ट छिपाएं"},
   "autoHideControls": {"message": "नियंत्रण छिपाएं"},
   "hidePlayPauseAnim": {"message": "प्ले/पॉज़ एनीमेशन छिपाएं"},
   "hideSkipAnim": {"message": "स्किप एनीमेशन छिपाएं"},

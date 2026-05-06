@@ -5,6 +5,7 @@
   "blueLightFilter": {"message": "Filtro de Luz Azul"},
   "hideHomeFeed": {"message": "Ocultar Feed Inicial"},
   "hideSidebar": {"message": "Ocultar Barra Lateral"},
+  "hidePlaylist": {"message": "Ocultar Playlist"},
   "autoHideControls": {"message": "Ocultar Controles"},
   "hidePlayPauseAnim": {"message": "Ocultar Animação Play/Pause"},
   "hideSkipAnim": {"message": "Ocultar Animação de Pulo"},

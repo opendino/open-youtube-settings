@@ -5,6 +5,7 @@
   "blueLightFilter": {"message": "Blaulichtfilter"},
   "hideHomeFeed": {"message": "Startseite Ausblenden"},
   "hideSidebar": {"message": "Seitenleiste Ausblenden"},
+  "hidePlaylist": {"message": "Playlist Ausblenden"},
   "autoHideControls": {"message": "Steuerelemente Ausblenden"},
   "hidePlayPauseAnim": {"message": "Play/Pause-Animation Ausblenden"},
   "hideSkipAnim": {"message": "Überspringen-Animation Ausblenden"},
