@@ -1,0 +1,23 @@
+{
+  "appName": {"message": "Open Youtube Settings"},
+  "appDesc": {"message": "YouTube Enhancer"},
+  "brightness": {"message": "Brightness"},
+  "blueLightFilter": {"message": "Blue Light Filter"},
+  "hideHomeFeed": {"message": "Hide Home Feed"},
+  "hideSidebar": {"message": "Hide Sidebar"},
+  "hidePlaylist": {"message": "Hide Playlist"},
+  "autoHideControls": {"message": "Auto-hide Controls"},
+  "hidePlayPauseAnim": {"message": "Hide Play/Pause Animation"},
+  "hideSkipAnim": {"message": "Hide Skip Animation"},
+  "resetDefaults": {"message": "Reset Defaults"},
+  "tabSettings": {"message": "Settings"},
+  "tabShortcuts": {"message": "Shortcuts"},
+  "tabLanguage": {"message": "Language"},
+  "modalTitle": {"message": "Refresh Required"},
+  "modalDesc": {"message": "The YouTube page needs to be refreshed to hide the skip animation. Refresh now?"},
+  "modalCancel": {"message": "Cancel"},
+  "modalConfirm": {"message": "Refresh Now"},
+  "shortcutToggleFilters": {"message": "Toggle Filters"},
+  "shortcutNotSet": {"message": "Click to set"},
+  "shortcutRecording": {"message": "Press key..."}
+}

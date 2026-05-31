@@ -1,0 +1,23 @@
+{
+  "appName": {"message": "Open Youtube सेटिंग्स"},
+  "appDesc": {"message": "YouTube एनहांसर"},
+  "brightness": {"message": "चमक"},
+  "blueLightFilter": {"message": "ब्लू लाइट फ़िल्टर"},
+  "hideHomeFeed": {"message": "होम फ़ीड छिपाएं"},
+  "hideSidebar": {"message": "साइडबार छिपाएं"},
+  "hidePlaylist": {"message": "प्लेलिस्ट छिपाएं"},
+  "autoHideControls": {"message": "नियंत्रण छिपाएं"},
+  "hidePlayPauseAnim": {"message": "प्ले/पॉज़ एनीमेशन छिपाएं"},
+  "hideSkipAnim": {"message": "स्किप एनीमेशन छिपाएं"},
+  "resetDefaults": {"message": "रीसेट करें"},
+  "tabSettings": {"message": "सेटिंग्स"},
+  "tabShortcuts": {"message": "शॉर्टकट"},
+  "tabLanguage": {"message": "भाषा"},
+  "modalTitle": {"message": "रिफ्रेश आवश्यक"},
+  "modalDesc": {"message": "स्किप एनीमेशन छिपाने के लिए YouTube पेज को रीफ्रेश करने की आवश्यकता है। अभी रीफ्रेश करें?"},
+  "modalCancel": {"message": "रद्द करें"},
+  "modalConfirm": {"message": "रिफ्रेश करें"},
+  "shortcutToggleFilters": {"message": "फ़िल्टर टॉगल करें"},
+  "shortcutNotSet": {"message": "सेट करें"},
+  "shortcutRecording": {"message": "दबाएं..."}
+}

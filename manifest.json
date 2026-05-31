@@ -38,12 +38,7 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "yt-visual-adjuster@example.com",
-      "data_collection_permissions": {
-        "required": [
-          "none"
-        ]
-      }
+      "id": "yt-visual-adjuster@example.com"
     }
   }
 }

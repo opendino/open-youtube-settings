@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-i18n="appName">Open Youtube Settings</title>
+  <link rel="stylesheet" href="popup.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1 data-i18n="appName">Open Youtube Settings</h1>
+      <p data-i18n="appDesc">YouTube Enhancer</p>
+    </header>
+
+    <!-- Tabs Navigation -->
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="settings" data-i18n="tabSettings">Settings</button>
+      <button class="tab-btn" data-tab="shortcuts" data-i18n="tabShortcuts">Shortcuts</button>
+      <button class="tab-btn" data-tab="language" data-i18n="tabLanguage" id="tab-lang-btn">Language</button>
+    </div>
+
+    <!-- Tab Content: Settings -->
+    <div id="settings" class="tab-content active">
+      <div class="control-group">
+        <div class="label-row">
+          <span data-i18n="brightness">Brightness</span>
+          <span id="brightness-val">100%</span>
+        </div>
+        <input type="range" id="brightness" min="20" max="150" value="100" class="slider">
+      </div>
+
+      <div class="control-group">
+        <div class="label-row">
+          <span data-i18n="blueLightFilter">Blue Light Filter</span>
+          <span id="bluelight-val">0%</span>
+        </div>
+        <input type="range" id="bluelight" min="0" max="80" value="0" class="slider">
+      </div>
+
+      <hr class="divider">
+
+      <div class="control-group toggle-group">
+        <span data-i18n="hideHomeFeed">Hide Home Feed</span>
+        <label class="switch">
+          <input type="checkbox" id="hide-home">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="hideSidebar">Hide Sidebar</span>
+        <label class="switch">
+          <input type="checkbox" id="hide-sidebar">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="control-group toggle-group sub-toggle-group">
+        <span data-i18n="hidePlaylist">Hide Playlist</span>
+        <label class="switch">
+          <input type="checkbox" id="hide-playlist">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="autoHideControls">Auto-hide Controls</span>
+        <label class="switch">
+          <input type="checkbox" id="auto-hide-controls">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="hidePlayPauseAnim">Hide Play/Pause Animation</span>
+        <label class="switch">
+          <input type="checkbox" id="hide-play-pause">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="hideSkipAnim">Hide Skip Animation</span>
+        <label class="switch">
+          <input type="checkbox" id="hide-skip-anim">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <button id="reset" class="reset-btn" data-i18n="resetDefaults">Reset Defaults</button>
+    </div>
+
+    <!-- Tab Content: Shortcuts -->
+    <div id="shortcuts" class="tab-content">
+      <div class="shortcut-group">
+        <span data-i18n="shortcutToggleFilters">Toggle Filters</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleFilters" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleFilters" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="hideHomeFeed">Hide Home Feed</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleHome" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleHome" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="hideSidebar">Hide Sidebar</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleSidebar" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleSidebar" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="autoHideControls">Auto-hide Controls</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleControls" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleControls" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="hidePlayPauseAnim">Hide Play/Pause Animation</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="togglePlayPause" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="togglePlayPause" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="hideSkipAnim">Hide Skip Animation</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleSkipAnim" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleSkipAnim" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab Content: Language -->
+    <div id="language" class="tab-content">
+      <div class="lang-selector">
+        <button class="lang-btn" data-lang="en">English</button>
+        <button class="lang-btn" data-lang="tr">Türkçe</button>
+        <button class="lang-btn" data-lang="es">Español</button>
+        <button class="lang-btn" data-lang="hi">हिंदी</button>
+        <button class="lang-btn" data-lang="pt_BR">Português (Brasil)</button>
+        <button class="lang-btn" data-lang="de">Deutsch</button>
+        <button class="lang-btn" data-lang="ja">日本語</button>
+        <button class="lang-btn" data-lang="fr">Français</button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Custom Modal -->
+  <div id="modal-overlay" class="modal-overlay">
+    <div class="modal-card">
+      <div class="modal-icon">🔄</div>
+      <h3 data-i18n="modalTitle">Yenileme Gerekiyor</h3>
+      <p data-i18n="modalDesc">Ayarların geçerli olması için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?</p>
+      <div class="modal-actions">
+        <button id="modal-cancel" class="modal-btn secondary" data-i18n="modalCancel">Vazgeç</button>
+        <button id="modal-confirm" class="modal-btn primary" data-i18n="modalConfirm">Şimdi Yenile</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+
+</html>

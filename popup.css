@@ -292,6 +292,39 @@ input:checked+.toggle-slider:before {
   box-shadow: 0 0 8px rgba(255, 140, 0, 0.5);
 }
 
+.shortcut-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.shortcut-clear-btn {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: var(--text-muted);
+  border-radius: 6px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+}
+
+.shortcut-clear-btn:hover {
+  background: rgba(255, 90, 61, 0.18);
+  border-color: var(--accent);
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.shortcut-clear-btn:active {
+  transform: scale(0.92);
+}
+
 /* Languages */
 .lang-selector {
   display: flex;

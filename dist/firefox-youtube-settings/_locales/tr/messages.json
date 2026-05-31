@@ -1,0 +1,23 @@
+{
+  "appName": {"message": "Open Youtube Ayarları"},
+  "appDesc": {"message": "YouTube Geliştirici"},
+  "brightness": {"message": "Parlaklık"},
+  "blueLightFilter": {"message": "Mavi Işık Filtresi"},
+  "hideHomeFeed": {"message": "Ana Sayfa Akışını Gizle"},
+  "hideSidebar": {"message": "Yan Çubuğu Gizle"},
+  "hidePlaylist": {"message": "Oynatma Listesini Gizle"},
+  "autoHideControls": {"message": "Kontrolleri Otomatik Gizle"},
+  "hidePlayPauseAnim": {"message": "Oynat/Duraklat Animasyonunu Gizle"},
+  "hideSkipAnim": {"message": "Atlama Animasyonunu Gizle"},
+  "resetDefaults": {"message": "Varsayılanlara Sıfırla"},
+  "tabSettings": {"message": "Ayarlar"},
+  "tabShortcuts": {"message": "Kısayollar"},
+  "tabLanguage": {"message": "Dil"},
+  "modalTitle": {"message": "Yenileme Gerekiyor"},
+  "modalDesc": {"message": "Atlama animasyonu gizlemek için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?"},
+  "modalCancel": {"message": "Vazgeç"},
+  "modalConfirm": {"message": "Şimdi Yenile"},
+  "shortcutToggleFilters": {"message": "Filtreleri Aç/Kapat"},
+  "shortcutNotSet": {"message": "Ata"},
+  "shortcutRecording": {"message": "Tuşa basın..."}
+}

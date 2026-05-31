@@ -1,3 +1,6 @@
+// Cross-browser compatibility layer
+globalThis.browser = globalThis.browser || globalThis.chrome;
+
 const brightnessSlider = document.getElementById('brightness');
 const bluelightSlider = document.getElementById('bluelight');
 const brightnessVal = document.getElementById('brightness-val');
@@ -61,7 +64,7 @@ browser.storage.local.get(['brightness', 'bluelight', 'hideHome', 'hideSidebar',
     currentShortcuts = result.shortcuts;
     updateShortcutButtons();
   }
-});
+}).catch(err => console.error('[YT-Enhancer] Error reading options from storage:', err));
 
 // --- Tab Switching ---
 tabBtns.forEach(btn => {
@@ -87,9 +90,9 @@ modalConfirmBtn.addEventListener('click', () => {
   updateSettings();
   browser.tabs.query({ url: "*://*.youtube.com/*" }).then((tabs) => {
     for (const tab of tabs) {
-      browser.tabs.reload(tab.id);
+      browser.tabs.reload(tab.id).catch(err => console.error('[YT-Enhancer] Error reloading tab:', err));
     }
-  });
+  }).catch(err => console.error('[YT-Enhancer] Error querying tabs for reload:', err));
   hideCustomModal();
 });
 
@@ -111,7 +114,8 @@ function updateSettings() {
   brightnessVal.textContent = brightness + '%';
   bluelightVal.textContent = bluelight + '%';
 
-  browser.storage.local.set({ brightness, bluelight, hideHome, hideSidebar, hidePlaylist, autoHideControls, hidePlayPause, hideSkipAnim });
+  browser.storage.local.set({ brightness, bluelight, hideHome, hideSidebar, hidePlaylist, autoHideControls, hidePlayPause, hideSkipAnim })
+    .catch(err => console.error('[YT-Enhancer] Error saving options to storage:', err));
 
   browser.tabs.query({ url: "*://*.youtube.com/*" }).then((tabs) => {
     for (const tab of tabs) {
@@ -121,7 +125,7 @@ function updateSettings() {
         shortcuts: currentShortcuts
       }).catch(err => console.log('Tab not ready:', err));
     }
-  });
+  }).catch(err => console.error('[YT-Enhancer] Error querying active tabs to send update:', err));
 }
 
 function updateSidebarSubToggleState() {
@@ -221,7 +225,8 @@ window.addEventListener('keydown', (e) => {
   if (e.key === 'Backspace' || e.key === 'Delete') {
     // Clear shortcut
     delete currentShortcuts[recordingShortcutFor];
-    browser.storage.local.set({ shortcuts: currentShortcuts });
+    browser.storage.local.set({ shortcuts: currentShortcuts })
+      .catch(err => console.error('[YT-Enhancer] Error saving shortcuts to storage:', err));
     recordingShortcutFor = null;
     updateShortcutButtons();
     document.querySelectorAll('.shortcut-btn').forEach(b => b.classList.remove('recording'));
@@ -244,7 +249,8 @@ window.addEventListener('keydown', (e) => {
   const combo = keys.join('+');
   
   currentShortcuts[recordingShortcutFor] = combo;
-  browser.storage.local.set({ shortcuts: currentShortcuts });
+  browser.storage.local.set({ shortcuts: currentShortcuts })
+    .catch(err => console.error('[YT-Enhancer] Error saving recorded shortcut:', err));
   
   recordingShortcutFor = null;
   updateShortcutButtons();
@@ -258,6 +264,29 @@ window.addEventListener('click', () => {
     updateShortcutButtons();
     document.querySelectorAll('.shortcut-btn').forEach(b => b.classList.remove('recording'));
   }
+});
+
+// --- Clear Shortcut Buttons Listener ---
+document.querySelectorAll('.shortcut-clear-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    const key = btn.dataset.shortcut;
+    
+    // Completely clear shortcut from state object
+    delete currentShortcuts[key];
+    
+    browser.storage.local.set({ shortcuts: currentShortcuts }).then(() => {
+      // Cancel active key recording state if it matches
+      if (recordingShortcutFor === key) {
+        recordingShortcutFor = null;
+      }
+      
+      updateShortcutButtons();
+      document.querySelectorAll('.shortcut-btn').forEach(b => b.classList.remove('recording'));
+      updateSettings(); // Synchronize changes to YouTube tab content script
+    }).catch(err => console.error('[YT-Enhancer] Error clearing shortcut state:', err));
+    
+    e.stopPropagation(); // Avoid triggering any bubble listeners
+  });
 });
 
 
@@ -312,7 +341,8 @@ langBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     const lang = btn.dataset.lang;
     currentLang = lang;
-    browser.storage.local.set({ language: lang });
+    browser.storage.local.set({ language: lang })
+      .catch(err => console.error('[YT-Enhancer] Error saving language to storage:', err));
     loadLanguage(lang);
   });
 });

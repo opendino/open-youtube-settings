@@ -1,0 +1,23 @@
+{
+  "appName": {"message": "Paramètres Open Youtube"},
+  "appDesc": {"message": "Améliorateur YouTube"},
+  "brightness": {"message": "Luminosité"},
+  "blueLightFilter": {"message": "Filtre Anti-Lumière Bleue"},
+  "hideHomeFeed": {"message": "Masquer le Flux d'Accueil"},
+  "hideSidebar": {"message": "Masquer la Barre Latérale"},
+  "hidePlaylist": {"message": "Masquer la Playlist"},
+  "autoHideControls": {"message": "Masquer les Contrôles"},
+  "hidePlayPauseAnim": {"message": "Masquer l'Animation Lecture/Pause"},
+  "hideSkipAnim": {"message": "Masquer l'Animation de Saut"},
+  "resetDefaults": {"message": "Réinitialiser"},
+  "tabSettings": {"message": "Paramètres"},
+  "tabShortcuts": {"message": "Raccourcis"},
+  "tabLanguage": {"message": "Langue"},
+  "modalTitle": {"message": "Actualisation Requise"},
+  "modalDesc": {"message": "La page YouTube doit être actualisée pour masquer l'animation de saut. Actualiser maintenant ?"},
+  "modalCancel": {"message": "Annuler"},
+  "modalConfirm": {"message": "Actualiser"},
+  "shortcutToggleFilters": {"message": "Basculer les Filtres"},
+  "shortcutNotSet": {"message": "Définir"},
+  "shortcutRecording": {"message": "Appuyez..."}
+}

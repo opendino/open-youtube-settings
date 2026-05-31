@@ -1,0 +1,23 @@
+{
+  "appName": {"message": "Open Youtube Einstellungen"},
+  "appDesc": {"message": "YouTube Verbesserer"},
+  "brightness": {"message": "Helligkeit"},
+  "blueLightFilter": {"message": "Blaulichtfilter"},
+  "hideHomeFeed": {"message": "Startseite Ausblenden"},
+  "hideSidebar": {"message": "Seitenleiste Ausblenden"},
+  "hidePlaylist": {"message": "Playlist Ausblenden"},
+  "autoHideControls": {"message": "Steuerelemente Ausblenden"},
+  "hidePlayPauseAnim": {"message": "Play/Pause-Animation Ausblenden"},
+  "hideSkipAnim": {"message": "Überspringen-Animation Ausblenden"},
+  "resetDefaults": {"message": "Zurücksetzen"},
+  "tabSettings": {"message": "Einstellungen"},
+  "tabShortcuts": {"message": "Tastenkombinationen"},
+  "tabLanguage": {"message": "Sprache"},
+  "modalTitle": {"message": "Aktualisierung erforderlich"},
+  "modalDesc": {"message": "Die YouTube-Seite muss aktualisiert werden, um die Überspringen-Animation auszublenden. Jetzt aktualisieren?"},
+  "modalCancel": {"message": "Abbrechen"},
+  "modalConfirm": {"message": "Aktualisieren"},
+  "shortcutToggleFilters": {"message": "Filter Umschalten"},
+  "shortcutNotSet": {"message": "Festlegen"},
+  "shortcutRecording": {"message": "Drücken..."}
+}

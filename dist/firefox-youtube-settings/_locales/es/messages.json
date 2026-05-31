@@ -1,0 +1,23 @@
+{
+  "appName": {"message": "Ajustes de Open Youtube"},
+  "appDesc": {"message": "Optimizador de YouTube"},
+  "brightness": {"message": "Brillo"},
+  "blueLightFilter": {"message": "Filtro de Luz Azul"},
+  "hideHomeFeed": {"message": "Ocultar Feed de Inicio"},
+  "hideSidebar": {"message": "Ocultar Barra Lateral"},
+  "hidePlaylist": {"message": "Ocultar Lista de Reproducción"},
+  "autoHideControls": {"message": "Ocultar Controles"},
+  "hidePlayPauseAnim": {"message": "Ocultar Animación Reproducir/Pausa"},
+  "hideSkipAnim": {"message": "Ocultar Animación de Salto"},
+  "resetDefaults": {"message": "Restablecer Valores"},
+  "tabSettings": {"message": "Ajustes"},
+  "tabShortcuts": {"message": "Atajos"},
+  "tabLanguage": {"message": "Idioma"},
+  "modalTitle": {"message": "Requiere Actualizar"},
+  "modalDesc": {"message": "La página de YouTube necesita ser actualizada para ocultar la animación de salto. ¿Actualizar ahora?"},
+  "modalCancel": {"message": "Cancelar"},
+  "modalConfirm": {"message": "Actualizar"},
+  "shortcutToggleFilters": {"message": "Alternar Filtros"},
+  "shortcutNotSet": {"message": "Asignar"},
+  "shortcutRecording": {"message": "Presiona..."}
+}

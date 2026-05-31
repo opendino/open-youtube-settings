@@ -1,0 +1,18 @@
+{
+  "name": "open-youtube-settings",
+  "version": "3.0.0",
+  "description": "Premium YouTube Enhancer browser extension optimized for Google Chrome and Mozilla Firefox.",
+  "type": "module",
+  "scripts": {
+    "package": "node scripts/package.js"
+  },
+  "keywords": [
+    "chrome-extension",
+    "firefox-addon",
+    "youtube",
+    "enhancer",
+    "visual-adjuster"
+  ],
+  "author": "Open YouTube Settings Developer",
+  "license": "MIT"
+}
