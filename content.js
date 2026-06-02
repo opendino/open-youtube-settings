@@ -76,9 +76,6 @@ function updateDynamicStyles() {
         ytd-watch-flexy #secondary ytd-watch-next-secondary-results-renderer {
           display: none !important;
         }
-        ytd-watch-flexy #secondary ytd-playlist-panel-renderer {
-          display: block !important;
-        }
       `;
     }
   }
