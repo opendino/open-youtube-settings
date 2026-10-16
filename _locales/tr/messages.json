@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Open Youtube Ayarları"},
-  "appDesc": {"message": "YouTube Geliştirici"},
-  "brightness": {"message": "Parlaklık"},
-  "blueLightFilter": {"message": "Mavi Işık Filtresi"},
-  "hideHomeFeed": {"message": "Ana Sayfa Akışını Gizle"},
-  "hideSidebar": {"message": "Yan Çubuğu Gizle"},
-  "hidePlaylist": {"message": "Oynatma Listesini Gizle"},
-  "autoHideControls": {"message": "Kontrolleri Otomatik Gizle"},
-  "hidePlayPauseAnim": {"message": "Oynat/Duraklat Animasyonunu Gizle"},
-  "hideSkipAnim": {"message": "Atlama Animasyonunu Gizle"},
-  "resetDefaults": {"message": "Varsayılanlara Sıfırla"},
-  "tabSettings": {"message": "Ayarlar"},
-  "tabShortcuts": {"message": "Kısayollar"},
-  "tabLanguage": {"message": "Dil"},
-  "modalTitle": {"message": "Yenileme Gerekiyor"},
-  "modalDesc": {"message": "Atlama animasyonu gizlemek için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?"},
-  "modalCancel": {"message": "Vazgeç"},
-  "modalConfirm": {"message": "Şimdi Yenile"},
-  "shortcutToggleFilters": {"message": "Filtreleri Aç/Kapat"},
-  "shortcutNotSet": {"message": "Ata"},
-  "shortcutRecording": {"message": "Tuşa basın..."}
+  "appName": {
+    "message": "Open Youtube Ayarları"
+  },
+  "appDesc": {
+    "message": "YouTube Geliştirici"
+  },
+  "brightness": {
+    "message": "Parlaklık"
+  },
+  "blueLightFilter": {
+    "message": "Mavi Işık Filtresi"
+  },
+  "hideHomeFeed": {
+    "message": "Ana Sayfa Akışını Gizle"
+  },
+  "hideSidebar": {
+    "message": "Yan Çubuğu Gizle"
+  },
+  "hidePlaylist": {
+    "message": "Oynatma Listesini Gizle"
+  },
+  "autoHideControls": {
+    "message": "Kontrolleri Otomatik Gizle"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Oynat/Duraklat Animasyonunu Gizle"
+  },
+  "hideSkipAnim": {
+    "message": "Atlama Animasyonunu Gizle"
+  },
+  "resetDefaults": {
+    "message": "Varsayılanlara Sıfırla"
+  },
+  "tabSettings": {
+    "message": "Ayarlar"
+  },
+  "tabShortcuts": {
+    "message": "Kısayollar"
+  },
+  "tabLanguage": {
+    "message": "Dil"
+  },
+  "modalTitle": {
+    "message": "Yenileme Gerekiyor"
+  },
+  "modalDesc": {
+    "message": "Atlama animasyonu gizlemek için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?"
+  },
+  "modalCancel": {
+    "message": "Vazgeç"
+  },
+  "modalConfirm": {
+    "message": "Şimdi Yenile"
+  },
+  "shortcutToggleFilters": {
+    "message": "Filtreleri Aç/Kapat"
+  },
+  "shortcutNotSet": {
+    "message": "Ata"
+  },
+  "shortcutRecording": {
+    "message": "Tuşa basın..."
+  },
+  "tabSpeed": {
+    "message": "Hız"
+  },
+  "tabAdvanced": {
+    "message": "Gelişmiş"
+  },
+  "sectionColor": {
+    "message": "Renk"
+  },
+  "sectionLayout": {
+    "message": "Yerleşim"
+  },
+  "sectionCrop": {
+    "message": "Video Kırpma"
+  },
+  "sectionClip": {
+    "message": "Klip Aracı"
+  },
+  "sectionNavigation": {
+    "message": "Gezinme"
+  },
+  "invertColors": {
+    "message": "Renkleri Tersine Çevir"
+  },
+  "invertHint": {
+    "message": "Parlak beyaz tahta derslerini, renk tonlarını okunur tutarak karanlık hâle getirir."
+  },
+  "applyToShorts": {
+    "message": "Shorts'a da Uygula"
+  },
+  "originalColors": {
+    "message": "Orijinal Renkler"
+  },
+  "allowPanels": {
+    "message": "Yan Panellere İzin Ver"
+  },
+  "allowPanelsHint": {
+    "message": "Bölümler, transkript ve yapay zekâ paneli istediğinde açılır, sonraki videoda yeniden kapanır."
+  },
+  "speedEnabled": {
+    "message": "Hız Denetimi"
+  },
+  "speedEnabledHint": {
+    "message": "Kapatırsan oynatma hızı YouTube'a veya başka bir hız eklentisine kalır. Kapalıyken hiçbir şeye dokunulmaz."
+  },
+  "speedOverlay": {
+    "message": "Oynatıcı Rozetini Göster"
+  },
+  "speedDefault": {
+    "message": "Varsayılan Hız"
+  },
+  "speedStep": {
+    "message": "Adım Miktarı"
+  },
+  "speedPersist": {
+    "message": "Hızı Videolar Arasında Koru"
+  },
+  "speedPresetHint": {
+    "message": "Hazır değerler varsayılan hızı ayarlar. İnce adımlar oynatıcı rozetinde ve kısayollarda."
+  },
+  "cropEnabled": {
+    "message": "Videoyu Kırp"
+  },
+  "cropHint": {
+    "message": "Videoya gömülü bannerları ve siyah şeritleri dışarıda bırakıp konuyu büyütür."
+  },
+  "cropZoom": {
+    "message": "Yakınlaştırma"
+  },
+  "cropOffsetY": {
+    "message": "Dikey Kaydırma"
+  },
+  "clipEnabled": {
+    "message": "Klip Aracı"
+  },
+  "clipHint": {
+    "message": "Oynatıcıda bir klip çubuğu açar. Başlangıç ve bitiş işaretle, sonra kaydet — aralık kendi oynatmandan gerçek zamanlı kaydedilip video dosyası olarak indirilir."
+  },
+  "channelAutoVideos": {
+    "message": "Kanalları Videolar Sekmesinde Aç"
+  },
+  "channelAutoVideosHint": {
+    "message": "Kanal bağlantıları kanal ana sayfası yerine doğrudan Videolar sekmesine gider."
+  },
+  "shortcutSpeedUp": {
+    "message": "Hızlandır"
+  },
+  "shortcutSpeedDown": {
+    "message": "Yavaşlat"
+  },
+  "shortcutSpeedReset": {
+    "message": "Hızı Sıfırla"
+  },
+  "shortcutClipToggle": {
+    "message": "Klip Çubuğu"
+  },
+  "shortcutClipIn": {
+    "message": "Klip Başlangıcı"
+  },
+  "shortcutClipOut": {
+    "message": "Klip Bitişi"
+  },
+  "shortcutClipSave": {
+    "message": "Klibi Kaydet"
+  },
+  "focusMode": {
+    "message": "Odaklanma modu etkin — ana sayfa akışı gizlendi."
+  },
+  "speedLabel": {
+    "message": "Hız"
+  },
+  "speedReset": {
+    "message": "Sıfırla"
+  },
+  "clipTitle": {
+    "message": "Klip"
+  },
+  "clipSetIn": {
+    "message": "Başlangıç"
+  },
+  "clipSetOut": {
+    "message": "Bitiş"
+  },
+  "clipPreview": {
+    "message": "Önizle"
+  },
+  "clipSave": {
+    "message": "Kaydet"
+  },
+  "clipClose": {
+    "message": "Kapat"
+  },
+  "clipRecording": {
+    "message": "Kaydediliyor…"
+  },
+  "clipSaved": {
+    "message": "Klip kaydedildi"
+  },
+  "clipFailed": {
+    "message": "Klip alınamadı"
+  },
+  "clipNoRange": {
+    "message": "Önce başlangıç ve bitiş noktası belirle"
+  }
 }

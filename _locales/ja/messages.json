@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Open Youtube 設定"},
-  "appDesc": {"message": "YouTube エンハンサー"},
-  "brightness": {"message": "明るさ"},
-  "blueLightFilter": {"message": "ブルーライトフィルター"},
-  "hideHomeFeed": {"message": "ホームフィードを非表示"},
-  "hideSidebar": {"message": "サイドバーを非表示"},
-  "hidePlaylist": {"message": "再生リストを非表示"},
-  "autoHideControls": {"message": "コントロールを自動的に隠す"},
-  "hidePlayPauseAnim": {"message": "再生/一時停止アニメーションを非表示"},
-  "hideSkipAnim": {"message": "スキップアニメーションを非表示"},
-  "resetDefaults": {"message": "デフォルトに戻す"},
-  "tabSettings": {"message": "設定"},
-  "tabShortcuts": {"message": "ショートカット"},
-  "tabLanguage": {"message": "言語"},
-  "modalTitle": {"message": "再読み込みが必要です"},
-  "modalDesc": {"message": "スキップアニメーションを非表示にするには、YouTubeページを更新する必要があります。今すぐ更新しますか？"},
-  "modalCancel": {"message": "キャンセル"},
-  "modalConfirm": {"message": "再読み込み"},
-  "shortcutToggleFilters": {"message": "フィルターを切り替え"},
-  "shortcutNotSet": {"message": "設定する"},
-  "shortcutRecording": {"message": "キーを押す..."}
+  "appName": {
+    "message": "Open Youtube 設定"
+  },
+  "appDesc": {
+    "message": "YouTube エンハンサー"
+  },
+  "brightness": {
+    "message": "明るさ"
+  },
+  "blueLightFilter": {
+    "message": "ブルーライトフィルター"
+  },
+  "hideHomeFeed": {
+    "message": "ホームフィードを非表示"
+  },
+  "hideSidebar": {
+    "message": "サイドバーを非表示"
+  },
+  "hidePlaylist": {
+    "message": "再生リストを非表示"
+  },
+  "autoHideControls": {
+    "message": "コントロールを自動的に隠す"
+  },
+  "hidePlayPauseAnim": {
+    "message": "再生/一時停止アニメーションを非表示"
+  },
+  "hideSkipAnim": {
+    "message": "スキップアニメーションを非表示"
+  },
+  "resetDefaults": {
+    "message": "デフォルトに戻す"
+  },
+  "tabSettings": {
+    "message": "設定"
+  },
+  "tabShortcuts": {
+    "message": "ショートカット"
+  },
+  "tabLanguage": {
+    "message": "言語"
+  },
+  "modalTitle": {
+    "message": "再読み込みが必要です"
+  },
+  "modalDesc": {
+    "message": "スキップアニメーションを非表示にするには、YouTubeページを更新する必要があります。今すぐ更新しますか？"
+  },
+  "modalCancel": {
+    "message": "キャンセル"
+  },
+  "modalConfirm": {
+    "message": "再読み込み"
+  },
+  "shortcutToggleFilters": {
+    "message": "フィルターを切り替え"
+  },
+  "shortcutNotSet": {
+    "message": "設定する"
+  },
+  "shortcutRecording": {
+    "message": "キーを押す..."
+  },
+  "tabSpeed": {
+    "message": "速度"
+  },
+  "tabAdvanced": {
+    "message": "詳細"
+  },
+  "sectionColor": {
+    "message": "色"
+  },
+  "sectionLayout": {
+    "message": "レイアウト"
+  },
+  "sectionCrop": {
+    "message": "動画のトリミング"
+  },
+  "sectionClip": {
+    "message": "クリップツール"
+  },
+  "sectionNavigation": {
+    "message": "ナビゲーション"
+  },
+  "invertColors": {
+    "message": "色を反転"
+  },
+  "invertHint": {
+    "message": "明るいホワイトボードの講義を、色味を保ったまま暗い表示に変えます。"
+  },
+  "applyToShorts": {
+    "message": "ショートにも適用"
+  },
+  "originalColors": {
+    "message": "元の色に戻す"
+  },
+  "allowPanels": {
+    "message": "サイドパネルを許可"
+  },
+  "allowPanelsHint": {
+    "message": "チャプター、文字起こし、AI パネルは必要なときに開き、次の動画では再び閉じます。"
+  },
+  "speedEnabled": {
+    "message": "速度コントローラー"
+  },
+  "speedEnabledHint": {
+    "message": "オフにすると再生速度を YouTube や他の速度拡張機能に任せます。オフの間は何も変更しません。"
+  },
+  "speedOverlay": {
+    "message": "プレーヤーにチップを表示"
+  },
+  "speedDefault": {
+    "message": "既定の速度"
+  },
+  "speedStep": {
+    "message": "刻み幅"
+  },
+  "speedPersist": {
+    "message": "動画間で速度を保持"
+  },
+  "speedPresetHint": {
+    "message": "プリセットは既定の速度を設定します。細かい調整はプレーヤーのチップとショートカットで行えます。"
+  },
+  "cropEnabled": {
+    "message": "動画をトリミング"
+  },
+  "cropHint": {
+    "message": "焼き込まれたバナーや黒帯の外までズームし、被写体を大きく表示します。"
+  },
+  "cropZoom": {
+    "message": "ズーム"
+  },
+  "cropOffsetY": {
+    "message": "垂直方向のずらし"
+  },
+  "clipEnabled": {
+    "message": "クリップツール"
+  },
+  "clipHint": {
+    "message": "プレーヤーにクリップバーを表示します。開始と終了を指定して保存すると、その範囲を再生からリアルタイムで記録し、動画ファイルとしてダウンロードします。"
+  },
+  "channelAutoVideos": {
+    "message": "チャンネルを動画タブで開く"
+  },
+  "channelAutoVideosHint": {
+    "message": "チャンネルのリンクはホームではなく動画タブへ直接移動します。"
+  },
+  "shortcutSpeedUp": {
+    "message": "速くする"
+  },
+  "shortcutSpeedDown": {
+    "message": "遅くする"
+  },
+  "shortcutSpeedReset": {
+    "message": "速度をリセット"
+  },
+  "shortcutClipToggle": {
+    "message": "クリップバー"
+  },
+  "shortcutClipIn": {
+    "message": "開始点を設定"
+  },
+  "shortcutClipOut": {
+    "message": "終了点を設定"
+  },
+  "shortcutClipSave": {
+    "message": "クリップを保存"
+  },
+  "focusMode": {
+    "message": "集中モード有効 — ホームのフィードを非表示にしました。"
+  },
+  "speedLabel": {
+    "message": "速度"
+  },
+  "speedReset": {
+    "message": "リセット"
+  },
+  "clipTitle": {
+    "message": "クリップ"
+  },
+  "clipSetIn": {
+    "message": "開始"
+  },
+  "clipSetOut": {
+    "message": "終了"
+  },
+  "clipPreview": {
+    "message": "プレビュー"
+  },
+  "clipSave": {
+    "message": "保存"
+  },
+  "clipClose": {
+    "message": "閉じる"
+  },
+  "clipRecording": {
+    "message": "記録中…"
+  },
+  "clipSaved": {
+    "message": "クリップを保存しました"
+  },
+  "clipFailed": {
+    "message": "クリップの取得に失敗しました"
+  },
+  "clipNoRange": {
+    "message": "先に開始点と終了点を設定してください"
+  }
 }

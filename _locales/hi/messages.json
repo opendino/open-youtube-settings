@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Open Youtube सेटिंग्स"},
-  "appDesc": {"message": "YouTube एनहांसर"},
-  "brightness": {"message": "चमक"},
-  "blueLightFilter": {"message": "ब्लू लाइट फ़िल्टर"},
-  "hideHomeFeed": {"message": "होम फ़ीड छिपाएं"},
-  "hideSidebar": {"message": "साइडबार छिपाएं"},
-  "hidePlaylist": {"message": "प्लेलिस्ट छिपाएं"},
-  "autoHideControls": {"message": "नियंत्रण छिपाएं"},
-  "hidePlayPauseAnim": {"message": "प्ले/पॉज़ एनीमेशन छिपाएं"},
-  "hideSkipAnim": {"message": "स्किप एनीमेशन छिपाएं"},
-  "resetDefaults": {"message": "रीसेट करें"},
-  "tabSettings": {"message": "सेटिंग्स"},
-  "tabShortcuts": {"message": "शॉर्टकट"},
-  "tabLanguage": {"message": "भाषा"},
-  "modalTitle": {"message": "रिफ्रेश आवश्यक"},
-  "modalDesc": {"message": "स्किप एनीमेशन छिपाने के लिए YouTube पेज को रीफ्रेश करने की आवश्यकता है। अभी रीफ्रेश करें?"},
-  "modalCancel": {"message": "रद्द करें"},
-  "modalConfirm": {"message": "रिफ्रेश करें"},
-  "shortcutToggleFilters": {"message": "फ़िल्टर टॉगल करें"},
-  "shortcutNotSet": {"message": "सेट करें"},
-  "shortcutRecording": {"message": "दबाएं..."}
+  "appName": {
+    "message": "Open Youtube सेटिंग्स"
+  },
+  "appDesc": {
+    "message": "YouTube एनहांसर"
+  },
+  "brightness": {
+    "message": "चमक"
+  },
+  "blueLightFilter": {
+    "message": "ब्लू लाइट फ़िल्टर"
+  },
+  "hideHomeFeed": {
+    "message": "होम फ़ीड छिपाएं"
+  },
+  "hideSidebar": {
+    "message": "साइडबार छिपाएं"
+  },
+  "hidePlaylist": {
+    "message": "प्लेलिस्ट छिपाएं"
+  },
+  "autoHideControls": {
+    "message": "नियंत्रण छिपाएं"
+  },
+  "hidePlayPauseAnim": {
+    "message": "प्ले/पॉज़ एनीमेशन छिपाएं"
+  },
+  "hideSkipAnim": {
+    "message": "स्किप एनीमेशन छिपाएं"
+  },
+  "resetDefaults": {
+    "message": "रीसेट करें"
+  },
+  "tabSettings": {
+    "message": "सेटिंग्स"
+  },
+  "tabShortcuts": {
+    "message": "शॉर्टकट"
+  },
+  "tabLanguage": {
+    "message": "भाषा"
+  },
+  "modalTitle": {
+    "message": "रिफ्रेश आवश्यक"
+  },
+  "modalDesc": {
+    "message": "स्किप एनीमेशन छिपाने के लिए YouTube पेज को रीफ्रेश करने की आवश्यकता है। अभी रीफ्रेश करें?"
+  },
+  "modalCancel": {
+    "message": "रद्द करें"
+  },
+  "modalConfirm": {
+    "message": "रिफ्रेश करें"
+  },
+  "shortcutToggleFilters": {
+    "message": "फ़िल्टर टॉगल करें"
+  },
+  "shortcutNotSet": {
+    "message": "सेट करें"
+  },
+  "shortcutRecording": {
+    "message": "दबाएं..."
+  },
+  "tabSpeed": {
+    "message": "गति"
+  },
+  "tabAdvanced": {
+    "message": "उन्नत"
+  },
+  "sectionColor": {
+    "message": "रंग"
+  },
+  "sectionLayout": {
+    "message": "लेआउट"
+  },
+  "sectionCrop": {
+    "message": "वीडियो क्रॉप"
+  },
+  "sectionClip": {
+    "message": "क्लिप टूल"
+  },
+  "sectionNavigation": {
+    "message": "नेविगेशन"
+  },
+  "invertColors": {
+    "message": "रंग उलटें"
+  },
+  "invertHint": {
+    "message": "सफ़ेद बोर्ड वाले चमकीले लेक्चर को गहरे रंग में बदलता है और रंग पढ़ने योग्य रखता है।"
+  },
+  "applyToShorts": {
+    "message": "Shorts पर भी लागू करें"
+  },
+  "originalColors": {
+    "message": "मूल रंग"
+  },
+  "allowPanels": {
+    "message": "साइड पैनल की अनुमति दें"
+  },
+  "allowPanelsHint": {
+    "message": "चैप्टर, ट्रांसक्रिप्ट और AI पैनल माँगने पर खुलते रहेंगे और अगले वीडियो पर फिर बंद हो जाएँगे।"
+  },
+  "speedEnabled": {
+    "message": "गति नियंत्रण"
+  },
+  "speedEnabledHint": {
+    "message": "इसे बंद करने पर प्लेबैक गति YouTube या किसी अन्य एक्सटेंशन के पास रहेगी। बंद रहने पर कुछ नहीं बदला जाता।"
+  },
+  "speedOverlay": {
+    "message": "प्लेयर पर चिप दिखाएँ"
+  },
+  "speedDefault": {
+    "message": "डिफ़ॉल्ट गति"
+  },
+  "speedStep": {
+    "message": "चरण आकार"
+  },
+  "speedPersist": {
+    "message": "वीडियो बदलने पर गति बनाए रखें"
+  },
+  "speedPresetHint": {
+    "message": "प्रीसेट डिफ़ॉल्ट गति तय करते हैं। बारीक बदलाव प्लेयर चिप और शॉर्टकट से करें।"
+  },
+  "cropEnabled": {
+    "message": "वीडियो क्रॉप करें"
+  },
+  "cropHint": {
+    "message": "वीडियो में जुड़े बैनर और काली पट्टियों से आगे ज़ूम करके विषय को बड़ा दिखाता है।"
+  },
+  "cropZoom": {
+    "message": "ज़ूम"
+  },
+  "cropOffsetY": {
+    "message": "लंबवत खिसकाव"
+  },
+  "clipEnabled": {
+    "message": "क्लिप टूल"
+  },
+  "clipHint": {
+    "message": "प्लेयर पर क्लिप बार खोलता है। शुरुआत और अंत चिह्नित करें, फिर सहेजें — वह हिस्सा आपके प्लेबैक से रियल-टाइम में रिकॉर्ड होकर वीडियो फ़ाइल के रूप में डाउनलोड होता है।"
+  },
+  "channelAutoVideos": {
+    "message": "चैनल को वीडियो टैब पर खोलें"
+  },
+  "channelAutoVideosHint": {
+    "message": "चैनल लिंक होम पेज के बजाय सीधे वीडियो टैब पर जाते हैं।"
+  },
+  "shortcutSpeedUp": {
+    "message": "तेज़ करें"
+  },
+  "shortcutSpeedDown": {
+    "message": "धीमा करें"
+  },
+  "shortcutSpeedReset": {
+    "message": "गति रीसेट करें"
+  },
+  "shortcutClipToggle": {
+    "message": "क्लिप बार"
+  },
+  "shortcutClipIn": {
+    "message": "क्लिप शुरुआत"
+  },
+  "shortcutClipOut": {
+    "message": "क्लिप अंत"
+  },
+  "shortcutClipSave": {
+    "message": "क्लिप सहेजें"
+  },
+  "focusMode": {
+    "message": "फ़ोकस मोड सक्रिय — होम फ़ीड छिपा दिया गया है।"
+  },
+  "speedLabel": {
+    "message": "गति"
+  },
+  "speedReset": {
+    "message": "रीसेट"
+  },
+  "clipTitle": {
+    "message": "क्लिप"
+  },
+  "clipSetIn": {
+    "message": "शुरुआत"
+  },
+  "clipSetOut": {
+    "message": "अंत"
+  },
+  "clipPreview": {
+    "message": "झलक"
+  },
+  "clipSave": {
+    "message": "सहेजें"
+  },
+  "clipClose": {
+    "message": "बंद करें"
+  },
+  "clipRecording": {
+    "message": "रिकॉर्ड हो रहा है…"
+  },
+  "clipSaved": {
+    "message": "क्लिप सहेजी गई"
+  },
+  "clipFailed": {
+    "message": "क्लिप कैप्चर नहीं हो सका"
+  },
+  "clipNoRange": {
+    "message": "पहले शुरुआत और अंत बिंदु तय करें"
+  }
 }

@@ -19,12 +19,16 @@
     <!-- Tabs Navigation -->
     <div class="tabs">
       <button class="tab-btn active" data-tab="settings" data-i18n="tabSettings">Settings</button>
+      <button class="tab-btn" data-tab="speed" data-i18n="tabSpeed">Speed</button>
+      <button class="tab-btn" data-tab="advanced" data-i18n="tabAdvanced">Advanced</button>
       <button class="tab-btn" data-tab="shortcuts" data-i18n="tabShortcuts">Shortcuts</button>
       <button class="tab-btn" data-tab="language" data-i18n="tabLanguage" id="tab-lang-btn">Language</button>
     </div>
 
     <!-- Tab Content: Settings -->
     <div id="settings" class="tab-content active">
+      <h2 class="section-title" data-i18n="sectionColor">Colour</h2>
+
       <div class="control-group">
         <div class="label-row">
           <span data-i18n="brightness">Brightness</span>
@@ -38,10 +42,31 @@
           <span data-i18n="blueLightFilter">Blue Light Filter</span>
           <span id="bluelight-val">0%</span>
         </div>
-        <input type="range" id="bluelight" min="0" max="80" value="0" class="slider">
+        <input type="range" id="bluelight" min="0" max="100" value="0" class="slider">
       </div>
 
+      <div class="control-group toggle-group">
+        <span data-i18n="invertColors">Invert Colours</span>
+        <label class="switch">
+          <input type="checkbox" id="invert">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <p class="hint" data-i18n="invertHint">Turns a bright whiteboard lecture into a dark one while keeping hues readable.</p>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="applyToShorts">Apply to Shorts</span>
+        <label class="switch">
+          <input type="checkbox" id="apply-to-shorts" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+
+      <button id="original-colors" class="ghost-btn" data-i18n="originalColors">Original Colours</button>
+
       <hr class="divider">
+
+      <h2 class="section-title" data-i18n="sectionLayout">Layout</h2>
 
       <div class="control-group toggle-group">
         <span data-i18n="hideHomeFeed">Hide Home Feed</span>
@@ -59,13 +84,22 @@
         </label>
       </div>
 
-      <div class="control-group toggle-group sub-toggle-group">
+      <div class="control-group toggle-group sub-toggle-group" data-sub="sidebar">
         <span data-i18n="hidePlaylist">Hide Playlist</span>
         <label class="switch">
           <input type="checkbox" id="hide-playlist">
           <span class="toggle-slider"></span>
         </label>
       </div>
+
+      <div class="control-group toggle-group sub-toggle-group" data-sub="sidebar">
+        <span data-i18n="allowPanels">Allow Side Panels</span>
+        <label class="switch">
+          <input type="checkbox" id="allow-panels" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <p class="hint sub-hint" data-sub="sidebar" data-i18n="allowPanelsHint">Chapters, transcript and the AI panel still open when you ask for them, and close again on the next video.</p>
 
       <div class="control-group toggle-group">
         <span data-i18n="autoHideControls">Auto-hide Controls</span>
@@ -94,8 +128,123 @@
       <button id="reset" class="reset-btn" data-i18n="resetDefaults">Reset Defaults</button>
     </div>
 
+    <!-- Tab Content: Speed Controller -->
+    <div id="speed" class="tab-content">
+      <div class="control-group toggle-group">
+        <span data-i18n="speedEnabled">Speed Controller</span>
+        <label class="switch">
+          <input type="checkbox" id="speed-enabled" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <p class="hint" data-i18n="speedEnabledHint">Turn this off to hand playback speed back to YouTube or another speed extension. Nothing is touched while it is off.</p>
+
+      <div id="speed-body">
+        <div class="control-group toggle-group">
+          <span data-i18n="speedOverlay">Show Player Chip</span>
+          <label class="switch">
+            <input type="checkbox" id="speed-overlay" checked>
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="control-group">
+          <div class="label-row">
+            <span data-i18n="speedDefault">Default Speed</span>
+            <span id="speed-default-val">1.00×</span>
+          </div>
+          <input type="range" id="speed-default" min="0.25" max="4" step="0.05" value="1" class="slider">
+        </div>
+
+        <div class="control-group">
+          <div class="label-row">
+            <span data-i18n="speedStep">Step Size</span>
+            <span id="speed-step-val">0.10</span>
+          </div>
+          <input type="range" id="speed-step" min="0.05" max="0.5" step="0.05" value="0.1" class="slider">
+        </div>
+
+        <div class="control-group toggle-group">
+          <span data-i18n="speedPersist">Keep Speed Between Videos</span>
+          <label class="switch">
+            <input type="checkbox" id="speed-persist">
+            <span class="toggle-slider"></span>
+          </label>
+        </div>
+
+        <div class="preset-row">
+          <button class="speed-preset" data-speed="0.5">0.5×</button>
+          <button class="speed-preset" data-speed="1">1×</button>
+          <button class="speed-preset" data-speed="1.5">1.5×</button>
+          <button class="speed-preset" data-speed="2">2×</button>
+          <button class="speed-preset" data-speed="2.5">2.5×</button>
+          <button class="speed-preset" data-speed="3">3×</button>
+        </div>
+        <p class="hint" data-i18n="speedPresetHint">Presets set the default speed. Fine steps live on the player chip and the shortcuts.</p>
+      </div>
+    </div>
+
+    <!-- Tab Content: Advanced -->
+    <div id="advanced" class="tab-content">
+      <h2 class="section-title" data-i18n="sectionCrop">Video Crop</h2>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="cropEnabled">Crop Video</span>
+        <label class="switch">
+          <input type="checkbox" id="crop-enabled">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <p class="hint" data-i18n="cropHint">Zooms past baked-in banners and letterbox bars so the subject fills more of the player.</p>
+
+      <div id="crop-body">
+        <div class="control-group">
+          <div class="label-row">
+            <span data-i18n="cropZoom">Zoom</span>
+            <span id="crop-zoom-val">100%</span>
+          </div>
+          <input type="range" id="crop-zoom" min="100" max="250" value="100" class="slider">
+        </div>
+
+        <div class="control-group">
+          <div class="label-row">
+            <span data-i18n="cropOffsetY">Vertical Shift</span>
+            <span id="crop-offset-val">0%</span>
+          </div>
+          <input type="range" id="crop-offset" min="-50" max="50" value="0" class="slider">
+        </div>
+      </div>
+
+      <hr class="divider">
+
+      <h2 class="section-title" data-i18n="sectionClip">Clip Tool</h2>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="clipEnabled">Clip Tool</span>
+        <label class="switch">
+          <input type="checkbox" id="clip-enabled" checked>
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <p class="hint" data-i18n="clipHint">Opens a clip bar on the player. Mark a start and end, then save — the range is recorded in real time from your own playback and downloaded as a video file.</p>
+
+      <hr class="divider">
+
+      <h2 class="section-title" data-i18n="sectionNavigation">Navigation</h2>
+
+      <div class="control-group toggle-group">
+        <span data-i18n="channelAutoVideos">Open Channels on Videos</span>
+        <label class="switch">
+          <input type="checkbox" id="channel-auto-videos">
+          <span class="toggle-slider"></span>
+        </label>
+      </div>
+      <p class="hint" data-i18n="channelAutoVideosHint">Channel links jump straight to the Videos tab instead of the channel home page.</p>
+    </div>
+
     <!-- Tab Content: Shortcuts -->
     <div id="shortcuts" class="tab-content">
+      <h2 class="section-title" data-i18n="sectionColor">Colour</h2>
       <div class="shortcut-group">
         <span data-i18n="shortcutToggleFilters">Toggle Filters</span>
         <div class="shortcut-controls">
@@ -103,6 +252,15 @@
           <button class="shortcut-clear-btn" data-shortcut="toggleFilters" title="Clear shortcut">✖</button>
         </div>
       </div>
+      <div class="shortcut-group">
+        <span data-i18n="invertColors">Invert Colours</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleInvert" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleInvert" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+
+      <h2 class="section-title" data-i18n="sectionLayout">Layout</h2>
       <div class="shortcut-group">
         <span data-i18n="hideHomeFeed">Hide Home Feed</span>
         <div class="shortcut-controls">
@@ -138,6 +296,66 @@
           <button class="shortcut-clear-btn" data-shortcut="toggleSkipAnim" title="Clear shortcut">✖</button>
         </div>
       </div>
+      <div class="shortcut-group">
+        <span data-i18n="cropEnabled">Crop Video</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="toggleCrop" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="toggleCrop" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+
+      <h2 class="section-title" data-i18n="tabSpeed">Speed</h2>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutSpeedUp">Speed Up</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="speedUp" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="speedUp" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutSpeedDown">Slow Down</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="speedDown" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="speedDown" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutSpeedReset">Reset Speed</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="speedReset" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="speedReset" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+
+      <h2 class="section-title" data-i18n="sectionClip">Clip Tool</h2>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutClipToggle">Clip Bar</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="clipToggle" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="clipToggle" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutClipIn">Set Clip Start</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="clipMarkIn" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="clipMarkIn" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutClipOut">Set Clip End</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="clipMarkOut" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="clipMarkOut" title="Clear shortcut">✖</button>
+        </div>
+      </div>
+      <div class="shortcut-group">
+        <span data-i18n="shortcutClipSave">Save Clip</span>
+        <div class="shortcut-controls">
+          <button class="shortcut-btn" data-shortcut="clipSave" data-i18n="shortcutNotSet">Click to set</button>
+          <button class="shortcut-clear-btn" data-shortcut="clipSave" title="Clear shortcut">✖</button>
+        </div>
+      </div>
     </div>
 
     <!-- Tab Content: Language -->
@@ -160,11 +378,11 @@
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-icon">🔄</div>
-      <h3 data-i18n="modalTitle">Yenileme Gerekiyor</h3>
-      <p data-i18n="modalDesc">Ayarların geçerli olması için YouTube sayfasının yenilenmesi gerekiyor. Şimdi yenilensin mi?</p>
+      <h3 data-i18n="modalTitle">Refresh Required</h3>
+      <p data-i18n="modalDesc">The YouTube page needs to be refreshed to hide the skip animation. Refresh now?</p>
       <div class="modal-actions">
-        <button id="modal-cancel" class="modal-btn secondary" data-i18n="modalCancel">Vazgeç</button>
-        <button id="modal-confirm" class="modal-btn primary" data-i18n="modalConfirm">Şimdi Yenile</button>
+        <button id="modal-cancel" class="modal-btn secondary" data-i18n="modalCancel">Cancel</button>
+        <button id="modal-confirm" class="modal-btn primary" data-i18n="modalConfirm">Refresh Now</button>
       </div>
     </div>
   </div>

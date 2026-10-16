@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Ajustes de Open Youtube"},
-  "appDesc": {"message": "Optimizador de YouTube"},
-  "brightness": {"message": "Brillo"},
-  "blueLightFilter": {"message": "Filtro de Luz Azul"},
-  "hideHomeFeed": {"message": "Ocultar Feed de Inicio"},
-  "hideSidebar": {"message": "Ocultar Barra Lateral"},
-  "hidePlaylist": {"message": "Ocultar Lista de Reproducción"},
-  "autoHideControls": {"message": "Ocultar Controles"},
-  "hidePlayPauseAnim": {"message": "Ocultar Animación Reproducir/Pausa"},
-  "hideSkipAnim": {"message": "Ocultar Animación de Salto"},
-  "resetDefaults": {"message": "Restablecer Valores"},
-  "tabSettings": {"message": "Ajustes"},
-  "tabShortcuts": {"message": "Atajos"},
-  "tabLanguage": {"message": "Idioma"},
-  "modalTitle": {"message": "Requiere Actualizar"},
-  "modalDesc": {"message": "La página de YouTube necesita ser actualizada para ocultar la animación de salto. ¿Actualizar ahora?"},
-  "modalCancel": {"message": "Cancelar"},
-  "modalConfirm": {"message": "Actualizar"},
-  "shortcutToggleFilters": {"message": "Alternar Filtros"},
-  "shortcutNotSet": {"message": "Asignar"},
-  "shortcutRecording": {"message": "Presiona..."}
+  "appName": {
+    "message": "Ajustes de Open Youtube"
+  },
+  "appDesc": {
+    "message": "Optimizador de YouTube"
+  },
+  "brightness": {
+    "message": "Brillo"
+  },
+  "blueLightFilter": {
+    "message": "Filtro de Luz Azul"
+  },
+  "hideHomeFeed": {
+    "message": "Ocultar Feed de Inicio"
+  },
+  "hideSidebar": {
+    "message": "Ocultar Barra Lateral"
+  },
+  "hidePlaylist": {
+    "message": "Ocultar Lista de Reproducción"
+  },
+  "autoHideControls": {
+    "message": "Ocultar Controles"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Ocultar Animación Reproducir/Pausa"
+  },
+  "hideSkipAnim": {
+    "message": "Ocultar Animación de Salto"
+  },
+  "resetDefaults": {
+    "message": "Restablecer Valores"
+  },
+  "tabSettings": {
+    "message": "Ajustes"
+  },
+  "tabShortcuts": {
+    "message": "Atajos"
+  },
+  "tabLanguage": {
+    "message": "Idioma"
+  },
+  "modalTitle": {
+    "message": "Requiere Actualizar"
+  },
+  "modalDesc": {
+    "message": "La página de YouTube necesita ser actualizada para ocultar la animación de salto. ¿Actualizar ahora?"
+  },
+  "modalCancel": {
+    "message": "Cancelar"
+  },
+  "modalConfirm": {
+    "message": "Actualizar"
+  },
+  "shortcutToggleFilters": {
+    "message": "Alternar Filtros"
+  },
+  "shortcutNotSet": {
+    "message": "Asignar"
+  },
+  "shortcutRecording": {
+    "message": "Presiona..."
+  },
+  "tabSpeed": {
+    "message": "Velocidad"
+  },
+  "tabAdvanced": {
+    "message": "Avanzado"
+  },
+  "sectionColor": {
+    "message": "Color"
+  },
+  "sectionLayout": {
+    "message": "Diseño"
+  },
+  "sectionCrop": {
+    "message": "Recorte de vídeo"
+  },
+  "sectionClip": {
+    "message": "Herramienta de clips"
+  },
+  "sectionNavigation": {
+    "message": "Navegación"
+  },
+  "invertColors": {
+    "message": "Invertir colores"
+  },
+  "invertHint": {
+    "message": "Convierte una clase de pizarra blanca en una oscura manteniendo los tonos legibles."
+  },
+  "applyToShorts": {
+    "message": "Aplicar a Shorts"
+  },
+  "originalColors": {
+    "message": "Colores originales"
+  },
+  "allowPanels": {
+    "message": "Permitir paneles laterales"
+  },
+  "allowPanelsHint": {
+    "message": "Capítulos, transcripción y el panel de IA siguen abriéndose cuando los pides y se cierran en el siguiente vídeo."
+  },
+  "speedEnabled": {
+    "message": "Control de velocidad"
+  },
+  "speedEnabledHint": {
+    "message": "Desactívalo para dejar la velocidad de reproducción a YouTube o a otra extensión. Mientras está apagado no se toca nada."
+  },
+  "speedOverlay": {
+    "message": "Mostrar chip en el reproductor"
+  },
+  "speedDefault": {
+    "message": "Velocidad predeterminada"
+  },
+  "speedStep": {
+    "message": "Tamaño del paso"
+  },
+  "speedPersist": {
+    "message": "Mantener la velocidad entre vídeos"
+  },
+  "speedPresetHint": {
+    "message": "Los ajustes rápidos fijan la velocidad predeterminada. Los pasos finos están en el chip del reproductor y en los atajos."
+  },
+  "cropEnabled": {
+    "message": "Recortar vídeo"
+  },
+  "cropHint": {
+    "message": "Amplía más allá de los banners incrustados y las bandas negras para que el sujeto ocupe más espacio."
+  },
+  "cropZoom": {
+    "message": "Zoom"
+  },
+  "cropOffsetY": {
+    "message": "Desplazamiento vertical"
+  },
+  "clipEnabled": {
+    "message": "Herramienta de clips"
+  },
+  "clipHint": {
+    "message": "Abre una barra de clip en el reproductor. Marca un inicio y un final y guarda: el intervalo se graba en tiempo real desde tu reproducción y se descarga como archivo de vídeo."
+  },
+  "channelAutoVideos": {
+    "message": "Abrir canales en Vídeos"
+  },
+  "channelAutoVideosHint": {
+    "message": "Los enlaces de canal van directamente a la pestaña Vídeos en lugar de la página de inicio del canal."
+  },
+  "shortcutSpeedUp": {
+    "message": "Acelerar"
+  },
+  "shortcutSpeedDown": {
+    "message": "Ralentizar"
+  },
+  "shortcutSpeedReset": {
+    "message": "Restablecer velocidad"
+  },
+  "shortcutClipToggle": {
+    "message": "Barra de clip"
+  },
+  "shortcutClipIn": {
+    "message": "Marcar inicio"
+  },
+  "shortcutClipOut": {
+    "message": "Marcar final"
+  },
+  "shortcutClipSave": {
+    "message": "Guardar clip"
+  },
+  "focusMode": {
+    "message": "Modo de concentración activo: el feed de inicio está oculto."
+  },
+  "speedLabel": {
+    "message": "Velocidad"
+  },
+  "speedReset": {
+    "message": "Restablecer"
+  },
+  "clipTitle": {
+    "message": "Clip"
+  },
+  "clipSetIn": {
+    "message": "Inicio"
+  },
+  "clipSetOut": {
+    "message": "Final"
+  },
+  "clipPreview": {
+    "message": "Vista previa"
+  },
+  "clipSave": {
+    "message": "Guardar"
+  },
+  "clipClose": {
+    "message": "Cerrar"
+  },
+  "clipRecording": {
+    "message": "Grabando…"
+  },
+  "clipSaved": {
+    "message": "Clip guardado"
+  },
+  "clipFailed": {
+    "message": "No se pudo capturar el clip"
+  },
+  "clipNoRange": {
+    "message": "Marca primero un inicio y un final"
+  }
 }

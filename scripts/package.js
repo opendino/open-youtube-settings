@@ -14,6 +14,7 @@ const FIREFOX_DIR = path.join(DIST_DIR, 'firefox-temp');
 // Files and folders to package
 const FILES_TO_COPY = [
   'content.js',
+  'ui-overlay.js',
   'popup.js',
   'popup.html',
   'popup.css',

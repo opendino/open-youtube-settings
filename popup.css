@@ -453,3 +453,128 @@ input:checked+.toggle-slider:before {
 .modal-btn.secondary:hover {
   background: rgba(255, 255, 255, 0.15);
 }
+
+/* ============================================================
+   v4 additions — wider shell, grouped sections, new controls
+   ============================================================ */
+
+body {
+  width: 344px;
+  max-height: 580px;
+}
+
+/* Five tabs no longer fit on one row */
+.tabs {
+  flex-wrap: wrap;
+  gap: 2px;
+}
+
+.tab-btn {
+  flex: 1 1 30%;
+  padding: 7px 2px;
+  font-size: 0.72rem;
+}
+
+.section-title {
+  margin: 0 0 10px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.section-title + .control-group,
+.section-title + .shortcut-group {
+  margin-top: 0;
+}
+
+.shortcut-group + .section-title,
+.control-group + .section-title,
+.hint + .section-title {
+  margin-top: 18px;
+}
+
+.hint {
+  margin: -8px 0 16px;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  color: var(--text-muted);
+}
+
+.sub-hint {
+  margin-left: 14px;
+}
+
+/* Grouped blocks that follow a master switch */
+#speed-body.disabled,
+#crop-body.disabled {
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.ghost-btn {
+  width: 100%;
+  padding: 9px;
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  transition: all 0.2s ease;
+}
+
+.ghost-btn:hover {
+  background: var(--accent-soft);
+  border-color: var(--primary-color);
+  border-style: solid;
+  color: var(--primary-color);
+}
+
+.ghost-btn:active {
+  transform: scale(0.98);
+}
+
+/* Speed presets */
+.preset-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.speed-preset {
+  padding: 8px 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.78rem;
+  font-variant-numeric: tabular-nums;
+  transition: all 0.2s ease;
+}
+
+.speed-preset:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.speed-preset.active {
+  background: var(--accent-soft);
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Shortcut list gets long; keep rows compact */
+.shortcut-group {
+  margin-bottom: 8px;
+  padding: 8px 10px;
+}
+
+.shortcut-btn {
+  min-width: 92px;
+}

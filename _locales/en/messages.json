@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Open Youtube Settings"},
-  "appDesc": {"message": "YouTube Enhancer"},
-  "brightness": {"message": "Brightness"},
-  "blueLightFilter": {"message": "Blue Light Filter"},
-  "hideHomeFeed": {"message": "Hide Home Feed"},
-  "hideSidebar": {"message": "Hide Sidebar"},
-  "hidePlaylist": {"message": "Hide Playlist"},
-  "autoHideControls": {"message": "Auto-hide Controls"},
-  "hidePlayPauseAnim": {"message": "Hide Play/Pause Animation"},
-  "hideSkipAnim": {"message": "Hide Skip Animation"},
-  "resetDefaults": {"message": "Reset Defaults"},
-  "tabSettings": {"message": "Settings"},
-  "tabShortcuts": {"message": "Shortcuts"},
-  "tabLanguage": {"message": "Language"},
-  "modalTitle": {"message": "Refresh Required"},
-  "modalDesc": {"message": "The YouTube page needs to be refreshed to hide the skip animation. Refresh now?"},
-  "modalCancel": {"message": "Cancel"},
-  "modalConfirm": {"message": "Refresh Now"},
-  "shortcutToggleFilters": {"message": "Toggle Filters"},
-  "shortcutNotSet": {"message": "Click to set"},
-  "shortcutRecording": {"message": "Press key..."}
+  "appName": {
+    "message": "Open Youtube Settings"
+  },
+  "appDesc": {
+    "message": "YouTube Enhancer"
+  },
+  "brightness": {
+    "message": "Brightness"
+  },
+  "blueLightFilter": {
+    "message": "Blue Light Filter"
+  },
+  "hideHomeFeed": {
+    "message": "Hide Home Feed"
+  },
+  "hideSidebar": {
+    "message": "Hide Sidebar"
+  },
+  "hidePlaylist": {
+    "message": "Hide Playlist"
+  },
+  "autoHideControls": {
+    "message": "Auto-hide Controls"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Hide Play/Pause Animation"
+  },
+  "hideSkipAnim": {
+    "message": "Hide Skip Animation"
+  },
+  "resetDefaults": {
+    "message": "Reset Defaults"
+  },
+  "tabSettings": {
+    "message": "Settings"
+  },
+  "tabShortcuts": {
+    "message": "Shortcuts"
+  },
+  "tabLanguage": {
+    "message": "Language"
+  },
+  "modalTitle": {
+    "message": "Refresh Required"
+  },
+  "modalDesc": {
+    "message": "The YouTube page needs to be refreshed to hide the skip animation. Refresh now?"
+  },
+  "modalCancel": {
+    "message": "Cancel"
+  },
+  "modalConfirm": {
+    "message": "Refresh Now"
+  },
+  "shortcutToggleFilters": {
+    "message": "Toggle Filters"
+  },
+  "shortcutNotSet": {
+    "message": "Click to set"
+  },
+  "shortcutRecording": {
+    "message": "Press key..."
+  },
+  "tabSpeed": {
+    "message": "Speed"
+  },
+  "tabAdvanced": {
+    "message": "Advanced"
+  },
+  "sectionColor": {
+    "message": "Colour"
+  },
+  "sectionLayout": {
+    "message": "Layout"
+  },
+  "sectionCrop": {
+    "message": "Video Crop"
+  },
+  "sectionClip": {
+    "message": "Clip Tool"
+  },
+  "sectionNavigation": {
+    "message": "Navigation"
+  },
+  "invertColors": {
+    "message": "Invert Colours"
+  },
+  "invertHint": {
+    "message": "Turns a bright whiteboard lecture into a dark one while keeping hues readable."
+  },
+  "applyToShorts": {
+    "message": "Apply to Shorts"
+  },
+  "originalColors": {
+    "message": "Original Colours"
+  },
+  "allowPanels": {
+    "message": "Allow Side Panels"
+  },
+  "allowPanelsHint": {
+    "message": "Chapters, transcript and the AI panel still open when you ask for them, and close again on the next video."
+  },
+  "speedEnabled": {
+    "message": "Speed Controller"
+  },
+  "speedEnabledHint": {
+    "message": "Turn this off to hand playback speed back to YouTube or another speed extension. Nothing is touched while it is off."
+  },
+  "speedOverlay": {
+    "message": "Show Player Chip"
+  },
+  "speedDefault": {
+    "message": "Default Speed"
+  },
+  "speedStep": {
+    "message": "Step Size"
+  },
+  "speedPersist": {
+    "message": "Keep Speed Between Videos"
+  },
+  "speedPresetHint": {
+    "message": "Presets set the default speed. Fine steps live on the player chip and the shortcuts."
+  },
+  "cropEnabled": {
+    "message": "Crop Video"
+  },
+  "cropHint": {
+    "message": "Zooms past baked-in banners and letterbox bars so the subject fills more of the player."
+  },
+  "cropZoom": {
+    "message": "Zoom"
+  },
+  "cropOffsetY": {
+    "message": "Vertical Shift"
+  },
+  "clipEnabled": {
+    "message": "Clip Tool"
+  },
+  "clipHint": {
+    "message": "Opens a clip bar on the player. Mark a start and end, then save — the range is recorded in real time from your own playback and downloaded as a video file."
+  },
+  "channelAutoVideos": {
+    "message": "Open Channels on Videos"
+  },
+  "channelAutoVideosHint": {
+    "message": "Channel links jump straight to the Videos tab instead of the channel home page."
+  },
+  "shortcutSpeedUp": {
+    "message": "Speed Up"
+  },
+  "shortcutSpeedDown": {
+    "message": "Slow Down"
+  },
+  "shortcutSpeedReset": {
+    "message": "Reset Speed"
+  },
+  "shortcutClipToggle": {
+    "message": "Clip Bar"
+  },
+  "shortcutClipIn": {
+    "message": "Set Clip Start"
+  },
+  "shortcutClipOut": {
+    "message": "Set Clip End"
+  },
+  "shortcutClipSave": {
+    "message": "Save Clip"
+  },
+  "focusMode": {
+    "message": "Focus mode active — the home feed is hidden."
+  },
+  "speedLabel": {
+    "message": "Speed"
+  },
+  "speedReset": {
+    "message": "Reset"
+  },
+  "clipTitle": {
+    "message": "Clip"
+  },
+  "clipSetIn": {
+    "message": "Start"
+  },
+  "clipSetOut": {
+    "message": "End"
+  },
+  "clipPreview": {
+    "message": "Preview"
+  },
+  "clipSave": {
+    "message": "Save"
+  },
+  "clipClose": {
+    "message": "Close"
+  },
+  "clipRecording": {
+    "message": "Recording…"
+  },
+  "clipSaved": {
+    "message": "Clip saved"
+  },
+  "clipFailed": {
+    "message": "Clip capture failed"
+  },
+  "clipNoRange": {
+    "message": "Set a start and end point first"
+  }
 }
