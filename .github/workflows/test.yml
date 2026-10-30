@@ -1,13 +1,12 @@
-# Offline test suite (static, Chromium fixture, Firefox) on every push to main
-# and every pull request. Live youtube.com tests stay local: running them from
-# CI would trip Google's "unusual traffic" check.
+# Offline test suite (static, Chromium fixture, Firefox). Runs before every
+# release (called from release.yml) or by hand from the Actions tab; pushes
+# are tested locally before they are sent. Live youtube.com tests stay local:
+# running them from CI would trip Google's "unusual traffic" check.
 name: Tests
 
 on:
-  push:
-    branches: [main]
-  pull_request:
   workflow_call:
+  workflow_dispatch:
 
 permissions:
   contents: read
