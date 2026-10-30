@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Open Youtube Einstellungen"},
-  "appDesc": {"message": "YouTube Verbesserer"},
-  "brightness": {"message": "Helligkeit"},
-  "blueLightFilter": {"message": "Blaulichtfilter"},
-  "hideHomeFeed": {"message": "Startseite Ausblenden"},
-  "hideSidebar": {"message": "Seitenleiste Ausblenden"},
-  "hidePlaylist": {"message": "Playlist Ausblenden"},
-  "autoHideControls": {"message": "Steuerelemente Ausblenden"},
-  "hidePlayPauseAnim": {"message": "Play/Pause-Animation Ausblenden"},
-  "hideSkipAnim": {"message": "Überspringen-Animation Ausblenden"},
-  "resetDefaults": {"message": "Zurücksetzen"},
-  "tabSettings": {"message": "Einstellungen"},
-  "tabShortcuts": {"message": "Tastenkombinationen"},
-  "tabLanguage": {"message": "Sprache"},
-  "modalTitle": {"message": "Aktualisierung erforderlich"},
-  "modalDesc": {"message": "Die YouTube-Seite muss aktualisiert werden, um die Überspringen-Animation auszublenden. Jetzt aktualisieren?"},
-  "modalCancel": {"message": "Abbrechen"},
-  "modalConfirm": {"message": "Aktualisieren"},
-  "shortcutToggleFilters": {"message": "Filter Umschalten"},
-  "shortcutNotSet": {"message": "Festlegen"},
-  "shortcutRecording": {"message": "Drücken..."}
+  "appName": {
+    "message": "Open Youtube Einstellungen"
+  },
+  "appDesc": {
+    "message": "YouTube Verbesserer"
+  },
+  "brightness": {
+    "message": "Helligkeit"
+  },
+  "blueLightFilter": {
+    "message": "Blaulichtfilter"
+  },
+  "hideHomeFeed": {
+    "message": "Startseite Ausblenden"
+  },
+  "hideSidebar": {
+    "message": "Seitenleiste Ausblenden"
+  },
+  "hidePlaylist": {
+    "message": "Playlist Ausblenden"
+  },
+  "autoHideControls": {
+    "message": "Steuerelemente Ausblenden"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Play/Pause-Animation Ausblenden"
+  },
+  "hideSkipAnim": {
+    "message": "Überspringen-Animation Ausblenden"
+  },
+  "resetDefaults": {
+    "message": "Zurücksetzen"
+  },
+  "tabSettings": {
+    "message": "Einstellungen"
+  },
+  "tabShortcuts": {
+    "message": "Tastenkombinationen"
+  },
+  "tabLanguage": {
+    "message": "Sprache"
+  },
+  "modalTitle": {
+    "message": "Aktualisierung erforderlich"
+  },
+  "modalDesc": {
+    "message": "Die YouTube-Seite muss aktualisiert werden, um die Überspringen-Animation auszublenden. Jetzt aktualisieren?"
+  },
+  "modalCancel": {
+    "message": "Abbrechen"
+  },
+  "modalConfirm": {
+    "message": "Aktualisieren"
+  },
+  "shortcutToggleFilters": {
+    "message": "Filter Umschalten"
+  },
+  "shortcutNotSet": {
+    "message": "Festlegen"
+  },
+  "shortcutRecording": {
+    "message": "Drücken..."
+  },
+  "tabSpeed": {
+    "message": "Geschwindigkeit"
+  },
+  "tabAdvanced": {
+    "message": "Erweitert"
+  },
+  "sectionColor": {
+    "message": "Farbe"
+  },
+  "sectionLayout": {
+    "message": "Layout"
+  },
+  "sectionCrop": {
+    "message": "Videozuschnitt"
+  },
+  "sectionClip": {
+    "message": "Clip-Werkzeug"
+  },
+  "sectionNavigation": {
+    "message": "Navigation"
+  },
+  "invertColors": {
+    "message": "Farben umkehren"
+  },
+  "invertHint": {
+    "message": "Macht aus einem hellen Whiteboard-Vortrag einen dunklen und hält die Farbtöne lesbar."
+  },
+  "applyToShorts": {
+    "message": "Auf Shorts anwenden"
+  },
+  "originalColors": {
+    "message": "Originalfarben"
+  },
+  "allowPanels": {
+    "message": "Seitenpanels zulassen"
+  },
+  "allowPanelsHint": {
+    "message": "Kapitel, Transkript und das KI-Panel öffnen sich weiterhin auf Wunsch und schließen beim nächsten Video wieder."
+  },
+  "speedEnabled": {
+    "message": "Geschwindigkeitsregler"
+  },
+  "speedEnabledHint": {
+    "message": "Ausschalten, um die Wiedergabegeschwindigkeit YouTube oder einer anderen Erweiterung zu überlassen. Im ausgeschalteten Zustand wird nichts verändert."
+  },
+  "speedOverlay": {
+    "message": "Chip im Player anzeigen"
+  },
+  "speedDefault": {
+    "message": "Standardgeschwindigkeit"
+  },
+  "speedStep": {
+    "message": "Schrittweite"
+  },
+  "speedPersist": {
+    "message": "Geschwindigkeit zwischen Videos behalten"
+  },
+  "speedPresetHint": {
+    "message": "Voreinstellungen setzen die Standardgeschwindigkeit. Feine Schritte gibt es am Player-Chip und über die Tastenkürzel."
+  },
+  "cropEnabled": {
+    "message": "Video zuschneiden"
+  },
+  "cropHint": {
+    "message": "Zoomt über eingebrannte Banner und Letterbox-Balken hinaus, damit das Motiv mehr Platz einnimmt."
+  },
+  "cropZoom": {
+    "message": "Zoom"
+  },
+  "cropOffsetY": {
+    "message": "Vertikale Verschiebung"
+  },
+  "clipEnabled": {
+    "message": "Clip-Werkzeug"
+  },
+  "clipHint": {
+    "message": "Öffnet eine Clip-Leiste im Player. Start und Ende markieren, dann speichern — der Bereich wird in Echtzeit aus deiner Wiedergabe aufgenommen und als Videodatei heruntergeladen."
+  },
+  "channelAutoVideos": {
+    "message": "Kanäle bei Videos öffnen"
+  },
+  "channelAutoVideosHint": {
+    "message": "Kanal-Links springen direkt zum Tab „Videos“ statt zur Kanal-Startseite."
+  },
+  "shortcutSpeedUp": {
+    "message": "Schneller"
+  },
+  "shortcutSpeedDown": {
+    "message": "Langsamer"
+  },
+  "shortcutSpeedReset": {
+    "message": "Geschwindigkeit zurücksetzen"
+  },
+  "shortcutClipToggle": {
+    "message": "Clip-Leiste"
+  },
+  "shortcutClipIn": {
+    "message": "Clip-Start setzen"
+  },
+  "shortcutClipOut": {
+    "message": "Clip-Ende setzen"
+  },
+  "shortcutClipSave": {
+    "message": "Clip speichern"
+  },
+  "focusMode": {
+    "message": "Fokusmodus aktiv — der Startseiten-Feed ist ausgeblendet."
+  },
+  "speedLabel": {
+    "message": "Geschwindigkeit"
+  },
+  "speedReset": {
+    "message": "Zurücksetzen"
+  },
+  "clipTitle": {
+    "message": "Clip"
+  },
+  "clipSetIn": {
+    "message": "Start"
+  },
+  "clipSetOut": {
+    "message": "Ende"
+  },
+  "clipPreview": {
+    "message": "Vorschau"
+  },
+  "clipSave": {
+    "message": "Speichern"
+  },
+  "clipClose": {
+    "message": "Schließen"
+  },
+  "clipRecording": {
+    "message": "Aufnahme…"
+  },
+  "clipSaved": {
+    "message": "Clip gespeichert"
+  },
+  "clipFailed": {
+    "message": "Clip-Aufnahme fehlgeschlagen"
+  },
+  "clipNoRange": {
+    "message": "Setze zuerst Start- und Endpunkt"
+  }
 }

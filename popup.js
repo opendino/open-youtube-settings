@@ -91,7 +91,10 @@ const shortcutBtns = document.querySelectorAll('.shortcut-btn');
 let currentLang = 'en';
 let currentMessages = null;
 let recordingShortcutFor = null;
-let revertSkipAnimState = false;
+/** Settings to go back to when the reload prompt is cancelled. */
+let restoreOnCancel = null;
+/** The reload prompt is confirming a "Reset Defaults". */
+let resetPending = false;
 
 /* ------------------------------------------------------------- utilities */
 
@@ -171,9 +174,15 @@ function buildContentStrings() {
   return Object.keys(strings).length ? strings : null;
 }
 
-/** Writes the current state to storage and pushes it to every YouTube tab. */
+/**
+ * Writes the current state to storage and pushes it to every YouTube tab.
+ * `lastSpeed` belongs to the page, which moves it with every speed change, so
+ * it is only sent when the caller means to set the speed (`extra.lastSpeed`);
+ * otherwise the value read when the popup opened would undo newer changes.
+ */
 function commit(extra = {}) {
   const payload = Object.assign({}, settings, extra);
+  if (!('lastSpeed' in extra)) delete payload.lastSpeed;
 
   browser.storage.local
     .set(payload)
@@ -196,11 +205,11 @@ function commit(extra = {}) {
 }
 
 /** Pulls every control's value into state, then persists. */
-function collectAndCommit() {
+function collectAndCommit(extra = {}) {
   for (const key of Object.keys(CONTROLS)) settings[key] = readControl(key);
   renderGating();
   updateSpeedPresets();
-  commit();
+  commit(extra);
 }
 
 /* ------------------------------------------------------------ init load */
@@ -235,8 +244,10 @@ for (const [key, control] of Object.entries(CONTROLS)) {
   if (!node) continue;
 
   if (control.needsReload) {
-    node.addEventListener('change', (event) => {
-      revertSkipAnimState = !event.target.checked;
+    node.addEventListener('change', () => {
+      // `settings` still holds the value from before this click.
+      restoreOnCancel = Object.assign({}, settings);
+      resetPending = false;
       modalOverlay.classList.add('active');
     });
     continue;
@@ -265,31 +276,35 @@ for (const button of document.querySelectorAll('.speed-preset')) {
     settings.speedDefault = Number(button.dataset.speed);
     settings.lastSpeed = settings.speedDefault;
     renderAll();
-    commit();
+    commit({ lastSpeed: settings.lastSpeed });
   });
 }
 
 document.getElementById('reset').addEventListener('click', () => {
-  const wasSkipAnimOn = settings.hideSkipAnim;
+  const before = Object.assign({}, settings);
 
   for (const key of Object.keys(CONTROLS)) settings[key] = DEFAULTS[key];
   settings.filtersEnabled = DEFAULTS.filtersEnabled;
   settings.lastSpeed = DEFAULTS.lastSpeed;
   renderAll();
 
-  if (wasSkipAnimOn) {
-    revertSkipAnimState = true;
+  if (before.hideSkipAnim) {
+    // Turning the skip-animation hider off needs a reload; nothing is saved
+    // until the user confirms, and cancelling puts everything back.
+    restoreOnCancel = before;
+    resetPending = true;
     modalOverlay.classList.add('active');
   } else {
-    commit();
+    commit({ lastSpeed: settings.lastSpeed });
   }
 });
 
 /* ----------------------------------------------------------- reload modal */
 
 modalConfirmBtn.addEventListener('click', () => {
-  settings.hideSkipAnim = readControl('hideSkipAnim');
-  collectAndCommit();
+  collectAndCommit(resetPending ? { lastSpeed: settings.lastSpeed } : {});
+  restoreOnCancel = null;
+  resetPending = false;
 
   browser.tabs
     .query({ url: '*://*.youtube.com/*' })
@@ -308,8 +323,10 @@ modalConfirmBtn.addEventListener('click', () => {
 });
 
 modalCancelBtn.addEventListener('click', () => {
-  writeControl('hideSkipAnim', revertSkipAnimState);
-  settings.hideSkipAnim = revertSkipAnimState;
+  if (restoreOnCancel) Object.assign(settings, restoreOnCancel);
+  restoreOnCancel = null;
+  resetPending = false;
+  renderAll();
   modalOverlay.classList.remove('active');
 });
 

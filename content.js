@@ -534,9 +534,39 @@ function updateDynamicStyles() {
  */
 let expectedRate = null;
 
+/** Range YouTube's player API accepts (see page-bridge.js). */
+const API_MIN_RATE = 0.25;
+const API_MAX_RATE = 2;
+
+/** What YouTube's player turns a rate into, since its API clamps. */
+function youtubeRateFor(rate) {
+  return Math.min(API_MAX_RATE, Math.max(API_MIN_RATE, rate));
+}
+
+/** Ad breaks play at YouTube's own rate and must not be adopted or fought. */
+function adShowing() {
+  const player = getPlayer();
+  return !!player && player.classList.contains('ad-showing');
+}
+
+/**
+ * Writes a rate through YouTube's player API first, via the page bridge, so
+ * YouTube's menu, its Shift+< / Shift+> shortcuts and the rate it restores
+ * after an ad all agree with ours. The API stops at 0.25–2×, so the element is
+ * written directly for anything beyond that, except during an ad.
+ */
 function writeRate(video, target) {
   expectedRate = target;
-  video.playbackRate = target;
+  const player = video.closest('.html5-video-player');
+  if (player) player.dispatchEvent(new CustomEvent('yte-set-rate', { detail: target }));
+  if (Math.abs(video.playbackRate - target) > 0.001 && !adShowing()) {
+    video.playbackRate = target;
+  }
+}
+
+/** Rounds away floating-point drift so stepped rates stay at 1.3, not 1.3000000000000003. */
+function roundRate(rate) {
+  return Math.round(rate * 1000) / 1000;
 }
 
 /**
@@ -561,7 +591,7 @@ function applySpeed() {
 /** Sets a new playback rate and remembers it as the rate in force. */
 function setSpeed(rate) {
   if (!S.speedEnabled) return null;
-  const target = clamp(rate, 0.0625, 16);
+  const target = roundRate(clamp(rate, 0.0625, 16));
   try {
     const video = getMainVideo();
     if (video) writeRate(video, target);
@@ -597,18 +627,42 @@ document.addEventListener(
   (event) => {
     if (!S.speedEnabled) return;
     const video = event.target;
-    if (!(video instanceof HTMLVideoElement)) return;
+    // Hover previews and the hidden watch player on Shorts are not the video
+    // being watched, and an ad break runs at YouTube's own rate.
+    if (!(video instanceof HTMLVideoElement) || video !== getMainVideo()) return;
+    if (adShowing()) return;
+    // Loading a new source resets the rate to defaultPlaybackRate; that is the
+    // browser, not the user. `loadedmetadata` below re-applies ours.
+    if (video.readyState === HTMLMediaElement.HAVE_NOTHING) return;
 
-    const rate = clamp(video.playbackRate, 0.0625, 16);
+    const rate = roundRate(clamp(video.playbackRate, 0.0625, 16));
     if (expectedRate !== null && Math.abs(rate - expectedRate) < 0.001) {
       expectedRate = null;
       return;
     }
     if (Math.abs(rate - S.lastSpeed) < 0.001) return;
 
+    // YouTube only knows a clamped copy of rates beyond 0.25–2× and writes it
+    // back after ads and video switches; that is not the user picking a speed.
+    const clamped = youtubeRateFor(S.lastSpeed);
+    if (Math.abs(clamped - S.lastSpeed) > 0.001 && Math.abs(rate - clamped) < 0.001) {
+      writeRate(video, S.lastSpeed);
+      return;
+    }
+
     S.lastSpeed = rate;
     persist({ lastSpeed: rate });
     YTE.notify();
+  },
+  true
+);
+
+// A new source in the same element (next video, Shorts swipe) starts from the
+// browser's default rate; put the managed rate back as soon as it can play.
+document.addEventListener(
+  'loadedmetadata',
+  (event) => {
+    if (event.target === getMainVideo()) applySpeed();
   },
   true
 );

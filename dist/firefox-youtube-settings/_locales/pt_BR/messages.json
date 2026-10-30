@@ -1,23 +1,209 @@
 {
-  "appName": {"message": "Configurações do Open Youtube"},
-  "appDesc": {"message": "Otimizador do YouTube"},
-  "brightness": {"message": "Brilho"},
-  "blueLightFilter": {"message": "Filtro de Luz Azul"},
-  "hideHomeFeed": {"message": "Ocultar Feed Inicial"},
-  "hideSidebar": {"message": "Ocultar Barra Lateral"},
-  "hidePlaylist": {"message": "Ocultar Playlist"},
-  "autoHideControls": {"message": "Ocultar Controles"},
-  "hidePlayPauseAnim": {"message": "Ocultar Animação Play/Pause"},
-  "hideSkipAnim": {"message": "Ocultar Animação de Pulo"},
-  "resetDefaults": {"message": "Restaurar Padrões"},
-  "tabSettings": {"message": "Configurações"},
-  "tabShortcuts": {"message": "Atalhos"},
-  "tabLanguage": {"message": "Idioma"},
-  "modalTitle": {"message": "Atualização Necessária"},
-  "modalDesc": {"message": "A página do YouTube precisa ser atualizada para ocultar a animação de pular. Atualizar agora?"},
-  "modalCancel": {"message": "Cancelar"},
-  "modalConfirm": {"message": "Atualizar Agora"},
-  "shortcutToggleFilters": {"message": "Alternar Filtros"},
-  "shortcutNotSet": {"message": "Definir"},
-  "shortcutRecording": {"message": "Pressione..."}
+  "appName": {
+    "message": "Configurações do Open Youtube"
+  },
+  "appDesc": {
+    "message": "Otimizador do YouTube"
+  },
+  "brightness": {
+    "message": "Brilho"
+  },
+  "blueLightFilter": {
+    "message": "Filtro de Luz Azul"
+  },
+  "hideHomeFeed": {
+    "message": "Ocultar Feed Inicial"
+  },
+  "hideSidebar": {
+    "message": "Ocultar Barra Lateral"
+  },
+  "hidePlaylist": {
+    "message": "Ocultar Playlist"
+  },
+  "autoHideControls": {
+    "message": "Ocultar Controles"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Ocultar Animação Play/Pause"
+  },
+  "hideSkipAnim": {
+    "message": "Ocultar Animação de Pulo"
+  },
+  "resetDefaults": {
+    "message": "Restaurar Padrões"
+  },
+  "tabSettings": {
+    "message": "Configurações"
+  },
+  "tabShortcuts": {
+    "message": "Atalhos"
+  },
+  "tabLanguage": {
+    "message": "Idioma"
+  },
+  "modalTitle": {
+    "message": "Atualização Necessária"
+  },
+  "modalDesc": {
+    "message": "A página do YouTube precisa ser atualizada para ocultar a animação de pular. Atualizar agora?"
+  },
+  "modalCancel": {
+    "message": "Cancelar"
+  },
+  "modalConfirm": {
+    "message": "Atualizar Agora"
+  },
+  "shortcutToggleFilters": {
+    "message": "Alternar Filtros"
+  },
+  "shortcutNotSet": {
+    "message": "Definir"
+  },
+  "shortcutRecording": {
+    "message": "Pressione..."
+  },
+  "tabSpeed": {
+    "message": "Velocidade"
+  },
+  "tabAdvanced": {
+    "message": "Avançado"
+  },
+  "sectionColor": {
+    "message": "Cor"
+  },
+  "sectionLayout": {
+    "message": "Layout"
+  },
+  "sectionCrop": {
+    "message": "Recorte de vídeo"
+  },
+  "sectionClip": {
+    "message": "Ferramenta de clipe"
+  },
+  "sectionNavigation": {
+    "message": "Navegação"
+  },
+  "invertColors": {
+    "message": "Inverter cores"
+  },
+  "invertHint": {
+    "message": "Transforma uma aula de lousa branca em uma escura, mantendo os tons legíveis."
+  },
+  "applyToShorts": {
+    "message": "Aplicar aos Shorts"
+  },
+  "originalColors": {
+    "message": "Cores originais"
+  },
+  "allowPanels": {
+    "message": "Permitir painéis laterais"
+  },
+  "allowPanelsHint": {
+    "message": "Capítulos, transcrição e o painel de IA continuam abrindo quando você pede e fecham no próximo vídeo."
+  },
+  "speedEnabled": {
+    "message": "Controle de velocidade"
+  },
+  "speedEnabledHint": {
+    "message": "Desligue para deixar a velocidade de reprodução para o YouTube ou outra extensão. Enquanto estiver desligado, nada é alterado."
+  },
+  "speedOverlay": {
+    "message": "Mostrar chip no player"
+  },
+  "speedDefault": {
+    "message": "Velocidade padrão"
+  },
+  "speedStep": {
+    "message": "Tamanho do passo"
+  },
+  "speedPersist": {
+    "message": "Manter a velocidade entre vídeos"
+  },
+  "speedPresetHint": {
+    "message": "As predefinições ajustam a velocidade padrão. Os passos finos ficam no chip do player e nos atalhos."
+  },
+  "cropEnabled": {
+    "message": "Recortar vídeo"
+  },
+  "cropHint": {
+    "message": "Amplia além de banners embutidos e barras negras para o assunto ocupar mais espaço."
+  },
+  "cropZoom": {
+    "message": "Zoom"
+  },
+  "cropOffsetY": {
+    "message": "Deslocamento vertical"
+  },
+  "clipEnabled": {
+    "message": "Ferramenta de clipe"
+  },
+  "clipHint": {
+    "message": "Abre uma barra de clipe no player. Marque início e fim e salve — o trecho é gravado em tempo real da sua reprodução e baixado como arquivo de vídeo."
+  },
+  "channelAutoVideos": {
+    "message": "Abrir canais em Vídeos"
+  },
+  "channelAutoVideosHint": {
+    "message": "Links de canal vão direto para a aba Vídeos em vez da página inicial do canal."
+  },
+  "shortcutSpeedUp": {
+    "message": "Acelerar"
+  },
+  "shortcutSpeedDown": {
+    "message": "Desacelerar"
+  },
+  "shortcutSpeedReset": {
+    "message": "Redefinir velocidade"
+  },
+  "shortcutClipToggle": {
+    "message": "Barra de clipe"
+  },
+  "shortcutClipIn": {
+    "message": "Marcar início"
+  },
+  "shortcutClipOut": {
+    "message": "Marcar fim"
+  },
+  "shortcutClipSave": {
+    "message": "Salvar clipe"
+  },
+  "focusMode": {
+    "message": "Modo de foco ativo — o feed da página inicial está oculto."
+  },
+  "speedLabel": {
+    "message": "Velocidade"
+  },
+  "speedReset": {
+    "message": "Redefinir"
+  },
+  "clipTitle": {
+    "message": "Clipe"
+  },
+  "clipSetIn": {
+    "message": "Início"
+  },
+  "clipSetOut": {
+    "message": "Fim"
+  },
+  "clipPreview": {
+    "message": "Prévia"
+  },
+  "clipSave": {
+    "message": "Salvar"
+  },
+  "clipClose": {
+    "message": "Fechar"
+  },
+  "clipRecording": {
+    "message": "Gravando…"
+  },
+  "clipSaved": {
+    "message": "Clipe salvo"
+  },
+  "clipFailed": {
+    "message": "Falha ao capturar o clipe"
+  },
+  "clipNoRange": {
+    "message": "Defina primeiro um início e um fim"
+  }
 }

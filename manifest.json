@@ -32,6 +32,16 @@
         "*://*.youtube.com/*"
       ],
       "js": [
+        "page-bridge.js"
+      ],
+      "run_at": "document_start",
+      "world": "MAIN"
+    },
+    {
+      "matches": [
+        "*://*.youtube.com/*"
+      ],
+      "js": [
         "content.js",
         "ui-overlay.js"
       ],
@@ -40,7 +50,13 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "yt-visual-adjuster@example.com"
+      "id": "yt-visual-adjuster@example.com",
+      "strict_min_version": "128.0",
+      "data_collection_permissions": {
+        "required": [
+          "none"
+        ]
+      }
     }
   }
 }

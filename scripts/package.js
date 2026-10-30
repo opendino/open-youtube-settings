@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { execSync } from 'child_process';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -8,11 +8,14 @@ const __dirname = path.dirname(__filename);
 
 const ROOT_DIR = path.resolve(__dirname, '..');
 const DIST_DIR = path.join(ROOT_DIR, 'dist');
-const CHROME_DIR = path.join(DIST_DIR, 'chrome-temp');
-const FIREFOX_DIR = path.join(DIST_DIR, 'firefox-temp');
+// Unpacked builds stay next to the zips so they can be loaded with
+// "Load unpacked" / about:debugging and never drift from the zipped package.
+const CHROME_DIR = path.join(DIST_DIR, 'chrome-youtube-settings');
+const FIREFOX_DIR = path.join(DIST_DIR, 'firefox-youtube-settings');
 
 // Files and folders to package
 const FILES_TO_COPY = [
+  'page-bridge.js',
   'content.js',
   'ui-overlay.js',
   'popup.js',
@@ -53,8 +56,12 @@ function copyDirSync(src, dest) {
 
 /**
  * Standardizes files copy and directory creation.
+ * @param {string} targetDir - Where the unpacked extension is written.
+ * @param {boolean} isChrome - Build the Chrome flavour of the manifest.
+ * @param {object} [manifestOverrides] - Extra manifest keys (tests pin the
+ *   extension ID with a `key`).
  */
-function prepareDirectory(targetDir, isChrome = false) {
+export function prepareDirectory(targetDir, isChrome = false, manifestOverrides = {}) {
   console.log(`[Packager] Preparing build directory: ${path.relative(ROOT_DIR, targetDir)}...`);
   
   if (fs.existsSync(targetDir)) {
@@ -93,12 +100,18 @@ function prepareDirectory(targetDir, isChrome = false) {
       if (manifest.browser_specific_settings && manifest.browser_specific_settings.gecko) {
         // Clean any non-standard Gecko keys
         const gecko = manifest.browser_specific_settings.gecko;
+        // world: "MAIN" content scripts (page-bridge.js) need Firefox 128+.
         manifest.browser_specific_settings.gecko = {
-          id: gecko.id || 'yt-visual-adjuster@example.com'
+          id: gecko.id || 'yt-visual-adjuster@example.com',
+          strict_min_version: gecko.strict_min_version || '128.0',
+          // Firefox requires a data-collection declaration; this add-on collects nothing.
+          data_collection_permissions: gecko.data_collection_permissions || { required: ['none'] }
         };
       }
       console.log('[Packager] Configured Gecko IDs for Firefox package.');
     }
+
+    Object.assign(manifest, manifestOverrides);
 
     fs.writeFileSync(
       path.join(targetDir, 'manifest.json'),
@@ -146,14 +159,9 @@ function main() {
     prepareDirectory(FIREFOX_DIR, false);
     zipDirectory(FIREFOX_DIR, 'firefox-youtube-settings.zip');
 
-    // 4. Clean up temporary directories
-    console.log('[Packager] Cleaning up build temporary directories...');
-    fs.rmSync(CHROME_DIR, { recursive: true, force: true });
-    fs.rmSync(FIREFOX_DIR, { recursive: true, force: true });
-
     console.log('\n[Packager] Bundling finished successfully! Production packages are located in:');
-    console.log(`- dist/chrome-youtube-settings.zip`);
-    console.log(`- dist/firefox-youtube-settings.zip\n`);
+    console.log(`- dist/chrome-youtube-settings.zip (unpacked: dist/chrome-youtube-settings/)`);
+    console.log(`- dist/firefox-youtube-settings.zip (unpacked: dist/firefox-youtube-settings/)\n`);
 
   } catch (error) {
     console.error('[Packager] Bundling failed with errors:', error);
@@ -161,4 +169,7 @@ function main() {
   }
 }
 
-main();
+// Only package when run directly; the test suite imports prepareDirectory.
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main();
+}
