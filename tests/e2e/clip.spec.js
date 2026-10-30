@@ -54,6 +54,41 @@ test.describe('clip tool', () => {
     expect(await page.evaluate(() => document.querySelector('#movie_player video').playbackRate)).toBe(1.5);
   });
 
+  test('recording does not push 1× to other tabs or into storage', async ({ page, context, harness }) => {
+    await harness.set({ speedDefault: 1.5, lastSpeed: 1.5, shortcuts: { clipToggle: 'Alt+K' } });
+    const other = await context.newPage();
+    await openYoutube(other);
+    await expect.poll(() => other.evaluate(() => document.querySelector('#movie_player video').playbackRate)).toBe(1.5);
+
+    await openYoutube(page);
+    await page.locator('body').click({ position: { x: 5, y: 5 } });
+    await page.keyboard.press('Alt+KeyK');
+    const buttons = page.locator('#yte-osc .yte-clip .yte-row button');
+    await seek(page, 1);
+    await buttons.nth(0).click();
+    await seek(page, 2.5);
+    await buttons.nth(1).click();
+
+    const seen = { other: new Set(), stored: new Set() };
+    let done = false;
+    const sample = (async () => {
+      while (!done) {
+        seen.other.add(await other.evaluate(() => document.querySelector('#movie_player video').playbackRate));
+        seen.stored.add((await harness.get(['lastSpeed'])).lastSpeed);
+        await page.waitForTimeout(50);
+      }
+    })();
+    const downloadPromise = page.waitForEvent('download', { timeout: 15000 });
+    await buttons.nth(3).click();
+    await downloadPromise;
+    await page.waitForTimeout(300);
+    done = true;
+    await sample;
+
+    expect([...seen.stored]).toEqual([1.5]);
+    expect([...seen.other]).toEqual([1.5]);
+  });
+
   test('save stays disabled until a start and end are set', async ({ page, harness }) => {
     await harness.set({ shortcuts: { clipToggle: 'Alt+K' } });
     await openYoutube(page);

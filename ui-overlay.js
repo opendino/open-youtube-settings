@@ -581,6 +581,7 @@
     syncClip();
 
     try {
+      YTE.api.holdSpeed(true);
       video.playbackRate = 1;
       video.currentTime = clipIn;
       await Promise.race([once(video, 'seeked'), delay(3000)]);
@@ -631,6 +632,7 @@
       } catch (error) {
         console.error('[YT-Enhancer] Error restoring playback state:', error);
       }
+      YTE.api.holdSpeed(false);
       syncClip();
     }
   }

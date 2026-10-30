@@ -544,6 +544,12 @@ function updateDynamicStyles() {
  */
 let expectedRate = null;
 
+/**
+ * Set while the clip tool records at 1×, so that temporary rate is neither
+ * adopted as the user's speed (and spread to other tabs) nor fought.
+ */
+let speedHeld = false;
+
 /** Range YouTube's player API accepts (see page-bridge.js). */
 const API_MIN_RATE = 0.25;
 const API_MAX_RATE = 2;
@@ -586,7 +592,7 @@ function roundRate(rate) {
  * dedicated speed extension in charge.
  */
 function applySpeed() {
-  if (!S.speedEnabled) return;
+  if (!S.speedEnabled || speedHeld) return;
   try {
     const video = getMainVideo();
     if (!video) return;
@@ -635,7 +641,7 @@ function resetSpeedForNavigation() {
 document.addEventListener(
   'ratechange',
   (event) => {
-    if (!S.speedEnabled) return;
+    if (!S.speedEnabled || speedHeld) return;
     const video = event.target;
     // Hover previews and the hidden watch player on Shorts are not the video
     // being watched, and an ad break runs at YouTube's own rate.
@@ -684,6 +690,11 @@ YTE.api.nudgeSpeed = (direction) => {
   return setSpeed(current + direction * clamp(S.speedStep, 0.01, 1));
 };
 YTE.api.resetSpeed = () => setSpeed(S.speedDefault);
+/** Pauses speed management for a recording; releasing it puts the managed rate back. */
+YTE.api.holdSpeed = (held) => {
+  speedHeld = held;
+  if (!held) applySpeed();
+};
 
 /* ------------------------------------------------------- channel redirect */
 
