@@ -98,17 +98,55 @@ test.describe('manifest and settings', () => {
   });
 });
 
+/** Builds one flavour of the extension into a fresh temporary directory. */
+function build(target) {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), `yte-${target}-`));
+  const log = console.log;
+  console.log = () => {};
+  try {
+    prepareDirectory(dir, target === 'chrome');
+  } finally {
+    console.log = log;
+  }
+  return dir;
+}
+
+/** Every file below a directory, as forward-slash paths relative to it. */
+function listFiles(dir, prefix = '') {
+  return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) =>
+    entry.isDirectory()
+      ? listFiles(path.join(dir, entry.name), `${prefix}${entry.name}/`)
+      : [`${prefix}${entry.name}`]
+  );
+}
+
 test.describe('packaging', () => {
   for (const target of ['chrome', 'firefox']) {
+    test(`${target} build ships only files the extension uses`, () => {
+      const dir = build(target);
+      const built = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
+      const popupHtml = fs.readFileSync(path.join(dir, built.action.default_popup), 'utf8');
+      const used = new Set([
+        'manifest.json',
+        built.action.default_popup,
+        ...built.content_scripts.flatMap((c) => c.js || []),
+        ...Object.values(built.icons),
+        ...Object.values(built.action.default_icon),
+        // Local scripts and stylesheets the popup pulls in.
+        ...[...popupHtml.matchAll(/(?:src|href)="([^"]+)"/g)]
+          .map((m) => m[1])
+          .filter((ref) => !/^[a-z]+:/i.test(ref))
+      ]);
+
+      for (const lang of locales) used.add(`_locales/${lang}/messages.json`);
+
+      const unused = listFiles(dir).filter((file) => !used.has(file));
+      expect(unused, 'packaged but never loaded').toEqual([]);
+      fs.rmSync(dir, { recursive: true, force: true });
+    });
+
     test(`${target} build contains every manifest file`, () => {
-      const dir = fs.mkdtempSync(path.join(os.tmpdir(), `yte-${target}-`));
-      const log = console.log;
-      console.log = () => {};
-      try {
-        prepareDirectory(dir, target === 'chrome');
-      } finally {
-        console.log = log;
-      }
+      const dir = build(target);
       const built = JSON.parse(fs.readFileSync(path.join(dir, 'manifest.json'), 'utf8'));
       for (const file of built.content_scripts.flatMap((c) => c.js)) {
         expect(fs.existsSync(path.join(dir, file)), file).toBe(true);

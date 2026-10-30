@@ -13,7 +13,8 @@ const DIST_DIR = path.join(ROOT_DIR, 'dist');
 const CHROME_DIR = path.join(DIST_DIR, 'chrome-youtube-settings');
 const FIREFOX_DIR = path.join(DIST_DIR, 'firefox-youtube-settings');
 
-// Files and folders to package
+// Files and folders to package. Only what the extension loads at runtime:
+// icon.png and icon/ are design sources and stay out of the packages.
 const FILES_TO_COPY = [
   'page-bridge.js',
   'content.js',
@@ -21,7 +22,6 @@ const FILES_TO_COPY = [
   'popup.js',
   'popup.html',
   'popup.css',
-  'icon.png',
   'icon_16.png',
   'icon_32.png',
   'icon_48.png',
@@ -30,8 +30,7 @@ const FILES_TO_COPY = [
 ];
 
 const DIRS_TO_COPY = [
-  '_locales',
-  'icon'
+  '_locales'
 ];
 
 /**
@@ -43,6 +42,8 @@ function copyDirSync(src, dest) {
   const entries = fs.readdirSync(src, { withFileTypes: true });
 
   for (const entry of entries) {
+    // Skip Finder metadata such as .DS_Store.
+    if (entry.name.startsWith('.')) continue;
     const srcPath = path.join(src, entry.name);
     const destPath = path.join(dest, entry.name);
 
