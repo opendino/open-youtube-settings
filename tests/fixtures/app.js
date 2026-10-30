@@ -87,10 +87,40 @@
     return player;
   }
 
-  function related(count = 5) {
-    let items = '';
-    for (let i = 0; i < count; i++) items += `<div class="item">related ${i}</div>`;
-    return `<ytd-watch-next-secondary-results-renderer>${items}</ytd-watch-next-secondary-results-renderer>`;
+  /**
+   * Channels on the fixture cards. "Blocked Co" is the one tests block; the
+   * watch-page list and the end screen only print names, like YouTube does.
+   */
+  const CHANNELS = [
+    { name: 'Channel A', handle: '@channela', id: 'UCaaaaaaaaaaaaaaaaaaaaaa' },
+    { name: 'Blocked Co', handle: '@blockedco', id: 'UCbbbbbbbbbbbbbbbbbbbbbb' },
+    { name: 'Channel C', handle: '@channelc', id: 'UCcccccccccccccccccccccc' }
+  ];
+
+  /** A view-model lockup; `avatar` adds the channel link home cards carry. */
+  function lockup(videoId, channel, { avatar = false } = {}) {
+    return `
+      <yt-lockup-view-model class="lockup" data-video="${videoId}">
+        <a class="thumb" href="/watch?v=${videoId}"><yt-thumbnail-view-model class="thumbnail"></yt-thumbnail-view-model></a>
+        ${avatar ? `<a class="avatar" href="/${channel.handle}"></a>` : ''}
+        <h3><a href="/watch?v=${videoId}">Video ${videoId}</a></h3>
+        <yt-content-metadata-view-model>
+          <div class="ytContentMetadataViewModelMetadataRow"><span>${channel.name}</span></div>
+          <div class="ytContentMetadataViewModelMetadataRow"><span>1M views</span><span> • </span><span>1 day ago</span></div>
+        </yt-content-metadata-view-model>
+      </yt-lockup-view-model>`;
+  }
+
+  function related() {
+    const items = CHANNELS.map((c, i) => lockup(`rel${i}`, c)).join('');
+    return `<ytd-watch-next-secondary-results-renderer><div id="items">${items}</div></ytd-watch-next-secondary-results-renderer>`;
+  }
+
+  /** Shorts cards carry no channel at all. */
+  function shortsShelf() {
+    return `<ytd-rich-shelf-renderer is-shorts>
+      <ytm-shorts-lockup-view-model-v2><a href="/shorts/s1">Short one</a><span>2M views</span></ytm-shorts-lockup-view-model-v2>
+    </ytd-rich-shelf-renderer>`;
   }
 
   function panel(target, expanded) {
@@ -131,12 +161,51 @@
   }
 
   function renderHome() {
-    let items = '';
-    for (let i = 0; i < 6; i++) items += `<div class="item">home ${i}</div>`;
+    const items = CHANNELS.map(
+      (c, i) => `<ytd-rich-item-renderer>${lockup(`home${i}`, c, { avatar: true })}</ytd-rich-item-renderer>`
+    ).join('');
     return el(`
       <ytd-browse page-subtype="home">
-        <div id="contents"><ytd-rich-grid-renderer>${items}</ytd-rich-grid-renderer></div>
+        <div id="contents"><ytd-rich-grid-renderer>${items}${shortsShelf()}</ytd-rich-grid-renderer></div>
       </ytd-browse>`);
+  }
+
+  function renderSearch() {
+    const items = CHANNELS.map(
+      (c, i) => `
+        <ytd-video-renderer>
+          <a id="thumbnail" href="/watch?v=search${i}"><ytd-thumbnail></ytd-thumbnail></a>
+          <a id="channel-thumbnail" href="/channel/${c.id}"></a>
+          <h3><a href="/watch?v=search${i}">Search result ${i}</a></h3>
+          <ytd-channel-name style="position: relative; z-index: 100;"><div id="text-container"><yt-formatted-string id="text"><a href="/${c.handle}">${c.name}</a></yt-formatted-string></div></ytd-channel-name>
+        </ytd-video-renderer>`
+    ).join('');
+    return el(`
+      <ytd-search><ytd-section-list-renderer><ytd-item-section-renderer><div id="contents">${items}</div></ytd-item-section-renderer></ytd-section-list-renderer></ytd-search>`);
+  }
+
+  function renderSubscriptions() {
+    const items = CHANNELS.map(
+      (c, i) => `<ytd-rich-item-renderer>${lockup(`sub${i}`, c, { avatar: true })}</ytd-rich-item-renderer>`
+    ).join('');
+    return el(`<ytd-browse page-subtype="subscriptions"><div id="contents">${items}</div></ytd-browse>`);
+  }
+
+  /** The grid of suggestions YouTube lays over the player when a video ends. */
+  function showEndscreen() {
+    const wall = el(`<div class="ytp-endscreen-content"></div>`);
+    CHANNELS.forEach((c, i) => {
+      wall.appendChild(
+        el(`
+          <a class="ytp-videowall-still" href="https://www.youtube.com/watch?v=end${i}"
+             style="position: absolute; left: ${i * 200}px; top: 0; width: 190px; height: 110px;">
+            <div class="ytp-videowall-still-image"></div>
+            <span class="ytp-videowall-still-info-title">End ${i}</span>
+            <span class="ytp-videowall-still-info-author">${c.name} • 100K views</span>
+          </a>`)
+      );
+    });
+    document.querySelector('#movie_player').appendChild(wall);
   }
 
   function renderShorts() {
@@ -160,6 +229,8 @@
     const url = new URL(location.href);
     let page;
     if (url.pathname === '/watch') page = renderWatch(url);
+    else if (url.pathname === '/results') page = renderSearch();
+    else if (url.pathname === '/feed/subscriptions') page = renderSubscriptions();
     else if (url.pathname.startsWith('/shorts/')) page = renderShorts();
     else if (/^\/(@|c\/|user\/|channel\/)/.test(url.pathname)) page = renderChannel();
     else page = renderHome();
@@ -249,6 +320,7 @@
     nextAdInBreak,
     endAd,
     youtubeToggleMute,
+    showEndscreen,
     youtubeRate: () => youtubeRate,
     youtubeMuted: () => youtubeMuted,
     ready: render()

@@ -8,7 +8,13 @@
     ytd-app, ytd-page-manager, ytd-browse, ytd-watch-flexy, ytd-watch-metadata, ytd-comments,
     ytd-engagement-panel-section-list-renderer, ytd-playlist-panel-renderer,
     ytd-watch-next-secondary-results-renderer, ytd-rich-grid-renderer, ytd-shorts,
-    ytd-reel-video-renderer { display: block; }
+    ytd-reel-video-renderer, ytd-rich-item-renderer, yt-lockup-view-model, ytd-video-renderer,
+    ytd-rich-shelf-renderer, ytm-shorts-lockup-view-model-v2, ytd-search, ytd-section-list-renderer,
+    ytd-item-section-renderer, ytd-channel-name { display: block; }
+    ytd-rich-grid-renderer { display: grid; grid-template-columns: repeat(3, 300px); gap: 16px; }
+    yt-lockup-view-model, ytd-video-renderer { min-height: 90px; margin-bottom: 8px; background: #272727; }
+    .thumbnail { display: block; height: 60px; background: #555; }
+    .ytp-videowall-still { display: block; background: #333; color: #fff; }
     #columns { display: flex; gap: 24px; padding: 24px; }
     #primary { flex: 1; max-width: 960px; }
     #secondary { width: 400px; }

@@ -214,5 +214,20 @@
   },
   "muteAdsHint": {
     "message": "Les publicités sont lues sans le son ; il revient au même volume dès la fin de la publicité."
+  },
+  "sectionBlocked": {
+    "message": "Chaînes bloquées"
+  },
+  "blockedEmpty": {
+    "message": "Aucune chaîne bloquée pour l'instant. Survolez une vidéo recommandée et appuyez sur 🚫 pour bloquer sa chaîne."
+  },
+  "unblockChannel": {
+    "message": "Débloquer"
+  },
+  "blockChannel": {
+    "message": "Bloquer la chaîne"
+  },
+  "blockedChannel": {
+    "message": "Chaîne bloquée"
   }
 }

@@ -286,3 +286,53 @@ test.describe('Firefox: mute ads', () => {
     await expect.poll(async () => (await sound(page)).muted).toBe(true);
   });
 });
+
+test.describe('Firefox: channel blocking', () => {
+  const SIDEBAR = (id) => `ytd-watch-next-secondary-results-renderer yt-lockup-view-model[data-video="${id}"]`;
+  const HOME = (id) => `ytd-rich-item-renderer:has(yt-lockup-view-model[data-video="${id}"])`;
+  const covered = (page, selector) =>
+    page.evaluate((sel) => {
+      const overlay = document.querySelector(`${sel} > .yte-block-overlay`);
+      return overlay ? overlay.textContent : null;
+    }, selector);
+
+  test('the card button blocks a channel and covers its videos', async ({ page, harness }) => {
+    await openYoutube(page);
+    await page.hover(SIDEBAR('rel1'));
+    await page.click(`${SIDEBAR('rel1')} > .yte-block-btn`);
+    await expect.poll(() => covered(page, SIDEBAR('rel1'))).toBe('🚫 Blocked channel');
+    expect(await covered(page, SIDEBAR('rel0'))).toBeNull();
+    expect(await stored(harness, 'blockedChannels')).toEqual([{ name: 'Blocked Co' }]);
+  });
+
+  test('covered on home, search and the end screen, and clicks are swallowed', async ({ page, harness }) => {
+    await harness.set({ blockedChannels: [{ name: 'Blocked Co' }] });
+    await openYoutube(page, '/');
+    await expect.poll(() => covered(page, HOME('home1'))).not.toBeNull();
+    const url = page.url();
+    await page.click(HOME('home1'));
+    await sleep(300);
+    expect(page.url()).toBe(url);
+
+    await openYoutube(page, '/results?search_query=x');
+    await expect
+      .poll(() => covered(page, 'ytd-video-renderer:has(a[href="/watch?v=search1"])'))
+      .not.toBeNull();
+
+    await openYoutube(page);
+    await page.evaluate(() => window.__fx.showEndscreen());
+    await expect.poll(() => covered(page, 'a.ytp-videowall-still[href$="v=end1"]')).not.toBeNull();
+    expect(await styleOf(page, 'a.ytp-videowall-still[href$="v=end1"]', 'position')).toBe('absolute');
+  });
+
+  test('the popup unblocks a channel live', async ({ page, harness, openPopup }) => {
+    await harness.set({ blockedChannels: [{ name: 'Blocked Co' }] });
+    await openYoutube(page);
+    await expect.poll(() => covered(page, SIDEBAR('rel1'))).not.toBeNull();
+    const popup = await openPopup();
+    expect((await popup.read('#blocked-list .blocked-item span')).text).toBe('Blocked Co');
+    await popup.click('#blocked-list .blocked-item button');
+    await expect.poll(() => covered(page, SIDEBAR('rel1'))).toBeNull();
+    expect(await stored(harness, 'blockedChannels')).toEqual([]);
+  });
+});

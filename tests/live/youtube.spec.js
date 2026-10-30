@@ -140,3 +140,66 @@ test('ads are muted and the sound comes back at the same volume', async ({ page,
     )
     .toEqual({ element: false, youtube: false, volume: before });
 });
+
+test('channel blocking reads real cards and covers them without moving anything', async ({ page, harness }) => {
+  test.setTimeout(180_000);
+  await page.goto(VIDEO);
+  await passConsent(page);
+  await page.waitForSelector('ytd-watch-next-secondary-results-renderer yt-lockup-view-model');
+  await waitForExtension(page);
+  await waitForContent(page);
+
+  const SIDE = 'ytd-watch-next-secondary-results-renderer yt-lockup-view-model';
+  // Nearly every recommendation names its channel, so nearly every one gets a button.
+  await expect
+    .poll(() =>
+      page.evaluate((sel) => {
+        const cards = [...document.querySelectorAll(sel)];
+        return cards.filter((c) => c.querySelector(':scope > .yte-block-btn')).length / cards.length;
+      }, SIDE)
+    )
+    .toBeGreaterThan(0.8);
+
+  const rects = () =>
+    page.evaluate((sel) => [...document.querySelectorAll(sel)].slice(0, 8).map((n) => {
+      const r = n.getBoundingClientRect();
+      return [Math.round(r.x), Math.round(r.y), Math.round(r.width), Math.round(r.height)];
+    }), SIDE);
+  const before = await rects();
+
+  const first = page.locator(SIDE).first();
+  const shownName = (await first.locator('yt-content-metadata-view-model').innerText()).split('\n')[0].trim();
+  await first.hover();
+  await first.locator('> .yte-block-btn').click();
+  await expect(first.locator('> .yte-block-overlay')).toBeVisible();
+  const [entry] = (await harness.get(['blockedChannels'])).blockedChannels;
+  expect(entry.name).toBe(shownName);
+  expect(await rects()).toEqual(before);
+
+  // End screen: stills name their channel too.
+  await page.evaluate(() => {
+    const v = document.querySelector('#movie_player video');
+    v.currentTime = v.duration - 0.5;
+  });
+  await expect
+    .poll(() => page.locator('.ytp-videowall-still > .yte-block-btn, .ytp-modern-videowall-still > .yte-block-btn').count(), { timeout: 15000 })
+    .toBeGreaterThan(0);
+
+  // Search for the channel: its own results are covered by name.
+  await page.goto(`https://www.youtube.com/results?search_query=${encodeURIComponent(entry.name)}`);
+  await page.waitForSelector('ytd-video-renderer');
+  await expect.poll(() => page.locator('ytd-video-renderer > .yte-block-overlay').count()).toBeGreaterThan(0);
+
+  // Nothing inside a covered result shows through (YouTube lifts the channel row).
+  const leaks = await page.evaluate(() =>
+    [...document.querySelectorAll('ytd-video-renderer.yte-blocked')].filter((card) => {
+      const r = card.querySelector('ytd-channel-name, #channel-info');
+      if (!r) return false;
+      const box = r.getBoundingClientRect();
+      if (!box.width || box.bottom < 0 || box.top > innerHeight) return false;
+      const hit = document.elementFromPoint(box.x + box.width / 2, box.y + box.height / 2);
+      return !(hit && hit.classList.contains('yte-block-overlay'));
+    }).length
+  );
+  expect(leaks).toBe(0);
+});

@@ -214,5 +214,20 @@
   },
   "muteAdsHint": {
     "message": "Ads play silently; the sound comes back at the same volume as soon as the ad ends."
+  },
+  "sectionBlocked": {
+    "message": "Blocked Channels"
+  },
+  "blockedEmpty": {
+    "message": "No blocked channels yet. Hover over a recommended video and press 🚫 to block its channel."
+  },
+  "unblockChannel": {
+    "message": "Unblock"
+  },
+  "blockChannel": {
+    "message": "Block channel"
+  },
+  "blockedChannel": {
+    "message": "Blocked channel"
   }
 }

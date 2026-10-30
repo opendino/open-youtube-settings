@@ -214,5 +214,20 @@
   },
   "muteAdsHint": {
     "message": "Os anúncios tocam sem som; o som volta no mesmo volume assim que o anúncio termina."
+  },
+  "sectionBlocked": {
+    "message": "Canais bloqueados"
+  },
+  "blockedEmpty": {
+    "message": "Nenhum canal bloqueado ainda. Passe o mouse sobre um vídeo recomendado e toque em 🚫 para bloquear o canal."
+  },
+  "unblockChannel": {
+    "message": "Desbloquear"
+  },
+  "blockChannel": {
+    "message": "Bloquear canal"
+  },
+  "blockedChannel": {
+    "message": "Canal bloqueado"
   }
 }

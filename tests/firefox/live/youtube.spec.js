@@ -139,3 +139,29 @@ test('ads are muted and the sound comes back at the same volume', async ({ page,
     )
     .toEqual({ element: false, youtube: false, volume: before });
 });
+
+test('channel blocking reads real cards and covers them', async ({ page, harness }) => {
+  test.setTimeout(180_000);
+  const SIDE = 'ytd-watch-next-secondary-results-renderer yt-lockup-view-model';
+  await page.goto(VIDEO);
+  await passConsent(page);
+  await page.waitForSelector(SIDE);
+  await page.waitForSelector('#yte-dynamic-styles');
+  await waitForContent(page);
+  await page.waitForSelector(`${SIDE} > .yte-block-btn`);
+
+  const shownName = await page.$eval(SIDE, (card) =>
+    card.querySelector('yt-content-metadata-view-model').innerText.split('\n')[0].trim()
+  );
+  await page.hover(SIDE);
+  await page.click(`${SIDE} > .yte-block-btn`);
+  await page.waitForSelector(`${SIDE} > .yte-block-overlay`);
+  const [entry] = (await harness.get(['blockedChannels'])).blockedChannels;
+  expect(entry.name).toBe(shownName);
+
+  await page.goto(`https://www.youtube.com/results?search_query=${encodeURIComponent(entry.name)}`);
+  await page.waitForSelector('ytd-video-renderer');
+  await expect
+    .poll(() => page.evaluate(() => document.querySelectorAll('ytd-video-renderer > .yte-block-overlay').length))
+    .toBeGreaterThan(0);
+});

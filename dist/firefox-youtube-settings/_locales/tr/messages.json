@@ -214,5 +214,20 @@
   },
   "muteAdsHint": {
     "message": "Reklam başlayınca ses otomatik kapanır, reklam bitince aynı ses seviyesiyle geri gelir."
+  },
+  "sectionBlocked": {
+    "message": "Engellenen Kanallar"
+  },
+  "blockedEmpty": {
+    "message": "Henüz engellenen kanal yok. Önerilen bir videonun üzerine gelip 🚫 düğmesine basarak kanalını engelleyebilirsin."
+  },
+  "unblockChannel": {
+    "message": "Engeli kaldır"
+  },
+  "blockChannel": {
+    "message": "Kanalı engelle"
+  },
+  "blockedChannel": {
+    "message": "Engellenen kanal"
   }
 }

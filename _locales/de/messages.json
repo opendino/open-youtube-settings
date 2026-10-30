@@ -214,5 +214,20 @@
   },
   "muteAdsHint": {
     "message": "Werbung läuft stumm; der Ton kommt mit derselben Lautstärke zurück, sobald die Werbung endet."
+  },
+  "sectionBlocked": {
+    "message": "Blockierte Kanäle"
+  },
+  "blockedEmpty": {
+    "message": "Noch keine blockierten Kanäle. Fahre mit der Maus über ein empfohlenes Video und drücke 🚫, um den Kanal zu blockieren."
+  },
+  "unblockChannel": {
+    "message": "Blockierung aufheben"
+  },
+  "blockChannel": {
+    "message": "Kanal blockieren"
+  },
+  "blockedChannel": {
+    "message": "Blockierter Kanal"
   }
 }

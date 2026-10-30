@@ -33,6 +33,7 @@ const DEFAULTS = {
   cropOffsetY: 0,
   clipEnabled: true,
   channelAutoVideos: false,
+  blockedChannels: [],
   shortcuts: {}
 };
 
@@ -76,7 +77,9 @@ const CONTENT_STRING_KEYS = [
   'clipRecording',
   'clipSaved',
   'clipFailed',
-  'clipNoRange'
+  'clipNoRange',
+  'blockChannel',
+  'blockedChannel'
 ];
 
 const settings = Object.assign({}, DEFAULTS);
@@ -134,7 +137,67 @@ function renderAll() {
   for (const key of Object.keys(CONTROLS)) writeControl(key, settings[key]);
   renderGating();
   updateSpeedPresets();
+  renderBlocked();
 }
+
+/* ------------------------------------------------------- blocked channels */
+
+function message(key, fallback) {
+  return currentMessages && currentMessages[key] ? currentMessages[key].message : fallback;
+}
+
+function sameChannel(a, b) {
+  return a.id === b.id && a.handle === b.handle && a.name === b.name;
+}
+
+/** Lists blocked channels, each with a button that unblocks it. */
+function renderBlocked() {
+  const list = document.getElementById('blocked-list');
+  const empty = document.getElementById('blocked-empty');
+  if (!list || !empty) return;
+  const entries = Array.isArray(settings.blockedChannels) ? settings.blockedChannels : [];
+
+  list.replaceChildren(
+    ...entries.map((entry) => {
+      const row = document.createElement('div');
+      row.className = 'shortcut-group blocked-item';
+
+      const label = document.createElement('span');
+      label.textContent = entry.name || entry.handle || entry.id;
+      if (entry.handle) label.title = entry.handle;
+
+      const remove = document.createElement('button');
+      remove.className = 'shortcut-clear-btn';
+      remove.textContent = '✖';
+      remove.title = message('unblockChannel', 'Unblock');
+      remove.addEventListener('click', () => unblock(entry));
+
+      row.append(label, remove);
+      return row;
+    })
+  );
+  empty.hidden = entries.length > 0;
+}
+
+/** Removes one channel from the newest stored list, not the one read at open. */
+function unblock(entry) {
+  browser.storage.local
+    .get('blockedChannels')
+    .then((result) => {
+      const current = Array.isArray(result.blockedChannels) ? result.blockedChannels : [];
+      settings.blockedChannels = current.filter((other) => !sameChannel(other, entry));
+      renderBlocked();
+      commit({ blockedChannels: settings.blockedChannels });
+    })
+    .catch((error) => console.error('[YT-Enhancer] Error unblocking channel:', error));
+}
+
+// Channels blocked on the page while the popup is open show up at once.
+browser.storage.onChanged.addListener((changes, area) => {
+  if (area !== 'local' || !changes.blockedChannels) return;
+  settings.blockedChannels = changes.blockedChannels.newValue || [];
+  renderBlocked();
+});
 
 /** Greys out sub-controls whose parent switch is off. */
 function renderGating() {
@@ -177,14 +240,19 @@ function buildContentStrings() {
 }
 
 /**
- * Writes the current state to storage and pushes it to every YouTube tab.
- * `lastSpeed` belongs to the page, which moves it with every speed change, so
- * it is only sent when the caller means to set the speed (`extra.lastSpeed`);
- * otherwise the value read when the popup opened would undo newer changes.
+ * Settings the page changes on its own: `lastSpeed` with every speed change,
+ * `blockedChannels` from the block button on each card. They are only sent
+ * when the caller means to change them (`extra`); otherwise the values read
+ * when the popup opened would undo newer changes.
  */
+const PAGE_OWNED_KEYS = ['lastSpeed', 'blockedChannels'];
+
+/** Writes the current state to storage and pushes it to every YouTube tab. */
 function commit(extra = {}) {
   const payload = Object.assign({}, settings, extra);
-  if (!('lastSpeed' in extra)) delete payload.lastSpeed;
+  for (const key of PAGE_OWNED_KEYS) {
+    if (!(key in extra)) delete payload[key];
+  }
 
   browser.storage.local
     .set(payload)
@@ -459,6 +527,7 @@ function applyTranslations(messages) {
     }
   }
   updateShortcutButtons();
+  renderBlocked();
 }
 
 async function loadLanguage(lang) {

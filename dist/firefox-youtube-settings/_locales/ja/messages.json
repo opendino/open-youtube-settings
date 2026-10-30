@@ -214,5 +214,20 @@
   },
   "muteAdsHint": {
     "message": "広告の再生中は自動的に消音し、広告が終わると同じ音量で音が戻ります。"
+  },
+  "sectionBlocked": {
+    "message": "ブロックしたチャンネル"
+  },
+  "blockedEmpty": {
+    "message": "ブロックしたチャンネルはまだありません。おすすめ動画にカーソルを合わせて 🚫 を押すと、そのチャンネルをブロックできます。"
+  },
+  "unblockChannel": {
+    "message": "ブロックを解除"
+  },
+  "blockChannel": {
+    "message": "チャンネルをブロック"
+  },
+  "blockedChannel": {
+    "message": "ブロックしたチャンネル"
   }
 }

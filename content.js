@@ -40,6 +40,8 @@ const DEFAULTS = {
   cropOffsetY: 0,
   clipEnabled: true,
   channelAutoVideos: false,
+  // Channels hidden from recommendations: { name, handle, id } each
+  blockedChannels: [],
   // Shortcuts
   shortcuts: {}
 };
@@ -65,7 +67,9 @@ const STRING_FALLBACK = {
   clipRecording: 'Recording…',
   clipSaved: 'Clip saved',
   clipFailed: 'Clip capture failed',
-  clipNoRange: 'Set a start and end point first'
+  clipNoRange: 'Set a start and end point first',
+  blockChannel: 'Block channel',
+  blockedChannel: 'Blocked channel'
 };
 const STR = Object.assign({}, STRING_FALLBACK);
 
@@ -171,6 +175,9 @@ function coerce(key, value) {
     return Number.isFinite(n) ? n : fallback;
   }
   if (typeof fallback === 'boolean') return !!value;
+  if (Array.isArray(fallback)) {
+    return Array.isArray(value) ? value.filter((item) => item && typeof item === 'object') : [];
+  }
   if (key === 'shortcuts') {
     return value && typeof value === 'object' ? value : {};
   }
@@ -522,7 +529,8 @@ function updateDynamicStyles() {
     cropCss(),
     homeFeedCss(),
     sidebarCss(),
-    playerChromeCss()
+    playerChromeCss(),
+    blockCss()
   ]
     .filter(Boolean)
     .join('\n');
@@ -781,6 +789,233 @@ function setupOptimizedObserver() {
   }
 }
 
+/* ------------------------------------------------------- channel blocking */
+
+/**
+ * Covers recommendations from blocked channels with a black panel instead of
+ * removing them, so grids and lists never reflow. The panel swallows clicks,
+ * so a covered video cannot be opened by accident. A small button on each
+ * card blocks its channel; the popup lists blocked channels for unblocking.
+ *
+ * Most cards no longer carry a channel link (the watch-page list and the end
+ * screen show only the name), so a channel matches on its channel ID, handle
+ * or display name, whichever the card has.
+ */
+
+/** Recommendation cards on every surface; nested matches are skipped. */
+const CARD_SELECTOR = [
+  'ytd-rich-item-renderer',
+  'ytd-video-renderer',
+  'ytd-compact-video-renderer',
+  'ytd-grid-video-renderer',
+  'ytd-reel-item-renderer',
+  'yt-lockup-view-model',
+  'ytm-shorts-lockup-view-model',
+  'ytm-shorts-lockup-view-model-v2',
+  '.ytp-videowall-still',
+  '.ytp-modern-videowall-still'
+].join(', ');
+
+const CHANNEL_HREF = /^(?:https?:\/\/[^/]+)?\/(?:channel\/(UC[\w-]+)|(@[^/?#]+))/;
+
+/**
+ * Home, search and the watch page (side list and end screen). Channel pages,
+ * subscriptions and playlists are the user's own choice, not recommendations.
+ */
+function onRecommendationPage() {
+  return ['/', '/results', '/watch'].includes(location.pathname);
+}
+
+function normalizeName(name) {
+  return String(name || '').replace(/\s+/g, ' ').trim().toLocaleLowerCase();
+}
+
+/** The channel name as the card prints it. */
+function cardChannelName(card) {
+  const named = card.querySelector(
+    'ytd-channel-name #text, #channel-name #text, .ytp-videowall-still-info-author'
+  );
+  // The first metadata row of a view-model lockup is the channel.
+  const meta = named ? null : card.querySelector('yt-content-metadata-view-model');
+  const row =
+    named ||
+    (meta &&
+      (meta.querySelector('[class*="metadata-row"], [class*="MetadataRow"]') ||
+        meta.firstElementChild));
+  if (!row) return null;
+  // End-screen authors read "Channel • 1.2M views".
+  const name = row.textContent.split('•')[0].replace(/\s+/g, ' ').trim();
+  return name || null;
+}
+
+/** Everything the card tells about its channel, or null if nothing. */
+function cardChannel(card) {
+  let id = null;
+  let handle = null;
+  for (const link of card.querySelectorAll('a[href]')) {
+    const match = (link.getAttribute('href') || '').match(CHANNEL_HREF);
+    if (!match) continue;
+    if (match[1]) id = match[1];
+    if (match[2]) handle = decodeURIComponent(match[2]).toLocaleLowerCase();
+  }
+  const name = cardChannelName(card);
+  if (!id && !handle && !name) return null;
+  return { name, handle, id };
+}
+
+function isBlocked(channel) {
+  if (!channel) return false;
+  const name = normalizeName(channel.name);
+  return S.blockedChannels.some(
+    (entry) =>
+      (channel.id && entry.id === channel.id) ||
+      (channel.handle && entry.handle === channel.handle) ||
+      (name && entry.name && normalizeName(entry.name) === name)
+  );
+}
+
+function blockChannel(channel) {
+  if (!channel || isBlocked(channel)) return;
+  const entry = {};
+  for (const key of ['name', 'handle', 'id']) if (channel[key]) entry[key] = channel[key];
+  S.blockedChannels = [...S.blockedChannels, entry];
+  persist({ blockedChannels: S.blockedChannels });
+  scanCards();
+}
+
+/** Keeps clicks, presses and menus on the overlay away from the card. */
+function swallow(event) {
+  event.preventDefault();
+  event.stopPropagation();
+}
+
+function blockButton(card) {
+  let button = card.querySelector(':scope > .yte-block-btn');
+  if (!button) {
+    button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'yte-block-btn';
+    button.textContent = '🚫';
+    for (const type of ['mousedown', 'pointerdown', 'dblclick']) {
+      button.addEventListener(type, swallow, true);
+    }
+    button.addEventListener(
+      'click',
+      (event) => {
+        swallow(event);
+        blockChannel(cardChannel(card));
+      },
+      true
+    );
+    card.appendChild(button);
+  }
+  if (button.title !== STR.blockChannel) {
+    button.title = STR.blockChannel;
+    button.setAttribute('aria-label', STR.blockChannel);
+  }
+  return button;
+}
+
+function blockOverlay(card) {
+  let overlay = card.querySelector(':scope > .yte-block-overlay');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'yte-block-overlay';
+    for (const type of ['click', 'mousedown', 'pointerdown', 'dblclick', 'contextmenu', 'auxclick']) {
+      overlay.addEventListener(type, swallow, true);
+    }
+    card.appendChild(overlay);
+  }
+  const label = `🚫 ${STR.blockedChannel}`;
+  if (overlay.textContent !== label) overlay.textContent = label;
+}
+
+/** Adds or removes the block button and overlay on one card. */
+function decorateCard(card, active) {
+  const channel = active ? cardChannel(card) : null;
+  if (!channel) {
+    if (card.classList.contains('yte-card')) {
+      card.classList.remove('yte-card', 'yte-card-anchor', 'yte-blocked');
+      for (const node of card.querySelectorAll(':scope > .yte-block-btn, :scope > .yte-block-overlay')) {
+        node.remove();
+      }
+    }
+    return;
+  }
+
+  if (!card.classList.contains('yte-card')) {
+    card.classList.add('yte-card');
+    // Positioned cards (end-screen stills) already anchor the overlay.
+    if (getComputedStyle(card).position === 'static') card.classList.add('yte-card-anchor');
+  }
+  blockButton(card);
+
+  const blocked = isBlocked(channel);
+  card.classList.toggle('yte-blocked', blocked);
+  if (blocked) {
+    blockOverlay(card);
+  } else {
+    const overlay = card.querySelector(':scope > .yte-block-overlay');
+    if (overlay) overlay.remove();
+  }
+}
+
+function scanCards() {
+  try {
+    const active = onRecommendationPage();
+    for (const card of document.querySelectorAll(CARD_SELECTOR)) {
+      if (card.parentElement && card.parentElement.closest(CARD_SELECTOR)) continue;
+      decorateCard(card, active);
+    }
+  } catch (error) {
+    console.error('[YT-Enhancer] Error marking blocked channels:', error);
+  }
+}
+
+let cardScanTimer = null;
+
+/** YouTube streams cards in and recycles them; rescan shortly after changes. */
+function scheduleCardScan() {
+  if (cardScanTimer !== null) return;
+  cardScanTimer = setTimeout(() => {
+    cardScanTimer = null;
+    scanCards();
+  }, 200);
+}
+
+try {
+  new MutationObserver(scheduleCardScan).observe(document.documentElement, {
+    childList: true,
+    subtree: true
+  });
+} catch (error) {
+  console.error('[YT-Enhancer] Error watching for recommendation cards:', error);
+}
+
+function blockCss() {
+  return `
+    .yte-card-anchor { position: relative !important; }
+    /* Each card stacks on its own, so the overlay beats every z-index inside
+       it (YouTube lifts the channel row) without rising above the masthead. */
+    .yte-card { isolation: isolate; }
+    .yte-block-btn {
+      position: absolute; top: 8px; left: 8px; z-index: 2147483000;
+      width: 28px; height: 28px; padding: 0; border: none; border-radius: 50%;
+      background: rgba(15, 15, 15, 0.85); color: #fff; font-size: 14px; line-height: 28px;
+      cursor: pointer; opacity: 0; transition: opacity 0.15s ease;
+    }
+    .yte-card:hover > .yte-block-btn, .yte-block-btn:focus-visible { opacity: 1; }
+    .yte-block-btn:hover { background: #cc0000; }
+    .yte-blocked > .yte-block-btn { display: none; }
+    .yte-block-overlay {
+      position: absolute; inset: 0; z-index: 2147483000;
+      display: flex; align-items: center; justify-content: center;
+      background: #000; color: #aaa; border-radius: 12px;
+      font: 500 14px 'Roboto', 'Arial', sans-serif; text-align: center; cursor: default;
+    }
+  `;
+}
+
 /* ------------------------------------------------------------- ad muting */
 
 /**
@@ -832,6 +1067,7 @@ function refreshAll() {
   setupOptimizedObserver();
   setupAdObserver();
   syncAdMute();
+  scanCards();
   YTE.notify();
 }
 
