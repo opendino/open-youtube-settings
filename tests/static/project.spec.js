@@ -76,6 +76,13 @@ test.describe('manifest and settings', () => {
     for (const file of files) expect(fs.existsSync(path.join(ROOT_DIR, file)), file).toBe(true);
   });
 
+  test('manifest and package.json carry the same version', () => {
+    // Both stores accept 1-4 dot-separated integers; npm needs exactly three.
+    expect(manifest.version).toMatch(/^\d+(\.\d+){0,3}$/);
+    const padded = [...manifest.version.split('.'), '0', '0'].slice(0, 3).join('.');
+    expect(JSON.parse(read('package.json')).version).toBe(padded);
+  });
+
   test('popup and content script agree on every default', () => {
     expect(constLiteral('popup.js', 'DEFAULTS')).toEqual(constLiteral('content.js', 'DEFAULTS'));
   });
