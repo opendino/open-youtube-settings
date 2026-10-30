@@ -154,7 +154,13 @@ test.describe('packaging', () => {
       expect(fs.existsSync(path.join(dir, built.action.default_popup))).toBe(true);
       expect(fs.existsSync(path.join(dir, '_locales', 'en', 'messages.json'))).toBe(true);
       if (target === 'chrome') expect(built.browser_specific_settings).toBeUndefined();
-      else expect(built.browser_specific_settings.gecko.strict_min_version).toBe('128.0');
+      else {
+        const { gecko } = built.browser_specific_settings;
+        expect(gecko.strict_min_version).toBe('128.0');
+        // The add-on ID is permanent on addons.mozilla.org, so it must never drift from the manifest.
+        expect(gecko.id).toBe(manifest.browser_specific_settings.gecko.id);
+        expect(gecko.id).not.toMatch(/example\.(com|org|net)/);
+      }
       fs.rmSync(dir, { recursive: true, force: true });
     });
   }
