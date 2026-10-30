@@ -1,0 +1,85 @@
+# Started by hand (Actions → Publish to stores → Run workflow). Uploads the zips
+# of an existing GitHub Release to the Chrome Web Store and addons.mozilla.org
+# and submits them for review. Each store publishes the version once approved.
+name: Publish to stores
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: Release tag to publish, e.g. v0.8 (empty = latest release)
+        required: false
+      store:
+        description: Store
+        type: choice
+        options: [both, chrome, firefox]
+        default: both
+
+permissions:
+  contents: read
+
+env:
+  GH_TOKEN: ${{ github.token }}
+
+jobs:
+  resolve:
+    runs-on: ubuntu-latest
+    outputs:
+      tag: ${{ steps.tag.outputs.tag }}
+    steps:
+      - id: tag
+        env:
+          TAG: ${{ inputs.tag }}
+        run: |
+          tag=${TAG:-$(gh release view --repo "$GITHUB_REPOSITORY" --json tagName --jq .tagName)}
+          gh release view "$tag" --repo "$GITHUB_REPOSITORY" > /dev/null
+          echo "Publishing $tag"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+
+  chrome:
+    needs: resolve
+    if: inputs.store != 'firefox'
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ needs.resolve.outputs.tag }}
+      EXTENSION_ID: ${{ secrets.CHROME_EXTENSION_ID }}
+      PUBLISHER_ID: ${{ secrets.CHROME_PUBLISHER_ID }}
+      CLIENT_ID: ${{ secrets.CHROME_CLIENT_ID }}
+      CLIENT_SECRET: ${{ secrets.CHROME_CLIENT_SECRET }}
+      REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
+    steps:
+      - name: Check Chrome Web Store secrets
+        run: |
+          for name in EXTENSION_ID PUBLISHER_ID CLIENT_ID CLIENT_SECRET REFRESH_TOKEN; do
+            [ -n "${!name}" ] || missing="$missing CHROME_$name"
+          done
+          if [ -n "$missing" ]; then echo "::error::Missing repository secrets:$missing"; exit 1; fi
+
+      - run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern '*-chrome-*.zip' --output chrome.zip
+
+      - name: Upload and submit for review
+        run: npx --yes chrome-webstore-upload-cli@4.0.2 --source chrome.zip
+
+  firefox:
+    needs: resolve
+    if: inputs.store != 'chrome'
+    runs-on: ubuntu-latest
+    env:
+      TAG: ${{ needs.resolve.outputs.tag }}
+      WEB_EXT_API_KEY: ${{ secrets.AMO_API_KEY }}
+      WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
+    steps:
+      - name: Check addons.mozilla.org secrets
+        run: |
+          [ -n "$WEB_EXT_API_KEY" ] || missing="$missing AMO_API_KEY"
+          [ -n "$WEB_EXT_API_SECRET" ] || missing="$missing AMO_API_SECRET"
+          if [ -n "$missing" ]; then echo "::error::Missing repository secrets:$missing"; exit 1; fi
+
+      - name: Unpack the release zip
+        run: |
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern '*-firefox-*.zip' --output firefox.zip
+          unzip -q firefox.zip -d firefox
+
+      # Listed submissions are signed by Mozilla after review, so don't wait for it.
+      - name: Upload and submit for review
+        run: npx --yes web-ext@10.8.0 sign --channel listed --source-dir firefox --artifacts-dir web-ext-artifacts --approval-timeout 0

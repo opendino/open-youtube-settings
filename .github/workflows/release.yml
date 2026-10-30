@@ -1,0 +1,51 @@
+# Pushing a tag such as v0.8 tests, packages and publishes a GitHub Release with
+# both zips. Nothing goes to the stores here; that is the "Publish to stores"
+# workflow, started by hand.
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: read
+
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Tag must match manifest.json
+        run: |
+          manifest=$(node -p "require('./manifest.json').version")
+          if [ "${GITHUB_REF_NAME#v}" != "$manifest" ]; then
+            echo "::error::Tag $GITHUB_REF_NAME does not match manifest.json version $manifest"
+            exit 1
+          fi
+
+  test:
+    needs: version
+    uses: ./.github/workflows/test.yml
+
+  release:
+    needs: test
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - run: npm run package
+
+      - name: Publish the GitHub Release
+        run: |
+          mkdir release
+          cp dist/chrome-youtube-settings.zip "release/open-youtube-settings-chrome-$GITHUB_REF_NAME.zip"
+          cp dist/firefox-youtube-settings.zip "release/open-youtube-settings-firefox-$GITHUB_REF_NAME.zip"
+          gh release create "$GITHUB_REF_NAME" release/*.zip --title "$GITHUB_REF_NAME" --generate-notes
