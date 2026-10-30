@@ -25,6 +25,8 @@ const DEFAULTS = {
   autoHideControls: false,
   hidePlayPause: false,
   hideSkipAnim: false,
+  // Ads
+  muteAds: false,
   // Speed controller
   speedEnabled: true,
   speedOverlay: true,
@@ -779,6 +781,45 @@ function setupOptimizedObserver() {
   }
 }
 
+/* ------------------------------------------------------------- ad muting */
+
+/**
+ * Mutes ad breaks and gives the sound back when they end. YouTube writes its
+ * own mute state onto the element every time it loads an ad or a video, so a
+ * muted element would be unmuted again mid-break; the mute goes through
+ * YouTube's player instead (page-bridge.js), which also keeps its volume
+ * button honest and never touches the volume level.
+ */
+let adMuteRequested = false;
+let adObserver = null;
+let adObservedPlayer = null;
+
+function syncAdMute() {
+  const player = document.querySelector('#movie_player');
+  if (!player) return;
+  const want = S.muteAds && player.classList.contains('ad-showing');
+  // Repeating the mute request is harmless (the bridge mutes once per break)
+  // and covers a player whose API was not ready the first time.
+  if (want || adMuteRequested) {
+    player.dispatchEvent(new CustomEvent('yte-ad-mute', { detail: want }));
+  }
+  adMuteRequested = want;
+}
+
+/** Follows the player's `ad-showing` class, which flips at each ad break. */
+function setupAdObserver() {
+  const player = document.querySelector('#movie_player');
+  if (!player || player === adObservedPlayer) return;
+  try {
+    if (adObserver) adObserver.disconnect();
+    adObserver = new MutationObserver(syncAdMute);
+    adObserver.observe(player, { attributes: true, attributeFilter: ['class'] });
+    adObservedPlayer = player;
+  } catch (error) {
+    console.error('[YT-Enhancer] Error watching for ad breaks:', error);
+  }
+}
+
 /* --------------------------------------------------------------- refresh */
 
 /** Re-applies everything that depends on the current settings and DOM. */
@@ -789,6 +830,8 @@ function refreshAll() {
   applySpeed();
   setupPanelObserver();
   setupOptimizedObserver();
+  setupAdObserver();
+  syncAdMute();
   YTE.notify();
 }
 
@@ -932,6 +975,8 @@ setInterval(() => {
     ensureStyleElement();
     setupPanelObserver();
     setupOptimizedObserver();
+    setupAdObserver();
+    syncAdMute();
     markSideColumn();
     applySpeed();
     if (readSideState()) updateDynamicStyles();

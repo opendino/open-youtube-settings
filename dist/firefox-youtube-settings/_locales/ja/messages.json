@@ -205,5 +205,14 @@
   },
   "clipNoRange": {
     "message": "先に開始点と終了点を設定してください"
+  },
+  "sectionAds": {
+    "message": "広告"
+  },
+  "muteAds": {
+    "message": "広告をミュート"
+  },
+  "muteAdsHint": {
+    "message": "広告の再生中は自動的に消音し、広告が終わると同じ音量で音が戻ります。"
   }
 }

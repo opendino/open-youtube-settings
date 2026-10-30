@@ -32,6 +32,13 @@
    */
   let youtubeRate = 1;
 
+  /**
+   * Mute works the same way: YouTube keeps its own mute state and writes it
+   * onto the element every time it loads an ad or a video, which undoes any
+   * mute set directly on the element.
+   */
+  let youtubeMuted = false;
+
   function installPlayerApi(node) {
     node.setPlaybackRate = (rate) => {
       youtubeRate = Math.min(2, Math.max(0.25, Number(rate)));
@@ -39,11 +46,28 @@
       if (video) video.playbackRate = youtubeRate;
     };
     node.getPlaybackRate = () => youtubeRate;
+    node.mute = () => {
+      youtubeMuted = true;
+      const video = node.querySelector('video');
+      if (video) video.muted = true;
+    };
+    node.unMute = () => {
+      youtubeMuted = false;
+      const video = node.querySelector('video');
+      if (video) video.muted = false;
+    };
+    node.isMuted = () => youtubeMuted;
   }
 
   function restoreYoutubeRate() {
     const video = document.querySelector('#movie_player video');
     if (video) video.playbackRate = youtubeRate;
+  }
+
+  /** YouTube loading an ad or a video applies its own mute state. */
+  function applyYoutubeMute() {
+    const video = document.querySelector('#movie_player video');
+    if (video) video.muted = youtubeMuted;
   }
 
   /** The watch-page player; reused like YouTube's #movie_player. */
@@ -52,7 +76,7 @@
     player = el(`
       <div id="movie_player" class="html5-video-player ytp-autohide">
         <div class="html5-video-container">
-          <video class="video-stream html5-main-video" muted playsinline></video>
+          <video class="video-stream html5-main-video" playsinline></video>
         </div>
         <div class="ytp-gradient-bottom"></div>
         <div class="ytp-chrome-bottom"><button class="ytp-play-button">play</button></div>
@@ -151,18 +175,36 @@
       video.src = await videoSource();
       await new Promise((resolve) => video.addEventListener('loadedmetadata', resolve, { once: true }));
       if (!document.querySelector('#movie_player.ad-showing')) video.playbackRate = youtubeRate;
+      if (video.closest('#movie_player')) video.muted = youtubeMuted;
       await video.play().catch(() => {});
     }
   }
 
-  /** Ad break: YouTube flags the player, then restores its own rate at the end. */
+  /**
+   * Ad break: YouTube flags the player and loads the ad, applying its own mute
+   * state; at the end it restores its own rate and mute state.
+   */
   function startAd() {
     document.querySelector('#movie_player').classList.add('ad-showing');
+    applyYoutubeMute();
+  }
+
+  /** The next ad of the same break (an ad pod): loaded like any other. */
+  function nextAdInBreak() {
+    applyYoutubeMute();
   }
 
   function endAd() {
     document.querySelector('#movie_player').classList.remove('ad-showing');
     restoreYoutubeRate();
+    applyYoutubeMute();
+  }
+
+  /** YouTube's own volume button. */
+  function youtubeToggleMute() {
+    const node = document.querySelector('#movie_player');
+    if (node.isMuted()) node.unMute();
+    else node.mute();
   }
 
   /**
@@ -204,8 +246,11 @@
     youtubeSetRate,
     youtubeStep,
     startAd,
+    nextAdInBreak,
     endAd,
+    youtubeToggleMute,
     youtubeRate: () => youtubeRate,
+    youtubeMuted: () => youtubeMuted,
     ready: render()
   };
 })();

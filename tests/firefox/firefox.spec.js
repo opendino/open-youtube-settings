@@ -231,3 +231,58 @@ test.describe('Firefox: keyboard and clips', () => {
       .toContain('yt-fixture1-2-3.webm');
   });
 });
+
+test.describe('Firefox: mute ads', () => {
+  const sound = (page) =>
+    page.evaluate(() => {
+      const video = document.querySelector('#movie_player video');
+      return { muted: video.muted, volume: video.volume, youtubeMuted: window.__fx.youtubeMuted() };
+    });
+  const fx = (page, call) => page.evaluate((c) => window.__fx[c](), call);
+
+  test('mutes an ad break through the bridge and gives the sound back at the same volume', async ({ page, harness }) => {
+    await harness.set({ muteAds: true });
+    await openYoutube(page);
+    await page.evaluate(() => (document.querySelector('#movie_player video').volume = 0.4));
+    await fx(page, 'startAd');
+    await expect.poll(() => sound(page)).toEqual({ muted: true, volume: 0.4, youtubeMuted: true });
+    await fx(page, 'nextAdInBreak');
+    await sleep(300);
+    expect((await sound(page)).muted).toBe(true);
+    await fx(page, 'endAd');
+    await expect.poll(() => sound(page)).toEqual({ muted: false, volume: 0.4, youtubeMuted: false });
+  });
+
+  test('a user who was already muted stays muted', async ({ page, harness }) => {
+    await harness.set({ muteAds: true });
+    await openYoutube(page);
+    await fx(page, 'youtubeToggleMute');
+    await fx(page, 'startAd');
+    await sleep(300);
+    await fx(page, 'endAd');
+    await sleep(300);
+    expect((await sound(page)).muted).toBe(true);
+  });
+
+  test('ads keep their sound while the option is off', async ({ page }) => {
+    await openYoutube(page);
+    await fx(page, 'startAd');
+    await sleep(500);
+    expect((await sound(page)).muted).toBe(false);
+  });
+
+  test('the popup toggle reads “Reklamları Sessize Al” in Turkish and switches it on', async ({
+    page,
+    harness,
+    openPopup
+  }) => {
+    await openYoutube(page);
+    const popup = await openPopup();
+    await popup.click('.lang-btn[data-lang="tr"]');
+    await expect.poll(async () => (await popup.read('[data-i18n="muteAds"]')).text).toBe('Reklamları Sessize Al');
+    await popup.click('#mute-ads');
+    await expect.poll(() => stored(harness, 'muteAds')).toBe(true);
+    await fx(page, 'startAd');
+    await expect.poll(async () => (await sound(page)).muted).toBe(true);
+  });
+});

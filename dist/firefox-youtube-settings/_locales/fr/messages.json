@@ -205,5 +205,14 @@
   },
   "clipNoRange": {
     "message": "Définissez d'abord un début et une fin"
+  },
+  "sectionAds": {
+    "message": "Publicités"
+  },
+  "muteAds": {
+    "message": "Couper le son des publicités"
+  },
+  "muteAdsHint": {
+    "message": "Les publicités sont lues sans le son ; il revient au même volume dès la fin de la publicité."
   }
 }

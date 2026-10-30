@@ -205,5 +205,14 @@
   },
   "clipNoRange": {
     "message": "Setze zuerst Start- und Endpunkt"
+  },
+  "sectionAds": {
+    "message": "Werbung"
+  },
+  "muteAds": {
+    "message": "Werbung stummschalten"
+  },
+  "muteAdsHint": {
+    "message": "Werbung läuft stumm; der Ton kommt mit derselben Lautstärke zurück, sobald die Werbung endet."
   }
 }

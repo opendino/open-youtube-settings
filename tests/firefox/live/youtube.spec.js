@@ -93,3 +93,49 @@ test('page structure the extension relies on is still there', async ({ page, har
   expect(await isDisplayed(page, '#secondary')).toBe(false);
   expect(await page.$('#movie_player #yte-osc .yte-speed')).not.toBeNull();
 });
+
+/** Hops through related videos until YouTube serves an ad break. */
+async function findAdBreak(page, hops = 5) {
+  for (let hop = 0; hop < hops; hop++) {
+    for (let i = 0; i < 16; i++) {
+      if (await page.evaluate(() => document.querySelector('#movie_player').classList.contains('ad-showing'))) {
+        return true;
+      }
+      await sleep(500);
+    }
+    await page.click('ytd-watch-next-secondary-results-renderer a[href^="/watch"]');
+    await sleep(1000);
+  }
+  return false;
+}
+
+test('ads are muted and the sound comes back at the same volume', async ({ page, harness }) => {
+  test.setTimeout(240_000);
+  await harness.set({ muteAds: true });
+  await page.goto(VIDEO);
+  await passConsent(page);
+  await page.waitForSelector('#movie_player video');
+  await page.waitForSelector('#yte-dynamic-styles');
+
+  const before = await page.evaluate(() => document.querySelector('#movie_player').getVolume());
+  test.skip(!(await findAdBreak(page)), 'YouTube served no ad in this run');
+
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const p = document.querySelector('#movie_player');
+        return { element: p.querySelector('video').muted, youtube: p.isMuted() };
+      })
+    )
+    .toEqual({ element: true, youtube: true });
+
+  await waitForContent(page);
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const p = document.querySelector('#movie_player');
+        return { element: p.querySelector('video').muted, youtube: p.isMuted(), volume: p.getVolume() };
+      })
+    )
+    .toEqual({ element: false, youtube: false, volume: before });
+});

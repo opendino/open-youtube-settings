@@ -205,5 +205,14 @@
   },
   "clipNoRange": {
     "message": "Set a start and end point first"
+  },
+  "sectionAds": {
+    "message": "Ads"
+  },
+  "muteAds": {
+    "message": "Mute Ads"
+  },
+  "muteAdsHint": {
+    "message": "Ads play silently; the sound comes back at the same volume as soon as the ad ends."
   }
 }

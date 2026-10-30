@@ -205,5 +205,14 @@
   },
   "clipNoRange": {
     "message": "Önce başlangıç ve bitiş noktası belirle"
+  },
+  "sectionAds": {
+    "message": "Reklamlar"
+  },
+  "muteAds": {
+    "message": "Reklamları Sessize Al"
+  },
+  "muteAdsHint": {
+    "message": "Reklam başlayınca ses otomatik kapanır, reklam bitince aynı ses seviyesiyle geri gelir."
   }
 }
