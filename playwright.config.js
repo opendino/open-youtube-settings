@@ -18,9 +18,19 @@ export default defineConfig({
   projects: [
     { name: 'static', testMatch: 'static/**/*.spec.js' },
     { name: 'fixture', testMatch: 'e2e/**/*.spec.js' },
+    // Firefox via Puppeteer (tests/helpers/firefox.js); one browser per worker.
+    { name: 'firefox', testMatch: 'firefox/**/*.spec.js', testIgnore: 'firefox/live/**' },
+    {
+      name: 'firefox-live',
+      testMatch: 'firefox/live/**/*.spec.js',
+      timeout: 120_000,
+      retries: 1,
+      use: { live: true }
+    },
     {
       name: 'live',
       testMatch: 'live/**/*.spec.js',
+      testIgnore: 'firefox/**',
       timeout: 90_000,
       retries: 1,
       use: { live: true }

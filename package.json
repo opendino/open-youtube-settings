@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "package": "node scripts/package.js",
-    "test": "playwright test --project=static --project=fixture",
-    "test:live": "playwright test --project=live",
+    "test": "playwright test --project=static --project=fixture --project=firefox",
+    "test:chrome": "playwright test --project=fixture",
+    "test:firefox": "playwright test --project=firefox",
+    "test:live": "playwright test --project=live --project=firefox-live",
     "test:headed": "playwright test --project=fixture --headed",
-    "test:install": "PLAYWRIGHT_BROWSERS_PATH=0 playwright install chromium",
+    "test:install": "PLAYWRIGHT_BROWSERS_PATH=0 playwright install chromium && puppeteer browsers install firefox@stable",
     "lint:firefox": "node scripts/package.js && npx --yes web-ext@8 lint --source-dir dist/firefox-youtube-settings"
   },
   "keywords": [
@@ -21,6 +23,7 @@
   "author": "Open YouTube Settings Developer",
   "license": "MIT",
   "devDependencies": {
-    "@playwright/test": "^1.64.1"
+    "@playwright/test": "^1.64.1",
+    "puppeteer": "^25.16.0"
   }
 }

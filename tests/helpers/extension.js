@@ -21,7 +21,7 @@ export const ROOT_DIR = path.resolve(__dirname, '../..');
 // YTE_SOURCE_DIR points the suite at another checkout (say, an older commit)
 // to confirm a test really catches the bug it was written for.
 const SOURCE_DIR = process.env.YTE_SOURCE_DIR ? path.resolve(process.env.YTE_SOURCE_DIR) : ROOT_DIR;
-const { prepareDirectory } = await import(
+export const { prepareDirectory } = await import(
   pathToFileURL(path.join(SOURCE_DIR, 'scripts', 'package.js')).href
 );
 const FIXTURE_DIR = path.join(ROOT_DIR, 'tests', 'fixtures');
@@ -104,7 +104,9 @@ export const test = base.extend({
       args: [
         `--disable-extensions-except=${extension.dir}`,
         `--load-extension=${extension.dir}`,
-        '--autoplay-policy=no-user-gesture-required'
+        '--autoplay-policy=no-user-gesture-required',
+        // Live tests play real videos and ads; keep them off the speakers.
+        '--mute-audio'
       ]
     });
     if (!live) await serveFixtures(context);
