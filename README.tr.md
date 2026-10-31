@@ -20,25 +20,30 @@
 
 ## Özellikler
 
+### Kanalları tek tıkla engelle
+Önerilen bir videonun üzerine gel ve 🚫 düğmesine bas. O kanalın tüm videoları artık ana sayfada, aramada ve video sonunda örtülür. Engeli istediğin zaman eklenti penceresinden kaldırabilirsin.
+
+<img src="docs/images/tr/2-channels.jpg" alt="Arama sonucundaki engelleme düğmesi, örtülmüş video ve engellenen kanallar listesi">
+
 ### Oynatıcıda oynatma hızı
 Geçerli hız YouTube'un kendi kontrol çubuğunda durur. Tıklayınca 0.5× ile 2× arası hazır hızlar ve ince adımlar açılır; istersen kendi klavye kısayollarını kullan. Her video için varsayılan bir hız belirle ya da son hızı videolar arasında koru.
 
-<img src="docs/images/tr/2-speed.jpg" alt="Kontrol çubuğunun üstünde hız seçenekleri">
+<img src="docs/images/tr/3-speed.jpg" alt="Kontrol çubuğunun üstünde hız seçenekleri">
 
 ### İstediğin alanı kırp
 Kırpma düğmesine bas ve ekran görüntüsü alır gibi videonun üzerinde bir alan seç. Video oynamaya devam eder; oynatıcıya **sığar** ya da oynatıcıyı **doldurur**. Videonun tamamını görmek için düğmeye yeniden bas. Kırpma video bitince kalkar.
 
-<img src="docs/images/tr/3-crop.jpg" alt="Videoda alan seçme ve kırpılmış sonuç">
+<img src="docs/images/tr/4-crop.jpg" alt="Videoda alan seçme ve kırpılmış sonuç">
 
 ### Klip kaydet
 Klip çubuğunu aç, başlangıç ve bitişi işaretle, döngüde önizle ve video dosyası olarak kaydet. Klip, kendi oynatman sırasında gerçek zamanlı kaydedilir.
 
-<img src="docs/images/tr/4-clip.jpg" alt="Başlangıç ve bitişi işaretlenmiş klip çubuğu">
+<img src="docs/images/tr/5-clip.jpg" alt="Başlangıç ve bitişi işaretlenmiş klip çubuğu">
 
 ### Renk ve mavi ışık
 Her video için parlaklık, mavi ışık filtresi ve renkleri tersine çevirme; kısayollarla artırıp azaltabilirsin. Filtrelerin Shorts'ta da çalışıp çalışmayacağını sen seçersin.
 
-<img src="docs/images/tr/5-colour.jpg" alt="Aynı karenin mavi ışık filtresinden önce ve sonra hâli">
+<img src="docs/images/tr/6-colour.jpg" alt="Aynı karenin mavi ışık filtresinden önce ve sonra hâli">
 
 ### Daha sakin bir YouTube
 - **Shorts'u tamamen kapat:** raflar, arama sonuçları, menü girişi ve kanal sekmesi kaybolur; bir Shorts bağlantısı normal video olarak açılır.
@@ -48,7 +53,7 @@ Her video için parlaklık, mavi ışık filtresi ve renkleri tersine çevirme; 
 - Reklamların sesini otomatik kapat; reklam biter bitmez ses geri gelir.
 - Kanal bağlantılarını doğrudan Videolar sekmesinde aç.
 
-<img src="docs/images/tr/6-layout.jpg" alt="Yerleşim ayarları, ayar arama ve engellenen kanallar">
+<img src="docs/images/tr/7-layout.jpg" alt="Yerleşim ayarları, ayar arama ve engellenen kanallar">
 
 ### Ayrıca
 - **Tek düğmeyle** her şeyi kapat; tekrar açana kadar YouTube olduğu gibi çalışır.

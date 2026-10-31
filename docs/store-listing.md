@@ -11,8 +11,8 @@ Görseller bu klasörde hazır:
 
 | Ne | Dosya | Boyut |
 | --- | --- | --- |
-| Ekran görüntüleri (EN) | `docs/images/en/1-hero.jpg` … `6-layout.jpg` | 1280×800 |
-| Ekran görüntüleri (TR) | `docs/images/tr/1-hero.jpg` … `6-layout.jpg` | 1280×800 |
+| Ekran görüntüleri (EN) | `docs/images/en/1-hero.jpg` … `7-layout.jpg` | 1280×800 |
+| Ekran görüntüleri (TR) | `docs/images/tr/1-hero.jpg` … `7-layout.jpg` | 1280×800 |
 | Küçük tanıtım kutusu (Chrome) | `docs/images/en/promo-tile-440x280.jpg` | 440×280 |
 | Simge | `icon_128.png` | 128×128 |
 
@@ -27,7 +27,7 @@ Görseller bu klasörde hazır:
    - Açıklama: aşağıdaki *Uzun açıklama* metni.
    - Kategori: **Productivity** (Verimlilik) ya da **Tools**.
    - Dil: English. İstersen Türkçe listeyi ayrıca ekle.
-   - Ekran görüntüleri: `docs/images/en/` içindeki 6 görsel.
+   - Ekran görüntüleri: `docs/images/en/` içindeki 7 görsel.
    - Small promo tile: `promo-tile-440x280.jpg`.
 4. **Privacy** sekmesi:
    - *Single purpose:* "Adds playback, colour, crop, clip and layout controls to YouTube's own player and pages."
@@ -83,6 +83,10 @@ Mağazalar bunu eklentinin içinden (`appDesc`) her dil için otomatik alır.
 ```
 Open Youtube Settings puts the controls you wish YouTube had right into its own player.
 
+BLOCK CHANNELS
+• Hover over a recommended video and press 🚫 — every video from that channel is covered on home, search and the end screen.
+• Unblock any time from the popup.
+
 SPEED
 • The current speed sits in YouTube's control bar — click it for presets and fine steps.
 • A default speed for every video, or keep the last one between videos.
@@ -119,6 +123,10 @@ No data is collected or sent anywhere. Settings stay in your browser.
 
 ```
 Open Youtube Ayarları, YouTube'da olmasını istediğin kontrolleri doğrudan oynatıcıya getirir.
+
+KANAL ENGELLEME
+• Önerilen bir videonun üzerine gel ve 🚫 düğmesine bas — o kanalın tüm videoları ana sayfada, aramada ve video sonunda örtülür.
+• Engeli istediğin zaman eklenti penceresinden kaldır.
 
 HIZ
 • Geçerli hız YouTube'un kontrol çubuğunda — tıkla, hazır hızlardan ve ince adımlardan seç.
