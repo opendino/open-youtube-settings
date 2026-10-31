@@ -20,25 +20,30 @@
 
 ## Features
 
+### Block channels in one click
+Hover over a recommended video and press 🚫. Every video from that channel is covered from then on — on the home page, in search and on the end screen. Unblock a channel any time from the popup.
+
+<img src="docs/images/en/2-channels.jpg" alt="The block button on a search result, a covered video and the list of blocked channels">
+
 ### Playback speed in the player
 The current speed sits in YouTube's own control bar. Click it for presets from 0.5× to 2× and fine steps, or use your own keyboard shortcuts. Set a default speed for every video, or keep the last one between videos.
 
-<img src="docs/images/en/2-speed.jpg" alt="Speed presets above the player's control bar">
+<img src="docs/images/en/3-speed.jpg" alt="Speed presets above the player's control bar">
 
 ### Crop to any area
 Press the crop button and drag over the video, like taking a screenshot. The video keeps playing, scaled to **fit** the player or **fill** it. Press the button again to see the whole video. The crop ends with the video.
 
-<img src="docs/images/en/3-crop.jpg" alt="Choosing an area of the video and the cropped result">
+<img src="docs/images/en/4-crop.jpg" alt="Choosing an area of the video and the cropped result">
 
 ### Save clips
 Open the clip bar, mark a start and an end, preview the loop and save it as a video file. The clip is recorded in real time from your own playback.
 
-<img src="docs/images/en/4-clip.jpg" alt="The clip bar with a start and end point">
+<img src="docs/images/en/5-clip.jpg" alt="The clip bar with a start and end point">
 
 ### Colour and blue light
 Brightness, a blue-light filter and colour inversion for every video, with shortcuts to raise or lower them. Choose whether the filters also apply to Shorts.
 
-<img src="docs/images/en/5-colour.jpg" alt="The same frame before and after the blue-light filter">
+<img src="docs/images/en/6-colour.jpg" alt="The same frame before and after the blue-light filter">
 
 ### A calmer YouTube
 - **Turn off Shorts completely:** shelves, search results, the menu entry and the channel tab disappear; a Shorts link opens as a normal video.
@@ -48,7 +53,7 @@ Brightness, a blue-light filter and colour inversion for every video, with short
 - Mute ads automatically; the sound comes back as soon as the ad ends.
 - Open channel links straight on the Videos tab.
 
-<img src="docs/images/en/6-layout.jpg" alt="Layout settings, settings search and blocked channels">
+<img src="docs/images/en/7-layout.jpg" alt="Layout settings, settings search and blocked channels">
 
 ### And also
 - **One switch** turns everything off; YouTube runs untouched until you turn it back on.
