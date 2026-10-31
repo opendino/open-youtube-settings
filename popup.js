@@ -1,7 +1,9 @@
 /**
  * Open Youtube Settings — popup controller
- * Binds every control to storage, mirrors the chosen locale into the strings
- * the content script needs, and records keyboard shortcuts.
+ * A home screen of feature cards that open their settings, a search across
+ * every setting, and a first-run tour. Binds every control to storage,
+ * mirrors the chosen locale into the strings the content script needs, and
+ * records the keyboard shortcut next to each setting.
  */
 
 // Cross-browser compatibility layer
@@ -9,12 +11,14 @@ globalThis.browser = globalThis.browser || globalThis.chrome;
 
 /** Must stay in sync with DEFAULTS in content.js. */
 const DEFAULTS = {
+  enabled: true,
   brightness: 100,
   bluelight: 0,
   invert: false,
   filtersEnabled: true,
   applyToShorts: true,
   hideHome: false,
+  hideShorts: false,
   hideSidebar: false,
   hidePlaylist: true,
   allowPanels: true,
@@ -28,9 +32,8 @@ const DEFAULTS = {
   speedDefault: 1,
   speedPersist: false,
   lastSpeed: 1,
-  cropEnabled: false,
-  cropZoom: 100,
-  cropOffsetY: 0,
+  cropTool: true,
+  cropFit: 'contain',
   clipEnabled: true,
   channelAutoVideos: false,
   blockedChannels: [],
@@ -39,11 +42,14 @@ const DEFAULTS = {
 
 /** Declarative map of settings key -> control element. */
 const CONTROLS = {
+  enabled: { id: 'enabled', kind: 'bool' },
+  filtersEnabled: { id: 'filters-enabled', kind: 'bool' },
   brightness: { id: 'brightness', kind: 'range', display: 'brightness-val', format: (v) => `${Math.round(v)}%` },
   bluelight: { id: 'bluelight', kind: 'range', display: 'bluelight-val', format: (v) => `${Math.round(v)}%` },
   invert: { id: 'invert', kind: 'bool' },
   applyToShorts: { id: 'apply-to-shorts', kind: 'bool' },
   hideHome: { id: 'hide-home', kind: 'bool' },
+  hideShorts: { id: 'hide-shorts', kind: 'bool' },
   hideSidebar: { id: 'hide-sidebar', kind: 'bool' },
   hidePlaylist: { id: 'hide-playlist', kind: 'bool' },
   allowPanels: { id: 'allow-panels', kind: 'bool' },
@@ -56,9 +62,7 @@ const CONTROLS = {
   speedDefault: { id: 'speed-default', kind: 'range', display: 'speed-default-val', format: (v) => `${Number(v).toFixed(2)}×` },
   speedStep: { id: 'speed-step', kind: 'range', display: 'speed-step-val', format: (v) => Number(v).toFixed(2) },
   speedPersist: { id: 'speed-persist', kind: 'bool' },
-  cropEnabled: { id: 'crop-enabled', kind: 'bool' },
-  cropZoom: { id: 'crop-zoom', kind: 'range', display: 'crop-zoom-val', format: (v) => `${Math.round(v)}%` },
-  cropOffsetY: { id: 'crop-offset', kind: 'range', display: 'crop-offset-val', format: (v) => `${Math.round(v)}%` },
+  cropTool: { id: 'crop-tool', kind: 'bool' },
   clipEnabled: { id: 'clip-enabled', kind: 'bool' },
   channelAutoVideos: { id: 'channel-auto-videos', kind: 'bool' }
 };
@@ -66,6 +70,8 @@ const CONTROLS = {
 /** Locale keys handed to the content script, which cannot read the popup locale. */
 const CONTENT_STRING_KEYS = [
   'focusMode',
+  'brightness',
+  'blueLightFilter',
   'speedLabel',
   'speedReset',
   'clipTitle',
@@ -79,7 +85,10 @@ const CONTENT_STRING_KEYS = [
   'clipFailed',
   'clipNoRange',
   'blockChannel',
-  'blockedChannel'
+  'blockedChannel',
+  'cropTitle',
+  'cropRemove',
+  'cropSelectHint'
 ];
 
 const settings = Object.assign({}, DEFAULTS);
@@ -88,8 +97,68 @@ const modalOverlay = document.getElementById('modal-overlay');
 const modalConfirmBtn = document.getElementById('modal-confirm');
 const modalCancelBtn = document.getElementById('modal-cancel');
 
-const tabBtns = document.querySelectorAll('.tab-btn');
-const tabContents = document.querySelectorAll('.tab-content');
+/* ----------------------------------------------------------- appearance */
+
+/**
+ * Automatic follows the browser; light and dark pin the popup. The choice is
+ * also kept in localStorage so the next popup paints in it before storage
+ * answers.
+ */
+const THEME_CACHE = 'yte-theme';
+const themeButton = document.getElementById('theme-btn');
+const themeMenu = document.getElementById('theme-menu');
+
+function applyTheme(theme) {
+  const choice = theme === 'light' || theme === 'dark' ? theme : 'auto';
+  const root = document.documentElement;
+  if (choice === 'auto') delete root.dataset.theme;
+  else root.dataset.theme = choice;
+  root.dataset.themeChoice = choice;
+  for (const item of themeMenu.querySelectorAll('[data-theme-choice]')) {
+    item.setAttribute('aria-checked', String(item.dataset.themeChoice === choice));
+  }
+  try {
+    localStorage.setItem(THEME_CACHE, choice);
+  } catch (error) {
+    /* Storage blocked; the next popup starts on automatic. */
+  }
+}
+
+function setThemeMenuOpen(open) {
+  themeMenu.hidden = !open;
+  themeButton.setAttribute('aria-expanded', String(open));
+}
+
+try {
+  applyTheme(localStorage.getItem(THEME_CACHE));
+} catch (error) {
+  applyTheme('auto');
+}
+
+themeButton.addEventListener('click', (event) => {
+  event.stopPropagation();
+  setThemeMenuOpen(themeMenu.hidden);
+});
+
+for (const item of themeMenu.querySelectorAll('[data-theme-choice]')) {
+  item.addEventListener('click', () => {
+    applyTheme(item.dataset.themeChoice);
+    setThemeMenuOpen(false);
+    browser.storage.local
+      .set({ theme: item.dataset.themeChoice })
+      .catch((error) => console.error('[YT-Enhancer] Error saving the theme:', error));
+  });
+}
+
+document.addEventListener('click', (event) => {
+  if (!themeMenu.hidden && !themeMenu.contains(event.target)) setThemeMenuOpen(false);
+});
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && !themeMenu.hidden) setThemeMenuOpen(false);
+});
+
+const pages = document.querySelectorAll('.page');
+const searchInput = document.getElementById('search');
 const langBtns = document.querySelectorAll('.lang-btn');
 const shortcutBtns = document.querySelectorAll('.shortcut-btn');
 
@@ -137,8 +206,183 @@ function renderAll() {
   for (const key of Object.keys(CONTROLS)) writeControl(key, settings[key]);
   renderGating();
   updateSpeedPresets();
+  updateCropFit();
   renderBlocked();
+  renderStatuses();
 }
+
+/* ------------------------------------------------------------ home cards */
+
+/** A locale message with `{n}` filled in. */
+function format(key, fallback, n) {
+  return message(key, fallback).replace('{n}', n);
+}
+
+/** The one-line summary each home card shows, and whether it reads as "on". */
+function cardStatus(page) {
+  const s = settings;
+  switch (page) {
+    case 'colour': {
+      if (!s.filtersEnabled) return [message('statusOff', 'Off'), false];
+      const parts = [];
+      if (Number(s.brightness) !== 100) parts.push(`☀ ${Math.round(s.brightness)}%`);
+      if (Number(s.bluelight) > 0) parts.push(`☾ ${Math.round(s.bluelight)}%`);
+      if (s.invert) parts.push(message('statusInverted', 'Inverted'));
+      return parts.length ? [parts.join(' · '), true] : [message('statusOriginal', 'Original'), false];
+    }
+    case 'speed':
+      return s.speedEnabled
+        ? [format('statusSpeed', '{n}× default', Number(Number(s.speedDefault).toFixed(2))), true]
+        : [message('statusOff', 'Off'), false];
+    case 'layout': {
+      const count = ['hideHome', 'hideShorts', 'hideSidebar', 'autoHideControls', 'hidePlayPause', 'hideSkipAnim'].filter((k) => s[k]).length;
+      return count ? [format('statusCount', '{n} on', count), true] : [message('statusDefault', 'Default'), false];
+    }
+    case 'ads':
+      return s.muteAds ? [message('statusMuting', 'Muting ads'), true] : [message('statusOff', 'Off'), false];
+    case 'clip':
+      return s.clipEnabled ? [message('statusOn', 'On'), true] : [message('statusOff', 'Off'), false];
+    case 'crop':
+      return s.cropTool ? [message('statusOn', 'On'), true] : [message('statusOff', 'Off'), false];
+    case 'channels': {
+      const count = Array.isArray(s.blockedChannels) ? s.blockedChannels.length : 0;
+      return count ? [format('statusBlocked', '{n} blocked', count), true] : [message('statusNoBlocks', 'None blocked'), false];
+    }
+    default:
+      return ['', false];
+  }
+}
+
+function renderStatuses() {
+  for (const card of document.querySelectorAll('.card')) {
+    const [text, on] = cardStatus(card.dataset.page);
+    card.querySelector('.card-status').textContent = text;
+    card.classList.toggle('on', on);
+  }
+  document.body.classList.toggle('ext-off', !settings.enabled);
+  document.getElementById('off-notice').hidden = settings.enabled;
+}
+
+/* ------------------------------------------------------------ navigation */
+
+/** Shows the home cards, one feature's page, or search results. */
+function showView(view, page) {
+  document.body.dataset.view = view;
+  for (const section of pages) section.classList.toggle('open', section.dataset.page === page);
+  window.scrollTo(0, 0);
+}
+
+for (const button of document.querySelectorAll('button[data-page]')) {
+  button.addEventListener('click', () => {
+    searchInput.value = '';
+    showView('page', button.dataset.page);
+  });
+}
+
+for (const button of document.querySelectorAll('.back-btn')) {
+  button.addEventListener('click', () => showView('home'));
+}
+
+/* ---------------------------------------------------------------- search */
+
+/** The pieces of a page that are shown or hidden one by one while searching. */
+const SEARCH_UNITS = '.row, .group-title, .preset-row, .ghost-btn, .lang-selector, #blocked-list, .empty';
+
+function normalize(text) {
+  const locale = currentLang.replace('_', '-');
+  try {
+    return text.replace(/\s+/g, ' ').trim().toLocaleLowerCase(locale);
+  } catch (error) {
+    return text.replace(/\s+/g, ' ').trim().toLowerCase();
+  }
+}
+
+/** Lists every setting whose name or description matches, grouped by page. */
+function runSearch() {
+  const query = normalize(searchInput.value);
+  if (!query) {
+    showView('home');
+    return;
+  }
+  let found = false;
+  for (const section of pages) {
+    // A page title that matches lists the whole page; a group title that
+    // matches (say "Shortcuts") lists the rows under it.
+    const pageHit = normalize(section.querySelector('h2').textContent).includes(query);
+    const units = [...section.querySelectorAll(SEARCH_UNITS)].filter(
+      (unit) => !unit.parentElement.closest(SEARCH_UNITS)
+    );
+    let hits = 0;
+    let group = null;
+    let groupHit = false;
+    const groupShown = new Map();
+    for (const unit of units) {
+      if (unit.matches('.group-title')) {
+        group = unit;
+        groupHit = normalize(unit.textContent).includes(query);
+        groupShown.set(unit, groupHit);
+        continue;
+      }
+      const hit = pageHit || groupHit || normalize(unit.textContent).includes(query);
+      unit.classList.toggle('miss', !hit);
+      if (!hit) continue;
+      hits++;
+      if (group) groupShown.set(group, true);
+    }
+    for (const [title, shown] of groupShown) title.classList.toggle('miss', !(pageHit || shown));
+    section.classList.toggle('match', hits > 0);
+    if (hits) found = true;
+  }
+  document.getElementById('search-empty').hidden = found;
+  document.body.dataset.view = 'search';
+}
+
+searchInput.addEventListener('input', runSearch);
+searchInput.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && searchInput.value) {
+    event.preventDefault();
+    searchInput.value = '';
+    runSearch();
+  }
+});
+
+/* ------------------------------------------------------- info and hints */
+
+for (const button of document.querySelectorAll('.info-btn')) {
+  button.addEventListener('click', () => {
+    const hint = button.closest('.row').querySelector('.hint');
+    hint.hidden = !hint.hidden;
+    button.setAttribute('aria-expanded', String(!hint.hidden));
+  });
+}
+
+/* ------------------------------------------------------- first-run tour */
+
+const intro = document.getElementById('intro');
+const introSteps = intro.querySelectorAll('.intro-step');
+const introNext = document.getElementById('intro-next');
+let introStep = 0;
+
+function showIntroStep(step) {
+  introStep = step;
+  introSteps.forEach((node, i) => (node.hidden = i !== step));
+  intro.querySelectorAll('.intro-dots span').forEach((dot, i) => dot.classList.toggle('active', i === step));
+  const last = step === introSteps.length - 1;
+  introNext.textContent = last ? message('introDone', 'Get started') : message('introNext', 'Next');
+}
+
+function closeIntro() {
+  intro.hidden = true;
+  browser.storage.local
+    .set({ introSeen: true })
+    .catch((error) => console.error('[YT-Enhancer] Error saving the tour state:', error));
+}
+
+introNext.addEventListener('click', () => {
+  if (introStep === introSteps.length - 1) closeIntro();
+  else showIntroStep(introStep + 1);
+});
+document.getElementById('intro-skip').addEventListener('click', closeIntro);
 
 /* ------------------------------------------------------- blocked channels */
 
@@ -187,6 +431,7 @@ function unblock(entry) {
       const current = Array.isArray(result.blockedChannels) ? result.blockedChannels : [];
       settings.blockedChannels = current.filter((other) => !sameChannel(other, entry));
       renderBlocked();
+      renderStatuses();
       commit({ blockedChannels: settings.blockedChannels });
     })
     .catch((error) => console.error('[YT-Enhancer] Error unblocking channel:', error));
@@ -197,14 +442,16 @@ browser.storage.onChanged.addListener((changes, area) => {
   if (area !== 'local' || !changes.blockedChannels) return;
   settings.blockedChannels = changes.blockedChannels.newValue || [];
   renderBlocked();
+  renderStatuses();
 });
 
 /** Greys out sub-controls whose parent switch is off. */
 function renderGating() {
   const groups = [
+    { on: settings.filtersEnabled, nodes: document.querySelectorAll('#colour-body') },
     { on: settings.hideSidebar, nodes: document.querySelectorAll('[data-sub="sidebar"]') },
     { on: settings.speedEnabled, nodes: document.querySelectorAll('#speed-body') },
-    { on: settings.cropEnabled, nodes: document.querySelectorAll('#crop-body') }
+    { on: settings.cropTool, nodes: document.querySelectorAll('#crop-body') }
   ];
 
   for (const group of groups) {
@@ -223,6 +470,12 @@ function updateSpeedPresets() {
       'active',
       Math.abs(Number(button.dataset.speed) - Number(settings.speedDefault)) < 0.001
     );
+  }
+}
+
+function updateCropFit() {
+  for (const button of document.querySelectorAll('.crop-fit')) {
+    button.classList.toggle('active', button.dataset.fit === settings.cropFit);
   }
 }
 
@@ -279,14 +532,20 @@ function collectAndCommit(extra = {}) {
   for (const key of Object.keys(CONTROLS)) settings[key] = readControl(key);
   renderGating();
   updateSpeedPresets();
+  renderStatuses();
   commit(extra);
 }
 
 /* ------------------------------------------------------------ init load */
 
 browser.storage.local
-  .get([...Object.keys(DEFAULTS), 'language'])
+  .get([...Object.keys(DEFAULTS), 'language', 'introSeen', 'theme'])
   .then((result) => {
+    applyTheme(result.theme);
+    if (!result.introSeen) {
+      intro.hidden = false;
+      showIntroStep(0);
+    }
     for (const key of Object.keys(DEFAULTS)) {
       if (result[key] === undefined) continue;
       settings[key] =
@@ -350,12 +609,21 @@ for (const button of document.querySelectorAll('.speed-preset')) {
   });
 }
 
+for (const button of document.querySelectorAll('.crop-fit')) {
+  button.addEventListener('click', () => {
+    settings.cropFit = button.dataset.fit;
+    renderAll();
+    commit({ cropFit: settings.cropFit });
+  });
+}
+
 document.getElementById('reset').addEventListener('click', () => {
   const before = Object.assign({}, settings);
 
   for (const key of Object.keys(CONTROLS)) settings[key] = DEFAULTS[key];
   settings.filtersEnabled = DEFAULTS.filtersEnabled;
   settings.lastSpeed = DEFAULTS.lastSpeed;
+  settings.cropFit = DEFAULTS.cropFit;
   renderAll();
 
   if (before.hideSkipAnim) {
@@ -400,29 +668,21 @@ modalCancelBtn.addEventListener('click', () => {
   modalOverlay.classList.remove('active');
 });
 
-/* ------------------------------------------------------------------ tabs */
-
-for (const btn of tabBtns) {
-  btn.addEventListener('click', () => {
-    for (const other of tabBtns) other.classList.remove('active');
-    for (const content of tabContents) content.classList.remove('active');
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.tab).classList.add('active');
-  });
-}
-
 /* ------------------------------------------------------------- shortcuts */
 
-function shortcutLabel() {
-  return currentMessages && currentMessages.shortcutNotSet
-    ? currentMessages.shortcutNotSet.message
-    : 'Click to set';
-}
+/** Keyboard glyph a shortcut button shows while it has no keys assigned. */
+const KEYBOARD_ICON =
+  '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg>';
 
+/** Each shortcut button shows its keys, or a keyboard glyph when unset. */
 function updateShortcutButtons() {
   for (const btn of shortcutBtns) {
-    const key = btn.dataset.shortcut;
-    btn.textContent = settings.shortcuts[key] || shortcutLabel();
+    const combo = settings.shortcuts[btn.dataset.shortcut];
+    if (combo) btn.textContent = combo;
+    else btn.innerHTML = KEYBOARD_ICON;
+    btn.classList.toggle('set', !!combo);
+    const clear = btn.nextElementSibling;
+    if (clear && clear.classList.contains('shortcut-clear-btn')) clear.hidden = !combo;
   }
 }
 
@@ -526,8 +786,21 @@ function applyTranslations(messages) {
       el.textContent = messages[key].message;
     }
   }
+  for (const el of document.querySelectorAll('[data-i18n-title]')) {
+    const entry = messages[el.dataset.i18nTitle];
+    if (!entry || !entry.message) continue;
+    el.title = entry.message;
+    el.setAttribute('aria-label', entry.message);
+  }
+  for (const el of document.querySelectorAll('[data-i18n-placeholder]')) {
+    const entry = messages[el.dataset.i18nPlaceholder];
+    if (entry && entry.message) el.placeholder = entry.message;
+  }
   updateShortcutButtons();
   renderBlocked();
+  renderStatuses();
+  if (!intro.hidden) showIntroStep(introStep);
+  if (searchInput.value) runSearch();
 }
 
 async function loadLanguage(lang) {
@@ -543,7 +816,9 @@ async function loadLanguage(lang) {
 
     for (const btn of langBtns) {
       btn.classList.toggle('active', btn.dataset.lang === lang);
+      if (btn.dataset.lang === lang) document.getElementById('lang-name').textContent = btn.textContent;
     }
+    document.documentElement.lang = lang.replace('_', '-');
 
     // Hand the on-page strings to the content script.
     const contentStrings = buildContentStrings();

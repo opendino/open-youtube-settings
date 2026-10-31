@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "Varsayılanlara Sıfırla"
   },
-  "tabSettings": {
-    "message": "Ayarlar"
-  },
   "tabShortcuts": {
     "message": "Kısayollar"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "Şimdi Yenile"
   },
-  "shortcutToggleFilters": {
-    "message": "Filtreleri Aç/Kapat"
-  },
-  "shortcutNotSet": {
-    "message": "Ata"
-  },
   "shortcutRecording": {
     "message": "Tuşa basın..."
   },
   "tabSpeed": {
     "message": "Hız"
-  },
-  "tabAdvanced": {
-    "message": "Gelişmiş"
   },
   "sectionColor": {
     "message": "Renk"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "Klip Aracı"
-  },
-  "sectionNavigation": {
-    "message": "Gezinme"
   },
   "invertColors": {
     "message": "Renkleri Tersine Çevir"
@@ -108,7 +93,7 @@
     "message": "Kapatırsan oynatma hızı YouTube'a veya başka bir hız eklentisine kalır. Kapalıyken hiçbir şeye dokunulmaz."
   },
   "speedOverlay": {
-    "message": "Oynatıcı Rozetini Göster"
+    "message": "Hızı Oynatıcı Kontrollerinde Göster"
   },
   "speedDefault": {
     "message": "Varsayılan Hız"
@@ -120,19 +105,25 @@
     "message": "Hızı Videolar Arasında Koru"
   },
   "speedPresetHint": {
-    "message": "Hazır değerler varsayılan hızı ayarlar. İnce adımlar oynatıcı rozetinde ve kısayollarda."
+    "message": "Hazır değerler varsayılan hızı ayarlar. İnce adımlar oynatıcı kontrollerindeki hız düğmesinde ve kısayollarda."
   },
   "cropEnabled": {
     "message": "Videoyu Kırp"
   },
+  "cropTool": {
+    "message": "Kırpma Aracı"
+  },
   "cropHint": {
-    "message": "Videoya gömülü bannerları ve siyah şeritleri dışarıda bırakıp konuyu büyütür."
+    "message": "Oynatıcı kontrollerine bir kırpma düğmesi ekler. Videonun üzerinde sürükleyerek tutmak istediğin alanı seç; video oynamaya devam ederken bu alan oynatıcıyı kaplar. Videonun tamamını görmek için düğmeye tekrar tıkla. Kırpma, video değişince kalkar."
   },
-  "cropZoom": {
-    "message": "Yakınlaştırma"
+  "cropFit": {
+    "message": "Alanın şekli oynatıcıdan farklıysa"
   },
-  "cropOffsetY": {
-    "message": "Dikey Kaydırma"
+  "cropFitContain": {
+    "message": "Oranı koru, tamamı görünsün"
+  },
+  "cropFitCover": {
+    "message": "Oranı koru, ekranı doldur"
   },
   "clipEnabled": {
     "message": "Klip Aracı"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "Kanal bağlantıları kanal ana sayfası yerine doğrudan Videolar sekmesine gider."
-  },
-  "shortcutSpeedUp": {
-    "message": "Hızlandır"
-  },
-  "shortcutSpeedDown": {
-    "message": "Yavaşlat"
   },
   "shortcutSpeedReset": {
     "message": "Hızı Sıfırla"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "Engellenen kanal"
+  },
+  "cropTitle": {
+    "message": "Videoyu kırp"
+  },
+  "cropRemove": {
+    "message": "Videonun tamamını göster"
+  },
+  "cropSelectHint": {
+    "message": "Tutmak istediğin alanı videonun üzerinde sürükleyerek seç · Esc iptal eder"
+  },
+  "masterToggle": {
+    "message": "Eklentiyi aç veya kapat"
+  },
+  "offNotice": {
+    "message": "Duraklatıldı — tekrar açana kadar YouTube olduğu gibi çalışır."
+  },
+  "searchPlaceholder": {
+    "message": "Ayar ara"
+  },
+  "searchEmpty": {
+    "message": "Aramanla eşleşen ayar yok."
+  },
+  "back": {
+    "message": "Geri"
+  },
+  "moreInfo": {
+    "message": "Ayrıntı"
+  },
+  "setShortcut": {
+    "message": "Kısayol ata"
+  },
+  "clearShortcut": {
+    "message": "Kısayolu sil"
+  },
+  "filtersEnabled": {
+    "message": "Renk Ayarlarını Uygula"
+  },
+  "sectionChannels": {
+    "message": "Kanallar"
+  },
+  "statusOn": {
+    "message": "Açık"
+  },
+  "statusOff": {
+    "message": "Kapalı"
+  },
+  "statusOriginal": {
+    "message": "Orijinal"
+  },
+  "statusInverted": {
+    "message": "Ters"
+  },
+  "statusSpeed": {
+    "message": "Varsayılan {n}×"
+  },
+  "statusCount": {
+    "message": "{n} açık"
+  },
+  "statusDefault": {
+    "message": "Varsayılan"
+  },
+  "statusMuting": {
+    "message": "Reklamlar sessiz"
+  },
+  "statusBlocked": {
+    "message": "{n} engelli"
+  },
+  "statusNoBlocks": {
+    "message": "Engel yok"
+  },
+  "introTitle1": {
+    "message": "Oynatıcıda yeni düğmeler"
+  },
+  "introText1": {
+    "message": "Hız, klip ve kırpma düğmeleri YouTube'un kendi kontrol çubuğunda, ayarların yanında."
+  },
+  "introTitle2": {
+    "message": "Tek tıkla kanal engelle"
+  },
+  "introText2": {
+    "message": "Önerilen bir videonun üzerine gel ve 🚫 düğmesine bas. O kanalın videoları bundan sonra kapatılır."
+  },
+  "introTitle3": {
+    "message": "Her şey tek yerde"
+  },
+  "introText3": {
+    "message": "Değiştirmek için bir karta dokun, istediğin ayarı ara, bir ayara kısayol vermek için yanındaki klavye simgesine bas."
+  },
+  "introNext": {
+    "message": "İleri"
+  },
+  "introDone": {
+    "message": "Başla"
+  },
+  "introSkip": {
+    "message": "Atla"
+  },
+  "hideShorts": {
+    "message": "Shorts'u Tamamen Kapat"
+  },
+  "hideShortsHint": {
+    "message": "Shorts raflarını, arama sonuçlarını, menüdeki girişi ve kanal sekmesini kaldırır. Bir Shorts bağlantısı normal video olarak açılır."
+  },
+  "theme": {
+    "message": "Görünüm"
+  },
+  "themeAuto": {
+    "message": "Otomatik"
+  },
+  "themeLight": {
+    "message": "Açık"
+  },
+  "themeDark": {
+    "message": "Koyu"
+  },
+  "shortcutDecrease": {
+    "message": "Azalt"
+  },
+  "shortcutIncrease": {
+    "message": "Artır"
   }
 }

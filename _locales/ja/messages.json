@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "デフォルトに戻す"
   },
-  "tabSettings": {
-    "message": "設定"
-  },
   "tabShortcuts": {
     "message": "ショートカット"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "再読み込み"
   },
-  "shortcutToggleFilters": {
-    "message": "フィルターを切り替え"
-  },
-  "shortcutNotSet": {
-    "message": "設定する"
-  },
   "shortcutRecording": {
     "message": "キーを押す..."
   },
   "tabSpeed": {
     "message": "速度"
-  },
-  "tabAdvanced": {
-    "message": "詳細"
   },
   "sectionColor": {
     "message": "色"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "クリップツール"
-  },
-  "sectionNavigation": {
-    "message": "ナビゲーション"
   },
   "invertColors": {
     "message": "色を反転"
@@ -108,7 +93,7 @@
     "message": "オフにすると再生速度を YouTube や他の速度拡張機能に任せます。オフの間は何も変更しません。"
   },
   "speedOverlay": {
-    "message": "プレーヤーにチップを表示"
+    "message": "プレーヤーの操作バーに速度を表示"
   },
   "speedDefault": {
     "message": "既定の速度"
@@ -120,19 +105,25 @@
     "message": "動画間で速度を保持"
   },
   "speedPresetHint": {
-    "message": "プリセットは既定の速度を設定します。細かい調整はプレーヤーのチップとショートカットで行えます。"
+    "message": "プリセットは既定の速度を設定します。細かい調整はプレーヤーの操作バーの速度ボタンとショートカットで行えます。"
   },
   "cropEnabled": {
     "message": "動画をトリミング"
   },
+  "cropTool": {
+    "message": "切り抜きツール"
+  },
   "cropHint": {
-    "message": "焼き込まれたバナーや黒帯の外までズームし、被写体を大きく表示します。"
+    "message": "プレーヤーの操作バーに切り抜きボタンを追加します。動画の上をドラッグして残したい範囲を選ぶと、再生を続けたままその範囲がプレーヤーいっぱいに表示されます。もう一度ボタンを押すと動画全体に戻ります。切り抜きは動画が変わると解除されます。"
   },
-  "cropZoom": {
-    "message": "ズーム"
+  "cropFit": {
+    "message": "範囲の縦横比がプレーヤーと異なる場合"
   },
-  "cropOffsetY": {
-    "message": "垂直方向のずらし"
+  "cropFitContain": {
+    "message": "比率を保って全体を表示"
+  },
+  "cropFitCover": {
+    "message": "比率を保ってプレーヤーを埋める"
   },
   "clipEnabled": {
     "message": "クリップツール"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "チャンネルのリンクはホームではなく動画タブへ直接移動します。"
-  },
-  "shortcutSpeedUp": {
-    "message": "速くする"
-  },
-  "shortcutSpeedDown": {
-    "message": "遅くする"
   },
   "shortcutSpeedReset": {
     "message": "速度をリセット"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "ブロックしたチャンネル"
+  },
+  "cropTitle": {
+    "message": "動画を切り抜く"
+  },
+  "cropRemove": {
+    "message": "動画全体を表示"
+  },
+  "cropSelectHint": {
+    "message": "残したい範囲を動画の上でドラッグして選択 · Escでキャンセル"
+  },
+  "masterToggle": {
+    "message": "拡張機能をオン/オフ"
+  },
+  "offNotice": {
+    "message": "一時停止中 — 再びオンにするまで YouTube はそのまま動作します。"
+  },
+  "searchPlaceholder": {
+    "message": "設定を検索"
+  },
+  "searchEmpty": {
+    "message": "一致する設定はありません。"
+  },
+  "back": {
+    "message": "戻る"
+  },
+  "moreInfo": {
+    "message": "詳細"
+  },
+  "setShortcut": {
+    "message": "ショートカットを設定"
+  },
+  "clearShortcut": {
+    "message": "ショートカットを削除"
+  },
+  "filtersEnabled": {
+    "message": "色の設定を適用"
+  },
+  "sectionChannels": {
+    "message": "チャンネル"
+  },
+  "statusOn": {
+    "message": "オン"
+  },
+  "statusOff": {
+    "message": "オフ"
+  },
+  "statusOriginal": {
+    "message": "オリジナル"
+  },
+  "statusInverted": {
+    "message": "反転"
+  },
+  "statusSpeed": {
+    "message": "既定 {n}×"
+  },
+  "statusCount": {
+    "message": "{n} 件オン"
+  },
+  "statusDefault": {
+    "message": "既定"
+  },
+  "statusMuting": {
+    "message": "広告をミュート"
+  },
+  "statusBlocked": {
+    "message": "{n} 件ブロック"
+  },
+  "statusNoBlocks": {
+    "message": "ブロックなし"
+  },
+  "introTitle1": {
+    "message": "プレーヤーに新しいボタン"
+  },
+  "introText1": {
+    "message": "速度・クリップ・切り抜きのボタンが、YouTube の操作バーの設定ボタンの隣にあります。"
+  },
+  "introTitle2": {
+    "message": "ワンクリックでチャンネルをブロック"
+  },
+  "introText2": {
+    "message": "おすすめ動画にカーソルを合わせて 🚫 を押すと、それ以降そのチャンネルの動画が覆われます。"
+  },
+  "introTitle3": {
+    "message": "すべてを一か所に"
+  },
+  "introText3": {
+    "message": "カードを開いて変更し、どの設定でも検索でき、設定の横にあるキーボードアイコンでショートカットを割り当てられます。"
+  },
+  "introNext": {
+    "message": "次へ"
+  },
+  "introDone": {
+    "message": "はじめる"
+  },
+  "introSkip": {
+    "message": "スキップ"
+  },
+  "hideShorts": {
+    "message": "ショートを完全にオフ"
+  },
+  "hideShortsHint": {
+    "message": "ショートの棚、検索結果、メニュー項目、チャンネルのタブを取り除きます。ショートのリンクは通常の動画として開きます。"
+  },
+  "theme": {
+    "message": "外観"
+  },
+  "themeAuto": {
+    "message": "自動"
+  },
+  "themeLight": {
+    "message": "ライト"
+  },
+  "themeDark": {
+    "message": "ダーク"
+  },
+  "shortcutDecrease": {
+    "message": "下げる"
+  },
+  "shortcutIncrease": {
+    "message": "上げる"
   }
 }

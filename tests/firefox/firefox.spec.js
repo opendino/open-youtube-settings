@@ -67,13 +67,14 @@ test.describe('Firefox: speed', () => {
     expect(await playbackRate(page)).toBe(2.5);
   });
 
-  test('player chip steps the speed', async ({ page, harness }) => {
+  test('the speed button in the control bar steps the speed', async ({ page, harness }) => {
     await harness.set({ speedStep: 0.1 });
     await openYoutube(page);
-    await page.hover('#movie_player');
-    for (let i = 0; i < 3; i++) await page.click('#yte-osc .yte-speed .yte-step:last-of-type');
+    await page.click('.ytp-right-controls-left > .yte-ctl-speed');
+    const [, up] = await page.$$('#yte-osc .yte-speed-tray .yte-step');
+    for (let i = 0; i < 3; i++) await up.click();
     await expect.poll(() => playbackRate(page)).toBe(1.3);
-    expect(await page.$eval('#yte-osc .yte-speed-value', (n) => n.textContent)).toBe('1.30×');
+    expect(await page.$eval('.yte-ctl-speed', (n) => n.textContent)).toBe('1.30×');
   });
 
   test('applies the speed to Shorts', async ({ page, harness }) => {
@@ -123,10 +124,29 @@ test.describe('Firefox: page styling', () => {
     expect(await isDisplayed(page, 'ytd-browse[page-subtype="home"] #contents')).toBe(false);
   });
 
-  test('crop scales the video', async ({ page, harness }) => {
-    await harness.set({ cropEnabled: true, cropZoom: 150 });
+  test('a dragged area crops the video and it keeps playing', async ({ page }) => {
     await openYoutube(page);
-    expect(await styleOf(page, '#movie_player video', 'transform')).toBe('matrix(1.5, 0, 0, 1.5, 0, 0)');
+    await page.click('.ytp-right-controls-left > .yte-ctl-crop');
+    await page.waitForSelector('#yte-osc .yte-crop-layer', { visible: true });
+    const p = await page.evaluate(() => {
+      const r = document.querySelector('#movie_player').getBoundingClientRect();
+      return { x: r.x, y: r.y, w: r.width, h: r.height };
+    });
+    await page.mouse.move(p.x + p.w * 0.25, p.y + p.h * 0.25);
+    await page.mouse.down();
+    await page.mouse.move(p.x + p.w * 0.5, p.y + p.h * 0.4, { steps: 4 });
+    await page.mouse.move(p.x + p.w * 0.75, p.y + p.h * 0.5, { steps: 4 });
+    await page.mouse.up();
+    await page.waitForSelector('#yte-osc .yte-crop-layer', { hidden: true });
+
+    // A box with the player's own shape, so it fills the player exactly.
+    expect(await styleOf(page, '#movie_player video', 'transform')).toMatch(/^matrix\(2, 0, 0, 2, -/);
+    const shown = await page.evaluate(() => {
+      const r = document.querySelector('#movie_player').getBoundingClientRect();
+      const v = document.querySelector('#movie_player video');
+      return [document.elementFromPoint(r.x + r.width * 0.3, r.y + r.height * 0.45).tagName, v.paused];
+    });
+    expect(shown).toEqual(['VIDEO', false]);
   });
 
   test('channel pages open on the Videos tab', async ({ page, harness }) => {
@@ -137,6 +157,28 @@ test.describe('Firefox: page styling', () => {
 });
 
 test.describe('Firefox: popup', () => {
+  test('the master switch leaves YouTube untouched and brings it back', async ({ page, harness, openPopup }) => {
+    await harness.set({ brightness: 80 });
+    await openYoutube(page);
+    await expect.poll(() => styleOf(page, '#movie_player video', 'filter')).toBe('brightness(0.8)');
+    const popup = await openPopup();
+    await popup.click('#enabled');
+    await expect.poll(() => styleOf(page, '#movie_player video', 'filter')).toBe('none');
+    await expect
+      .poll(() => page.evaluate(() => getComputedStyle(document.querySelector('.yte-ctl-speed')).display))
+      .toBe('none');
+    await popup.click('#enabled');
+    await expect.poll(() => styleOf(page, '#movie_player video', 'filter')).toBe('brightness(0.8)');
+  });
+
+  test('cards sum up the settings', async ({ harness, openPopup }) => {
+    await harness.set({ muteAds: true, blockedChannels: [{ name: 'A' }] });
+    const popup = await openPopup();
+    expect((await popup.read('.card[data-page="ads"] .card-status')).text).toBe('Muting ads');
+    expect((await popup.read('.card[data-page="channels"] .card-status')).text).toBe('1 blocked');
+    expect((await popup.read('body')).className).not.toContain('ext-off');
+  });
+
   test('a slider change reaches the open YouTube tab', async ({ page, openPopup }) => {
     await openYoutube(page);
     const popup = await openPopup();
@@ -161,7 +203,7 @@ test.describe('Firefox: popup', () => {
     await openYoutube(page, '/');
     const popup = await openPopup();
     await popup.click('.lang-btn[data-lang="tr"]');
-    await expect.poll(async () => (await popup.read('.tab-btn[data-tab="settings"]')).text).not.toBe('Settings');
+    await expect.poll(async () => (await popup.read('.card[data-page="colour"] .card-title')).text).toBe('Renk');
     const tr = JSON.parse(fs.readFileSync(path.resolve('_locales/tr/messages.json'), 'utf8'));
     await expect
       .poll(() =>
@@ -199,6 +241,14 @@ test.describe('Firefox: keyboard and clips', () => {
     await page.click('body');
     await press(page, ['Shift'], 'KeyW');
     await expect.poll(() => playbackRate(page)).toBe(1.25);
+  });
+
+  test('the clip button in the control bar opens the clip bar', async ({ page }) => {
+    await openYoutube(page);
+    await page.click('.ytp-right-controls-left > .yte-ctl-clip');
+    await page.waitForSelector('#yte-osc .yte-clip', { visible: true });
+    await page.click('.ytp-right-controls-left > .yte-ctl-clip');
+    await page.waitForSelector('#yte-osc .yte-clip', { hidden: true });
   });
 
   test('a marked range is recorded and downloaded', async ({ page, harness, firefox }) => {
@@ -303,6 +353,27 @@ test.describe('Firefox: channel blocking', () => {
     await expect.poll(() => covered(page, SIDEBAR('rel1'))).toBe('🚫 Blocked channel');
     expect(await covered(page, SIDEBAR('rel0'))).toBeNull();
     expect(await stored(harness, 'blockedChannels')).toEqual([{ name: 'Blocked Co' }]);
+  });
+
+  test('YouTube’s hover preview carries a button for the card under it', async ({ page, harness }) => {
+    await openYoutube(page, '/');
+    const center = (sel) =>
+      page.evaluate((s) => {
+        const r = document.querySelector(s).getBoundingClientRect();
+        return [r.x + r.width / 2, r.y + r.height / 2];
+      }, sel);
+    await page.mouse.move(...(await center(`${HOME('home1')} a.thumb`)));
+    await expect.poll(() => isDisplayed(page, 'ytd-video-preview')).toBe(true);
+
+    // Same spot as the card's own button, which the preview covers.
+    const [x, y] = await center(`${HOME('home1')} > .yte-block-btn`);
+    await page.mouse.move(x, y);
+    await expect.poll(() => styleOf(page, 'ytd-video-preview > .yte-block-btn', 'opacity')).toBe('1');
+    expect(await page.evaluate(([px, py]) => document.elementFromPoint(px, py).parentElement.tagName, [x, y])).toBe('YTD-VIDEO-PREVIEW');
+    await page.mouse.click(x, y);
+    await expect.poll(() => covered(page, HOME('home1'))).toBe('🚫 Blocked channel');
+    expect(await stored(harness, 'blockedChannels')).toEqual([{ name: 'Blocked Co', handle: '@blockedco' }]);
+    expect(await styleOf(page, 'ytd-video-preview', 'visibility')).toBe('hidden');
   });
 
   test('covered on home, search and the end screen, and clicks are swallowed', async ({ page, harness }) => {

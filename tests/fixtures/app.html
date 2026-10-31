@@ -10,18 +10,26 @@
     ytd-watch-next-secondary-results-renderer, ytd-rich-grid-renderer, ytd-shorts,
     ytd-reel-video-renderer, ytd-rich-item-renderer, yt-lockup-view-model, ytd-video-renderer,
     ytd-rich-shelf-renderer, ytm-shorts-lockup-view-model-v2, ytd-search, ytd-section-list-renderer,
-    ytd-item-section-renderer, ytd-channel-name { display: block; }
+    ytd-item-section-renderer, ytd-channel-name, ytd-guide-entry-renderer, ytd-mini-guide-entry-renderer,
+    ytd-reel-shelf-renderer, grid-shelf-view-model, ytd-rich-section-renderer, yt-tab-shape { display: block; }
     ytd-rich-grid-renderer { display: grid; grid-template-columns: repeat(3, 300px); gap: 16px; }
     yt-lockup-view-model, ytd-video-renderer { min-height: 90px; margin-bottom: 8px; background: #272727; }
-    .thumbnail { display: block; height: 60px; background: #555; }
+    .thumbnail, ytd-video-renderer ytd-thumbnail { display: block; height: 60px; background: #555; }
+    ytd-video-preview { position: absolute; display: block; padding: 12px; }
+    .preview-video { width: 100%; height: 100%; background: #c00; }
+    ytd-video-preview[hidden] { display: none; }
     .ytp-videowall-still { display: block; background: #333; color: #fff; }
     #columns { display: flex; gap: 24px; padding: 24px; }
     #primary { flex: 1; max-width: 960px; }
     #secondary { width: 400px; }
     .html5-video-player { position: relative; width: 100%; aspect-ratio: 16 / 9; background: #000; }
-    .html5-video-container { position: absolute; inset: 0; }
-    .html5-video-container video { width: 100%; height: 100%; }
+    /* Like YouTube: a zero-height box; the player script sizes and places the video. */
+    .html5-video-container { position: relative; height: 0; }
+    .html5-video-container video { position: absolute; }
     .ytp-chrome-bottom { position: absolute; left: 12px; right: 12px; bottom: 0; height: 48px; }
+    .ytp-chrome-controls { display: flex; justify-content: space-between; height: 100%; }
+    .ytp-right-controls, .ytp-right-controls-left, .ytp-right-controls-right { display: flex; height: 100%; }
+    .ytp-button { width: 48px; height: 100%; background: none; border: none; color: #fff; }
     .ytp-gradient-bottom { position: absolute; left: 0; right: 0; bottom: 0; height: 60px; }
     .ytp-bezel { position: absolute; left: 50%; top: 50%; width: 52px; height: 52px; }
     ytd-engagement-panel-section-list-renderer[visibility="ENGAGEMENT_PANEL_VISIBILITY_HIDDEN"] { display: none; }
@@ -31,6 +39,16 @@
 </head>
 <body>
   <ytd-app>
+    <!-- The guide names Shorts by title only; it has no link. Kept in a
+         corner so clicks the tests make on the page never land on it. -->
+    <div id="guide" style="position: fixed; right: 0; bottom: 0;">
+      <ytd-guide-section-renderer>
+        <ytd-guide-entry-renderer><a id="endpoint" title="Home" href="/">Home</a></ytd-guide-entry-renderer>
+        <ytd-guide-entry-renderer><a id="endpoint" title="Shorts">Shorts</a></ytd-guide-entry-renderer>
+      </ytd-guide-section-renderer>
+      <ytd-mini-guide-entry-renderer aria-label="Home">Home</ytd-mini-guide-entry-renderer>
+      <ytd-mini-guide-entry-renderer aria-label="Shorts">Shorts</ytd-mini-guide-entry-renderer>
+    </div>
     <ytd-page-manager id="page-manager"></ytd-page-manager>
   </ytd-app>
   <script src="/__fixture/app.js"></script>

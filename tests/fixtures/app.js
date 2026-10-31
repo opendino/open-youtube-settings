@@ -70,6 +70,25 @@
     if (video) video.muted = youtubeMuted;
   }
 
+  /**
+   * YouTube writes the video's size and position inline and rewrites them
+   * whenever the player changes size (theater mode, fullscreen, window).
+   */
+  const playerResize = new ResizeObserver((entries) => {
+    for (const entry of entries) layoutVideo(entry.target);
+  });
+
+  function layoutVideo(node) {
+    const video = node.querySelector('video');
+    if (!video) return;
+    Object.assign(video.style, {
+      width: `${node.clientWidth}px`,
+      height: `${node.clientHeight}px`,
+      left: '0px',
+      top: '0px'
+    });
+  }
+
   /** The watch-page player; reused like YouTube's #movie_player. */
   function watchPlayer() {
     if (player) return player;
@@ -79,11 +98,23 @@
           <video class="video-stream html5-main-video" playsinline></video>
         </div>
         <div class="ytp-gradient-bottom"></div>
-        <div class="ytp-chrome-bottom"><button class="ytp-play-button">play</button></div>
+        <div class="ytp-chrome-bottom">
+          <div class="ytp-chrome-controls">
+            <div class="ytp-left-controls"><button class="ytp-play-button ytp-button">play</button></div>
+            <div class="ytp-right-controls">
+              <div class="ytp-right-controls-left">
+                <button class="ytp-subtitles-button ytp-button">cc</button>
+                <button class="ytp-button ytp-settings-button">settings</button>
+              </div>
+              <div class="ytp-right-controls-right"><button class="ytp-fullscreen-button ytp-button">full</button></div>
+            </div>
+          </div>
+        </div>
         <div class="ytp-chrome-top"></div>
         <div class="ytp-bezel"><div class="ytp-bezel-icon"></div></div>
       </div>`);
     installPlayerApi(player);
+    playerResize.observe(player);
     return player;
   }
 
@@ -117,10 +148,12 @@
   }
 
   /** Shorts cards carry no channel at all. */
+  function shortsLockup(id) {
+    return `<ytm-shorts-lockup-view-model-v2><ytm-shorts-lockup-view-model><a href="/shorts/${id}">Short ${id}</a><span>2M views</span></ytm-shorts-lockup-view-model></ytm-shorts-lockup-view-model-v2>`;
+  }
+
   function shortsShelf() {
-    return `<ytd-rich-shelf-renderer is-shorts>
-      <ytm-shorts-lockup-view-model-v2><a href="/shorts/s1">Short one</a><span>2M views</span></ytm-shorts-lockup-view-model-v2>
-    </ytd-rich-shelf-renderer>`;
+    return `<ytd-rich-section-renderer><ytd-rich-shelf-renderer is-shorts>${shortsLockup('s1')}</ytd-rich-shelf-renderer></ytd-rich-section-renderer>`;
   }
 
   function panel(target, expanded) {
@@ -164,9 +197,11 @@
     const items = CHANNELS.map(
       (c, i) => `<ytd-rich-item-renderer>${lockup(`home${i}`, c, { avatar: true })}</ytd-rich-item-renderer>`
     ).join('');
+    // A single Short also turns up as a grid item of its own.
+    const loneShort = `<ytd-rich-item-renderer>${shortsLockup('s2')}</ytd-rich-item-renderer>`;
     return el(`
       <ytd-browse page-subtype="home">
-        <div id="contents"><ytd-rich-grid-renderer>${items}${shortsShelf()}</ytd-rich-grid-renderer></div>
+        <div id="contents"><ytd-rich-grid-renderer>${items}${loneShort}${shortsShelf()}</ytd-rich-grid-renderer></div>
       </ytd-browse>`);
   }
 
@@ -180,8 +215,15 @@
           <ytd-channel-name style="position: relative; z-index: 100;"><div id="text-container"><yt-formatted-string id="text"><a href="/${c.handle}">${c.name}</a></yt-formatted-string></div></ytd-channel-name>
         </ytd-video-renderer>`
     ).join('');
+    // Search mixes in a grid of Shorts and Shorts as plain results.
+    const shorts = `
+      <grid-shelf-view-model>${shortsLockup('s3')}${shortsLockup('s4')}</grid-shelf-view-model>
+      <ytd-video-renderer>
+        <a id="thumbnail" href="/shorts/s5"><ytd-thumbnail></ytd-thumbnail></a>
+        <h3><a href="/shorts/s5">A short result</a></h3>
+      </ytd-video-renderer>`;
     return el(`
-      <ytd-search><ytd-section-list-renderer><ytd-item-section-renderer><div id="contents">${items}</div></ytd-item-section-renderer></ytd-section-list-renderer></ytd-search>`);
+      <ytd-search><ytd-section-list-renderer><ytd-item-section-renderer><div id="contents">${items}${shorts}</div></ytd-item-section-renderer></ytd-section-list-renderer></ytd-search>`);
   }
 
   function renderSubscriptions() {
@@ -208,6 +250,42 @@
     document.querySelector('#movie_player').appendChild(wall);
   }
 
+  /**
+   * Home and search open an inline preview over a thumbnail the pointer rests
+   * on. Like YouTube's, it is one element at the end of ytd-app, outside the
+   * card, padded 12px around the thumbnail-sized video, and it stays until
+   * the pointer leaves the thumbnail's area.
+   */
+  const preview = el(`<ytd-video-preview hidden><div class="preview-video"></div></ytd-video-preview>`);
+  document.querySelector('ytd-app').appendChild(preview);
+  let previewed = null;
+
+  function closePreview() {
+    previewed = null;
+    preview.hidden = true;
+  }
+
+  document.addEventListener('mouseover', (event) => {
+    const thumb = event.target.closest && event.target.closest('ytd-rich-item-renderer a.thumb, ytd-video-renderer a#thumbnail');
+    if (!thumb || thumb === previewed) return;
+    previewed = thumb;
+    const r = thumb.getBoundingClientRect();
+    Object.assign(preview.style, {
+      left: `${r.left + scrollX - 12}px`,
+      top: `${r.top + scrollY - 12}px`,
+      width: `${r.width}px`,
+      height: `${r.height}px`
+    });
+    preview.hidden = false;
+  });
+
+  document.addEventListener('mousemove', (event) => {
+    if (!previewed) return;
+    const r = previewed.getBoundingClientRect();
+    const inside = event.clientX >= r.left && event.clientX < r.right && event.clientY >= r.top && event.clientY < r.bottom;
+    if (!inside) closePreview();
+  });
+
   function renderShorts() {
     return el(`
       <ytd-shorts>
@@ -222,7 +300,9 @@
   }
 
   function renderChannel() {
-    return el(`<ytd-browse page-subtype="channels"><h1>Channel ${location.pathname}</h1></ytd-browse>`);
+    return el(`<ytd-browse page-subtype="channels"><h1>Channel ${location.pathname}</h1>
+      <yt-tab-shape tab-title="Videos">Videos</yt-tab-shape><yt-tab-shape tab-title="Shorts">Shorts</yt-tab-shape>
+      <ytd-reel-shelf-renderer>${shortsLockup('s6')}</ytd-reel-shelf-renderer></ytd-browse>`);
   }
 
   async function render() {
@@ -235,9 +315,13 @@
     else if (/^\/(@|c\/|user\/|channel\/)/.test(url.pathname)) page = renderChannel();
     else page = renderHome();
 
+    closePreview();
     manager.replaceChildren(page);
     const shorts = page.querySelector('#shorts-player');
-    if (shorts) installPlayerApi(shorts);
+    if (shorts) {
+      installPlayerApi(shorts);
+      playerResize.observe(shorts);
+    }
 
     const video = page.querySelector('video');
     if (video) {

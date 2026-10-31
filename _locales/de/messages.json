@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "Zurücksetzen"
   },
-  "tabSettings": {
-    "message": "Einstellungen"
-  },
   "tabShortcuts": {
     "message": "Tastenkombinationen"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "Aktualisieren"
   },
-  "shortcutToggleFilters": {
-    "message": "Filter Umschalten"
-  },
-  "shortcutNotSet": {
-    "message": "Festlegen"
-  },
   "shortcutRecording": {
     "message": "Drücken..."
   },
   "tabSpeed": {
     "message": "Geschwindigkeit"
-  },
-  "tabAdvanced": {
-    "message": "Erweitert"
   },
   "sectionColor": {
     "message": "Farbe"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "Clip-Werkzeug"
-  },
-  "sectionNavigation": {
-    "message": "Navigation"
   },
   "invertColors": {
     "message": "Farben umkehren"
@@ -108,7 +93,7 @@
     "message": "Ausschalten, um die Wiedergabegeschwindigkeit YouTube oder einer anderen Erweiterung zu überlassen. Im ausgeschalteten Zustand wird nichts verändert."
   },
   "speedOverlay": {
-    "message": "Chip im Player anzeigen"
+    "message": "Geschwindigkeit in der Player-Steuerung anzeigen"
   },
   "speedDefault": {
     "message": "Standardgeschwindigkeit"
@@ -120,19 +105,25 @@
     "message": "Geschwindigkeit zwischen Videos behalten"
   },
   "speedPresetHint": {
-    "message": "Voreinstellungen setzen die Standardgeschwindigkeit. Feine Schritte gibt es am Player-Chip und über die Tastenkürzel."
+    "message": "Voreinstellungen setzen die Standardgeschwindigkeit. Feine Schritte gibt es über die Geschwindigkeitstaste in der Player-Steuerung und über die Tastenkürzel."
   },
   "cropEnabled": {
     "message": "Video zuschneiden"
   },
+  "cropTool": {
+    "message": "Zuschneide-Werkzeug"
+  },
   "cropHint": {
-    "message": "Zoomt über eingebrannte Banner und Letterbox-Balken hinaus, damit das Motiv mehr Platz einnimmt."
+    "message": "Fügt der Player-Steuerung eine Zuschneide-Taste hinzu. Zieh über dem Video den Bereich auf, den du behalten willst; er füllt den Player, während das Video weiterläuft. Ein weiterer Klick zeigt wieder das ganze Video. Der Zuschnitt endet mit dem Video."
   },
-  "cropZoom": {
-    "message": "Zoom"
+  "cropFit": {
+    "message": "Wenn die Form des Bereichs vom Player abweicht"
   },
-  "cropOffsetY": {
-    "message": "Vertikale Verschiebung"
+  "cropFitContain": {
+    "message": "Proportionen behalten, alles zeigen"
+  },
+  "cropFitCover": {
+    "message": "Proportionen behalten, Player füllen"
   },
   "clipEnabled": {
     "message": "Clip-Werkzeug"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "Kanal-Links springen direkt zum Tab „Videos“ statt zur Kanal-Startseite."
-  },
-  "shortcutSpeedUp": {
-    "message": "Schneller"
-  },
-  "shortcutSpeedDown": {
-    "message": "Langsamer"
   },
   "shortcutSpeedReset": {
     "message": "Geschwindigkeit zurücksetzen"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "Blockierter Kanal"
+  },
+  "cropTitle": {
+    "message": "Video zuschneiden"
+  },
+  "cropRemove": {
+    "message": "Ganzes Video zeigen"
+  },
+  "cropSelectHint": {
+    "message": "Zieh über dem Video den Bereich auf, den du behalten willst · Esc bricht ab"
+  },
+  "masterToggle": {
+    "message": "Erweiterung ein- oder ausschalten"
+  },
+  "offNotice": {
+    "message": "Pausiert — YouTube läuft unverändert, bis du sie wieder einschaltest."
+  },
+  "searchPlaceholder": {
+    "message": "Einstellungen suchen"
+  },
+  "searchEmpty": {
+    "message": "Keine Einstellung passt zu deiner Suche."
+  },
+  "back": {
+    "message": "Zurück"
+  },
+  "moreInfo": {
+    "message": "Mehr Infos"
+  },
+  "setShortcut": {
+    "message": "Tastenkürzel festlegen"
+  },
+  "clearShortcut": {
+    "message": "Tastenkürzel löschen"
+  },
+  "filtersEnabled": {
+    "message": "Farbeinstellungen anwenden"
+  },
+  "sectionChannels": {
+    "message": "Kanäle"
+  },
+  "statusOn": {
+    "message": "An"
+  },
+  "statusOff": {
+    "message": "Aus"
+  },
+  "statusOriginal": {
+    "message": "Original"
+  },
+  "statusInverted": {
+    "message": "Invertiert"
+  },
+  "statusSpeed": {
+    "message": "Standard {n}×"
+  },
+  "statusCount": {
+    "message": "{n} aktiv"
+  },
+  "statusDefault": {
+    "message": "Standard"
+  },
+  "statusMuting": {
+    "message": "Werbung stumm"
+  },
+  "statusBlocked": {
+    "message": "{n} blockiert"
+  },
+  "statusNoBlocks": {
+    "message": "Keine blockiert"
+  },
+  "introTitle1": {
+    "message": "Neue Tasten im Player"
+  },
+  "introText1": {
+    "message": "Geschwindigkeit, Clip und Zuschnitt sitzen in YouTubes eigener Steuerleiste, neben den Einstellungen."
+  },
+  "introTitle2": {
+    "message": "Kanal mit einem Klick blockieren"
+  },
+  "introText2": {
+    "message": "Fahr über ein empfohlenes Video und drück 🚫. Die Videos dieses Kanals werden ab dann abgedeckt."
+  },
+  "introTitle3": {
+    "message": "Alles an einem Ort"
+  },
+  "introText3": {
+    "message": "Öffne eine Karte, um sie zu ändern, such nach jeder Einstellung und drück das Tastatursymbol neben einer Einstellung, um ihr ein Tastenkürzel zu geben."
+  },
+  "introNext": {
+    "message": "Weiter"
+  },
+  "introDone": {
+    "message": "Los geht's"
+  },
+  "introSkip": {
+    "message": "Überspringen"
+  },
+  "hideShorts": {
+    "message": "Shorts komplett ausschalten"
+  },
+  "hideShortsHint": {
+    "message": "Entfernt Shorts-Regale, Suchergebnisse, den Menüeintrag und den Kanal-Tab. Ein Shorts-Link öffnet sich als normales Video."
+  },
+  "theme": {
+    "message": "Darstellung"
+  },
+  "themeAuto": {
+    "message": "Automatisch"
+  },
+  "themeLight": {
+    "message": "Hell"
+  },
+  "themeDark": {
+    "message": "Dunkel"
+  },
+  "shortcutDecrease": {
+    "message": "Verringern"
+  },
+  "shortcutIncrease": {
+    "message": "Erhöhen"
   }
 }

@@ -1,4 +1,4 @@
-import { test, expect, openYoutube, spaNavigate } from '../helpers/extension.js';
+import { test, expect, openYoutube, spaNavigate, openPage } from '../helpers/extension.js';
 
 const BLOCKED = { name: 'Blocked Co' };
 
@@ -17,6 +17,13 @@ const card = (page, videoId) =>
   );
 const overlay = (page, videoId) => card(page, videoId).locator('> .yte-block-overlay');
 const blockedList = async (harness) => (await harness.get(['blockedChannels'])).blockedChannels;
+
+/** Rests the pointer on a thumbnail; YouTube then opens its hover preview over it. */
+async function restOn(page, thumb) {
+  const box = await thumb.boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  await expect(page.locator('ytd-video-preview')).toBeVisible();
+}
 
 /** Positions of every card, to prove blocking never moves anything. */
 const layout = (page) =>
@@ -42,6 +49,53 @@ test.describe('channel blocking', () => {
     await expect(overlay(page, 'rel0')).toHaveCount(0);
     await expect(overlay(page, 'rel2')).toHaveCount(0);
     expect(await blockedList(harness)).toEqual([BLOCKED]);
+  });
+
+  for (const [surface, route, videoId] of [
+    ['home', '/', 'home1'],
+    ['search', '/results?search_query=x', 'search1']
+  ]) {
+    test(`on ${surface} YouTube's hover preview carries a button for the card under it`, async ({ page, harness }) => {
+      await openYoutube(page, route);
+      const target = card(page, videoId);
+      const thumb = target.locator('a[href*="/watch"]').first();
+      await restOn(page, thumb);
+
+      // The preview covers the card's own button; its button takes the same spot.
+      const button = page.locator('ytd-video-preview > .yte-block-btn');
+      await expect(button).toHaveCSS('opacity', '1');
+      await expect(button).toHaveAttribute('title', 'Block channel');
+      expect(await button.boundingBox()).toEqual(await target.locator('> .yte-block-btn').boundingBox());
+      // Playwright's click fails if anything else would take it.
+      await button.click();
+      await expect(overlay(page, videoId)).toBeVisible();
+      expect(await blockedList(harness)).toEqual([expect.objectContaining(BLOCKED)]);
+
+      // The preview is put away, so the black cover shows where it was.
+      await expect(page.locator('ytd-video-preview')).toBeHidden();
+      const topmost = await thumb.evaluate((node) => {
+        const r = node.getBoundingClientRect();
+        return document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2).className;
+      });
+      expect(topmost).toBe('yte-block-overlay');
+    });
+  }
+
+  test('a later preview shows again after one was put away', async ({ page }) => {
+    await openYoutube(page, '/');
+    await restOn(page, card(page, 'home1').locator('a.thumb'));
+    await page.locator('ytd-video-preview > .yte-block-btn').click();
+    await expect(page.locator('ytd-video-preview')).toBeHidden();
+
+    await restOn(page, card(page, 'home0').locator('a.thumb'));
+    await expect(page.locator('ytd-video-preview > .yte-block-btn')).toHaveCSS('opacity', '1');
+  });
+
+  test('previews outside recommendations get no button', async ({ page }) => {
+    await openYoutube(page, '/feed/subscriptions');
+    await restOn(page, page.locator('a.thumb').first());
+    await page.mouse.move(...(await page.locator('ytd-video-preview').boundingBox().then((b) => [b.x + 20, b.y + 20])));
+    await expect(page.locator('ytd-video-preview > .yte-block-btn')).toBeHidden();
   });
 
   test('the overlay is solid black, covers the whole card and moves nothing', async ({ page, harness }) => {
@@ -163,7 +217,7 @@ test.describe('channel blocking', () => {
     await expect(overlay(page, 'rel1')).toBeVisible();
 
     const popup = await openPopup();
-    await popup.locator('.tab-btn[data-tab="advanced"]').click();
+    await openPage(popup, 'channels');
     const rows = popup.locator('#blocked-list .blocked-item');
     await expect(rows).toHaveCount(2);
     await expect(rows.first().locator('span')).toHaveText('Blocked Co');
@@ -179,7 +233,7 @@ test.describe('channel blocking', () => {
   test('a channel blocked while the popup is open shows up in its list', async ({ page, openPopup }) => {
     await openYoutube(page);
     const popup = await openPopup();
-    await popup.locator('.tab-btn[data-tab="advanced"]').click();
+    await openPage(popup, 'channels');
     await expect(popup.locator('#blocked-empty')).toBeVisible();
 
     await card(page, 'rel1').hover();
@@ -187,7 +241,7 @@ test.describe('channel blocking', () => {
     await expect(popup.locator('#blocked-list .blocked-item span')).toHaveText(['Blocked Co']);
 
     // A later popup change must not bring the old, empty list back.
-    await popup.locator('.tab-btn[data-tab="settings"]').click();
+    await openPage(popup, 'colour');
     await popup.locator('label:has(#invert)').click();
     await page.waitForTimeout(500);
     await expect(overlay(page, 'rel1')).toBeVisible();
@@ -197,7 +251,7 @@ test.describe('channel blocking', () => {
     await harness.set({ blockedChannels: [BLOCKED] });
     await openYoutube(page);
     const popup = await openPopup();
-    await popup.locator('.tab-btn[data-tab="language"]').click();
+    await openPage(popup, 'language');
     await popup.locator('.lang-btn[data-lang="tr"]').click();
     await expect(overlay(page, 'rel1')).toHaveText('🚫 Engellenen kanal');
     await expect(card(page, 'rel0').locator('> .yte-block-btn')).toHaveAttribute('title', 'Kanalı engelle');

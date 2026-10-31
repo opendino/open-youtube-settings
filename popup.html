@@ -4,396 +4,393 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
   <title data-i18n="appName">Open Youtube Settings</title>
   <link rel="stylesheet" href="popup.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 </head>
 
-<body>
-  <div class="container">
-    <header>
+<body data-view="home">
+  <div class="app">
+    <header class="topbar">
+      <img class="logo" src="icon_32.png" alt="">
       <h1 data-i18n="appName">Open Youtube Settings</h1>
-      <p data-i18n="appDesc">YouTube Enhancer</p>
+      <div class="theme-picker">
+        <button class="icon-btn" id="theme-btn" type="button" data-i18n-title="theme" title="Appearance" aria-haspopup="menu" aria-expanded="false">
+          <svg class="icon theme-icon" data-theme-icon="auto" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="fill" d="M12 3a9 9 0 0 1 0 18z"/></svg><svg class="icon theme-icon" data-theme-icon="light" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon theme-icon" data-theme-icon="dark" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+        </button>
+        <div class="theme-menu" id="theme-menu" role="menu" hidden>
+          <button type="button" role="menuitemradio" data-theme-choice="auto" aria-checked="true"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path class="fill" d="M12 3a9 9 0 0 1 0 18z"/></svg><span data-i18n="themeAuto">Automatic</span><svg class="icon check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+          <button type="button" role="menuitemradio" data-theme-choice="light" aria-checked="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><span data-i18n="themeLight">Light</span><svg class="icon check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+          <button type="button" role="menuitemradio" data-theme-choice="dark" aria-checked="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><span data-i18n="themeDark">Dark</span><svg class="icon check" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></button>
+        </div>
+      </div>
+      <label class="switch master" data-i18n-title="masterToggle" title="Turn the extension on or off">
+        <input type="checkbox" id="enabled" checked>
+        <span class="toggle-slider"></span>
+      </label>
     </header>
+    <p class="off-notice" id="off-notice" data-i18n="offNotice" hidden>Paused — YouTube runs untouched until you turn it back on.</p>
 
-    <!-- Tabs Navigation -->
-    <div class="tabs">
-      <button class="tab-btn active" data-tab="settings" data-i18n="tabSettings">Settings</button>
-      <button class="tab-btn" data-tab="speed" data-i18n="tabSpeed">Speed</button>
-      <button class="tab-btn" data-tab="advanced" data-i18n="tabAdvanced">Advanced</button>
-      <button class="tab-btn" data-tab="shortcuts" data-i18n="tabShortcuts">Shortcuts</button>
-      <button class="tab-btn" data-tab="language" data-i18n="tabLanguage" id="tab-lang-btn">Language</button>
+    <div class="search">
+      <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input type="search" id="search" data-i18n-placeholder="searchPlaceholder" placeholder="Search settings" autocomplete="off">
     </div>
 
-    <!-- Tab Content: Settings -->
-    <div id="settings" class="tab-content active">
-      <h2 class="section-title" data-i18n="sectionColor">Colour</h2>
-
-      <div class="control-group">
-        <div class="label-row">
-          <span data-i18n="brightness">Brightness</span>
-          <span id="brightness-val">100%</span>
-        </div>
-        <input type="range" id="brightness" min="20" max="150" value="100" class="slider">
+    <main class="home">
+      <div class="cards">
+        <button class="card" type="button" data-page="colour">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+          <span class="card-title" data-i18n="sectionColor">Colour</span>
+          <span class="card-status" id="status-colour"></span>
+        </button>
+        <button class="card" type="button" data-page="speed">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17a9 9 0 1 1 17 0"/><path d="M12 13l4-4"/><circle cx="12" cy="13" r="1"/></svg></span>
+          <span class="card-title" data-i18n="tabSpeed">Speed</span>
+          <span class="card-status" id="status-speed"></span>
+        </button>
+        <button class="card" type="button" data-page="layout">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+          <span class="card-title" data-i18n="sectionLayout">Layout</span>
+          <span class="card-status" id="status-layout"></span>
+        </button>
+        <button class="card" type="button" data-page="ads">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9l5 6M21 9l-5 6"/></svg></span>
+          <span class="card-title" data-i18n="sectionAds">Ads</span>
+          <span class="card-status" id="status-ads"></span>
+        </button>
+        <button class="card" type="button" data-page="clip">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="3"/><circle cx="6" cy="17" r="3"/><path d="M8.6 8.6L20 18M8.6 15.4L20 6"/></svg></span>
+          <span class="card-title" data-i18n="sectionClip">Clip Tool</span>
+          <span class="card-status" id="status-clip"></span>
+        </button>
+        <button class="card" type="button" data-page="crop">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v14h14"/><path d="M3 7h14v14"/></svg></span>
+          <span class="card-title" data-i18n="sectionCrop">Video Crop</span>
+          <span class="card-status" id="status-crop"></span>
+        </button>
+        <button class="card" type="button" data-page="channels">
+          <span class="card-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
+          <span class="card-title" data-i18n="sectionChannels">Channels</span>
+          <span class="card-status" id="status-channels"></span>
+        </button>
       </div>
-
-      <div class="control-group">
-        <div class="label-row">
-          <span data-i18n="blueLightFilter">Blue Light Filter</span>
-          <span id="bluelight-val">0%</span>
-        </div>
-        <input type="range" id="bluelight" min="0" max="100" value="0" class="slider">
+      <div class="home-footer">
+        <button class="foot-btn" type="button" data-page="language"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg><span id="lang-name">English</span></button>
+        <button class="foot-btn" type="button" id="reset"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v4h4"/></svg><span data-i18n="resetDefaults">Reset Defaults</span></button>
       </div>
+    </main>
 
-      <div class="control-group toggle-group">
-        <span data-i18n="invertColors">Invert Colours</span>
-        <label class="switch">
-          <input type="checkbox" id="invert">
-          <span class="toggle-slider"></span>
-        </label>
+    <section class="page" id="page-colour" data-page="colour">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></span>
+        <h2 data-i18n="sectionColor">Colour</h2>
       </div>
-      <p class="hint" data-i18n="invertHint">Turns a bright whiteboard lecture into a dark one while keeping hues readable.</p>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="applyToShorts">Apply to Shorts</span>
-        <label class="switch">
-          <input type="checkbox" id="apply-to-shorts" checked>
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <button id="original-colors" class="ghost-btn" data-i18n="originalColors">Original Colours</button>
-
-      <hr class="divider">
-
-      <h2 class="section-title" data-i18n="sectionLayout">Layout</h2>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="hideHomeFeed">Hide Home Feed</span>
-        <label class="switch">
-          <input type="checkbox" id="hide-home">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="hideSidebar">Hide Sidebar</span>
-        <label class="switch">
-          <input type="checkbox" id="hide-sidebar">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <div class="control-group toggle-group sub-toggle-group" data-sub="sidebar">
-        <span data-i18n="hidePlaylist">Hide Playlist</span>
-        <label class="switch">
-          <input type="checkbox" id="hide-playlist">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <div class="control-group toggle-group sub-toggle-group" data-sub="sidebar">
-        <span data-i18n="allowPanels">Allow Side Panels</span>
-        <label class="switch">
-          <input type="checkbox" id="allow-panels" checked>
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <p class="hint sub-hint" data-sub="sidebar" data-i18n="allowPanelsHint">Chapters, transcript and the AI panel still open when you ask for them, and close again on the next video.</p>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="autoHideControls">Auto-hide Controls</span>
-        <label class="switch">
-          <input type="checkbox" id="auto-hide-controls">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="hidePlayPauseAnim">Hide Play/Pause Animation</span>
-        <label class="switch">
-          <input type="checkbox" id="hide-play-pause">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="hideSkipAnim">Hide Skip Animation</span>
-        <label class="switch">
-          <input type="checkbox" id="hide-skip-anim">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-
-      <hr class="divider">
-
-      <h2 class="section-title" data-i18n="sectionAds">Ads</h2>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="muteAds">Mute Ads</span>
-        <label class="switch">
-          <input type="checkbox" id="mute-ads">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <p class="hint" data-i18n="muteAdsHint">Ads play silently; the sound comes back at the same volume as soon as the ad ends.</p>
-
-      <button id="reset" class="reset-btn" data-i18n="resetDefaults">Reset Defaults</button>
-    </div>
-
-    <!-- Tab Content: Speed Controller -->
-    <div id="speed" class="tab-content">
-      <div class="control-group toggle-group">
-        <span data-i18n="speedEnabled">Speed Controller</span>
-        <label class="switch">
-          <input type="checkbox" id="speed-enabled" checked>
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <p class="hint" data-i18n="speedEnabledHint">Turn this off to hand playback speed back to YouTube or another speed extension. Nothing is touched while it is off.</p>
-
-      <div id="speed-body">
-        <div class="control-group toggle-group">
-          <span data-i18n="speedOverlay">Show Player Chip</span>
-          <label class="switch">
-            <input type="checkbox" id="speed-overlay" checked>
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-
-        <div class="control-group">
-          <div class="label-row">
-            <span data-i18n="speedDefault">Default Speed</span>
-            <span id="speed-default-val">1.00×</span>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="filtersEnabled">Apply Colour Settings</span>
+            <button class="shortcut-btn" type="button" data-shortcut="toggleFilters" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleFilters" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="filters-enabled" checked><span class="toggle-slider"></span></label>
           </div>
+        </div>
+        <div id="colour-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="brightness">Brightness</span>
+            <span class="row-value" id="brightness-val">100%</span>
+          </div>
+          <input type="range" id="brightness" min="20" max="150" value="100" class="slider">
+          <div class="shortcut-pair">
+            <span class="pair-item"><span class="pair-label" data-i18n="shortcutDecrease">Decrease</span><button class="shortcut-btn" type="button" data-shortcut="brightnessDown" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="brightnessDown" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button></span>
+            <span class="pair-item"><span class="pair-label" data-i18n="shortcutIncrease">Increase</span><button class="shortcut-btn" type="button" data-shortcut="brightnessUp" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="brightnessUp" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="blueLightFilter">Blue Light Filter</span>
+            <span class="row-value" id="bluelight-val">0%</span>
+          </div>
+          <input type="range" id="bluelight" min="0" max="100" value="0" class="slider">
+          <div class="shortcut-pair">
+            <span class="pair-item"><span class="pair-label" data-i18n="shortcutDecrease">Decrease</span><button class="shortcut-btn" type="button" data-shortcut="bluelightDown" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="bluelightDown" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button></span>
+            <span class="pair-item"><span class="pair-label" data-i18n="shortcutIncrease">Increase</span><button class="shortcut-btn" type="button" data-shortcut="bluelightUp" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="bluelightUp" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="invertColors">Invert Colours</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><button class="shortcut-btn" type="button" data-shortcut="toggleInvert" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleInvert" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="invert"><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="invertHint" hidden>Turns a bright whiteboard lecture into a dark one while keeping hues readable.</p>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="applyToShorts">Apply to Shorts</span>
+            <label class="switch"><input type="checkbox" id="apply-to-shorts" checked><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <button id="original-colors" class="ghost-btn" type="button" data-i18n="originalColors">Original Colours</button>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-speed" data-page="speed">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17a9 9 0 1 1 17 0"/><path d="M12 13l4-4"/><circle cx="12" cy="13" r="1"/></svg></span>
+        <h2 data-i18n="tabSpeed">Speed</h2>
+      </div>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="speedEnabled">Speed Controller</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><label class="switch"><input type="checkbox" id="speed-enabled" checked><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="speedEnabledHint" hidden>Turn this off to hand playback speed back to YouTube or another speed extension. Nothing is touched while it is off.</p>
+        </div>
+        <div id="speed-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="speedOverlay">Show Speed in Player Controls</span>
+            <label class="switch"><input type="checkbox" id="speed-overlay" checked><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="speedDefault">Default Speed</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><span class="row-value" id="speed-default-val">1.00×</span>
+          </div>
+          <p class="hint" data-i18n="speedPresetHint" hidden>Presets set the default speed. Fine steps live on the speed button in the player controls and the shortcuts.</p>
           <input type="range" id="speed-default" min="0.25" max="4" step="0.05" value="1" class="slider">
         </div>
-
-        <div class="control-group">
-          <div class="label-row">
-            <span data-i18n="speedStep">Step Size</span>
-            <span id="speed-step-val">0.10</span>
+        <div class="preset-row">
+          <button class="speed-preset" type="button" data-speed="0.5">0.5×</button>
+          <button class="speed-preset" type="button" data-speed="1">1×</button>
+          <button class="speed-preset" type="button" data-speed="1.5">1.5×</button>
+          <button class="speed-preset" type="button" data-speed="2">2×</button>
+          <button class="speed-preset" type="button" data-speed="2.5">2.5×</button>
+          <button class="speed-preset" type="button" data-speed="3">3×</button>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="speedStep">Step Size</span>
+            <span class="row-value" id="speed-step-val">0.10</span>
           </div>
           <input type="range" id="speed-step" min="0.05" max="0.5" step="0.05" value="0.1" class="slider">
         </div>
-
-        <div class="control-group toggle-group">
-          <span data-i18n="speedPersist">Keep Speed Between Videos</span>
-          <label class="switch">
-            <input type="checkbox" id="speed-persist">
-            <span class="toggle-slider"></span>
-          </label>
-        </div>
-
-        <div class="preset-row">
-          <button class="speed-preset" data-speed="0.5">0.5×</button>
-          <button class="speed-preset" data-speed="1">1×</button>
-          <button class="speed-preset" data-speed="1.5">1.5×</button>
-          <button class="speed-preset" data-speed="2">2×</button>
-          <button class="speed-preset" data-speed="2.5">2.5×</button>
-          <button class="speed-preset" data-speed="3">3×</button>
-        </div>
-        <p class="hint" data-i18n="speedPresetHint">Presets set the default speed. Fine steps live on the player chip and the shortcuts.</p>
-      </div>
-    </div>
-
-    <!-- Tab Content: Advanced -->
-    <div id="advanced" class="tab-content">
-      <h2 class="section-title" data-i18n="sectionCrop">Video Crop</h2>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="cropEnabled">Crop Video</span>
-        <label class="switch">
-          <input type="checkbox" id="crop-enabled">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <p class="hint" data-i18n="cropHint">Zooms past baked-in banners and letterbox bars so the subject fills more of the player.</p>
-
-      <div id="crop-body">
-        <div class="control-group">
-          <div class="label-row">
-            <span data-i18n="cropZoom">Zoom</span>
-            <span id="crop-zoom-val">100%</span>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="speedPersist">Keep Speed Between Videos</span>
+            <label class="switch"><input type="checkbox" id="speed-persist"><span class="toggle-slider"></span></label>
           </div>
-          <input type="range" id="crop-zoom" min="100" max="250" value="100" class="slider">
         </div>
-
-        <div class="control-group">
-          <div class="label-row">
-            <span data-i18n="cropOffsetY">Vertical Shift</span>
-            <span id="crop-offset-val">0%</span>
+        <h3 class="group-title" data-i18n="tabShortcuts">Shortcuts</h3>
+        <div class="row">
+          <div class="row-main"><span class="row-label" data-i18n="speedLabel">Speed</span></div>
+          <div class="shortcut-pair">
+            <span class="pair-item"><span class="pair-label" data-i18n="shortcutDecrease">Decrease</span><button class="shortcut-btn" type="button" data-shortcut="speedDown" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="speedDown" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button></span>
+            <span class="pair-item"><span class="pair-label" data-i18n="shortcutIncrease">Increase</span><button class="shortcut-btn" type="button" data-shortcut="speedUp" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="speedUp" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button></span>
           </div>
-          <input type="range" id="crop-offset" min="-50" max="50" value="0" class="slider">
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="shortcutSpeedReset">Reset Speed</span>
+            <button class="shortcut-btn" type="button" data-shortcut="speedReset" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="speedReset" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button>
+          </div>
+        </div>
         </div>
       </div>
+    </section>
+    <section class="page" id="page-layout" data-page="layout">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></span>
+        <h2 data-i18n="sectionLayout">Layout</h2>
+      </div>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="hideHomeFeed">Hide Home Feed</span>
+            <button class="shortcut-btn" type="button" data-shortcut="toggleHome" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleHome" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="hide-home"><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="hideShorts">Turn Off Shorts Completely</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><button class="shortcut-btn" type="button" data-shortcut="toggleShorts" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleShorts" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="hide-shorts"><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="hideShortsHint" hidden>Removes Shorts shelves, search results, the menu entry and the channel tab. A Shorts link opens as a normal video.</p>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="hideSidebar">Hide Sidebar</span>
+            <button class="shortcut-btn" type="button" data-shortcut="toggleSidebar" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleSidebar" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="hide-sidebar"><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <div class="row sub" data-sub="sidebar">
+          <div class="row-main">
+            <span class="row-label" data-i18n="hidePlaylist">Hide Playlist</span>
+            <label class="switch"><input type="checkbox" id="hide-playlist" checked><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <div class="row sub" data-sub="sidebar">
+          <div class="row-main">
+            <span class="row-label" data-i18n="allowPanels">Allow Side Panels</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><label class="switch"><input type="checkbox" id="allow-panels" checked><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="allowPanelsHint" hidden>Chapters, transcript and the AI panel still open when you ask for them, and close again on the next video.</p>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="autoHideControls">Auto-hide Controls</span>
+            <button class="shortcut-btn" type="button" data-shortcut="toggleControls" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleControls" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="auto-hide-controls"><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="hidePlayPauseAnim">Hide Play/Pause Animation</span>
+            <button class="shortcut-btn" type="button" data-shortcut="togglePlayPause" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="togglePlayPause" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="hide-play-pause"><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="hideSkipAnim">Hide Skip Animation</span>
+            <button class="shortcut-btn" type="button" data-shortcut="toggleSkipAnim" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleSkipAnim" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button><label class="switch"><input type="checkbox" id="hide-skip-anim"><span class="toggle-slider"></span></label>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-ads" data-page="ads">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H3v6h3l5 4z"/><path d="M16 9l5 6M21 9l-5 6"/></svg></span>
+        <h2 data-i18n="sectionAds">Ads</h2>
+      </div>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="muteAds">Mute Ads</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><label class="switch"><input type="checkbox" id="mute-ads"><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="muteAdsHint" hidden>Ads play silently; the sound comes back at the same volume as soon as the ad ends.</p>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-clip" data-page="clip">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="3"/><circle cx="6" cy="17" r="3"/><path d="M8.6 8.6L20 18M8.6 15.4L20 6"/></svg></span>
+        <h2 data-i18n="sectionClip">Clip Tool</h2>
+      </div>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="clipEnabled">Clip Tool</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><label class="switch"><input type="checkbox" id="clip-enabled" checked><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="clipHint" hidden>Opens a clip bar on the player. Mark a start and end, then save — the range is recorded in real time from your own playback and downloaded as a video file.</p>
+        </div>
+        <h3 class="group-title" data-i18n="tabShortcuts">Shortcuts</h3>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="shortcutClipToggle">Clip Bar</span>
+            <button class="shortcut-btn" type="button" data-shortcut="clipToggle" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="clipToggle" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="shortcutClipIn">Set Clip Start</span>
+            <button class="shortcut-btn" type="button" data-shortcut="clipMarkIn" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="clipMarkIn" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="shortcutClipOut">Set Clip End</span>
+            <button class="shortcut-btn" type="button" data-shortcut="clipMarkOut" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="clipMarkOut" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="shortcutClipSave">Save Clip</span>
+            <button class="shortcut-btn" type="button" data-shortcut="clipSave" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="clipSave" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-crop" data-page="crop">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v14h14"/><path d="M3 7h14v14"/></svg></span>
+        <h2 data-i18n="sectionCrop">Video Crop</h2>
+      </div>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="cropTool">Crop Tool</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><label class="switch"><input type="checkbox" id="crop-tool" checked><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="cropHint" hidden>Adds a crop button to the player controls. Drag over the video to choose the area to keep; it fills the player while the video keeps playing. Click the button again to see the whole video. The crop ends with the video.</p>
+        </div>
+        <div id="crop-body">
+          <div class="row">
+            <div class="row-main"><span class="row-label" data-i18n="cropFit">When the area's shape differs from the player</span></div>
+            <div class="preset-row fit-row">
+              <button class="crop-fit" type="button" data-fit="contain" data-i18n="cropFitContain">Keep proportions, show it all</button>
+              <button class="crop-fit" type="button" data-fit="cover" data-i18n="cropFitCover">Keep proportions, fill the player</button>
+            </div>
+          </div>
+        <h3 class="group-title" data-i18n="tabShortcuts">Shortcuts</h3>
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="cropEnabled">Crop Video</span>
+            <button class="shortcut-btn" type="button" data-shortcut="toggleCrop" data-i18n-title="setShortcut" title="Set a shortcut"></button><button class="shortcut-clear-btn" type="button" data-shortcut="toggleCrop" data-i18n-title="clearShortcut" title="Clear shortcut" hidden>×</button>
+          </div>
+        </div>
+        </div>
+      </div>
+    </section>
+    <section class="page" id="page-channels" data-page="channels">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></span>
+        <h2 data-i18n="sectionChannels">Channels</h2>
+      </div>
+      <div class="page-body">
+        <div class="row">
+          <div class="row-main">
+            <span class="row-label" data-i18n="channelAutoVideos">Open Channels on Videos</span>
+            <button class="info-btn" type="button" data-i18n-title="moreInfo" title="More info" aria-expanded="false"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg></button><label class="switch"><input type="checkbox" id="channel-auto-videos"><span class="toggle-slider"></span></label>
+          </div>
+          <p class="hint" data-i18n="channelAutoVideosHint" hidden>Channel links jump straight to the Videos tab instead of the channel home page.</p>
+        </div>
+        <h3 class="group-title" data-i18n="sectionBlocked">Blocked Channels</h3>
+        <div id="blocked-list"></div>
+        <p class="empty" id="blocked-empty" data-i18n="blockedEmpty">No blocked channels yet. Hover over a recommended video and press 🚫 to block its channel.</p>
+      </div>
+    </section>
+    <section class="page" id="page-language" data-page="language">
+      <div class="page-head">
+        <button class="back-btn" type="button" data-i18n-title="back" title="Back"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg></button>
+        <span class="page-icon"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+        <h2 data-i18n="tabLanguage">Language</h2>
+      </div>
+      <div class="page-body">
+        <div class="lang-selector">
+          <button class="lang-btn" type="button" data-lang="en">English</button>
+          <button class="lang-btn" type="button" data-lang="tr">Türkçe</button>
+          <button class="lang-btn" type="button" data-lang="es">Español</button>
+          <button class="lang-btn" type="button" data-lang="hi">हिंदी</button>
+          <button class="lang-btn" type="button" data-lang="pt_BR">Português (Brasil)</button>
+          <button class="lang-btn" type="button" data-lang="de">Deutsch</button>
+          <button class="lang-btn" type="button" data-lang="ja">日本語</button>
+          <button class="lang-btn" type="button" data-lang="fr">Français</button>
+        </div>
+      </div>
+    </section>
 
-      <hr class="divider">
-
-      <h2 class="section-title" data-i18n="sectionClip">Clip Tool</h2>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="clipEnabled">Clip Tool</span>
-        <label class="switch">
-          <input type="checkbox" id="clip-enabled" checked>
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <p class="hint" data-i18n="clipHint">Opens a clip bar on the player. Mark a start and end, then save — the range is recorded in real time from your own playback and downloaded as a video file.</p>
-
-      <hr class="divider">
-
-      <h2 class="section-title" data-i18n="sectionNavigation">Navigation</h2>
-
-      <div class="control-group toggle-group">
-        <span data-i18n="channelAutoVideos">Open Channels on Videos</span>
-        <label class="switch">
-          <input type="checkbox" id="channel-auto-videos">
-          <span class="toggle-slider"></span>
-        </label>
-      </div>
-      <p class="hint" data-i18n="channelAutoVideosHint">Channel links jump straight to the Videos tab instead of the channel home page.</p>
-
-      <hr class="divider">
-
-      <h2 class="section-title" data-i18n="sectionBlocked">Blocked Channels</h2>
-      <div id="blocked-list"></div>
-      <p class="hint" id="blocked-empty" data-i18n="blockedEmpty">No blocked channels yet. Hover over a recommended video and press 🚫 to block its channel.</p>
-    </div>
-
-    <!-- Tab Content: Shortcuts -->
-    <div id="shortcuts" class="tab-content">
-      <h2 class="section-title" data-i18n="sectionColor">Colour</h2>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutToggleFilters">Toggle Filters</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleFilters" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleFilters" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="invertColors">Invert Colours</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleInvert" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleInvert" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-
-      <h2 class="section-title" data-i18n="sectionLayout">Layout</h2>
-      <div class="shortcut-group">
-        <span data-i18n="hideHomeFeed">Hide Home Feed</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleHome" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleHome" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="hideSidebar">Hide Sidebar</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleSidebar" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleSidebar" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="autoHideControls">Auto-hide Controls</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleControls" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleControls" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="hidePlayPauseAnim">Hide Play/Pause Animation</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="togglePlayPause" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="togglePlayPause" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="hideSkipAnim">Hide Skip Animation</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleSkipAnim" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleSkipAnim" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="cropEnabled">Crop Video</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="toggleCrop" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="toggleCrop" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-
-      <h2 class="section-title" data-i18n="tabSpeed">Speed</h2>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutSpeedUp">Speed Up</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="speedUp" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="speedUp" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutSpeedDown">Slow Down</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="speedDown" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="speedDown" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutSpeedReset">Reset Speed</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="speedReset" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="speedReset" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-
-      <h2 class="section-title" data-i18n="sectionClip">Clip Tool</h2>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutClipToggle">Clip Bar</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="clipToggle" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="clipToggle" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutClipIn">Set Clip Start</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="clipMarkIn" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="clipMarkIn" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutClipOut">Set Clip End</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="clipMarkOut" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="clipMarkOut" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-      <div class="shortcut-group">
-        <span data-i18n="shortcutClipSave">Save Clip</span>
-        <div class="shortcut-controls">
-          <button class="shortcut-btn" data-shortcut="clipSave" data-i18n="shortcutNotSet">Click to set</button>
-          <button class="shortcut-clear-btn" data-shortcut="clipSave" title="Clear shortcut">✖</button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tab Content: Language -->
-    <div id="language" class="tab-content">
-      <div class="lang-selector">
-        <button class="lang-btn" data-lang="en">English</button>
-        <button class="lang-btn" data-lang="tr">Türkçe</button>
-        <button class="lang-btn" data-lang="es">Español</button>
-        <button class="lang-btn" data-lang="hi">हिंदी</button>
-        <button class="lang-btn" data-lang="pt_BR">Português (Brasil)</button>
-        <button class="lang-btn" data-lang="de">Deutsch</button>
-        <button class="lang-btn" data-lang="ja">日本語</button>
-        <button class="lang-btn" data-lang="fr">Français</button>
-      </div>
-    </div>
-
+    <p class="empty search-empty" id="search-empty" data-i18n="searchEmpty" hidden>No setting matches your search.</p>
   </div>
 
-  <!-- Custom Modal -->
+  <!-- Reload prompt -->
   <div id="modal-overlay" class="modal-overlay">
     <div class="modal-card">
       <div class="modal-icon">🔄</div>
@@ -402,6 +399,32 @@
       <div class="modal-actions">
         <button id="modal-cancel" class="modal-btn secondary" data-i18n="modalCancel">Cancel</button>
         <button id="modal-confirm" class="modal-btn primary" data-i18n="modalConfirm">Refresh Now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- First-run tour -->
+  <div id="intro" class="intro" hidden>
+    <div class="intro-card">
+      <div class="intro-step" data-step="0">
+        <div class="intro-art"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="7" r="3"/><circle cx="6" cy="17" r="3"/><path d="M8.6 8.6L20 18M8.6 15.4L20 6"/></svg><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 17a9 9 0 1 1 17 0"/><path d="M12 13l4-4"/><circle cx="12" cy="13" r="1"/></svg><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3v14h14"/><path d="M3 7h14v14"/></svg></div>
+        <h3 data-i18n="introTitle1">New buttons on the player</h3>
+        <p data-i18n="introText1">Speed, clip and crop sit in YouTube's own control bar, next to settings.</p>
+      </div>
+      <div class="intro-step" data-step="1" hidden>
+        <div class="intro-art"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg></div>
+        <h3 data-i18n="introTitle2">Block a channel in one click</h3>
+        <p data-i18n="introText2">Hover over a recommended video and press 🚫. Its channel's videos are covered from then on.</p>
+      </div>
+      <div class="intro-step" data-step="2" hidden>
+        <div class="intro-art"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg></div>
+        <h3 data-i18n="introTitle3">Everything in one place</h3>
+        <p data-i18n="introText3">Open a card to change it, search for any setting, and press the keyboard icon beside a setting to give it a shortcut.</p>
+      </div>
+      <div class="intro-dots"><span class="active"></span><span></span><span></span></div>
+      <div class="intro-actions">
+        <button id="intro-skip" class="link-btn" type="button" data-i18n="introSkip">Skip</button>
+        <button id="intro-next" class="modal-btn primary" type="button" data-i18n="introNext">Next</button>
       </div>
     </div>
   </div>

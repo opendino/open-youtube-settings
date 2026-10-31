@@ -91,7 +91,13 @@ test('page structure the extension relies on is still there', async ({ page, har
   await openVideo(page);
   expect(await styleOf(page, '#movie_player video', 'filter')).toBe('brightness(0.8)');
   expect(await isDisplayed(page, '#secondary')).toBe(false);
-  expect(await page.$('#movie_player #yte-osc .yte-speed')).not.toBeNull();
+  expect(
+    await page.evaluate(() => {
+      const settings = document.querySelector('#movie_player .ytp-right-controls .ytp-settings-button');
+      return [settings.previousElementSibling.classList.contains('yte-ctl-clip'),
+        settings.previousElementSibling.previousElementSibling.classList.contains('yte-ctl-speed')];
+    })
+  ).toEqual([true, true]);
 });
 
 /** Hops through related videos until YouTube serves an ad break. */

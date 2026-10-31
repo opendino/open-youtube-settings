@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "Réinitialiser"
   },
-  "tabSettings": {
-    "message": "Paramètres"
-  },
   "tabShortcuts": {
     "message": "Raccourcis"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "Actualiser"
   },
-  "shortcutToggleFilters": {
-    "message": "Basculer les Filtres"
-  },
-  "shortcutNotSet": {
-    "message": "Définir"
-  },
   "shortcutRecording": {
     "message": "Appuyez..."
   },
   "tabSpeed": {
     "message": "Vitesse"
-  },
-  "tabAdvanced": {
-    "message": "Avancé"
   },
   "sectionColor": {
     "message": "Couleur"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "Outil de clip"
-  },
-  "sectionNavigation": {
-    "message": "Navigation"
   },
   "invertColors": {
     "message": "Inverser les couleurs"
@@ -108,7 +93,7 @@
     "message": "Désactivez pour laisser la vitesse de lecture à YouTube ou à une autre extension. Rien n'est modifié tant que c'est désactivé."
   },
   "speedOverlay": {
-    "message": "Afficher la pastille sur le lecteur"
+    "message": "Afficher la vitesse dans les commandes du lecteur"
   },
   "speedDefault": {
     "message": "Vitesse par défaut"
@@ -120,19 +105,25 @@
     "message": "Conserver la vitesse d'une vidéo à l'autre"
   },
   "speedPresetHint": {
-    "message": "Les préréglages définissent la vitesse par défaut. Les petits pas sont sur la pastille du lecteur et dans les raccourcis."
+    "message": "Les préréglages définissent la vitesse par défaut. Les petits pas sont sur le bouton de vitesse des commandes du lecteur et dans les raccourcis."
   },
   "cropEnabled": {
     "message": "Recadrer la vidéo"
   },
+  "cropTool": {
+    "message": "Outil de recadrage"
+  },
   "cropHint": {
-    "message": "Zoome au-delà des bannières incrustées et des bandes noires pour que le sujet occupe plus de place."
+    "message": "Ajoute un bouton de recadrage aux commandes du lecteur. Faites glisser sur la vidéo pour choisir la zone à garder ; elle remplit le lecteur pendant que la vidéo continue. Cliquez à nouveau sur le bouton pour revoir la vidéo entière. Le recadrage s'arrête avec la vidéo."
   },
-  "cropZoom": {
-    "message": "Zoom"
+  "cropFit": {
+    "message": "Si la forme de la zone diffère du lecteur"
   },
-  "cropOffsetY": {
-    "message": "Décalage vertical"
+  "cropFitContain": {
+    "message": "Garder les proportions, tout afficher"
+  },
+  "cropFitCover": {
+    "message": "Garder les proportions, remplir le lecteur"
   },
   "clipEnabled": {
     "message": "Outil de clip"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "Les liens de chaîne vont directement à l'onglet Vidéos au lieu de la page d'accueil de la chaîne."
-  },
-  "shortcutSpeedUp": {
-    "message": "Accélérer"
-  },
-  "shortcutSpeedDown": {
-    "message": "Ralentir"
   },
   "shortcutSpeedReset": {
     "message": "Réinitialiser la vitesse"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "Chaîne bloquée"
+  },
+  "cropTitle": {
+    "message": "Recadrer la vidéo"
+  },
+  "cropRemove": {
+    "message": "Afficher toute la vidéo"
+  },
+  "cropSelectHint": {
+    "message": "Faites glisser sur la vidéo pour choisir la zone à garder · Échap annule"
+  },
+  "masterToggle": {
+    "message": "Activer ou désactiver l'extension"
+  },
+  "offNotice": {
+    "message": "En pause : YouTube fonctionne sans modification jusqu'à sa réactivation."
+  },
+  "searchPlaceholder": {
+    "message": "Rechercher un réglage"
+  },
+  "searchEmpty": {
+    "message": "Aucun réglage ne correspond à votre recherche."
+  },
+  "back": {
+    "message": "Retour"
+  },
+  "moreInfo": {
+    "message": "En savoir plus"
+  },
+  "setShortcut": {
+    "message": "Définir un raccourci"
+  },
+  "clearShortcut": {
+    "message": "Effacer le raccourci"
+  },
+  "filtersEnabled": {
+    "message": "Appliquer les réglages de couleur"
+  },
+  "sectionChannels": {
+    "message": "Chaînes"
+  },
+  "statusOn": {
+    "message": "Activé"
+  },
+  "statusOff": {
+    "message": "Désactivé"
+  },
+  "statusOriginal": {
+    "message": "Original"
+  },
+  "statusInverted": {
+    "message": "Inversé"
+  },
+  "statusSpeed": {
+    "message": "{n}× par défaut"
+  },
+  "statusCount": {
+    "message": "{n} actifs"
+  },
+  "statusDefault": {
+    "message": "Par défaut"
+  },
+  "statusMuting": {
+    "message": "Pubs en sourdine"
+  },
+  "statusBlocked": {
+    "message": "{n} bloquées"
+  },
+  "statusNoBlocks": {
+    "message": "Aucune bloquée"
+  },
+  "introTitle1": {
+    "message": "De nouveaux boutons sur le lecteur"
+  },
+  "introText1": {
+    "message": "Vitesse, extrait et recadrage se trouvent dans la barre de commandes de YouTube, à côté des paramètres."
+  },
+  "introTitle2": {
+    "message": "Bloquer une chaîne en un clic"
+  },
+  "introText2": {
+    "message": "Survolez une vidéo recommandée et appuyez sur 🚫. Les vidéos de cette chaîne sont ensuite masquées."
+  },
+  "introTitle3": {
+    "message": "Tout au même endroit"
+  },
+  "introText3": {
+    "message": "Ouvrez une carte pour la modifier, recherchez n'importe quel réglage et appuyez sur l'icône clavier à côté d'un réglage pour lui attribuer un raccourci."
+  },
+  "introNext": {
+    "message": "Suivant"
+  },
+  "introDone": {
+    "message": "Commencer"
+  },
+  "introSkip": {
+    "message": "Passer"
+  },
+  "hideShorts": {
+    "message": "Désactiver complètement les Shorts"
+  },
+  "hideShortsHint": {
+    "message": "Retire les étagères de Shorts, les résultats de recherche, l'entrée du menu et l'onglet de la chaîne. Un lien Shorts s'ouvre comme une vidéo normale."
+  },
+  "theme": {
+    "message": "Apparence"
+  },
+  "themeAuto": {
+    "message": "Automatique"
+  },
+  "themeLight": {
+    "message": "Clair"
+  },
+  "themeDark": {
+    "message": "Sombre"
+  },
+  "shortcutDecrease": {
+    "message": "Diminuer"
+  },
+  "shortcutIncrease": {
+    "message": "Augmenter"
   }
 }
