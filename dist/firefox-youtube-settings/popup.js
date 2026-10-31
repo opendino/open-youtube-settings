@@ -671,15 +671,26 @@ modalCancelBtn.addEventListener('click', () => {
 /* ------------------------------------------------------------- shortcuts */
 
 /** Keyboard glyph a shortcut button shows while it has no keys assigned. */
-const KEYBOARD_ICON =
-  '<svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10"/></svg>';
+function keyboardIcon() {
+  const ns = 'http://www.w3.org/2000/svg';
+  const svg = document.createElementNS(ns, 'svg');
+  svg.setAttribute('class', 'icon');
+  svg.setAttribute('viewBox', '0 0 24 24');
+  svg.setAttribute('aria-hidden', 'true');
+  const rect = document.createElementNS(ns, 'rect');
+  for (const [name, value] of Object.entries({ x: 2, y: 6, width: 20, height: 12, rx: 2 })) rect.setAttribute(name, value);
+  const keys = document.createElementNS(ns, 'path');
+  keys.setAttribute('d', 'M6 10h.01M10 10h.01M14 10h.01M18 10h.01M7 14h10');
+  svg.append(rect, keys);
+  return svg;
+}
 
 /** Each shortcut button shows its keys, or a keyboard glyph when unset. */
 function updateShortcutButtons() {
   for (const btn of shortcutBtns) {
     const combo = settings.shortcuts[btn.dataset.shortcut];
     if (combo) btn.textContent = combo;
-    else btn.innerHTML = KEYBOARD_ICON;
+    else btn.replaceChildren(keyboardIcon());
     btn.classList.toggle('set', !!combo);
     const clear = btn.nextElementSibling;
     if (clear && clear.classList.contains('shortcut-clear-btn')) clear.hidden = !combo;
