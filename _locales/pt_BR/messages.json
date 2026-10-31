@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "Restaurar Padrões"
   },
-  "tabSettings": {
-    "message": "Configurações"
-  },
   "tabShortcuts": {
     "message": "Atalhos"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "Atualizar Agora"
   },
-  "shortcutToggleFilters": {
-    "message": "Alternar Filtros"
-  },
-  "shortcutNotSet": {
-    "message": "Definir"
-  },
   "shortcutRecording": {
     "message": "Pressione..."
   },
   "tabSpeed": {
     "message": "Velocidade"
-  },
-  "tabAdvanced": {
-    "message": "Avançado"
   },
   "sectionColor": {
     "message": "Cor"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "Ferramenta de clipe"
-  },
-  "sectionNavigation": {
-    "message": "Navegação"
   },
   "invertColors": {
     "message": "Inverter cores"
@@ -108,7 +93,7 @@
     "message": "Desligue para deixar a velocidade de reprodução para o YouTube ou outra extensão. Enquanto estiver desligado, nada é alterado."
   },
   "speedOverlay": {
-    "message": "Mostrar chip no player"
+    "message": "Mostrar velocidade nos controles do player"
   },
   "speedDefault": {
     "message": "Velocidade padrão"
@@ -120,19 +105,25 @@
     "message": "Manter a velocidade entre vídeos"
   },
   "speedPresetHint": {
-    "message": "As predefinições ajustam a velocidade padrão. Os passos finos ficam no chip do player e nos atalhos."
+    "message": "As predefinições ajustam a velocidade padrão. Os passos finos ficam no botão de velocidade dos controles do player e nos atalhos."
   },
   "cropEnabled": {
     "message": "Recortar vídeo"
   },
+  "cropTool": {
+    "message": "Ferramenta de corte"
+  },
   "cropHint": {
-    "message": "Amplia além de banners embutidos e barras negras para o assunto ocupar mais espaço."
+    "message": "Adiciona um botão de corte aos controles do player. Arraste sobre o vídeo para escolher a área que quer manter; ela ocupa o player enquanto o vídeo continua tocando. Clique no botão de novo para ver o vídeo inteiro. O corte termina junto com o vídeo."
   },
-  "cropZoom": {
-    "message": "Zoom"
+  "cropFit": {
+    "message": "Se o formato da área for diferente do player"
   },
-  "cropOffsetY": {
-    "message": "Deslocamento vertical"
+  "cropFitContain": {
+    "message": "Manter proporção, mostrar tudo"
+  },
+  "cropFitCover": {
+    "message": "Manter proporção, preencher o player"
   },
   "clipEnabled": {
     "message": "Ferramenta de clipe"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "Links de canal vão direto para a aba Vídeos em vez da página inicial do canal."
-  },
-  "shortcutSpeedUp": {
-    "message": "Acelerar"
-  },
-  "shortcutSpeedDown": {
-    "message": "Desacelerar"
   },
   "shortcutSpeedReset": {
     "message": "Redefinir velocidade"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "Canal bloqueado"
+  },
+  "cropTitle": {
+    "message": "Cortar vídeo"
+  },
+  "cropRemove": {
+    "message": "Mostrar o vídeo inteiro"
+  },
+  "cropSelectHint": {
+    "message": "Arraste sobre o vídeo para escolher a área que quer manter · Esc cancela"
+  },
+  "masterToggle": {
+    "message": "Ativar ou desativar a extensão"
+  },
+  "offNotice": {
+    "message": "Pausada — o YouTube funciona sem alterações até você reativá-la."
+  },
+  "searchPlaceholder": {
+    "message": "Buscar configurações"
+  },
+  "searchEmpty": {
+    "message": "Nenhuma configuração corresponde à sua busca."
+  },
+  "back": {
+    "message": "Voltar"
+  },
+  "moreInfo": {
+    "message": "Mais informações"
+  },
+  "setShortcut": {
+    "message": "Definir atalho"
+  },
+  "clearShortcut": {
+    "message": "Limpar atalho"
+  },
+  "filtersEnabled": {
+    "message": "Aplicar ajustes de cor"
+  },
+  "sectionChannels": {
+    "message": "Canais"
+  },
+  "statusOn": {
+    "message": "Ativado"
+  },
+  "statusOff": {
+    "message": "Desativado"
+  },
+  "statusOriginal": {
+    "message": "Original"
+  },
+  "statusInverted": {
+    "message": "Invertido"
+  },
+  "statusSpeed": {
+    "message": "{n}× padrão"
+  },
+  "statusCount": {
+    "message": "{n} ativos"
+  },
+  "statusDefault": {
+    "message": "Padrão"
+  },
+  "statusMuting": {
+    "message": "Anúncios mudos"
+  },
+  "statusBlocked": {
+    "message": "{n} bloqueados"
+  },
+  "statusNoBlocks": {
+    "message": "Nenhum bloqueado"
+  },
+  "introTitle1": {
+    "message": "Novos botões no player"
+  },
+  "introText1": {
+    "message": "Velocidade, clipe e corte ficam na barra de controles do próprio YouTube, ao lado das configurações."
+  },
+  "introTitle2": {
+    "message": "Bloqueie um canal com um clique"
+  },
+  "introText2": {
+    "message": "Passe o mouse sobre um vídeo recomendado e aperte 🚫. Os vídeos desse canal passam a ficar cobertos."
+  },
+  "introTitle3": {
+    "message": "Tudo em um só lugar"
+  },
+  "introText3": {
+    "message": "Abra um cartão para alterá-lo, busque qualquer configuração e aperte o ícone de teclado ao lado de uma configuração para dar a ela um atalho."
+  },
+  "introNext": {
+    "message": "Próximo"
+  },
+  "introDone": {
+    "message": "Começar"
+  },
+  "introSkip": {
+    "message": "Pular"
+  },
+  "hideShorts": {
+    "message": "Desativar Shorts completamente"
+  },
+  "hideShortsHint": {
+    "message": "Remove as prateleiras de Shorts, os resultados de busca, o item do menu e a aba do canal. Um link de Shorts abre como vídeo normal."
+  },
+  "theme": {
+    "message": "Aparência"
+  },
+  "themeAuto": {
+    "message": "Automático"
+  },
+  "themeLight": {
+    "message": "Claro"
+  },
+  "themeDark": {
+    "message": "Escuro"
+  },
+  "shortcutDecrease": {
+    "message": "Diminuir"
+  },
+  "shortcutIncrease": {
+    "message": "Aumentar"
   }
 }

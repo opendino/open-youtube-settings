@@ -128,24 +128,6 @@ test.describe('layout', () => {
   });
 });
 
-test.describe('crop', () => {
-  test('zoom and shift scale the video inside a clipped container', async ({ page, harness }) => {
-    await harness.set({ cropEnabled: true, cropZoom: 150, cropOffsetY: 10 });
-    await openYoutube(page);
-    const transform = await page.evaluate(
-      () => document.querySelector('#yte-dynamic-styles').textContent.match(/transform:[^!]+/)[0]
-    );
-    expect(transform).toBe('transform:scale(1.500) translateY(10%)');
-    expect(await styleOf(page, '#movie_player .html5-video-container', 'overflow')).toBe('hidden');
-  });
-
-  test('nothing is cropped while disabled', async ({ page, harness }) => {
-    await harness.set({ cropEnabled: false, cropZoom: 150 });
-    await openYoutube(page);
-    expect(await styleOf(page, MAIN_VIDEO, 'transform')).toBe('none');
-  });
-});
-
 test.describe('channel redirect', () => {
   for (const route of ['/@somechannel', '/@somechannel/featured', '/channel/UC123', '/c/name/']) {
     test(`${route} opens on the Videos tab`, async ({ page, harness }) => {

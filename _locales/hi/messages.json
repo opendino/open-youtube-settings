@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "रीसेट करें"
   },
-  "tabSettings": {
-    "message": "सेटिंग्स"
-  },
   "tabShortcuts": {
     "message": "शॉर्टकट"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "रिफ्रेश करें"
   },
-  "shortcutToggleFilters": {
-    "message": "फ़िल्टर टॉगल करें"
-  },
-  "shortcutNotSet": {
-    "message": "सेट करें"
-  },
   "shortcutRecording": {
     "message": "दबाएं..."
   },
   "tabSpeed": {
     "message": "गति"
-  },
-  "tabAdvanced": {
-    "message": "उन्नत"
   },
   "sectionColor": {
     "message": "रंग"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "क्लिप टूल"
-  },
-  "sectionNavigation": {
-    "message": "नेविगेशन"
   },
   "invertColors": {
     "message": "रंग उलटें"
@@ -108,7 +93,7 @@
     "message": "इसे बंद करने पर प्लेबैक गति YouTube या किसी अन्य एक्सटेंशन के पास रहेगी। बंद रहने पर कुछ नहीं बदला जाता।"
   },
   "speedOverlay": {
-    "message": "प्लेयर पर चिप दिखाएँ"
+    "message": "प्लेयर कंट्रोल में स्पीड दिखाएँ"
   },
   "speedDefault": {
     "message": "डिफ़ॉल्ट गति"
@@ -120,19 +105,25 @@
     "message": "वीडियो बदलने पर गति बनाए रखें"
   },
   "speedPresetHint": {
-    "message": "प्रीसेट डिफ़ॉल्ट गति तय करते हैं। बारीक बदलाव प्लेयर चिप और शॉर्टकट से करें।"
+    "message": "प्रीसेट डिफ़ॉल्ट गति तय करते हैं। बारीक बदलाव प्लेयर कंट्रोल के स्पीड बटन और शॉर्टकट से करें।"
   },
   "cropEnabled": {
     "message": "वीडियो क्रॉप करें"
   },
+  "cropTool": {
+    "message": "क्रॉप टूल"
+  },
   "cropHint": {
-    "message": "वीडियो में जुड़े बैनर और काली पट्टियों से आगे ज़ूम करके विषय को बड़ा दिखाता है।"
+    "message": "प्लेयर कंट्रोल में एक क्रॉप बटन जोड़ता है। जो हिस्सा रखना है, उसे वीडियो पर खींचकर चुनें; वीडियो चलता रहता है और वह हिस्सा प्लेयर में भर जाता है। पूरा वीडियो देखने के लिए बटन फिर से दबाएँ। वीडियो बदलने पर क्रॉप हट जाता है।"
   },
-  "cropZoom": {
-    "message": "ज़ूम"
+  "cropFit": {
+    "message": "अगर हिस्से का आकार प्लेयर से अलग हो"
   },
-  "cropOffsetY": {
-    "message": "लंबवत खिसकाव"
+  "cropFitContain": {
+    "message": "अनुपात रखें, पूरा दिखाएँ"
+  },
+  "cropFitCover": {
+    "message": "अनुपात रखें, प्लेयर भरें"
   },
   "clipEnabled": {
     "message": "क्लिप टूल"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "चैनल लिंक होम पेज के बजाय सीधे वीडियो टैब पर जाते हैं।"
-  },
-  "shortcutSpeedUp": {
-    "message": "तेज़ करें"
-  },
-  "shortcutSpeedDown": {
-    "message": "धीमा करें"
   },
   "shortcutSpeedReset": {
     "message": "गति रीसेट करें"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "ब्लॉक किया गया चैनल"
+  },
+  "cropTitle": {
+    "message": "वीडियो क्रॉप करें"
+  },
+  "cropRemove": {
+    "message": "पूरा वीडियो दिखाएँ"
+  },
+  "cropSelectHint": {
+    "message": "जो हिस्सा रखना है, उसे वीडियो पर खींचकर चुनें · Esc से रद्द करें"
+  },
+  "masterToggle": {
+    "message": "एक्सटेंशन चालू या बंद करें"
+  },
+  "offNotice": {
+    "message": "रुका हुआ — जब तक आप इसे फिर से चालू नहीं करते, YouTube बिना बदलाव के चलता है।"
+  },
+  "searchPlaceholder": {
+    "message": "सेटिंग खोजें"
+  },
+  "searchEmpty": {
+    "message": "आपकी खोज से कोई सेटिंग मेल नहीं खाती।"
+  },
+  "back": {
+    "message": "वापस"
+  },
+  "moreInfo": {
+    "message": "और जानकारी"
+  },
+  "setShortcut": {
+    "message": "शॉर्टकट सेट करें"
+  },
+  "clearShortcut": {
+    "message": "शॉर्टकट हटाएँ"
+  },
+  "filtersEnabled": {
+    "message": "रंग सेटिंग लागू करें"
+  },
+  "sectionChannels": {
+    "message": "चैनल"
+  },
+  "statusOn": {
+    "message": "चालू"
+  },
+  "statusOff": {
+    "message": "बंद"
+  },
+  "statusOriginal": {
+    "message": "मूल"
+  },
+  "statusInverted": {
+    "message": "उलटे"
+  },
+  "statusSpeed": {
+    "message": "डिफ़ॉल्ट {n}×"
+  },
+  "statusCount": {
+    "message": "{n} चालू"
+  },
+  "statusDefault": {
+    "message": "डिफ़ॉल्ट"
+  },
+  "statusMuting": {
+    "message": "विज्ञापन म्यूट"
+  },
+  "statusBlocked": {
+    "message": "{n} ब्लॉक"
+  },
+  "statusNoBlocks": {
+    "message": "कोई ब्लॉक नहीं"
+  },
+  "introTitle1": {
+    "message": "प्लेयर पर नए बटन"
+  },
+  "introText1": {
+    "message": "स्पीड, क्लिप और क्रॉप अब YouTube के कंट्रोल बार में, सेटिंग के पास हैं।"
+  },
+  "introTitle2": {
+    "message": "एक क्लिक में चैनल ब्लॉक करें"
+  },
+  "introText2": {
+    "message": "किसी सुझाए गए वीडियो पर माउस ले जाएँ और 🚫 दबाएँ। उसके बाद उस चैनल के वीडियो ढक दिए जाते हैं।"
+  },
+  "introTitle3": {
+    "message": "सब कुछ एक जगह"
+  },
+  "introText3": {
+    "message": "बदलने के लिए कोई कार्ड खोलें, कोई भी सेटिंग खोजें, और किसी सेटिंग को शॉर्टकट देने के लिए उसके पास के कीबोर्ड आइकन को दबाएँ।"
+  },
+  "introNext": {
+    "message": "आगे"
+  },
+  "introDone": {
+    "message": "शुरू करें"
+  },
+  "introSkip": {
+    "message": "छोड़ें"
+  },
+  "hideShorts": {
+    "message": "Shorts पूरी तरह बंद करें"
+  },
+  "hideShortsHint": {
+    "message": "Shorts की पंक्तियाँ, खोज परिणाम, मेन्यू का विकल्प और चैनल टैब हटा देता है। Shorts लिंक सामान्य वीडियो की तरह खुलता है।"
+  },
+  "theme": {
+    "message": "दिखावट"
+  },
+  "themeAuto": {
+    "message": "स्वचालित"
+  },
+  "themeLight": {
+    "message": "हल्का"
+  },
+  "themeDark": {
+    "message": "गहरा"
+  },
+  "shortcutDecrease": {
+    "message": "घटाएँ"
+  },
+  "shortcutIncrease": {
+    "message": "बढ़ाएँ"
   }
 }

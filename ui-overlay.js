@@ -1,8 +1,9 @@
 /**
  * Open Youtube Settings — on-player overlay
  *
- * Playback speed chip and an mpv/uosc-style clip bar that records a marked
- * range straight from the playing video element and downloads it.
+ * Speed, clip and crop buttons in YouTube's control bar, the speed preset
+ * tray, a drag-to-select crop and an mpv/uosc-style clip bar that records a
+ * marked range straight from the playing video element and downloads it.
  * Relies on the shared state published by content.js.
  */
 
@@ -59,49 +60,22 @@
       font-weight: 600;
     }
 
-    /* --- speed chip --- */
-    #yte-osc .yte-speed {
+    /* --- speed tray, opened from the speed button in the control bar --- */
+    #yte-osc .yte-speed-tray {
       position: absolute;
-      right: 12px;
-      bottom: 64px;
       pointer-events: auto;
       display: none;
       align-items: center;
-      gap: 6px;
-      border-radius: 999px;
-      padding: 4px 6px;
-      font-size: 12px;
-      opacity: 0;
-      transform: translateY(6px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-    }
-    #yte-osc.yte-speed-on .yte-speed { display: flex; }
-    .html5-video-player:not(.ytp-autohide) #yte-osc .yte-speed,
-    #yte-osc .yte-speed:hover,
-    #yte-osc .yte-speed.yte-tray-open {
-      opacity: 1;
-      transform: none;
-    }
-    #yte-osc .yte-speed-value {
-      min-width: 52px;
-      text-align: center;
-      font-variant-numeric: tabular-nums;
-      font-weight: 600;
-    }
-    #yte-osc .yte-step { border-radius: 999px; width: 24px; padding: 2px 0; text-align: center; }
-    #yte-osc .yte-tray {
-      position: absolute;
-      right: 0;
-      bottom: calc(100% + 8px);
-      display: none;
       gap: 4px;
       padding: 6px;
       border-radius: 10px;
+      font-size: 11px;
       white-space: nowrap;
     }
-    #yte-osc .yte-speed.yte-tray-open .yte-tray { display: flex; }
-    #yte-osc .yte-tray button { font-size: 11px; font-variant-numeric: tabular-nums; }
-    #yte-osc .yte-tray button.yte-current { border-color: #ff5a3d; color: #ff8a6d; }
+    #yte-osc.yte-tray-open .yte-speed-tray { display: flex; }
+    #yte-osc .yte-speed-tray button { font-variant-numeric: tabular-nums; }
+    #yte-osc .yte-step { border-radius: 999px; width: 24px; padding: 2px 0; text-align: center; }
+    #yte-osc .yte-speed-tray button.yte-current { border-color: #ff5a3d; color: #ff8a6d; }
 
     /* --- clip bar --- */
     #yte-osc .yte-clip {
@@ -186,11 +160,77 @@
     #yte-osc .yte-toast.yte-visible { opacity: 1; }
 
     #yte-osc.yte-recording .yte-clip { border-color: rgba(255, 90, 61, 0.85); }
+
+    /* --- crop selection: a tinted layer the user drags a box on --- */
+    #yte-osc .yte-crop-layer {
+      position: absolute;
+      inset: 0;
+      display: none;
+      overflow: hidden;
+      pointer-events: auto;
+      cursor: crosshair;
+      background: rgba(0, 0, 0, 0.4);
+      touch-action: none;
+    }
+    #yte-osc.yte-cropping .yte-crop-layer { display: block; }
+    #yte-osc .yte-crop-layer.yte-dragging { background: transparent; }
+    #yte-osc .yte-crop-rect {
+      position: absolute;
+      display: none;
+      border: 2px solid #fff;
+      box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.4);
+    }
+    #yte-osc .yte-crop-layer.yte-dragging .yte-crop-rect { display: block; }
+    #yte-osc .yte-crop-hint {
+      position: absolute;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 6px 6px 6px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      white-space: nowrap;
+      cursor: default;
+    }
+    #yte-osc .yte-crop-layer.yte-dragging .yte-crop-hint { display: none; }
+
+    /* --- buttons in YouTube's control bar --- */
+    .ytp-button.yte-ctl {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      vertical-align: top;
+    }
+    .ytp-button.yte-ctl[hidden] { display: none; }
+    .ytp-button.yte-ctl-speed {
+      width: auto;
+      min-width: 48px;
+      padding: 0 6px;
+      color: #fff;
+      font: 500 13px 'Roboto', 'Arial', sans-serif;
+      font-variant-numeric: tabular-nums;
+    }
+    .ytp-button.yte-ctl-clip svg,
+    .ytp-button.yte-ctl-crop svg { width: 24px; height: 24px; fill: #fff; }
+    .ytp-button.yte-ctl-clip[aria-pressed='true'] svg,
+    .ytp-button.yte-ctl-crop[aria-pressed='true'] svg { fill: #ff7a5c; }
   `;
 
+  /** Crop marks, in the line weight of YouTube's own control icons. */
+  const CROP_ICON =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 15h2V7c0-1.1-.9-2-2-2H9v2h8v8zM7 17V1H5v4H1v2h4v10c0 1.1.9 2 2 2h10v4h2v-4h4v-2H7z"/></svg>';
+
+  /** Scissors, in the line weight of YouTube's own control icons. */
+  const CLIP_ICON =
+    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3h-3z"/></svg>';
+
   let root = null;
-  let speedWrap = null;
-  let speedValueEl = null;
+  let speedButton = null;
+  let clipButton = null;
+  let cropButton = null;
   let speedTray = null;
   let clipWrap = null;
   let trackEl = null;
@@ -258,48 +298,70 @@
     (document.head || document.documentElement).appendChild(style);
   }
 
-  function buildSpeed() {
-    speedWrap = document.createElement('div');
-    speedWrap.className = 'yte-speed yte-panel';
+  /** Keeps a click on our controls from reaching YouTube's player. */
+  function isolate(node) {
+    for (const type of ['click', 'dblclick', 'mousedown', 'pointerdown']) {
+      node.addEventListener(type, (event) => event.stopPropagation());
+    }
+  }
+
+  function buildControls() {
+    speedButton = document.createElement('button');
+    speedButton.className = 'ytp-button yte-ctl yte-ctl-speed';
+    speedButton.addEventListener('click', () => setTrayOpen(!root.classList.contains('yte-tray-open')));
+    isolate(speedButton);
+
+    clipButton = document.createElement('button');
+    clipButton.className = 'ytp-button yte-ctl yte-ctl-clip';
+    clipButton.innerHTML = CLIP_ICON;
+    clipButton.setAttribute('aria-pressed', 'false');
+    clipButton.addEventListener('click', () => YTE.api.toggleClipBar());
+    isolate(clipButton);
+
+    cropButton = document.createElement('button');
+    cropButton.className = 'ytp-button yte-ctl yte-ctl-crop';
+    cropButton.innerHTML = CROP_ICON;
+    cropButton.setAttribute('aria-pressed', 'false');
+    cropButton.addEventListener('click', () => YTE.api.toggleCrop());
+    isolate(cropButton);
+  }
+
+  function buildSpeedTray() {
+    speedTray = document.createElement('div');
+    speedTray.className = 'yte-speed-tray yte-panel';
 
     const down = document.createElement('button');
     down.className = 'yte-step';
     down.textContent = '−';
     down.addEventListener('click', () => YTE.api.nudgeSpeed(-1));
+    speedTray.appendChild(down);
 
-    speedValueEl = document.createElement('button');
-    speedValueEl.className = 'yte-speed-value';
-    speedValueEl.addEventListener('click', () => speedWrap.classList.toggle('yte-tray-open'));
-
-    const up = document.createElement('button');
-    up.className = 'yte-step';
-    up.textContent = '+';
-    up.addEventListener('click', () => YTE.api.nudgeSpeed(1));
-
-    speedTray = document.createElement('div');
-    speedTray.className = 'yte-tray yte-panel';
     for (const preset of SPEED_PRESETS) {
       const option = document.createElement('button');
       option.dataset.speed = String(preset);
       option.textContent = `${preset}×`;
       option.addEventListener('click', () => {
         YTE.api.setSpeed(preset);
-        speedWrap.classList.remove('yte-tray-open');
+        setTrayOpen(false);
       });
       speedTray.appendChild(option);
     }
 
+    const up = document.createElement('button');
+    up.className = 'yte-step';
+    up.textContent = '+';
+    up.addEventListener('click', () => YTE.api.nudgeSpeed(1));
+    speedTray.appendChild(up);
+
     const reset = document.createElement('button');
+    reset.className = 'yte-reset';
     reset.textContent = '⟲';
-    reset.title = STR.speedReset;
     reset.addEventListener('click', () => {
       YTE.api.resetSpeed();
-      speedWrap.classList.remove('yte-tray-open');
+      setTrayOpen(false);
     });
     speedTray.appendChild(reset);
-
-    speedWrap.append(speedTray, down, speedValueEl, up);
-    return speedWrap;
+    return speedTray;
   }
 
   function buildClip() {
@@ -363,7 +425,8 @@
     toastEl = document.createElement('div');
     toastEl.className = 'yte-toast yte-panel';
 
-    root.append(buildSpeed(), buildClip(), toastEl);
+    root.append(buildSpeedTray(), buildClip(), buildCropLayer(), toastEl);
+    buildControls();
 
     // Keep clicks and keys inside the overlay away from the player.
     for (const type of ['click', 'dblclick', 'mousedown', 'pointerdown', 'keydown', 'wheel']) {
@@ -373,13 +436,29 @@
     return root;
   }
 
-  /** Mounts the overlay inside the watch-page player. */
+  /**
+   * Puts the speed, clip and crop buttons just before YouTube's settings
+   * button, or at the start of the right-hand controls if the layout has none.
+   */
+  function mountControls(player) {
+    const settings = player.querySelector('.ytp-right-controls .ytp-settings-button');
+    const host = settings ? settings.parentElement : player.querySelector('.ytp-right-controls');
+    if (!host) return;
+    let before = settings || host.firstChild;
+    for (const button of [cropButton, clipButton, speedButton]) {
+      if (button.parentElement !== host || button.nextSibling !== before) host.insertBefore(button, before);
+      before = button;
+    }
+  }
+
+  /** Mounts the overlay and the control-bar buttons in the watch-page player. */
   function mount() {
     const player = document.querySelector('#movie_player');
     if (!player) return;
     if (!root) build();
     ensureStyles();
     if (root.parentElement !== player) player.appendChild(root);
+    mountControls(player);
     sync();
   }
 
@@ -387,14 +466,19 @@
 
   function syncSpeed() {
     if (!root) return;
-    const enabled = S.speedEnabled && S.speedOverlay;
-    root.classList.toggle('yte-speed-on', enabled);
-    if (!enabled) return;
+    const enabled = S.enabled && S.speedEnabled && S.speedOverlay;
+    speedButton.hidden = !enabled;
+    if (!enabled) {
+      setTrayOpen(false);
+      return;
+    }
 
     const video = YTE.getVideo();
     const rate = video ? video.playbackRate : S.lastSpeed;
-    speedValueEl.textContent = `${rate.toFixed(2)}×`;
-    speedValueEl.title = STR.speedLabel;
+    speedButton.textContent = `${rate.toFixed(2)}×`;
+    speedButton.title = STR.speedLabel;
+    speedButton.setAttribute('aria-label', STR.speedLabel);
+    speedTray.querySelector('.yte-reset').title = STR.speedReset;
 
     for (const option of speedTray.querySelectorAll('button[data-speed]')) {
       option.classList.toggle(
@@ -404,12 +488,27 @@
     }
   }
 
+  /** Opens the preset tray just above the speed button. */
+  function setTrayOpen(open) {
+    if (!root) return;
+    const player = root.parentElement;
+    const show = open && !speedButton.hidden && !!player;
+    root.classList.toggle('yte-tray-open', show);
+    if (player) player.classList.toggle('yte-menu-open', show);
+    if (!show) return;
+    const box = player.getBoundingClientRect();
+    const anchor = speedButton.getBoundingClientRect();
+    speedTray.style.bottom = `${Math.round(box.bottom - anchor.top) + 8}px`;
+    speedTray.style.right = `${Math.max(8, Math.round(box.right - anchor.right))}px`;
+  }
+
   /* --------------------------------------------------------------- clip */
 
   function setClipOpen(open) {
     if (!root) return;
-    const allowed = S.clipEnabled && !!document.querySelector('#movie_player');
+    const allowed = S.enabled && S.clipEnabled && !!document.querySelector('#movie_player');
     root.classList.toggle('yte-clip-open', open && allowed);
+    clipButton.setAttribute('aria-pressed', String(open && allowed));
     if (open && allowed) {
       startRaf();
     } else {
@@ -453,6 +552,9 @@
     btnPreview.textContent = `▶ ${STR.clipPreview}`;
     btnSave.textContent = `⏺ ${STR.clipSave}`;
     btnClose.title = STR.clipClose;
+    clipButton.hidden = !S.enabled || !S.clipEnabled;
+    clipButton.title = STR.clipTitle;
+    clipButton.setAttribute('aria-label', STR.clipTitle);
 
     const hasRange = clipIn !== null && clipOut !== null && clipOut - clipIn >= 0.2;
     btnSave.disabled = recording || !hasRange;
@@ -503,6 +605,233 @@
   function stopRaf() {
     if (rafHandle !== null) cancelAnimationFrame(rafHandle);
     rafHandle = null;
+  }
+
+  /* --------------------------------------------------------------- crop */
+
+  /**
+   * Crops to an area the user drags out over the video, like a screenshot
+   * tool. The video keeps playing; the area is scaled up to fit or fill the
+   * player and the rest is clipped away. It is kept as fractions of the video
+   * box, so it survives resizes, theater mode and fullscreen, and it ends
+   * with the video.
+   */
+  let crop = null;
+  let cropSelecting = false;
+  let cropLayer = null;
+  let cropRect = null;
+  let cropHintText = null;
+  let cropCancel = null;
+  let cropDrag = null;
+  let cropStyle = null;
+  let cropObserver = null;
+  let cropWatched = [];
+
+  function cropAvailable() {
+    return S.enabled && S.cropTool;
+  }
+
+  /** Boxes smaller than this (in px) are taken for a stray click. */
+  const MIN_CROP = 16;
+
+  function buildCropLayer() {
+    cropLayer = document.createElement('div');
+    cropLayer.className = 'yte-crop-layer';
+
+    cropRect = document.createElement('div');
+    cropRect.className = 'yte-crop-rect';
+
+    const hint = document.createElement('div');
+    hint.className = 'yte-crop-hint yte-panel';
+    cropHintText = document.createElement('span');
+    cropCancel = document.createElement('button');
+    cropCancel.textContent = '✕';
+    cropCancel.addEventListener('click', () => setCropSelecting(false));
+    hint.append(cropHintText, cropCancel);
+    cropLayer.append(cropRect, hint);
+
+    cropLayer.addEventListener('pointerdown', (event) => {
+      if (event.button !== 0 || hint.contains(event.target)) return;
+      event.preventDefault();
+      const at = layerPoint(event);
+      cropDrag = { x0: at.x, y0: at.y, x1: at.x, y1: at.y };
+      cropLayer.setPointerCapture(event.pointerId);
+      drawCropRect();
+    });
+    cropLayer.addEventListener('pointermove', (event) => {
+      if (!cropDrag) return;
+      const at = layerPoint(event);
+      cropDrag.x1 = at.x;
+      cropDrag.y1 = at.y;
+      drawCropRect();
+    });
+    const finish = () => {
+      if (!cropDrag) return;
+      const box = dragBox();
+      cropDrag = null;
+      drawCropRect();
+      if (box.w >= MIN_CROP && box.h >= MIN_CROP) applySelection(box);
+    };
+    cropLayer.addEventListener('pointerup', finish);
+    cropLayer.addEventListener('pointercancel', () => {
+      cropDrag = null;
+      drawCropRect();
+    });
+    return cropLayer;
+  }
+
+  /** A pointer position inside the player, kept within its edges. */
+  function layerPoint(event) {
+    const r = cropLayer.getBoundingClientRect();
+    return {
+      x: Math.min(r.width, Math.max(0, event.clientX - r.left)),
+      y: Math.min(r.height, Math.max(0, event.clientY - r.top))
+    };
+  }
+
+  function dragBox() {
+    return {
+      x: Math.min(cropDrag.x0, cropDrag.x1),
+      y: Math.min(cropDrag.y0, cropDrag.y1),
+      w: Math.abs(cropDrag.x1 - cropDrag.x0),
+      h: Math.abs(cropDrag.y1 - cropDrag.y0)
+    };
+  }
+
+  function drawCropRect() {
+    cropLayer.classList.toggle('yte-dragging', !!cropDrag);
+    if (!cropDrag) return;
+    const box = dragBox();
+    Object.assign(cropRect.style, {
+      left: `${box.x}px`,
+      top: `${box.y}px`,
+      width: `${box.w}px`,
+      height: `${box.h}px`
+    });
+  }
+
+  /** Where YouTube laid the video out in the player, before any crop. */
+  function videoBox(video, player) {
+    let x = 0;
+    let y = 0;
+    for (let node = video; node && node !== player; node = node.offsetParent) {
+      x += node.offsetLeft;
+      y += node.offsetTop;
+      if (!player.contains(node.offsetParent)) break;
+    }
+    return { x, y, w: video.offsetWidth, h: video.offsetHeight };
+  }
+
+  /** Turns a box drawn in the player into fractions of the video box. */
+  function applySelection(box) {
+    const player = root.parentElement;
+    const video = YTE.getVideo();
+    if (!player || !video) return;
+    const v = videoBox(video, player);
+    const left = Math.max(box.x, v.x);
+    const top = Math.max(box.y, v.y);
+    const right = Math.min(box.x + box.w, v.x + v.w);
+    const bottom = Math.min(box.y + box.h, v.y + v.h);
+    if (right - left < MIN_CROP || bottom - top < MIN_CROP) return;
+    crop = {
+      x: (left - v.x) / v.w,
+      y: (top - v.y) / v.h,
+      w: (right - left) / v.w,
+      h: (bottom - top) / v.h
+    };
+    setCropSelecting(false);
+  }
+
+  function setCropSelecting(on) {
+    if (!root) return;
+    cropSelecting = on && cropAvailable();
+    cropDrag = null;
+    drawCropRect();
+    root.classList.toggle('yte-cropping', cropSelecting);
+    if (cropSelecting) setTrayOpen(false);
+    applyCrop();
+  }
+
+  /**
+   * Scales the video so the chosen area is centred in the player, fitting
+   * inside it or filling it, and clips away everything outside the area and
+   * the player. Recomputed whenever YouTube lays the video out again.
+   */
+  function applyCrop() {
+    if (!cropStyle) {
+      cropStyle = document.createElement('style');
+      cropStyle.id = 'yte-crop-style';
+      (document.head || document.documentElement).appendChild(cropStyle);
+    }
+    const player = root && root.parentElement;
+    const video = YTE.getVideo();
+    const active = !!(crop && cropAvailable() && player && video && !cropSelecting);
+    syncCropButton();
+    watchCropLayout(active ? [player, video] : []);
+    if (!active) {
+      cropStyle.textContent = '';
+      return;
+    }
+
+    const W = player.clientWidth;
+    const H = player.clientHeight;
+    const v = videoBox(video, player);
+    if (!W || !H || !v.w || !v.h) return;
+    const area = { x: crop.x * v.w, y: crop.y * v.h, w: crop.w * v.w, h: crop.h * v.h };
+    const fits = [W / area.w, H / area.h];
+    const scale = S.cropFit === 'cover' ? Math.max(...fits) : Math.min(...fits);
+    const tx = W / 2 - v.x - scale * (area.x + area.w / 2);
+    const ty = H / 2 - v.y - scale * (area.y + area.h / 2);
+
+    // The part of the area that lands inside the player, in the video's own
+    // (untransformed) coordinates, which is what clip-path works in.
+    const left = Math.max(area.x, (0 - v.x - tx) / scale);
+    const top = Math.max(area.y, (0 - v.y - ty) / scale);
+    const right = Math.min(area.x + area.w, (W - v.x - tx) / scale);
+    const bottom = Math.min(area.y + area.h, (H - v.y - ty) / scale);
+    const px = (n) => `${n.toFixed(2)}px`;
+
+    // The bars beside a fitted area are black, whatever the page theme.
+    cropStyle.textContent =
+      `#movie_player{background:#000!important;}` +
+      `#movie_player video.html5-main-video{` +
+      `transform-origin:0 0!important;` +
+      `transform:translate(${px(tx)},${px(ty)}) scale(${scale.toFixed(4)})!important;` +
+      `clip-path:inset(${px(top)} ${px(v.w - right)} ${px(v.h - bottom)} ${px(left)})!important;}`;
+  }
+
+  /** Re-crops when the player or the video changes size. */
+  function watchCropLayout(nodes) {
+    if (typeof ResizeObserver === 'undefined') return;
+    if (nodes.length === cropWatched.length && nodes.every((node, i) => node === cropWatched[i])) return;
+    if (!cropObserver) cropObserver = new ResizeObserver(() => applyCrop());
+    cropObserver.disconnect();
+    cropWatched = nodes;
+    for (const node of nodes) cropObserver.observe(node);
+  }
+
+  function syncCropButton() {
+    if (!cropButton) return;
+    cropButton.hidden = !cropAvailable();
+    const on = !!crop || cropSelecting;
+    cropButton.setAttribute('aria-pressed', String(on));
+    const label = crop ? STR.cropRemove : STR.cropTitle;
+    cropButton.title = label;
+    cropButton.setAttribute('aria-label', label);
+    cropHintText.textContent = STR.cropSelectHint;
+    cropCancel.title = STR.clipClose;
+  }
+
+  /** Starts a selection, or ends the crop (or the selection) in progress. */
+  function toggleCrop() {
+    mount();
+    if (!root || !cropAvailable()) return;
+    if (crop || cropSelecting) {
+      crop = null;
+      setCropSelecting(false);
+    } else {
+      setCropSelecting(true);
+    }
   }
 
   /** Picks the best container MediaRecorder supports here. */
@@ -642,7 +971,12 @@
   function sync() {
     syncSpeed();
     syncClip();
-    if (root && !S.clipEnabled) root.classList.remove('yte-clip-open');
+    if (root && root.classList.contains('yte-clip-open') && !(S.enabled && S.clipEnabled)) setClipOpen(false);
+    if (root && !cropAvailable() && (crop || cropSelecting)) {
+      crop = null;
+      setCropSelecting(false);
+    }
+    if (root) applyCrop();
   }
 
   YTE.api.toggleClipBar = () => {
@@ -661,21 +995,42 @@
     markOut();
   };
   YTE.api.saveClip = saveClip;
+  /** A short notice on the player, for changes made by a shortcut. */
+  YTE.api.toast = (message) => {
+    mount();
+    showToast(message, 1400);
+  };
+  YTE.api.toggleCrop = toggleCrop;
 
   YTE.onChange(() => sync());
 
   document.addEventListener('ratechange', syncSpeed, true);
 
   window.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && root && root.classList.contains('yte-clip-open')) {
-      setClipOpen(false);
-    }
+    if (event.key !== 'Escape' || !root) return;
+    if (cropSelecting) setCropSelecting(false);
+    else if (root.classList.contains('yte-tray-open')) setTrayOpen(false);
+    else if (root.classList.contains('yte-clip-open')) setClipOpen(false);
   });
+
+  // A click anywhere but the tray and its button closes the tray.
+  document.addEventListener(
+    'click',
+    (event) => {
+      if (!root || !root.classList.contains('yte-tray-open')) return;
+      if (speedTray.contains(event.target) || speedButton.contains(event.target)) return;
+      setTrayOpen(false);
+    },
+    true
+  );
 
   window.addEventListener('yt-navigate-finish', () => {
     clipIn = null;
     clipOut = null;
     setClipOpen(false);
+    setTrayOpen(false);
+    crop = null;
+    setCropSelecting(false);
     mount();
   });
 

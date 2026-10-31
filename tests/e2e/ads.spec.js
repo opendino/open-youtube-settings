@@ -1,4 +1,4 @@
-import { test, expect, openYoutube, spaNavigate } from '../helpers/extension.js';
+import { test, expect, openYoutube, spaNavigate, openPage } from '../helpers/extension.js';
 
 /** What the user hears, and what YouTube's volume button shows. */
 const sound = (page) =>
@@ -115,11 +115,11 @@ test.describe('mute ads', () => {
   }) => {
     await openYoutube(page);
     const popup = await openPopup();
-    await popup.locator('.tab-btn[data-tab="language"]').click();
+    await openPage(popup, 'language');
     await popup.locator('.lang-btn[data-lang="tr"]').click();
     await expect(popup.locator('[data-i18n="muteAds"]')).toHaveText('Reklamları Sessize Al');
 
-    await popup.locator('.tab-btn[data-tab="settings"]').click();
+    await openPage(popup, 'ads');
     await popup.locator('label:has(#mute-ads)').click();
     await expect.poll(async () => (await harness.get(['muteAds'])).muteAds).toBe(true);
 

@@ -1,8 +1,31 @@
-import { test, expect, openYoutube, styleOf, playbackRate } from '../helpers/extension.js';
+import { test, expect, openYoutube, styleOf, playbackRate, openPage } from '../helpers/extension.js';
+
+/** The popup page that holds each action's shortcut button. */
+const PAGE_OF = {
+  brightnessUp: 'colour',
+  brightnessDown: 'colour',
+  bluelightUp: 'colour',
+  bluelightDown: 'colour',
+  toggleFilters: 'colour',
+  toggleInvert: 'colour',
+  toggleHome: 'layout',
+  toggleSidebar: 'layout',
+  toggleControls: 'layout',
+  togglePlayPause: 'layout',
+  toggleSkipAnim: 'layout',
+  speedUp: 'speed',
+  speedDown: 'speed',
+  speedReset: 'speed',
+  clipToggle: 'clip',
+  clipMarkIn: 'clip',
+  clipMarkOut: 'clip',
+  clipSave: 'clip',
+  toggleCrop: 'crop'
+};
 
 /** Records a shortcut through the popup UI exactly as a user would. */
 async function record(popup, action, keys) {
-  await popup.locator('.tab-btn[data-tab="shortcuts"]').click();
+  await openPage(popup, PAGE_OF[action]);
   await popup.locator(`.shortcut-btn[data-shortcut="${action}"]`).click();
   await popup.keyboard.press(keys);
 }
@@ -67,6 +90,60 @@ test.describe('shortcuts', () => {
       .toEqual({ clipToggle: 'ENTER', clipSave: 'SPACE' });
   });
 
+  test('brightness steps down and up by 10% and shows the new value on the player', async ({ page, harness, openPopup }) => {
+    const popup = await openPopup();
+    await record(popup, 'brightnessDown', 'Alt+KeyN');
+    await record(popup, 'brightnessUp', 'Alt+KeyM');
+    await expect(popup.locator('.shortcut-btn[data-shortcut="brightnessDown"]')).toHaveText('Alt+N');
+    await popup.close();
+
+    await openYoutube(page);
+    await page.locator('body').click({ position: { x: 5, y: 5 } });
+    await page.keyboard.press('Alt+KeyN');
+    await page.keyboard.press('Alt+KeyN');
+    await expect.poll(() => styleOf(page, '#movie_player video', 'filter')).toBe('brightness(0.8)');
+    await expect(page.locator('#yte-osc .yte-toast')).toHaveText('Brightness 80%');
+    await page.keyboard.press('Alt+KeyM');
+    await expect.poll(async () => (await harness.get(['brightness'])).brightness).toBe(90);
+  });
+
+  test('colour steps stop at the ends of their range', async ({ page, harness }) => {
+    await harness.set({ brightness: 145, bluelight: 5, shortcuts: { brightnessUp: 'Alt+M', bluelightDown: 'Alt+V' } });
+    await openYoutube(page);
+    await page.locator('body').click({ position: { x: 5, y: 5 } });
+    await page.keyboard.press('Alt+KeyM');
+    await page.keyboard.press('Alt+KeyV');
+    await expect
+      .poll(() => harness.get(['brightness', 'bluelight']))
+      .toEqual({ brightness: 150, bluelight: 0 });
+  });
+
+  test('the blue light shortcut warms the picture and switches colour settings back on', async ({ page, harness }) => {
+    await harness.set({ filtersEnabled: false, shortcuts: { bluelightUp: 'Alt+B' } });
+    await openYoutube(page);
+    expect(await styleOf(page, '#movie_player video', 'filter')).toBe('none');
+    await page.locator('body').click({ position: { x: 5, y: 5 } });
+    await page.keyboard.press('Alt+KeyB');
+    await expect.poll(() => styleOf(page, '#movie_player video', 'filter')).toContain('sepia(');
+    expect(await harness.get(['bluelight', 'filtersEnabled'])).toEqual({ bluelight: 10, filtersEnabled: true });
+    await expect(page.locator('#yte-osc .yte-toast')).toHaveText('Blue Light Filter 10%');
+  });
+
+  test('the speed shortcuts sit together and step the speed', async ({ page, harness, openPopup }) => {
+    await harness.set({ speedStep: 0.25 });
+    const popup = await openPopup();
+    await record(popup, 'speedUp', 'Alt+KeyU');
+    const pair = popup.locator('#page-speed .shortcut-pair');
+    await expect(pair.locator('.shortcut-btn')).toHaveCount(2);
+    await expect(pair.locator('.shortcut-btn[data-shortcut="speedUp"]')).toHaveText('Alt+U');
+    await popup.close();
+
+    await openYoutube(page);
+    await page.locator('body').click({ position: { x: 5, y: 5 } });
+    await page.keyboard.press('Alt+KeyU');
+    await expect.poll(() => playbackRate(page)).toBe(1.25);
+  });
+
   test('Escape cancels recording and keeps the old shortcut', async ({ harness, openPopup }) => {
     await harness.set({ shortcuts: { toggleCrop: 'Alt+C' } });
     const popup = await openPopup();
@@ -78,7 +155,7 @@ test.describe('shortcuts', () => {
   test('the clear button removes a shortcut', async ({ harness, openPopup }) => {
     await harness.set({ shortcuts: { toggleCrop: 'Alt+C' } });
     const popup = await openPopup();
-    await popup.locator('.tab-btn[data-tab="shortcuts"]').click();
+    await openPage(popup, 'crop');
     await popup.locator('.shortcut-clear-btn[data-shortcut="toggleCrop"]').click();
     await expect.poll(async () => (await harness.get(['shortcuts'])).shortcuts).toEqual({});
   });

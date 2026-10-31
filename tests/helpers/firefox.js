@@ -214,7 +214,8 @@ export const test = base.extend({
    */
   openPopup: async ({ harness }, use) => {
     const tabs = [];
-    await use(async () => {
+    await use(async ({ intro = false } = {}) => {
+      if (!intro) await harness.set({ introSeen: true });
       tabs.push(await harness.call('open', 'popup.html'));
       const send = (action) => harness.call('popup', action);
       for (let i = 0; i < 50; i++) {

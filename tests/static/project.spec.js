@@ -99,7 +99,7 @@ test.describe('manifest and settings', () => {
 
   test('every shortcut button maps to an action the page handles', () => {
     const content = read('content.js');
-    const actions = [...read('popup.html').matchAll(/class="shortcut-btn" data-shortcut="(\w+)"/g)];
+    const actions = [...read('popup.html').matchAll(/class="shortcut-btn"[^>]*data-shortcut="(\w+)"/g)];
     expect(actions.length).toBeGreaterThan(0);
     for (const [, action] of actions) expect(content, action).toMatch(new RegExp(`\\b${action}:`));
   });

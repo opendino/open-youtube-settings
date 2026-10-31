@@ -89,6 +89,38 @@ test.describe('clip tool', () => {
     expect([...seen.other]).toEqual([1.5]);
   });
 
+  test('the clip button in the control bar opens and closes the clip bar', async ({ page }) => {
+    await openYoutube(page);
+    const button = page.locator('.ytp-right-controls-left > .yte-ctl-clip');
+    await expect(button).toHaveAttribute('title', 'Clip');
+    await expect(button).toHaveAttribute('aria-pressed', 'false');
+    const bar = page.locator('#yte-osc .yte-clip');
+    await expect(bar).toBeHidden();
+
+    await button.click();
+    await expect(bar).toBeVisible();
+    await expect(button).toHaveAttribute('aria-pressed', 'true');
+    await button.click();
+    await expect(bar).toBeHidden();
+    await expect(button).toHaveAttribute('aria-pressed', 'false');
+  });
+
+  test('the clip button goes away with the clip tool', async ({ page, harness }) => {
+    await openYoutube(page);
+    await expect(page.locator('.yte-ctl-clip')).toBeVisible();
+    await harness.set({ clipEnabled: false });
+    await expect(page.locator('.yte-ctl-clip')).toBeHidden();
+  });
+
+  test('the control-bar buttons survive in-app navigation without piling up', async ({ page }) => {
+    await openYoutube(page);
+    await spaNavigate(page, '/watch?v=fixture2');
+    await spaNavigate(page, '/watch?v=fixture3');
+    await page.waitForTimeout(2200);
+    await expect(page.locator('.yte-ctl-speed')).toHaveCount(1);
+    await expect(page.locator('.yte-ctl-clip')).toHaveCount(1);
+  });
+
   test('save stays disabled until a start and end are set', async ({ page, harness }) => {
     await harness.set({ shortcuts: { clipToggle: 'Alt+K' } });
     await openYoutube(page);

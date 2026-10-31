@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "Reset Defaults"
   },
-  "tabSettings": {
-    "message": "Settings"
-  },
   "tabShortcuts": {
     "message": "Shortcuts"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "Refresh Now"
   },
-  "shortcutToggleFilters": {
-    "message": "Toggle Filters"
-  },
-  "shortcutNotSet": {
-    "message": "Click to set"
-  },
   "shortcutRecording": {
     "message": "Press key..."
   },
   "tabSpeed": {
     "message": "Speed"
-  },
-  "tabAdvanced": {
-    "message": "Advanced"
   },
   "sectionColor": {
     "message": "Colour"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "Clip Tool"
-  },
-  "sectionNavigation": {
-    "message": "Navigation"
   },
   "invertColors": {
     "message": "Invert Colours"
@@ -108,7 +93,7 @@
     "message": "Turn this off to hand playback speed back to YouTube or another speed extension. Nothing is touched while it is off."
   },
   "speedOverlay": {
-    "message": "Show Player Chip"
+    "message": "Show Speed in Player Controls"
   },
   "speedDefault": {
     "message": "Default Speed"
@@ -120,19 +105,25 @@
     "message": "Keep Speed Between Videos"
   },
   "speedPresetHint": {
-    "message": "Presets set the default speed. Fine steps live on the player chip and the shortcuts."
+    "message": "Presets set the default speed. Fine steps live on the speed button in the player controls and the shortcuts."
   },
   "cropEnabled": {
     "message": "Crop Video"
   },
+  "cropTool": {
+    "message": "Crop Tool"
+  },
   "cropHint": {
-    "message": "Zooms past baked-in banners and letterbox bars so the subject fills more of the player."
+    "message": "Adds a crop button to the player controls. Drag over the video to choose the area to keep; it fills the player while the video keeps playing. Click the button again to see the whole video. The crop ends with the video."
   },
-  "cropZoom": {
-    "message": "Zoom"
+  "cropFit": {
+    "message": "When the area's shape differs from the player"
   },
-  "cropOffsetY": {
-    "message": "Vertical Shift"
+  "cropFitContain": {
+    "message": "Keep proportions, show it all"
+  },
+  "cropFitCover": {
+    "message": "Keep proportions, fill the player"
   },
   "clipEnabled": {
     "message": "Clip Tool"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "Channel links jump straight to the Videos tab instead of the channel home page."
-  },
-  "shortcutSpeedUp": {
-    "message": "Speed Up"
-  },
-  "shortcutSpeedDown": {
-    "message": "Slow Down"
   },
   "shortcutSpeedReset": {
     "message": "Reset Speed"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "Blocked channel"
+  },
+  "cropTitle": {
+    "message": "Crop video"
+  },
+  "cropRemove": {
+    "message": "Show the whole video"
+  },
+  "cropSelectHint": {
+    "message": "Drag over the video to choose the area to keep · Esc cancels"
+  },
+  "masterToggle": {
+    "message": "Turn the extension on or off"
+  },
+  "offNotice": {
+    "message": "Paused — YouTube runs untouched until you turn it back on."
+  },
+  "searchPlaceholder": {
+    "message": "Search settings"
+  },
+  "searchEmpty": {
+    "message": "No setting matches your search."
+  },
+  "back": {
+    "message": "Back"
+  },
+  "moreInfo": {
+    "message": "More info"
+  },
+  "setShortcut": {
+    "message": "Set a shortcut"
+  },
+  "clearShortcut": {
+    "message": "Clear shortcut"
+  },
+  "filtersEnabled": {
+    "message": "Apply Colour Settings"
+  },
+  "sectionChannels": {
+    "message": "Channels"
+  },
+  "statusOn": {
+    "message": "On"
+  },
+  "statusOff": {
+    "message": "Off"
+  },
+  "statusOriginal": {
+    "message": "Original"
+  },
+  "statusInverted": {
+    "message": "Inverted"
+  },
+  "statusSpeed": {
+    "message": "{n}× default"
+  },
+  "statusCount": {
+    "message": "{n} on"
+  },
+  "statusDefault": {
+    "message": "Default"
+  },
+  "statusMuting": {
+    "message": "Muting ads"
+  },
+  "statusBlocked": {
+    "message": "{n} blocked"
+  },
+  "statusNoBlocks": {
+    "message": "None blocked"
+  },
+  "introTitle1": {
+    "message": "New buttons on the player"
+  },
+  "introText1": {
+    "message": "Speed, clip and crop sit in YouTube's own control bar, next to settings."
+  },
+  "introTitle2": {
+    "message": "Block a channel in one click"
+  },
+  "introText2": {
+    "message": "Hover over a recommended video and press 🚫. Its channel's videos are covered from then on."
+  },
+  "introTitle3": {
+    "message": "Everything in one place"
+  },
+  "introText3": {
+    "message": "Open a card to change it, search for any setting, and press the keyboard icon beside a setting to give it a shortcut."
+  },
+  "introNext": {
+    "message": "Next"
+  },
+  "introDone": {
+    "message": "Get started"
+  },
+  "introSkip": {
+    "message": "Skip"
+  },
+  "hideShorts": {
+    "message": "Turn Off Shorts Completely"
+  },
+  "hideShortsHint": {
+    "message": "Removes Shorts shelves, search results, the menu entry and the channel tab. A Shorts link opens as a normal video."
+  },
+  "theme": {
+    "message": "Appearance"
+  },
+  "themeAuto": {
+    "message": "Automatic"
+  },
+  "themeLight": {
+    "message": "Light"
+  },
+  "themeDark": {
+    "message": "Dark"
+  },
+  "shortcutDecrease": {
+    "message": "Decrease"
+  },
+  "shortcutIncrease": {
+    "message": "Increase"
   }
 }

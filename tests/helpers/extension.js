@@ -132,11 +132,18 @@ export const test = base.extend({
     await use(harness);
   },
 
-  /** Opens the real popup in a tab. */
+  /**
+   * Opens the real popup in a tab. The first-run tour is marked as seen
+   * unless a test asks for it with `{ intro: true }`.
+   */
   openPopup: async ({ context, extension }, use) => {
-    await use(async () => {
+    await use(async ({ intro = false } = {}) => {
       const popup = await context.newPage();
       await popup.setViewportSize({ width: 420, height: 800 });
+      if (!intro) {
+        await popup.goto(`chrome-extension://${extension.id}/test-harness.html`);
+        await popup.evaluate(() => chrome.storage.local.set({ introSeen: true }));
+      }
       await popup.goto(`chrome-extension://${extension.id}/popup.html`);
       await popup.waitForFunction(() => document.querySelector('.lang-btn.active'));
       return popup;
@@ -145,6 +152,14 @@ export const test = base.extend({
 });
 
 export { expect };
+
+/** Opens one feature's page in the popup, through its home card. */
+export async function openPage(popup, name) {
+  const back = popup.locator('.page.open .back-btn');
+  if (await back.isVisible()) await back.click();
+  await popup.locator(`button[data-page="${name}"]`).click();
+  await expect(popup.locator(`#page-${name}`)).toBeVisible();
+}
 
 /** Waits until the content script has injected its stylesheet. */
 export async function waitForExtension(page) {

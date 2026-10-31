@@ -2,7 +2,7 @@
  * Open Youtube Settings — core content script
  *
  * Colour filters (brightness / blue light / invert), layout controls, side-panel
- * exceptions, video cropping, playback-speed plumbing and channel redirects.
+ * exceptions, playback-speed plumbing and channel redirects.
  * Cross-browser: Chrome MV3 and Firefox.
  */
 
@@ -11,6 +11,8 @@ globalThis.browser = globalThis.browser || globalThis.chrome;
 
 /** Every persisted setting with its default. Also used to coerce incoming values. */
 const DEFAULTS = {
+  // Master switch: while off the page is left exactly as YouTube draws it
+  enabled: true,
   // Colour
   brightness: 100,
   bluelight: 0,
@@ -19,6 +21,7 @@ const DEFAULTS = {
   applyToShorts: true,
   // Layout
   hideHome: false,
+  hideShorts: false,
   hideSidebar: false,
   hidePlaylist: true,
   allowPanels: true,
@@ -35,9 +38,8 @@ const DEFAULTS = {
   speedPersist: false,
   lastSpeed: 1,
   // Advanced
-  cropEnabled: false,
-  cropZoom: 100,
-  cropOffsetY: 0,
+  cropTool: true,
+  cropFit: 'contain',
   clipEnabled: true,
   channelAutoVideos: false,
   // Channels hidden from recommendations: { name, handle, id } each
@@ -56,6 +58,8 @@ const S = Object.assign({}, DEFAULTS);
  */
 const STRING_FALLBACK = {
   focusMode: 'Focus mode active — the home feed is hidden.',
+  brightness: 'Brightness',
+  blueLightFilter: 'Blue Light Filter',
   speedLabel: 'Speed',
   speedReset: 'Reset',
   clipTitle: 'Clip',
@@ -69,7 +73,10 @@ const STRING_FALLBACK = {
   clipFailed: 'Clip capture failed',
   clipNoRange: 'Set a start and end point first',
   blockChannel: 'Block channel',
-  blockedChannel: 'Blocked channel'
+  blockedChannel: 'Blocked channel',
+  cropTitle: 'Crop video',
+  cropRemove: 'Show the whole video',
+  cropSelectHint: 'Drag over the video to choose the area to keep · Esc cancels'
 };
 const STR = Object.assign({}, STRING_FALLBACK);
 
@@ -181,6 +188,7 @@ function coerce(key, value) {
   if (key === 'shortcuts') {
     return value && typeof value === 'object' ? value : {};
   }
+  if (key === 'cropFit') return value === 'cover' ? 'cover' : 'contain';
   return value;
 }
 
@@ -288,21 +296,6 @@ function filterCss() {
   return parts.join('\n');
 }
 
-function cropCss() {
-  if (!S.cropEnabled) return '';
-  const zoom = clamp(S.cropZoom, 100, 250) / 100;
-  const offsetY = clamp(S.cropOffsetY, -50, 50);
-
-  // Crop by scaling the frame inside a clipped container, so banners and
-  // letterbox bars are pushed out of view and the subject fills more space.
-  return [
-    '#movie_player .html5-video-container{overflow:hidden!important;}',
-    `#movie_player video.html5-main-video{` +
-      `transform:scale(${zoom.toFixed(3)}) translateY(${offsetY}%)!important;` +
-      `transform-origin:center center!important;}`
-  ].join('\n');
-}
-
 function homeFeedCss() {
   if (!S.hideHome) return '';
   return `
@@ -319,6 +312,36 @@ function homeFeedCss() {
       color: #aaa;
     }
   `;
+}
+
+/**
+ * Shorts, everywhere they show up: home and channel shelves, the search
+ * grid, single results, the guide entries and the channel tab. The guide
+ * and the tab carry the word "Shorts" in every YouTube language.
+ */
+function shortsCss() {
+  if (!S.hideShorts) return '';
+  return `
+    ytd-rich-shelf-renderer[is-shorts],
+    ytd-rich-section-renderer:has(ytd-rich-shelf-renderer[is-shorts]),
+    ytd-reel-shelf-renderer,
+    grid-shelf-view-model:has(ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2),
+    ytd-rich-item-renderer:has(ytm-shorts-lockup-view-model, ytm-shorts-lockup-view-model-v2),
+    ytd-video-renderer:has(a[href^="/shorts/"]),
+    ytd-grid-video-renderer:has(a[href^="/shorts/"]),
+    ytd-guide-entry-renderer:has(a[title="Shorts"]),
+    ytd-mini-guide-entry-renderer[aria-label="Shorts"],
+    yt-tab-shape[tab-title="Shorts"] {
+      display: none !important;
+    }
+  `;
+}
+
+/** With Shorts off, a Shorts link opens the same video in the normal player. */
+function maybeLeaveShorts() {
+  if (!S.enabled || !S.hideShorts) return;
+  const match = location.pathname.match(/^\/shorts\/([\w-]+)/);
+  if (match) location.replace(`${location.origin}/watch?v=${match[1]}`);
 }
 
 /* ------------------------------------------------- side column / panel state */
@@ -499,9 +522,10 @@ function playerChromeCss() {
         opacity: 1 !important;
       }
 
-      /* Keep visible while volume slider is active or settings menu is open */
+      /* Keep visible while volume slider is active or a settings or speed menu is open */
       .ytp-volume-panel-active .ytp-chrome-bottom,
-      .ytp-settings-menu-opened .ytp-chrome-bottom {
+      .ytp-settings-menu-opened .ytp-chrome-bottom,
+      .yte-menu-open .ytp-chrome-bottom {
         opacity: 1 !important;
       }
     `);
@@ -524,16 +548,11 @@ function playerChromeCss() {
 /** Rebuilds the injected stylesheet from the current settings. */
 function updateDynamicStyles() {
   ensureStyleElement();
-  styleElement.textContent = [
-    filterCss(),
-    cropCss(),
-    homeFeedCss(),
-    sidebarCss(),
-    playerChromeCss(),
-    blockCss()
-  ]
-    .filter(Boolean)
-    .join('\n');
+  styleElement.textContent = S.enabled
+    ? [filterCss(), homeFeedCss(), shortsCss(), sidebarCss(), playerChromeCss(), blockCss()]
+        .filter(Boolean)
+        .join('\n')
+    : '';
 }
 
 /* ----------------------------------------------------------------- speed */
@@ -549,6 +568,11 @@ let expectedRate = null;
  * adopted as the user's speed (and spread to other tabs) nor fought.
  */
 let speedHeld = false;
+
+/** Speed is managed only while both the extension and the controller are on. */
+function speedActive() {
+  return S.enabled && S.speedEnabled;
+}
 
 /** Range YouTube's player API accepts (see page-bridge.js). */
 const API_MIN_RATE = 0.25;
@@ -592,7 +616,7 @@ function roundRate(rate) {
  * dedicated speed extension in charge.
  */
 function applySpeed() {
-  if (!S.speedEnabled || speedHeld) return;
+  if (!speedActive() || speedHeld) return;
   try {
     const video = getMainVideo();
     if (!video) return;
@@ -606,7 +630,7 @@ function applySpeed() {
 
 /** Sets a new playback rate and remembers it as the rate in force. */
 function setSpeed(rate) {
-  if (!S.speedEnabled) return null;
+  if (!speedActive()) return null;
   const target = roundRate(clamp(rate, 0.0625, 16));
   try {
     const video = getMainVideo();
@@ -625,7 +649,7 @@ function setSpeed(rate) {
  * the user asked for that, otherwise the configured default.
  */
 function resetSpeedForNavigation() {
-  if (!S.speedEnabled || S.speedPersist) {
+  if (!speedActive() || S.speedPersist) {
     applySpeed();
     return;
   }
@@ -641,7 +665,7 @@ function resetSpeedForNavigation() {
 document.addEventListener(
   'ratechange',
   (event) => {
-    if (!S.speedEnabled || speedHeld) return;
+    if (!speedActive() || speedHeld) return;
     const video = event.target;
     // Hover previews and the hidden watch player on Shorts are not the video
     // being watched, and an ad break runs at YouTube's own rate.
@@ -705,7 +729,7 @@ const CHANNEL_ROOT = /^\/(@[^/]+|c\/[^/]+|user\/[^/]+|channel\/[^/]+)(\/featured
  * opted in. `/videos` never matches, so this cannot loop.
  */
 function maybeRedirectChannel() {
-  if (!S.channelAutoVideos) return;
+  if (!S.enabled || !S.channelAutoVideos) return;
   try {
     const match = location.pathname.match(CHANNEL_ROOT);
     if (!match) return;
@@ -767,7 +791,7 @@ function setupOptimizedObserver() {
     }
 
     videoObserver = new MutationObserver((mutations) => {
-      if (!S.hideSkipAnim) return;
+      if (!S.enabled || !S.hideSkipAnim) return;
 
       for (const mutation of mutations) {
         if (mutation.type === 'childList') {
@@ -900,30 +924,41 @@ function swallow(event) {
   event.stopPropagation();
 }
 
-function blockButton(card) {
-  let button = card.querySelector(':scope > .yte-block-btn');
-  if (!button) {
-    button = document.createElement('button');
-    button.type = 'button';
-    button.className = 'yte-block-btn';
-    button.textContent = '🚫';
-    for (const type of ['mousedown', 'pointerdown', 'dblclick']) {
-      button.addEventListener(type, swallow, true);
-    }
-    button.addEventListener(
-      'click',
-      (event) => {
-        swallow(event);
-        blockChannel(cardChannel(card));
-      },
-      true
-    );
-    card.appendChild(button);
+/** A 🚫 button that blocks the channel of `cardOf()`, the card at click time. */
+function createBlockButton(cardOf) {
+  const button = document.createElement('button');
+  button.type = 'button';
+  button.className = 'yte-block-btn';
+  button.textContent = '🚫';
+  for (const type of ['mousedown', 'pointerdown', 'dblclick']) {
+    button.addEventListener(type, swallow, true);
   }
+  button.addEventListener(
+    'click',
+    (event) => {
+      swallow(event);
+      const card = cardOf();
+      if (card) blockChannel(cardChannel(card));
+    },
+    true
+  );
+  return button;
+}
+
+function labelBlockButton(button) {
   if (button.title !== STR.blockChannel) {
     button.title = STR.blockChannel;
     button.setAttribute('aria-label', STR.blockChannel);
   }
+}
+
+function blockButton(card) {
+  let button = card.querySelector(':scope > .yte-block-btn');
+  if (!button) {
+    button = createBlockButton(() => card);
+    card.appendChild(button);
+  }
+  labelBlockButton(button);
   return button;
 }
 
@@ -973,7 +1008,7 @@ function decorateCard(card, active) {
 
 function scanCards() {
   try {
-    const active = onRecommendationPage();
+    const active = S.enabled && onRecommendationPage();
     for (const card of document.querySelectorAll(CARD_SELECTOR)) {
       if (card.parentElement && card.parentElement.closest(CARD_SELECTOR)) continue;
       decorateCard(card, active);
@@ -1003,6 +1038,71 @@ try {
   console.error('[YT-Enhancer] Error watching for recommendation cards:', error);
 }
 
+/**
+ * On home and search YouTube plays a preview over the thumbnail the pointer
+ * rests on. It is painted above the whole page column, so it hides the card's
+ * own button; it gets a button of its own, on the same spot, for the card it
+ * covers. Once that card is blocked the preview is put away so the black
+ * cover shows.
+ */
+let previewButton = null;
+let dismissedPreview = null;
+
+/** The blockable card under a preview, if any. */
+function previewedCard(preview) {
+  const r = preview.getBoundingClientRect();
+  if (!r.width || !r.height || !S.enabled || !onRecommendationPage()) return null;
+  const card = document
+    .elementsFromPoint(r.left + r.width / 2, r.top + r.height / 2)
+    .find((node) => node.classList.contains('yte-card'));
+  return card && !card.classList.contains('yte-blocked') ? card : null;
+}
+
+function syncPreviewButton(preview) {
+  if (!previewButton) {
+    previewButton = createBlockButton(() => {
+      const preview = previewButton.parentElement;
+      const card = preview && previewedCard(preview);
+      if (card) dismissPreview(preview, card);
+      return card;
+    });
+  }
+  if (previewButton.parentElement !== preview) preview.appendChild(previewButton);
+  labelBlockButton(previewButton);
+
+  const card = previewedCard(preview);
+  previewButton.hidden = !card;
+  if (!card) return;
+  // Line up with the card's button: 8px into the thumbnail, which the preview pads.
+  const outer = preview.getBoundingClientRect();
+  const inner = (preview.firstElementChild || preview).getBoundingClientRect();
+  previewButton.style.left = `${Math.round(inner.left - outer.left) + 8}px`;
+  previewButton.style.top = `${Math.round(inner.top - outer.top) + 8}px`;
+}
+
+function dismissPreview(preview, card) {
+  dismissedPreview = { preview, card };
+  preview.classList.add('yte-preview-dismissed');
+  for (const video of preview.querySelectorAll('video')) video.pause();
+}
+
+document.addEventListener(
+  'mouseover',
+  (event) => {
+    const target = event.target instanceof Element ? event.target : null;
+    if (!target) return;
+    const preview = target.closest('ytd-video-preview');
+    if (preview) {
+      syncPreviewButton(preview);
+    } else if (dismissedPreview && !dismissedPreview.card.contains(target)) {
+      // The pointer moved on; the next preview may show again.
+      dismissedPreview.preview.classList.remove('yte-preview-dismissed');
+      dismissedPreview = null;
+    }
+  },
+  true
+);
+
 function blockCss() {
   return `
     .yte-card-anchor { position: relative !important; }
@@ -1016,6 +1116,10 @@ function blockCss() {
       cursor: pointer; opacity: 0; transition: opacity 0.15s ease;
     }
     .yte-card:hover > .yte-block-btn, .yte-block-btn:focus-visible { opacity: 1; }
+    /* The preview's own button: above the video, below the masthead. */
+    ytd-video-preview > .yte-block-btn { z-index: 1; }
+    ytd-video-preview:hover > .yte-block-btn { opacity: 1; }
+    .yte-preview-dismissed { visibility: hidden !important; }
     .yte-block-btn:hover { background: #cc0000; }
     .yte-blocked > .yte-block-btn { display: none; }
     .yte-block-overlay {
@@ -1043,7 +1147,7 @@ let adObservedPlayer = null;
 function syncAdMute() {
   const player = document.querySelector('#movie_player');
   if (!player) return;
-  const want = S.muteAds && player.classList.contains('ad-showing');
+  const want = S.enabled && S.muteAds && player.classList.contains('ad-showing');
   // Repeating the mute request is harmless (the bridge mutes once per break)
   // and covers a player whose API was not ready the first time.
   if (want || adMuteRequested) {
@@ -1070,6 +1174,7 @@ function setupAdObserver() {
 
 /** Re-applies everything that depends on the current settings and DOM. */
 function refreshAll() {
+  maybeLeaveShorts();
   readSideState();
   markSideColumn();
   updateDynamicStyles();
@@ -1149,27 +1254,53 @@ function formatKeyCombo(e) {
 /** Toggles that simply flip a boolean setting and persist it. */
 const TOGGLE_ACTIONS = {
   toggleHome: 'hideHome',
+  toggleShorts: 'hideShorts',
   toggleSidebar: 'hideSidebar',
   toggleControls: 'autoHideControls',
   togglePlayPause: 'hidePlayPause',
   toggleSkipAnim: 'hideSkipAnim',
   toggleFilters: 'filtersEnabled',
-  toggleInvert: 'invert',
-  toggleCrop: 'cropEnabled'
+  toggleInvert: 'invert'
 };
 
-/** Actions handled by the overlay script. */
+/** How far one shortcut press moves a colour setting, and its range. */
+const COLOUR_STEPS = {
+  brightness: { step: 10, min: 20, max: 150, label: () => STR.brightness },
+  bluelight: { step: 10, min: 0, max: 100, label: () => STR.blueLightFilter }
+};
+
+/**
+ * Steps brightness or the blue light filter from a shortcut. The colour
+ * settings are switched on with it, or the press would show nothing.
+ */
+function nudgeColour(key, direction) {
+  const { step, min, max, label } = COLOUR_STEPS[key];
+  const value = clamp(Math.round(Number(S[key]) + direction * step), min, max);
+  S[key] = value;
+  S.filtersEnabled = true;
+  persist({ [key]: value, filtersEnabled: true });
+  refreshAll();
+  if (YTE.api.toast) YTE.api.toast(`${label()} ${value}%`);
+}
+
+/** Actions handled by the overlay script, or stepping a setting. */
 const API_ACTIONS = {
+  brightnessUp: () => nudgeColour('brightness', 1),
+  brightnessDown: () => nudgeColour('brightness', -1),
+  bluelightUp: () => nudgeColour('bluelight', 1),
+  bluelightDown: () => nudgeColour('bluelight', -1),
   speedUp: () => YTE.api.nudgeSpeed && YTE.api.nudgeSpeed(1),
   speedDown: () => YTE.api.nudgeSpeed && YTE.api.nudgeSpeed(-1),
   speedReset: () => YTE.api.resetSpeed && YTE.api.resetSpeed(),
   clipToggle: () => YTE.api.toggleClipBar && YTE.api.toggleClipBar(),
   clipMarkIn: () => YTE.api.markClipIn && YTE.api.markClipIn(),
   clipMarkOut: () => YTE.api.markClipOut && YTE.api.markClipOut(),
-  clipSave: () => YTE.api.saveClip && YTE.api.saveClip()
+  clipSave: () => YTE.api.saveClip && YTE.api.saveClip(),
+  toggleCrop: () => YTE.api.toggleCrop && YTE.api.toggleCrop()
 };
 
 window.addEventListener('keydown', (e) => {
+  if (!S.enabled) return;
   // Ignore shortcuts while the user is typing.
   if (
     e.target.tagName === 'INPUT' ||

@@ -88,7 +88,15 @@ test('page structure the extension relies on is still there', async ({ page, har
   await openVideo(page);
   expect(await styleOf(page, '#movie_player video', 'filter')).toBe('brightness(0.8)');
   expect(await isDisplayed(page, '#secondary')).toBe(false);
-  await expect(page.locator('#movie_player #yte-osc .yte-speed')).toHaveCount(1);
+  // The speed and clip buttons sit in the control bar, just before settings.
+  expect(
+    await page.evaluate(() => {
+      const settings = document.querySelector('#movie_player .ytp-right-controls .ytp-settings-button');
+      return [settings.previousElementSibling.classList.contains('yte-ctl-clip'),
+        settings.previousElementSibling.previousElementSibling.classList.contains('yte-ctl-speed')];
+    })
+  ).toEqual([true, true]);
+  await expect(page.locator('.yte-ctl-speed')).toHaveText(/^\d\.\d\d×$/);
   expect(
     await page.evaluate(() =>
       document.querySelectorAll('ytd-engagement-panel-section-list-renderer[target-id]').length
@@ -202,4 +210,33 @@ test('channel blocking reads real cards and covers them without moving anything'
     }).length
   );
   expect(leaks).toBe(0);
+});
+
+test('YouTube’s hover preview in search carries a working block button', async ({ page, harness }) => {
+  await page.goto('https://www.youtube.com/results?search_query=lofi+music');
+  await passConsent(page);
+  await page.waitForSelector('ytd-video-renderer.yte-card > .yte-block-btn');
+
+  const card = page.locator('ytd-video-renderer.yte-card').first();
+  const box = await card.locator('a#thumbnail').boundingBox();
+  await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  const preview = page.locator('ytd-video-preview').first();
+  await expect(preview).toBeVisible({ timeout: 10000 });
+  await page.waitForTimeout(1500);
+
+  // Same spot as the card's own button, which the preview covers.
+  const button = preview.locator('> .yte-block-btn');
+  const spot = await card.locator('> .yte-block-btn').boundingBox();
+  await page.mouse.move(spot.x + spot.width / 2, spot.y + spot.height / 2);
+  await expect(button).toHaveCSS('opacity', '1');
+  expect(await button.boundingBox()).toEqual(spot);
+  await button.click();
+
+  await expect(card.locator('> .yte-block-overlay')).toBeVisible();
+  expect((await harness.get(['blockedChannels'])).blockedChannels).toHaveLength(1);
+  const topmost = await card.locator('a#thumbnail').evaluate((node) => {
+    const r = node.getBoundingClientRect();
+    return document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2).className;
+  });
+  expect(topmost).toBe('yte-block-overlay');
 });

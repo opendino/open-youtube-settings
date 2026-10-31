@@ -32,9 +32,6 @@
   "resetDefaults": {
     "message": "Restablecer Valores"
   },
-  "tabSettings": {
-    "message": "Ajustes"
-  },
   "tabShortcuts": {
     "message": "Atajos"
   },
@@ -53,20 +50,11 @@
   "modalConfirm": {
     "message": "Actualizar"
   },
-  "shortcutToggleFilters": {
-    "message": "Alternar Filtros"
-  },
-  "shortcutNotSet": {
-    "message": "Asignar"
-  },
   "shortcutRecording": {
     "message": "Presiona..."
   },
   "tabSpeed": {
     "message": "Velocidad"
-  },
-  "tabAdvanced": {
-    "message": "Avanzado"
   },
   "sectionColor": {
     "message": "Color"
@@ -79,9 +67,6 @@
   },
   "sectionClip": {
     "message": "Herramienta de clips"
-  },
-  "sectionNavigation": {
-    "message": "Navegación"
   },
   "invertColors": {
     "message": "Invertir colores"
@@ -108,7 +93,7 @@
     "message": "Desactívalo para dejar la velocidad de reproducción a YouTube o a otra extensión. Mientras está apagado no se toca nada."
   },
   "speedOverlay": {
-    "message": "Mostrar chip en el reproductor"
+    "message": "Mostrar velocidad en los controles del reproductor"
   },
   "speedDefault": {
     "message": "Velocidad predeterminada"
@@ -120,19 +105,25 @@
     "message": "Mantener la velocidad entre vídeos"
   },
   "speedPresetHint": {
-    "message": "Los ajustes rápidos fijan la velocidad predeterminada. Los pasos finos están en el chip del reproductor y en los atajos."
+    "message": "Los ajustes rápidos fijan la velocidad predeterminada. Los pasos finos están en el botón de velocidad de los controles del reproductor y en los atajos."
   },
   "cropEnabled": {
     "message": "Recortar vídeo"
   },
+  "cropTool": {
+    "message": "Herramienta de recorte"
+  },
   "cropHint": {
-    "message": "Amplía más allá de los banners incrustados y las bandas negras para que el sujeto ocupe más espacio."
+    "message": "Añade un botón de recorte a los controles del reproductor. Arrastra sobre el vídeo para elegir la zona que quieres conservar; ocupará el reproductor mientras el vídeo sigue reproduciéndose. Vuelve a pulsar el botón para ver el vídeo completo. El recorte termina con el vídeo."
   },
-  "cropZoom": {
-    "message": "Zoom"
+  "cropFit": {
+    "message": "Si la forma de la zona no coincide con el reproductor"
   },
-  "cropOffsetY": {
-    "message": "Desplazamiento vertical"
+  "cropFitContain": {
+    "message": "Mantener proporción, mostrar todo"
+  },
+  "cropFitCover": {
+    "message": "Mantener proporción, llenar el reproductor"
   },
   "clipEnabled": {
     "message": "Herramienta de clips"
@@ -145,12 +136,6 @@
   },
   "channelAutoVideosHint": {
     "message": "Los enlaces de canal van directamente a la pestaña Vídeos en lugar de la página de inicio del canal."
-  },
-  "shortcutSpeedUp": {
-    "message": "Acelerar"
-  },
-  "shortcutSpeedDown": {
-    "message": "Ralentizar"
   },
   "shortcutSpeedReset": {
     "message": "Restablecer velocidad"
@@ -229,5 +214,125 @@
   },
   "blockedChannel": {
     "message": "Canal bloqueado"
+  },
+  "cropTitle": {
+    "message": "Recortar vídeo"
+  },
+  "cropRemove": {
+    "message": "Mostrar el vídeo completo"
+  },
+  "cropSelectHint": {
+    "message": "Arrastra sobre el vídeo para elegir la zona que quieres conservar · Esc cancela"
+  },
+  "masterToggle": {
+    "message": "Activar o desactivar la extensión"
+  },
+  "offNotice": {
+    "message": "En pausa: YouTube funciona sin cambios hasta que la vuelvas a activar."
+  },
+  "searchPlaceholder": {
+    "message": "Buscar ajustes"
+  },
+  "searchEmpty": {
+    "message": "Ningún ajuste coincide con tu búsqueda."
+  },
+  "back": {
+    "message": "Atrás"
+  },
+  "moreInfo": {
+    "message": "Más información"
+  },
+  "setShortcut": {
+    "message": "Asignar atajo"
+  },
+  "clearShortcut": {
+    "message": "Borrar atajo"
+  },
+  "filtersEnabled": {
+    "message": "Aplicar ajustes de color"
+  },
+  "sectionChannels": {
+    "message": "Canales"
+  },
+  "statusOn": {
+    "message": "Activado"
+  },
+  "statusOff": {
+    "message": "Desactivado"
+  },
+  "statusOriginal": {
+    "message": "Original"
+  },
+  "statusInverted": {
+    "message": "Invertido"
+  },
+  "statusSpeed": {
+    "message": "{n}× por defecto"
+  },
+  "statusCount": {
+    "message": "{n} activos"
+  },
+  "statusDefault": {
+    "message": "Predeterminado"
+  },
+  "statusMuting": {
+    "message": "Anuncios silenciados"
+  },
+  "statusBlocked": {
+    "message": "{n} bloqueados"
+  },
+  "statusNoBlocks": {
+    "message": "Ninguno bloqueado"
+  },
+  "introTitle1": {
+    "message": "Botones nuevos en el reproductor"
+  },
+  "introText1": {
+    "message": "Velocidad, clip y recorte están en la barra de controles de YouTube, junto a la configuración."
+  },
+  "introTitle2": {
+    "message": "Bloquea un canal con un clic"
+  },
+  "introText2": {
+    "message": "Pasa el ratón sobre un vídeo recomendado y pulsa 🚫. A partir de entonces se cubren los vídeos de ese canal."
+  },
+  "introTitle3": {
+    "message": "Todo en un solo lugar"
+  },
+  "introText3": {
+    "message": "Abre una tarjeta para cambiarla, busca cualquier ajuste y pulsa el icono del teclado junto a un ajuste para asignarle un atajo."
+  },
+  "introNext": {
+    "message": "Siguiente"
+  },
+  "introDone": {
+    "message": "Empezar"
+  },
+  "introSkip": {
+    "message": "Omitir"
+  },
+  "hideShorts": {
+    "message": "Desactivar Shorts por completo"
+  },
+  "hideShortsHint": {
+    "message": "Quita los estantes de Shorts, los resultados de búsqueda, la entrada del menú y la pestaña del canal. Un enlace de Shorts se abre como vídeo normal."
+  },
+  "theme": {
+    "message": "Apariencia"
+  },
+  "themeAuto": {
+    "message": "Automático"
+  },
+  "themeLight": {
+    "message": "Claro"
+  },
+  "themeDark": {
+    "message": "Oscuro"
+  },
+  "shortcutDecrease": {
+    "message": "Reducir"
+  },
+  "shortcutIncrease": {
+    "message": "Aumentar"
   }
 }
