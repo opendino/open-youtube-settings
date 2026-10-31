@@ -220,12 +220,21 @@
   `;
 
   /** Crop marks, in the line weight of YouTube's own control icons. */
-  const CROP_ICON =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 15h2V7c0-1.1-.9-2-2-2H9v2h8v8zM7 17V1H5v4H1v2h4v10c0 1.1.9 2 2 2h10v4h2v-4h4v-2H7z"/></svg>';
+  const CROP_ICON = 'M17 15h2V7c0-1.1-.9-2-2-2H9v2h8v8zM7 17V1H5v4H1v2h4v10c0 1.1.9 2 2 2h10v4h2v-4h4v-2H7z';
 
   /** Scissors, in the line weight of YouTube's own control icons. */
-  const CLIP_ICON =
-    '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3h-3z"/></svg>';
+  const CLIP_ICON = 'M9.64 7.64c.23-.5.36-1.05.36-1.64 0-2.21-1.79-4-4-4S2 3.79 2 6s1.79 4 4 4c.59 0 1.14-.13 1.64-.36L10 12l-2.36 2.36C7.14 14.13 6.59 14 6 14c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4c0-.59-.13-1.14-.36-1.64L12 14l7 7h3v-1L9.64 7.64zM6 8c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm0 12c-1.1 0-2-.89-2-2s.9-2 2-2 2 .89 2 2-.9 2-2 2zm6-7.5c-.28 0-.5-.22-.5-.5s.22-.5.5-.5.5.22.5.5-.22.5-.5.5zM19 3l-6 6 2 2 7-7V3h-3z';
+
+  /** A control-bar icon built from path data (no HTML parsing on the page). */
+  function svgIcon(d) {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    path.setAttribute('d', d);
+    svg.append(path);
+    return svg;
+  }
 
   let root = null;
   let speedButton = null;
@@ -313,14 +322,14 @@
 
     clipButton = document.createElement('button');
     clipButton.className = 'ytp-button yte-ctl yte-ctl-clip';
-    clipButton.innerHTML = CLIP_ICON;
+    clipButton.append(svgIcon(CLIP_ICON));
     clipButton.setAttribute('aria-pressed', 'false');
     clipButton.addEventListener('click', () => YTE.api.toggleClipBar());
     isolate(clipButton);
 
     cropButton = document.createElement('button');
     cropButton.className = 'ytp-button yte-ctl yte-ctl-crop';
-    cropButton.innerHTML = CROP_ICON;
+    cropButton.append(svgIcon(CROP_ICON));
     cropButton.setAttribute('aria-pressed', 'false');
     cropButton.addEventListener('click', () => YTE.api.toggleCrop());
     isolate(cropButton);
