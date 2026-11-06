@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Open Youtube 设置"
+  },
+  "appDesc": {
+    "message": "YouTube 播放速度、色彩滤镜、画面裁剪、片段剪辑、关闭 Shorts 和屏蔽频道，直接在播放器中完成。"
+  },
+  "brightness": {
+    "message": "亮度"
+  },
+  "blueLightFilter": {
+    "message": "蓝光过滤"
+  },
+  "hideHomeFeed": {
+    "message": "隐藏首页推荐"
+  },
+  "hideSidebar": {
+    "message": "隐藏侧边栏"
+  },
+  "hidePlaylist": {
+    "message": "隐藏播放列表"
+  },
+  "autoHideControls": {
+    "message": "自动隐藏控件"
+  },
+  "hidePlayPauseAnim": {
+    "message": "隐藏播放/暂停动画"
+  },
+  "hideSkipAnim": {
+    "message": "隐藏快进动画"
+  },
+  "resetDefaults": {
+    "message": "恢复默认"
+  },
+  "tabShortcuts": {
+    "message": "快捷键"
+  },
+  "tabLanguage": {
+    "message": "语言"
+  },
+  "modalTitle": {
+    "message": "需要刷新"
+  },
+  "modalDesc": {
+    "message": "需要刷新 YouTube 页面才能隐藏快进动画。现在刷新吗？"
+  },
+  "modalCancel": {
+    "message": "取消"
+  },
+  "modalConfirm": {
+    "message": "立即刷新"
+  },
+  "shortcutRecording": {
+    "message": "请按键..."
+  },
+  "tabSpeed": {
+    "message": "速度"
+  },
+  "sectionColor": {
+    "message": "色彩"
+  },
+  "sectionLayout": {
+    "message": "布局"
+  },
+  "sectionCrop": {
+    "message": "视频裁剪"
+  },
+  "sectionClip": {
+    "message": "片段工具"
+  },
+  "invertColors": {
+    "message": "反转颜色"
+  },
+  "invertHint": {
+    "message": "把明亮的白板课程变成深色画面，同时保持色彩易于辨认。"
+  },
+  "applyToShorts": {
+    "message": "应用于 Shorts"
+  },
+  "originalColors": {
+    "message": "原始颜色"
+  },
+  "allowPanels": {
+    "message": "允许侧边面板"
+  },
+  "allowPanelsHint": {
+    "message": "章节、字幕文稿和 AI 面板在你需要时仍会打开，并在下一个视频时自动关闭。"
+  },
+  "speedEnabled": {
+    "message": "速度控制"
+  },
+  "speedEnabledHint": {
+    "message": "关闭后，播放速度交还给 YouTube 或其他速度扩展。关闭期间不会做任何更改。"
+  },
+  "speedOverlay": {
+    "message": "在播放器控件中显示速度"
+  },
+  "speedDefault": {
+    "message": "默认速度"
+  },
+  "speedStep": {
+    "message": "步长"
+  },
+  "speedPersist": {
+    "message": "在视频之间保持速度"
+  },
+  "speedPresetHint": {
+    "message": "预设用于设置默认速度。细微调整可通过播放器中的速度按钮和快捷键完成。"
+  },
+  "cropEnabled": {
+    "message": "裁剪视频"
+  },
+  "cropTool": {
+    "message": "裁剪工具"
+  },
+  "cropHint": {
+    "message": "在播放器控件中添加裁剪按钮。在视频上拖动选择要保留的区域，视频继续播放时该区域会填满播放器。再次点击按钮即可查看完整视频。视频结束时裁剪随之结束。"
+  },
+  "cropFit": {
+    "message": "当区域形状与播放器不同时"
+  },
+  "cropFitContain": {
+    "message": "保持比例，完整显示"
+  },
+  "cropFitCover": {
+    "message": "保持比例，填满播放器"
+  },
+  "clipEnabled": {
+    "message": "片段工具"
+  },
+  "clipHint": {
+    "message": "在播放器上打开片段栏。标记开始和结束后保存，该片段会从你的播放中实时录制，并下载为视频文件。"
+  },
+  "channelAutoVideos": {
+    "message": "在“视频”标签页打开频道"
+  },
+  "channelAutoVideosHint": {
+    "message": "频道链接直接打开“视频”标签页，而不是频道首页。"
+  },
+  "shortcutSpeedReset": {
+    "message": "重置速度"
+  },
+  "shortcutClipToggle": {
+    "message": "片段栏"
+  },
+  "shortcutClipIn": {
+    "message": "设置片段开始"
+  },
+  "shortcutClipOut": {
+    "message": "设置片段结束"
+  },
+  "shortcutClipSave": {
+    "message": "保存片段"
+  },
+  "focusMode": {
+    "message": "专注模式已开启：首页推荐已隐藏。"
+  },
+  "speedLabel": {
+    "message": "速度"
+  },
+  "speedReset": {
+    "message": "重置"
+  },
+  "clipTitle": {
+    "message": "片段"
+  },
+  "clipSetIn": {
+    "message": "开始"
+  },
+  "clipSetOut": {
+    "message": "结束"
+  },
+  "clipPreview": {
+    "message": "预览"
+  },
+  "clipSave": {
+    "message": "保存"
+  },
+  "clipClose": {
+    "message": "关闭"
+  },
+  "clipRecording": {
+    "message": "录制中…"
+  },
+  "clipSaved": {
+    "message": "片段已保存"
+  },
+  "clipFailed": {
+    "message": "片段录制失败"
+  },
+  "clipNoRange": {
+    "message": "请先设置开始和结束点"
+  },
+  "sectionAds": {
+    "message": "广告"
+  },
+  "muteAds": {
+    "message": "广告静音"
+  },
+  "muteAdsHint": {
+    "message": "广告静音播放；广告一结束，声音就会以原来的音量恢复。"
+  },
+  "sectionBlocked": {
+    "message": "已屏蔽的频道"
+  },
+  "blockedEmpty": {
+    "message": "还没有屏蔽任何频道。将鼠标悬停在推荐视频上并按 🚫 即可屏蔽其频道。"
+  },
+  "unblockChannel": {
+    "message": "取消屏蔽"
+  },
+  "blockChannel": {
+    "message": "屏蔽频道"
+  },
+  "blockedChannel": {
+    "message": "已屏蔽的频道"
+  },
+  "cropTitle": {
+    "message": "裁剪视频"
+  },
+  "cropRemove": {
+    "message": "显示完整视频"
+  },
+  "cropSelectHint": {
+    "message": "在视频上拖动选择要保留的区域 · 按 Esc 取消"
+  },
+  "masterToggle": {
+    "message": "开启或关闭扩展"
+  },
+  "offNotice": {
+    "message": "已暂停：在你重新开启前，YouTube 保持原样运行。"
+  },
+  "searchPlaceholder": {
+    "message": "搜索设置"
+  },
+  "searchEmpty": {
+    "message": "没有符合搜索的设置。"
+  },
+  "back": {
+    "message": "返回"
+  },
+  "moreInfo": {
+    "message": "更多信息"
+  },
+  "setShortcut": {
+    "message": "设置快捷键"
+  },
+  "clearShortcut": {
+    "message": "清除快捷键"
+  },
+  "filtersEnabled": {
+    "message": "应用色彩设置"
+  },
+  "sectionChannels": {
+    "message": "频道"
+  },
+  "statusOn": {
+    "message": "开"
+  },
+  "statusOff": {
+    "message": "关"
+  },
+  "statusOriginal": {
+    "message": "原始"
+  },
+  "statusInverted": {
+    "message": "已反转"
+  },
+  "statusSpeed": {
+    "message": "默认 {n}×"
+  },
+  "statusCount": {
+    "message": "已开启 {n} 项"
+  },
+  "statusDefault": {
+    "message": "默认"
+  },
+  "statusMuting": {
+    "message": "广告静音中"
+  },
+  "statusBlocked": {
+    "message": "已屏蔽 {n} 个"
+  },
+  "statusNoBlocks": {
+    "message": "未屏蔽"
+  },
+  "introTitle1": {
+    "message": "播放器上的新按钮"
+  },
+  "introText1": {
+    "message": "速度、片段和裁剪按钮位于 YouTube 控制栏中，就在设置旁边。"
+  },
+  "introTitle2": {
+    "message": "一键屏蔽频道"
+  },
+  "introText2": {
+    "message": "将鼠标悬停在推荐视频上并按 🚫，此后该频道的视频都会被遮住。"
+  },
+  "introTitle3": {
+    "message": "一切尽在一处"
+  },
+  "introText3": {
+    "message": "打开卡片即可修改，可搜索任何设置，点击设置旁的键盘图标即可为它设置快捷键。"
+  },
+  "introNext": {
+    "message": "下一步"
+  },
+  "introDone": {
+    "message": "开始使用"
+  },
+  "introSkip": {
+    "message": "跳过"
+  },
+  "hideShorts": {
+    "message": "完全关闭 Shorts"
+  },
+  "hideShortsHint": {
+    "message": "移除 Shorts 板块、搜索结果、菜单项和频道标签页。Shorts 链接会作为普通视频打开。"
+  },
+  "theme": {
+    "message": "外观"
+  },
+  "themeAuto": {
+    "message": "自动"
+  },
+  "themeLight": {
+    "message": "浅色"
+  },
+  "themeDark": {
+    "message": "深色"
+  },
+  "shortcutDecrease": {
+    "message": "减小"
+  },
+  "shortcutIncrease": {
+    "message": "增大"
+  }
+}

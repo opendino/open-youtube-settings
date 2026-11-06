@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Cài đặt Open Youtube"
+  },
+  "appDesc": {
+    "message": "Tốc độ, bộ lọc màu, cắt khung hình, clip, tắt Shorts và chặn kênh cho YouTube — ngay trong trình phát."
+  },
+  "brightness": {
+    "message": "Độ sáng"
+  },
+  "blueLightFilter": {
+    "message": "Bộ lọc ánh sáng xanh"
+  },
+  "hideHomeFeed": {
+    "message": "Ẩn nguồn cấp trang chủ"
+  },
+  "hideSidebar": {
+    "message": "Ẩn thanh bên"
+  },
+  "hidePlaylist": {
+    "message": "Ẩn danh sách phát"
+  },
+  "autoHideControls": {
+    "message": "Tự động ẩn điều khiển"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Ẩn hiệu ứng phát/tạm dừng"
+  },
+  "hideSkipAnim": {
+    "message": "Ẩn hiệu ứng tua"
+  },
+  "resetDefaults": {
+    "message": "Khôi phục mặc định"
+  },
+  "tabShortcuts": {
+    "message": "Phím tắt"
+  },
+  "tabLanguage": {
+    "message": "Ngôn ngữ"
+  },
+  "modalTitle": {
+    "message": "Cần tải lại"
+  },
+  "modalDesc": {
+    "message": "Cần tải lại trang YouTube để ẩn hiệu ứng tua. Tải lại ngay?"
+  },
+  "modalCancel": {
+    "message": "Hủy"
+  },
+  "modalConfirm": {
+    "message": "Tải lại ngay"
+  },
+  "shortcutRecording": {
+    "message": "Nhấn một phím..."
+  },
+  "tabSpeed": {
+    "message": "Tốc độ"
+  },
+  "sectionColor": {
+    "message": "Màu sắc"
+  },
+  "sectionLayout": {
+    "message": "Bố cục"
+  },
+  "sectionCrop": {
+    "message": "Cắt khung video"
+  },
+  "sectionClip": {
+    "message": "Công cụ clip"
+  },
+  "invertColors": {
+    "message": "Đảo màu"
+  },
+  "invertHint": {
+    "message": "Biến bài giảng bảng trắng sáng thành nền tối mà vẫn giữ màu sắc dễ đọc."
+  },
+  "applyToShorts": {
+    "message": "Áp dụng cho Shorts"
+  },
+  "originalColors": {
+    "message": "Màu gốc"
+  },
+  "allowPanels": {
+    "message": "Cho phép bảng bên"
+  },
+  "allowPanelsHint": {
+    "message": "Chương, bản chép lời và bảng AI vẫn mở khi bạn cần và đóng lại ở video tiếp theo."
+  },
+  "speedEnabled": {
+    "message": "Điều khiển tốc độ"
+  },
+  "speedEnabledHint": {
+    "message": "Tắt để giao lại tốc độ phát cho YouTube hoặc tiện ích khác. Khi tắt, không có gì bị thay đổi."
+  },
+  "speedOverlay": {
+    "message": "Hiện tốc độ trong điều khiển trình phát"
+  },
+  "speedDefault": {
+    "message": "Tốc độ mặc định"
+  },
+  "speedStep": {
+    "message": "Bước nhảy"
+  },
+  "speedPersist": {
+    "message": "Giữ tốc độ giữa các video"
+  },
+  "speedPresetHint": {
+    "message": "Các mức có sẵn đặt tốc độ mặc định. Bước nhỏ nằm ở nút tốc độ trong trình phát và trong phím tắt."
+  },
+  "cropEnabled": {
+    "message": "Cắt khung video"
+  },
+  "cropTool": {
+    "message": "Công cụ cắt khung"
+  },
+  "cropHint": {
+    "message": "Thêm nút cắt khung vào điều khiển trình phát. Kéo trên video để chọn vùng muốn giữ; vùng đó lấp đầy trình phát trong khi video vẫn chạy. Nhấn nút lần nữa để xem toàn bộ video. Việc cắt khung kết thúc khi video kết thúc."
+  },
+  "cropFit": {
+    "message": "Khi hình dạng vùng khác với trình phát"
+  },
+  "cropFitContain": {
+    "message": "Giữ tỷ lệ, hiện toàn bộ"
+  },
+  "cropFitCover": {
+    "message": "Giữ tỷ lệ, lấp đầy trình phát"
+  },
+  "clipEnabled": {
+    "message": "Công cụ clip"
+  },
+  "clipHint": {
+    "message": "Mở thanh clip trên trình phát. Đánh dấu điểm đầu và cuối rồi lưu — đoạn đó được ghi theo thời gian thực từ lượt phát của bạn và tải xuống dưới dạng tệp video."
+  },
+  "channelAutoVideos": {
+    "message": "Mở kênh ở tab Video"
+  },
+  "channelAutoVideosHint": {
+    "message": "Liên kết kênh mở thẳng tab Video thay vì trang chủ của kênh."
+  },
+  "shortcutSpeedReset": {
+    "message": "Đặt lại tốc độ"
+  },
+  "shortcutClipToggle": {
+    "message": "Thanh clip"
+  },
+  "shortcutClipIn": {
+    "message": "Đặt điểm đầu clip"
+  },
+  "shortcutClipOut": {
+    "message": "Đặt điểm cuối clip"
+  },
+  "shortcutClipSave": {
+    "message": "Lưu clip"
+  },
+  "focusMode": {
+    "message": "Chế độ tập trung đang bật — nguồn cấp trang chủ bị ẩn."
+  },
+  "speedLabel": {
+    "message": "Tốc độ"
+  },
+  "speedReset": {
+    "message": "Đặt lại"
+  },
+  "clipTitle": {
+    "message": "Clip"
+  },
+  "clipSetIn": {
+    "message": "Đầu"
+  },
+  "clipSetOut": {
+    "message": "Cuối"
+  },
+  "clipPreview": {
+    "message": "Xem trước"
+  },
+  "clipSave": {
+    "message": "Lưu"
+  },
+  "clipClose": {
+    "message": "Đóng"
+  },
+  "clipRecording": {
+    "message": "Đang ghi…"
+  },
+  "clipSaved": {
+    "message": "Đã lưu clip"
+  },
+  "clipFailed": {
+    "message": "Ghi clip thất bại"
+  },
+  "clipNoRange": {
+    "message": "Hãy đặt điểm đầu và cuối trước"
+  },
+  "sectionAds": {
+    "message": "Quảng cáo"
+  },
+  "muteAds": {
+    "message": "Tắt tiếng quảng cáo"
+  },
+  "muteAdsHint": {
+    "message": "Quảng cáo phát không tiếng; âm thanh trở lại với cùng mức âm lượng ngay khi quảng cáo kết thúc."
+  },
+  "sectionBlocked": {
+    "message": "Kênh đã chặn"
+  },
+  "blockedEmpty": {
+    "message": "Chưa chặn kênh nào. Di chuột lên một video đề xuất và nhấn 🚫 để chặn kênh của video đó."
+  },
+  "unblockChannel": {
+    "message": "Bỏ chặn"
+  },
+  "blockChannel": {
+    "message": "Chặn kênh"
+  },
+  "blockedChannel": {
+    "message": "Kênh đã bị chặn"
+  },
+  "cropTitle": {
+    "message": "Cắt khung video"
+  },
+  "cropRemove": {
+    "message": "Hiện toàn bộ video"
+  },
+  "cropSelectHint": {
+    "message": "Kéo trên video để chọn vùng muốn giữ · Esc để hủy"
+  },
+  "masterToggle": {
+    "message": "Bật hoặc tắt tiện ích"
+  },
+  "offNotice": {
+    "message": "Đã tạm dừng — YouTube chạy nguyên bản cho đến khi bạn bật lại."
+  },
+  "searchPlaceholder": {
+    "message": "Tìm cài đặt"
+  },
+  "searchEmpty": {
+    "message": "Không có cài đặt nào phù hợp."
+  },
+  "back": {
+    "message": "Quay lại"
+  },
+  "moreInfo": {
+    "message": "Thêm thông tin"
+  },
+  "setShortcut": {
+    "message": "Đặt phím tắt"
+  },
+  "clearShortcut": {
+    "message": "Xóa phím tắt"
+  },
+  "filtersEnabled": {
+    "message": "Áp dụng cài đặt màu"
+  },
+  "sectionChannels": {
+    "message": "Kênh"
+  },
+  "statusOn": {
+    "message": "Bật"
+  },
+  "statusOff": {
+    "message": "Tắt"
+  },
+  "statusOriginal": {
+    "message": "Gốc"
+  },
+  "statusInverted": {
+    "message": "Đảo màu"
+  },
+  "statusSpeed": {
+    "message": "Mặc định {n}×"
+  },
+  "statusCount": {
+    "message": "{n} đang bật"
+  },
+  "statusDefault": {
+    "message": "Mặc định"
+  },
+  "statusMuting": {
+    "message": "Đang tắt tiếng quảng cáo"
+  },
+  "statusBlocked": {
+    "message": "Đã chặn {n}"
+  },
+  "statusNoBlocks": {
+    "message": "Chưa chặn kênh nào"
+  },
+  "introTitle1": {
+    "message": "Nút mới trên trình phát"
+  },
+  "introText1": {
+    "message": "Tốc độ, clip và cắt khung nằm trên thanh điều khiển của YouTube, cạnh phần cài đặt."
+  },
+  "introTitle2": {
+    "message": "Chặn kênh chỉ với một cú nhấp"
+  },
+  "introText2": {
+    "message": "Di chuột lên một video đề xuất và nhấn 🚫. Từ đó, video của kênh này sẽ bị che."
+  },
+  "introTitle3": {
+    "message": "Mọi thứ ở một nơi"
+  },
+  "introText3": {
+    "message": "Mở một thẻ để thay đổi, tìm bất kỳ cài đặt nào, và nhấn biểu tượng bàn phím cạnh một cài đặt để gán phím tắt."
+  },
+  "introNext": {
+    "message": "Tiếp"
+  },
+  "introDone": {
+    "message": "Bắt đầu"
+  },
+  "introSkip": {
+    "message": "Bỏ qua"
+  },
+  "hideShorts": {
+    "message": "Tắt hoàn toàn Shorts"
+  },
+  "hideShortsHint": {
+    "message": "Xóa kệ Shorts, kết quả tìm kiếm, mục menu và tab kênh. Liên kết Shorts mở như video thường."
+  },
+  "theme": {
+    "message": "Giao diện"
+  },
+  "themeAuto": {
+    "message": "Tự động"
+  },
+  "themeLight": {
+    "message": "Sáng"
+  },
+  "themeDark": {
+    "message": "Tối"
+  },
+  "shortcutDecrease": {
+    "message": "Giảm"
+  },
+  "shortcutIncrease": {
+    "message": "Tăng"
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Impostazioni Open Youtube"
+  },
+  "appDesc": {
+    "message": "Velocità, filtri colore, ritaglio, clip, Shorts disattivati e canali bloccati su YouTube, direttamente nel player."
+  },
+  "brightness": {
+    "message": "Luminosità"
+  },
+  "blueLightFilter": {
+    "message": "Filtro luce blu"
+  },
+  "hideHomeFeed": {
+    "message": "Nascondi feed della home"
+  },
+  "hideSidebar": {
+    "message": "Nascondi barra laterale"
+  },
+  "hidePlaylist": {
+    "message": "Nascondi playlist"
+  },
+  "autoHideControls": {
+    "message": "Nascondi controlli automaticamente"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Nascondi animazione play/pausa"
+  },
+  "hideSkipAnim": {
+    "message": "Nascondi animazione di salto"
+  },
+  "resetDefaults": {
+    "message": "Ripristina predefiniti"
+  },
+  "tabShortcuts": {
+    "message": "Scorciatoie"
+  },
+  "tabLanguage": {
+    "message": "Lingua"
+  },
+  "modalTitle": {
+    "message": "Aggiornamento necessario"
+  },
+  "modalDesc": {
+    "message": "La pagina di YouTube va aggiornata per nascondere l'animazione di salto. Aggiornare ora?"
+  },
+  "modalCancel": {
+    "message": "Annulla"
+  },
+  "modalConfirm": {
+    "message": "Aggiorna ora"
+  },
+  "shortcutRecording": {
+    "message": "Premi un tasto..."
+  },
+  "tabSpeed": {
+    "message": "Velocità"
+  },
+  "sectionColor": {
+    "message": "Colore"
+  },
+  "sectionLayout": {
+    "message": "Layout"
+  },
+  "sectionCrop": {
+    "message": "Ritaglio video"
+  },
+  "sectionClip": {
+    "message": "Strumento clip"
+  },
+  "invertColors": {
+    "message": "Inverti colori"
+  },
+  "invertHint": {
+    "message": "Trasforma una lezione su lavagna bianca in una scura, mantenendo i colori leggibili."
+  },
+  "applyToShorts": {
+    "message": "Applica agli Shorts"
+  },
+  "originalColors": {
+    "message": "Colori originali"
+  },
+  "allowPanels": {
+    "message": "Consenti pannelli laterali"
+  },
+  "allowPanelsHint": {
+    "message": "Capitoli, trascrizione e pannello IA si aprono ancora quando li richiedi e si richiudono al video successivo."
+  },
+  "speedEnabled": {
+    "message": "Controllo velocità"
+  },
+  "speedEnabledHint": {
+    "message": "Disattivalo per lasciare la velocità di riproduzione a YouTube o a un'altra estensione. Mentre è spento non viene toccato nulla."
+  },
+  "speedOverlay": {
+    "message": "Mostra velocità nei controlli del player"
+  },
+  "speedDefault": {
+    "message": "Velocità predefinita"
+  },
+  "speedStep": {
+    "message": "Ampiezza del passo"
+  },
+  "speedPersist": {
+    "message": "Mantieni la velocità tra i video"
+  },
+  "speedPresetHint": {
+    "message": "Le velocità rapide impostano quella predefinita. I passi fini sono nel pulsante della velocità del player e nelle scorciatoie."
+  },
+  "cropEnabled": {
+    "message": "Ritaglia video"
+  },
+  "cropTool": {
+    "message": "Strumento di ritaglio"
+  },
+  "cropHint": {
+    "message": "Aggiunge un pulsante di ritaglio ai controlli del player. Trascina sul video per scegliere l'area da tenere; riempie il player mentre il video continua. Premi di nuovo il pulsante per vedere tutto il video. Il ritaglio termina con il video."
+  },
+  "cropFit": {
+    "message": "Quando la forma dell'area è diversa dal player"
+  },
+  "cropFitContain": {
+    "message": "Mantieni le proporzioni, mostra tutto"
+  },
+  "cropFitCover": {
+    "message": "Mantieni le proporzioni, riempi il player"
+  },
+  "clipEnabled": {
+    "message": "Strumento clip"
+  },
+  "clipHint": {
+    "message": "Apre una barra delle clip sul player. Segna inizio e fine, poi salva: l'intervallo viene registrato in tempo reale dalla tua riproduzione e scaricato come file video."
+  },
+  "channelAutoVideos": {
+    "message": "Apri i canali sui Video"
+  },
+  "channelAutoVideosHint": {
+    "message": "I link ai canali aprono direttamente la scheda Video invece della home del canale."
+  },
+  "shortcutSpeedReset": {
+    "message": "Ripristina velocità"
+  },
+  "shortcutClipToggle": {
+    "message": "Barra delle clip"
+  },
+  "shortcutClipIn": {
+    "message": "Imposta inizio clip"
+  },
+  "shortcutClipOut": {
+    "message": "Imposta fine clip"
+  },
+  "shortcutClipSave": {
+    "message": "Salva clip"
+  },
+  "focusMode": {
+    "message": "Modalità concentrazione attiva: il feed della home è nascosto."
+  },
+  "speedLabel": {
+    "message": "Velocità"
+  },
+  "speedReset": {
+    "message": "Ripristina"
+  },
+  "clipTitle": {
+    "message": "Clip"
+  },
+  "clipSetIn": {
+    "message": "Inizio"
+  },
+  "clipSetOut": {
+    "message": "Fine"
+  },
+  "clipPreview": {
+    "message": "Anteprima"
+  },
+  "clipSave": {
+    "message": "Salva"
+  },
+  "clipClose": {
+    "message": "Chiudi"
+  },
+  "clipRecording": {
+    "message": "Registrazione…"
+  },
+  "clipSaved": {
+    "message": "Clip salvata"
+  },
+  "clipFailed": {
+    "message": "Acquisizione della clip non riuscita"
+  },
+  "clipNoRange": {
+    "message": "Imposta prima un inizio e una fine"
+  },
+  "sectionAds": {
+    "message": "Annunci"
+  },
+  "muteAds": {
+    "message": "Silenzia annunci"
+  },
+  "muteAdsHint": {
+    "message": "Gli annunci vengono riprodotti senza audio; il suono torna allo stesso volume appena l'annuncio finisce."
+  },
+  "sectionBlocked": {
+    "message": "Canali bloccati"
+  },
+  "blockedEmpty": {
+    "message": "Nessun canale bloccato. Passa il mouse su un video consigliato e premi 🚫 per bloccarne il canale."
+  },
+  "unblockChannel": {
+    "message": "Sblocca"
+  },
+  "blockChannel": {
+    "message": "Blocca canale"
+  },
+  "blockedChannel": {
+    "message": "Canale bloccato"
+  },
+  "cropTitle": {
+    "message": "Ritaglia video"
+  },
+  "cropRemove": {
+    "message": "Mostra tutto il video"
+  },
+  "cropSelectHint": {
+    "message": "Trascina sul video per scegliere l'area da tenere · Esc annulla"
+  },
+  "masterToggle": {
+    "message": "Attiva o disattiva l'estensione"
+  },
+  "offNotice": {
+    "message": "In pausa: YouTube funziona senza modifiche finché non la riattivi."
+  },
+  "searchPlaceholder": {
+    "message": "Cerca nelle impostazioni"
+  },
+  "searchEmpty": {
+    "message": "Nessuna impostazione corrisponde alla ricerca."
+  },
+  "back": {
+    "message": "Indietro"
+  },
+  "moreInfo": {
+    "message": "Maggiori informazioni"
+  },
+  "setShortcut": {
+    "message": "Imposta una scorciatoia"
+  },
+  "clearShortcut": {
+    "message": "Rimuovi scorciatoia"
+  },
+  "filtersEnabled": {
+    "message": "Applica impostazioni colore"
+  },
+  "sectionChannels": {
+    "message": "Canali"
+  },
+  "statusOn": {
+    "message": "Attivo"
+  },
+  "statusOff": {
+    "message": "Disattivato"
+  },
+  "statusOriginal": {
+    "message": "Originale"
+  },
+  "statusInverted": {
+    "message": "Invertiti"
+  },
+  "statusSpeed": {
+    "message": "{n}× predefinita"
+  },
+  "statusCount": {
+    "message": "{n} attive"
+  },
+  "statusDefault": {
+    "message": "Predefinito"
+  },
+  "statusMuting": {
+    "message": "Annunci silenziati"
+  },
+  "statusBlocked": {
+    "message": "{n} bloccati"
+  },
+  "statusNoBlocks": {
+    "message": "Nessun blocco"
+  },
+  "introTitle1": {
+    "message": "Nuovi pulsanti nel player"
+  },
+  "introText1": {
+    "message": "Velocità, clip e ritaglio sono nella barra dei controlli di YouTube, accanto alle impostazioni."
+  },
+  "introTitle2": {
+    "message": "Blocca un canale con un clic"
+  },
+  "introText2": {
+    "message": "Passa il mouse su un video consigliato e premi 🚫. Da quel momento i video del canale vengono coperti."
+  },
+  "introTitle3": {
+    "message": "Tutto in un unico posto"
+  },
+  "introText3": {
+    "message": "Apri una scheda per modificarla, cerca qualsiasi impostazione e premi l'icona della tastiera accanto a un'impostazione per assegnarle una scorciatoia."
+  },
+  "introNext": {
+    "message": "Avanti"
+  },
+  "introDone": {
+    "message": "Inizia"
+  },
+  "introSkip": {
+    "message": "Salta"
+  },
+  "hideShorts": {
+    "message": "Disattiva completamente gli Shorts"
+  },
+  "hideShortsHint": {
+    "message": "Rimuove gli scaffali di Shorts, i risultati di ricerca, la voce di menu e la scheda del canale. Un link a uno Short si apre come video normale."
+  },
+  "theme": {
+    "message": "Aspetto"
+  },
+  "themeAuto": {
+    "message": "Automatico"
+  },
+  "themeLight": {
+    "message": "Chiaro"
+  },
+  "themeDark": {
+    "message": "Scuro"
+  },
+  "shortcutDecrease": {
+    "message": "Diminuisci"
+  },
+  "shortcutIncrease": {
+    "message": "Aumenta"
+  }
+}

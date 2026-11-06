@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "إعدادات Open Youtube"
+  },
+  "appDesc": {
+    "message": "السرعة وفلاتر الألوان وقص الفيديو والمقاطع وإيقاف Shorts وحظر القنوات في YouTube، مباشرة داخل المشغل."
+  },
+  "brightness": {
+    "message": "السطوع"
+  },
+  "blueLightFilter": {
+    "message": "فلتر الضوء الأزرق"
+  },
+  "hideHomeFeed": {
+    "message": "إخفاء خلاصة الصفحة الرئيسية"
+  },
+  "hideSidebar": {
+    "message": "إخفاء الشريط الجانبي"
+  },
+  "hidePlaylist": {
+    "message": "إخفاء قائمة التشغيل"
+  },
+  "autoHideControls": {
+    "message": "إخفاء عناصر التحكم تلقائيًا"
+  },
+  "hidePlayPauseAnim": {
+    "message": "إخفاء حركة التشغيل/الإيقاف المؤقت"
+  },
+  "hideSkipAnim": {
+    "message": "إخفاء حركة التخطي"
+  },
+  "resetDefaults": {
+    "message": "استعادة الإعدادات الافتراضية"
+  },
+  "tabShortcuts": {
+    "message": "الاختصارات"
+  },
+  "tabLanguage": {
+    "message": "اللغة"
+  },
+  "modalTitle": {
+    "message": "يلزم إعادة التحميل"
+  },
+  "modalDesc": {
+    "message": "يجب إعادة تحميل صفحة YouTube لإخفاء حركة التخطي. هل تريد إعادة التحميل الآن؟"
+  },
+  "modalCancel": {
+    "message": "إلغاء"
+  },
+  "modalConfirm": {
+    "message": "إعادة التحميل الآن"
+  },
+  "shortcutRecording": {
+    "message": "اضغط على مفتاح..."
+  },
+  "tabSpeed": {
+    "message": "السرعة"
+  },
+  "sectionColor": {
+    "message": "الألوان"
+  },
+  "sectionLayout": {
+    "message": "التخطيط"
+  },
+  "sectionCrop": {
+    "message": "قص الفيديو"
+  },
+  "sectionClip": {
+    "message": "أداة المقاطع"
+  },
+  "invertColors": {
+    "message": "عكس الألوان"
+  },
+  "invertHint": {
+    "message": "يحوّل محاضرة السبورة البيضاء الساطعة إلى عرض داكن مع إبقاء الألوان واضحة."
+  },
+  "applyToShorts": {
+    "message": "التطبيق على Shorts"
+  },
+  "originalColors": {
+    "message": "الألوان الأصلية"
+  },
+  "allowPanels": {
+    "message": "السماح باللوحات الجانبية"
+  },
+  "allowPanelsHint": {
+    "message": "تظل الفصول والنص المكتوب ولوحة الذكاء الاصطناعي تُفتح عند طلبها، ثم تُغلق مع الفيديو التالي."
+  },
+  "speedEnabled": {
+    "message": "التحكم في السرعة"
+  },
+  "speedEnabledHint": {
+    "message": "أوقفه لترك سرعة التشغيل لـ YouTube أو لإضافة أخرى. لا يتم تغيير أي شيء أثناء إيقافه."
+  },
+  "speedOverlay": {
+    "message": "إظهار السرعة في عناصر تحكم المشغل"
+  },
+  "speedDefault": {
+    "message": "السرعة الافتراضية"
+  },
+  "speedStep": {
+    "message": "حجم الخطوة"
+  },
+  "speedPersist": {
+    "message": "الاحتفاظ بالسرعة بين الفيديوهات"
+  },
+  "speedPresetHint": {
+    "message": "القيم الجاهزة تحدد السرعة الافتراضية. الخطوات الدقيقة موجودة في زر السرعة داخل المشغل وفي الاختصارات."
+  },
+  "cropEnabled": {
+    "message": "قص الفيديو"
+  },
+  "cropTool": {
+    "message": "أداة القص"
+  },
+  "cropHint": {
+    "message": "يضيف زر قص إلى عناصر تحكم المشغل. اسحب فوق الفيديو لاختيار الجزء الذي تريد إبقاءه؛ فيملأ المشغل بينما يستمر تشغيل الفيديو. اضغط الزر مرة أخرى لرؤية الفيديو كاملًا. ينتهي القص بانتهاء الفيديو."
+  },
+  "cropFit": {
+    "message": "عندما يختلف شكل المنطقة عن المشغل"
+  },
+  "cropFitContain": {
+    "message": "الحفاظ على النسبة وإظهار الكل"
+  },
+  "cropFitCover": {
+    "message": "الحفاظ على النسبة وملء المشغل"
+  },
+  "clipEnabled": {
+    "message": "أداة المقاطع"
+  },
+  "clipHint": {
+    "message": "يفتح شريط المقاطع على المشغل. حدّد البداية والنهاية ثم احفظ — يُسجَّل المقطع مباشرة من تشغيلك ويُنزَّل كملف فيديو."
+  },
+  "channelAutoVideos": {
+    "message": "فتح القنوات على تبويب الفيديوهات"
+  },
+  "channelAutoVideosHint": {
+    "message": "تنتقل روابط القنوات مباشرة إلى تبويب الفيديوهات بدلًا من الصفحة الرئيسية للقناة."
+  },
+  "shortcutSpeedReset": {
+    "message": "إعادة ضبط السرعة"
+  },
+  "shortcutClipToggle": {
+    "message": "شريط المقاطع"
+  },
+  "shortcutClipIn": {
+    "message": "تحديد بداية المقطع"
+  },
+  "shortcutClipOut": {
+    "message": "تحديد نهاية المقطع"
+  },
+  "shortcutClipSave": {
+    "message": "حفظ المقطع"
+  },
+  "focusMode": {
+    "message": "وضع التركيز مفعّل — خلاصة الصفحة الرئيسية مخفية."
+  },
+  "speedLabel": {
+    "message": "السرعة"
+  },
+  "speedReset": {
+    "message": "إعادة ضبط"
+  },
+  "clipTitle": {
+    "message": "مقطع"
+  },
+  "clipSetIn": {
+    "message": "البداية"
+  },
+  "clipSetOut": {
+    "message": "النهاية"
+  },
+  "clipPreview": {
+    "message": "معاينة"
+  },
+  "clipSave": {
+    "message": "حفظ"
+  },
+  "clipClose": {
+    "message": "إغلاق"
+  },
+  "clipRecording": {
+    "message": "جارٍ التسجيل…"
+  },
+  "clipSaved": {
+    "message": "تم حفظ المقطع"
+  },
+  "clipFailed": {
+    "message": "فشل تسجيل المقطع"
+  },
+  "clipNoRange": {
+    "message": "حدّد نقطة البداية والنهاية أولًا"
+  },
+  "sectionAds": {
+    "message": "الإعلانات"
+  },
+  "muteAds": {
+    "message": "كتم صوت الإعلانات"
+  },
+  "muteAdsHint": {
+    "message": "تُعرض الإعلانات بلا صوت، ويعود الصوت بالمستوى نفسه فور انتهاء الإعلان."
+  },
+  "sectionBlocked": {
+    "message": "القنوات المحظورة"
+  },
+  "blockedEmpty": {
+    "message": "لا توجد قنوات محظورة بعد. مرّر المؤشر فوق فيديو مقترح واضغط 🚫 لحظر قناته."
+  },
+  "unblockChannel": {
+    "message": "إلغاء الحظر"
+  },
+  "blockChannel": {
+    "message": "حظر القناة"
+  },
+  "blockedChannel": {
+    "message": "قناة محظورة"
+  },
+  "cropTitle": {
+    "message": "قص الفيديو"
+  },
+  "cropRemove": {
+    "message": "إظهار الفيديو كاملًا"
+  },
+  "cropSelectHint": {
+    "message": "اسحب فوق الفيديو لاختيار الجزء الذي تريد إبقاءه · Esc للإلغاء"
+  },
+  "masterToggle": {
+    "message": "تشغيل الإضافة أو إيقافها"
+  },
+  "offNotice": {
+    "message": "متوقفة مؤقتًا — يعمل YouTube كما هو حتى تعيد تشغيلها."
+  },
+  "searchPlaceholder": {
+    "message": "البحث في الإعدادات"
+  },
+  "searchEmpty": {
+    "message": "لا يوجد إعداد يطابق البحث."
+  },
+  "back": {
+    "message": "رجوع"
+  },
+  "moreInfo": {
+    "message": "مزيد من المعلومات"
+  },
+  "setShortcut": {
+    "message": "تعيين اختصار"
+  },
+  "clearShortcut": {
+    "message": "مسح الاختصار"
+  },
+  "filtersEnabled": {
+    "message": "تطبيق إعدادات الألوان"
+  },
+  "sectionChannels": {
+    "message": "القنوات"
+  },
+  "statusOn": {
+    "message": "مفعّل"
+  },
+  "statusOff": {
+    "message": "متوقف"
+  },
+  "statusOriginal": {
+    "message": "أصلية"
+  },
+  "statusInverted": {
+    "message": "معكوسة"
+  },
+  "statusSpeed": {
+    "message": "{n}× افتراضيًا"
+  },
+  "statusCount": {
+    "message": "{n} مفعّلة"
+  },
+  "statusDefault": {
+    "message": "افتراضي"
+  },
+  "statusMuting": {
+    "message": "الإعلانات مكتومة"
+  },
+  "statusBlocked": {
+    "message": "{n} محظورة"
+  },
+  "statusNoBlocks": {
+    "message": "لا يوجد حظر"
+  },
+  "introTitle1": {
+    "message": "أزرار جديدة في المشغل"
+  },
+  "introText1": {
+    "message": "السرعة والمقاطع والقص موجودة في شريط تحكم YouTube بجانب الإعدادات."
+  },
+  "introTitle2": {
+    "message": "احظر قناة بنقرة واحدة"
+  },
+  "introText2": {
+    "message": "مرّر المؤشر فوق فيديو مقترح واضغط 🚫. من الآن فصاعدًا تُغطّى فيديوهات تلك القناة."
+  },
+  "introTitle3": {
+    "message": "كل شيء في مكان واحد"
+  },
+  "introText3": {
+    "message": "افتح بطاقة لتغييرها، وابحث عن أي إعداد، واضغط أيقونة لوحة المفاتيح بجانب الإعداد لتعيين اختصار له."
+  },
+  "introNext": {
+    "message": "التالي"
+  },
+  "introDone": {
+    "message": "ابدأ"
+  },
+  "introSkip": {
+    "message": "تخطٍّ"
+  },
+  "hideShorts": {
+    "message": "إيقاف Shorts بالكامل"
+  },
+  "hideShortsHint": {
+    "message": "يزيل رفوف Shorts ونتائج البحث وعنصر القائمة وتبويب القناة. يُفتح رابط Shorts كفيديو عادي."
+  },
+  "theme": {
+    "message": "المظهر"
+  },
+  "themeAuto": {
+    "message": "تلقائي"
+  },
+  "themeLight": {
+    "message": "فاتح"
+  },
+  "themeDark": {
+    "message": "داكن"
+  },
+  "shortcutDecrease": {
+    "message": "تقليل"
+  },
+  "shortcutIncrease": {
+    "message": "زيادة"
+  }
+}

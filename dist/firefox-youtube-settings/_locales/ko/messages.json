@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Open Youtube 설정"
+  },
+  "appDesc": {
+    "message": "YouTube 재생 속도, 색상 필터, 화면 자르기, 클립, Shorts 끄기, 채널 차단을 플레이어에서 바로."
+  },
+  "brightness": {
+    "message": "밝기"
+  },
+  "blueLightFilter": {
+    "message": "블루라이트 필터"
+  },
+  "hideHomeFeed": {
+    "message": "홈 피드 숨기기"
+  },
+  "hideSidebar": {
+    "message": "사이드바 숨기기"
+  },
+  "hidePlaylist": {
+    "message": "재생목록 숨기기"
+  },
+  "autoHideControls": {
+    "message": "컨트롤 자동 숨기기"
+  },
+  "hidePlayPauseAnim": {
+    "message": "재생/일시정지 애니메이션 숨기기"
+  },
+  "hideSkipAnim": {
+    "message": "건너뛰기 애니메이션 숨기기"
+  },
+  "resetDefaults": {
+    "message": "기본값으로 재설정"
+  },
+  "tabShortcuts": {
+    "message": "단축키"
+  },
+  "tabLanguage": {
+    "message": "언어"
+  },
+  "modalTitle": {
+    "message": "새로고침 필요"
+  },
+  "modalDesc": {
+    "message": "건너뛰기 애니메이션을 숨기려면 YouTube 페이지를 새로고침해야 합니다. 지금 새로고침할까요?"
+  },
+  "modalCancel": {
+    "message": "취소"
+  },
+  "modalConfirm": {
+    "message": "지금 새로고침"
+  },
+  "shortcutRecording": {
+    "message": "키를 누르세요..."
+  },
+  "tabSpeed": {
+    "message": "속도"
+  },
+  "sectionColor": {
+    "message": "색상"
+  },
+  "sectionLayout": {
+    "message": "레이아웃"
+  },
+  "sectionCrop": {
+    "message": "동영상 자르기"
+  },
+  "sectionClip": {
+    "message": "클립 도구"
+  },
+  "invertColors": {
+    "message": "색상 반전"
+  },
+  "invertHint": {
+    "message": "밝은 화이트보드 강의를 어둡게 바꾸면서도 색상은 알아보기 쉽게 유지합니다."
+  },
+  "applyToShorts": {
+    "message": "Shorts에도 적용"
+  },
+  "originalColors": {
+    "message": "원래 색상"
+  },
+  "allowPanels": {
+    "message": "사이드 패널 허용"
+  },
+  "allowPanelsHint": {
+    "message": "챕터, 스크립트, AI 패널은 요청하면 그대로 열리고 다음 동영상에서 다시 닫힙니다."
+  },
+  "speedEnabled": {
+    "message": "속도 조절"
+  },
+  "speedEnabledHint": {
+    "message": "끄면 재생 속도를 YouTube나 다른 확장 프로그램에 맡깁니다. 꺼져 있는 동안에는 아무것도 바꾸지 않습니다."
+  },
+  "speedOverlay": {
+    "message": "플레이어 컨트롤에 속도 표시"
+  },
+  "speedDefault": {
+    "message": "기본 속도"
+  },
+  "speedStep": {
+    "message": "단계 크기"
+  },
+  "speedPersist": {
+    "message": "동영상 간 속도 유지"
+  },
+  "speedPresetHint": {
+    "message": "프리셋은 기본 속도를 정합니다. 세밀한 조절은 플레이어의 속도 버튼과 단축키로 할 수 있습니다."
+  },
+  "cropEnabled": {
+    "message": "동영상 자르기"
+  },
+  "cropTool": {
+    "message": "자르기 도구"
+  },
+  "cropHint": {
+    "message": "플레이어 컨트롤에 자르기 버튼을 추가합니다. 동영상 위를 드래그해 남길 영역을 고르면 동영상이 계속 재생되는 동안 그 영역이 플레이어를 채웁니다. 버튼을 다시 누르면 전체 동영상이 보입니다. 자르기는 동영상이 끝나면 해제됩니다."
+  },
+  "cropFit": {
+    "message": "영역 모양이 플레이어와 다를 때"
+  },
+  "cropFitContain": {
+    "message": "비율 유지, 전체 표시"
+  },
+  "cropFitCover": {
+    "message": "비율 유지, 플레이어 채우기"
+  },
+  "clipEnabled": {
+    "message": "클립 도구"
+  },
+  "clipHint": {
+    "message": "플레이어에 클립 바를 엽니다. 시작과 끝을 표시하고 저장하면, 그 구간이 내 재생 화면에서 실시간으로 녹화되어 동영상 파일로 다운로드됩니다."
+  },
+  "channelAutoVideos": {
+    "message": "채널을 동영상 탭으로 열기"
+  },
+  "channelAutoVideosHint": {
+    "message": "채널 링크가 채널 홈 대신 동영상 탭으로 바로 이동합니다."
+  },
+  "shortcutSpeedReset": {
+    "message": "속도 초기화"
+  },
+  "shortcutClipToggle": {
+    "message": "클립 바"
+  },
+  "shortcutClipIn": {
+    "message": "클립 시작 지정"
+  },
+  "shortcutClipOut": {
+    "message": "클립 끝 지정"
+  },
+  "shortcutClipSave": {
+    "message": "클립 저장"
+  },
+  "focusMode": {
+    "message": "집중 모드 사용 중 — 홈 피드가 숨겨졌습니다."
+  },
+  "speedLabel": {
+    "message": "속도"
+  },
+  "speedReset": {
+    "message": "초기화"
+  },
+  "clipTitle": {
+    "message": "클립"
+  },
+  "clipSetIn": {
+    "message": "시작"
+  },
+  "clipSetOut": {
+    "message": "끝"
+  },
+  "clipPreview": {
+    "message": "미리보기"
+  },
+  "clipSave": {
+    "message": "저장"
+  },
+  "clipClose": {
+    "message": "닫기"
+  },
+  "clipRecording": {
+    "message": "녹화 중…"
+  },
+  "clipSaved": {
+    "message": "클립 저장됨"
+  },
+  "clipFailed": {
+    "message": "클립 녹화 실패"
+  },
+  "clipNoRange": {
+    "message": "먼저 시작과 끝 지점을 지정하세요"
+  },
+  "sectionAds": {
+    "message": "광고"
+  },
+  "muteAds": {
+    "message": "광고 음소거"
+  },
+  "muteAdsHint": {
+    "message": "광고는 소리 없이 재생되고, 광고가 끝나면 같은 볼륨으로 소리가 돌아옵니다."
+  },
+  "sectionBlocked": {
+    "message": "차단한 채널"
+  },
+  "blockedEmpty": {
+    "message": "아직 차단한 채널이 없습니다. 추천 동영상에 마우스를 올리고 🚫를 눌러 채널을 차단하세요."
+  },
+  "unblockChannel": {
+    "message": "차단 해제"
+  },
+  "blockChannel": {
+    "message": "채널 차단"
+  },
+  "blockedChannel": {
+    "message": "차단된 채널"
+  },
+  "cropTitle": {
+    "message": "동영상 자르기"
+  },
+  "cropRemove": {
+    "message": "전체 동영상 보기"
+  },
+  "cropSelectHint": {
+    "message": "동영상 위를 드래그해 남길 영역 선택 · Esc로 취소"
+  },
+  "masterToggle": {
+    "message": "확장 프로그램 켜기 또는 끄기"
+  },
+  "offNotice": {
+    "message": "일시 중지됨 — 다시 켤 때까지 YouTube는 원래대로 작동합니다."
+  },
+  "searchPlaceholder": {
+    "message": "설정 검색"
+  },
+  "searchEmpty": {
+    "message": "검색과 일치하는 설정이 없습니다."
+  },
+  "back": {
+    "message": "뒤로"
+  },
+  "moreInfo": {
+    "message": "자세히 알아보기"
+  },
+  "setShortcut": {
+    "message": "단축키 지정"
+  },
+  "clearShortcut": {
+    "message": "단축키 지우기"
+  },
+  "filtersEnabled": {
+    "message": "색상 설정 적용"
+  },
+  "sectionChannels": {
+    "message": "채널"
+  },
+  "statusOn": {
+    "message": "켜짐"
+  },
+  "statusOff": {
+    "message": "꺼짐"
+  },
+  "statusOriginal": {
+    "message": "원본"
+  },
+  "statusInverted": {
+    "message": "반전됨"
+  },
+  "statusSpeed": {
+    "message": "기본 {n}×"
+  },
+  "statusCount": {
+    "message": "{n}개 켜짐"
+  },
+  "statusDefault": {
+    "message": "기본값"
+  },
+  "statusMuting": {
+    "message": "광고 음소거 중"
+  },
+  "statusBlocked": {
+    "message": "{n}개 차단됨"
+  },
+  "statusNoBlocks": {
+    "message": "차단 없음"
+  },
+  "introTitle1": {
+    "message": "플레이어의 새 버튼"
+  },
+  "introText1": {
+    "message": "속도, 클립, 자르기 버튼이 YouTube 컨트롤 바의 설정 옆에 있습니다."
+  },
+  "introTitle2": {
+    "message": "한 번의 클릭으로 채널 차단"
+  },
+  "introText2": {
+    "message": "추천 동영상에 마우스를 올리고 🚫를 누르세요. 그때부터 그 채널의 동영상은 가려집니다."
+  },
+  "introTitle3": {
+    "message": "모든 것을 한곳에서"
+  },
+  "introText3": {
+    "message": "카드를 열어 변경하고, 원하는 설정을 검색하고, 설정 옆의 키보드 아이콘을 눌러 단축키를 지정하세요."
+  },
+  "introNext": {
+    "message": "다음"
+  },
+  "introDone": {
+    "message": "시작하기"
+  },
+  "introSkip": {
+    "message": "건너뛰기"
+  },
+  "hideShorts": {
+    "message": "Shorts 완전히 끄기"
+  },
+  "hideShortsHint": {
+    "message": "Shorts 선반, 검색 결과, 메뉴 항목, 채널 탭을 없앱니다. Shorts 링크는 일반 동영상으로 열립니다."
+  },
+  "theme": {
+    "message": "화면 모드"
+  },
+  "themeAuto": {
+    "message": "자동"
+  },
+  "themeLight": {
+    "message": "라이트"
+  },
+  "themeDark": {
+    "message": "다크"
+  },
+  "shortcutDecrease": {
+    "message": "줄이기"
+  },
+  "shortcutIncrease": {
+    "message": "늘리기"
+  }
+}

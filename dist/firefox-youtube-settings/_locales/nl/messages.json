@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Open Youtube-instellingen"
+  },
+  "appDesc": {
+    "message": "Snelheid, kleurfilters, bijsnijden, clips, Shorts uitzetten en kanalen blokkeren voor YouTube, direct in de speler."
+  },
+  "brightness": {
+    "message": "Helderheid"
+  },
+  "blueLightFilter": {
+    "message": "Blauwlichtfilter"
+  },
+  "hideHomeFeed": {
+    "message": "Startpagina-feed verbergen"
+  },
+  "hideSidebar": {
+    "message": "Zijbalk verbergen"
+  },
+  "hidePlaylist": {
+    "message": "Afspeellijst verbergen"
+  },
+  "autoHideControls": {
+    "message": "Bediening automatisch verbergen"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Afspeel/pauze-animatie verbergen"
+  },
+  "hideSkipAnim": {
+    "message": "Spoelanimatie verbergen"
+  },
+  "resetDefaults": {
+    "message": "Standaardwaarden herstellen"
+  },
+  "tabShortcuts": {
+    "message": "Sneltoetsen"
+  },
+  "tabLanguage": {
+    "message": "Taal"
+  },
+  "modalTitle": {
+    "message": "Vernieuwen nodig"
+  },
+  "modalDesc": {
+    "message": "De YouTube-pagina moet worden vernieuwd om de spoelanimatie te verbergen. Nu vernieuwen?"
+  },
+  "modalCancel": {
+    "message": "Annuleren"
+  },
+  "modalConfirm": {
+    "message": "Nu vernieuwen"
+  },
+  "shortcutRecording": {
+    "message": "Druk op een toets..."
+  },
+  "tabSpeed": {
+    "message": "Snelheid"
+  },
+  "sectionColor": {
+    "message": "Kleur"
+  },
+  "sectionLayout": {
+    "message": "Indeling"
+  },
+  "sectionCrop": {
+    "message": "Video bijsnijden"
+  },
+  "sectionClip": {
+    "message": "Cliptool"
+  },
+  "invertColors": {
+    "message": "Kleuren omkeren"
+  },
+  "invertHint": {
+    "message": "Maakt van een lichte whiteboardles een donkere, terwijl de kleurtinten leesbaar blijven."
+  },
+  "applyToShorts": {
+    "message": "Toepassen op Shorts"
+  },
+  "originalColors": {
+    "message": "Originele kleuren"
+  },
+  "allowPanels": {
+    "message": "Zijpanelen toestaan"
+  },
+  "allowPanelsHint": {
+    "message": "Hoofdstukken, transcript en het AI-paneel openen nog steeds als je erom vraagt en sluiten weer bij de volgende video."
+  },
+  "speedEnabled": {
+    "message": "Snelheidsregeling"
+  },
+  "speedEnabledHint": {
+    "message": "Zet dit uit om de afspeelsnelheid aan YouTube of een andere extensie over te laten. Zolang het uit staat, wordt er niets aangepast."
+  },
+  "speedOverlay": {
+    "message": "Snelheid tonen in de spelerbediening"
+  },
+  "speedDefault": {
+    "message": "Standaardsnelheid"
+  },
+  "speedStep": {
+    "message": "Stapgrootte"
+  },
+  "speedPersist": {
+    "message": "Snelheid behouden tussen video's"
+  },
+  "speedPresetHint": {
+    "message": "Voorinstellingen bepalen de standaardsnelheid. Fijne stappen zitten in de snelheidsknop van de speler en in de sneltoetsen."
+  },
+  "cropEnabled": {
+    "message": "Video bijsnijden"
+  },
+  "cropTool": {
+    "message": "Bijsnijtool"
+  },
+  "cropHint": {
+    "message": "Voegt een bijsnijknop toe aan de spelerbediening. Sleep over de video om het deel te kiezen dat je wilt houden; het vult de speler terwijl de video doorspeelt. Klik nogmaals op de knop om de hele video te zien. Het bijsnijden stopt aan het einde van de video."
+  },
+  "cropFit": {
+    "message": "Als de vorm van het gebied afwijkt van de speler"
+  },
+  "cropFitContain": {
+    "message": "Verhoudingen behouden, alles tonen"
+  },
+  "cropFitCover": {
+    "message": "Verhoudingen behouden, speler vullen"
+  },
+  "clipEnabled": {
+    "message": "Cliptool"
+  },
+  "clipHint": {
+    "message": "Opent een clipbalk in de speler. Markeer een begin en einde en sla op: het fragment wordt in realtime opgenomen uit je eigen weergave en gedownload als videobestand."
+  },
+  "channelAutoVideos": {
+    "message": "Kanalen openen op Video's"
+  },
+  "channelAutoVideosHint": {
+    "message": "Kanaallinks gaan direct naar het tabblad Video's in plaats van de startpagina van het kanaal."
+  },
+  "shortcutSpeedReset": {
+    "message": "Snelheid resetten"
+  },
+  "shortcutClipToggle": {
+    "message": "Clipbalk"
+  },
+  "shortcutClipIn": {
+    "message": "Begin van clip instellen"
+  },
+  "shortcutClipOut": {
+    "message": "Einde van clip instellen"
+  },
+  "shortcutClipSave": {
+    "message": "Clip opslaan"
+  },
+  "focusMode": {
+    "message": "Focusmodus actief: de startpagina-feed is verborgen."
+  },
+  "speedLabel": {
+    "message": "Snelheid"
+  },
+  "speedReset": {
+    "message": "Resetten"
+  },
+  "clipTitle": {
+    "message": "Clip"
+  },
+  "clipSetIn": {
+    "message": "Begin"
+  },
+  "clipSetOut": {
+    "message": "Einde"
+  },
+  "clipPreview": {
+    "message": "Voorbeeld"
+  },
+  "clipSave": {
+    "message": "Opslaan"
+  },
+  "clipClose": {
+    "message": "Sluiten"
+  },
+  "clipRecording": {
+    "message": "Opnemen…"
+  },
+  "clipSaved": {
+    "message": "Clip opgeslagen"
+  },
+  "clipFailed": {
+    "message": "Clip opnemen mislukt"
+  },
+  "clipNoRange": {
+    "message": "Stel eerst een begin en einde in"
+  },
+  "sectionAds": {
+    "message": "Advertenties"
+  },
+  "muteAds": {
+    "message": "Advertenties dempen"
+  },
+  "muteAdsHint": {
+    "message": "Advertenties spelen zonder geluid; het geluid komt op hetzelfde volume terug zodra de advertentie voorbij is."
+  },
+  "sectionBlocked": {
+    "message": "Geblokkeerde kanalen"
+  },
+  "blockedEmpty": {
+    "message": "Nog geen geblokkeerde kanalen. Beweeg over een aanbevolen video en druk op 🚫 om het kanaal te blokkeren."
+  },
+  "unblockChannel": {
+    "message": "Deblokkeren"
+  },
+  "blockChannel": {
+    "message": "Kanaal blokkeren"
+  },
+  "blockedChannel": {
+    "message": "Geblokkeerd kanaal"
+  },
+  "cropTitle": {
+    "message": "Video bijsnijden"
+  },
+  "cropRemove": {
+    "message": "Hele video tonen"
+  },
+  "cropSelectHint": {
+    "message": "Sleep over de video om het deel te kiezen dat je wilt houden · Esc annuleert"
+  },
+  "masterToggle": {
+    "message": "Extensie aan- of uitzetten"
+  },
+  "offNotice": {
+    "message": "Gepauzeerd: YouTube werkt ongewijzigd tot je het weer aanzet."
+  },
+  "searchPlaceholder": {
+    "message": "Instellingen zoeken"
+  },
+  "searchEmpty": {
+    "message": "Geen instelling gevonden."
+  },
+  "back": {
+    "message": "Terug"
+  },
+  "moreInfo": {
+    "message": "Meer info"
+  },
+  "setShortcut": {
+    "message": "Sneltoets instellen"
+  },
+  "clearShortcut": {
+    "message": "Sneltoets wissen"
+  },
+  "filtersEnabled": {
+    "message": "Kleurinstellingen toepassen"
+  },
+  "sectionChannels": {
+    "message": "Kanalen"
+  },
+  "statusOn": {
+    "message": "Aan"
+  },
+  "statusOff": {
+    "message": "Uit"
+  },
+  "statusOriginal": {
+    "message": "Origineel"
+  },
+  "statusInverted": {
+    "message": "Omgekeerd"
+  },
+  "statusSpeed": {
+    "message": "{n}× standaard"
+  },
+  "statusCount": {
+    "message": "{n} aan"
+  },
+  "statusDefault": {
+    "message": "Standaard"
+  },
+  "statusMuting": {
+    "message": "Advertenties gedempt"
+  },
+  "statusBlocked": {
+    "message": "{n} geblokkeerd"
+  },
+  "statusNoBlocks": {
+    "message": "Niets geblokkeerd"
+  },
+  "introTitle1": {
+    "message": "Nieuwe knoppen in de speler"
+  },
+  "introText1": {
+    "message": "Snelheid, clips en bijsnijden zitten in de bedieningsbalk van YouTube, naast de instellingen."
+  },
+  "introTitle2": {
+    "message": "Blokkeer een kanaal met één klik"
+  },
+  "introText2": {
+    "message": "Beweeg over een aanbevolen video en druk op 🚫. Vanaf dan worden de video's van dat kanaal afgedekt."
+  },
+  "introTitle3": {
+    "message": "Alles op één plek"
+  },
+  "introText3": {
+    "message": "Open een kaart om die aan te passen, zoek naar elke instelling en druk op het toetsenbordpictogram naast een instelling om er een sneltoets aan te geven."
+  },
+  "introNext": {
+    "message": "Volgende"
+  },
+  "introDone": {
+    "message": "Aan de slag"
+  },
+  "introSkip": {
+    "message": "Overslaan"
+  },
+  "hideShorts": {
+    "message": "Shorts volledig uitzetten"
+  },
+  "hideShortsHint": {
+    "message": "Verwijdert Shorts-planken, zoekresultaten, het menu-item en het kanaaltabblad. Een Shorts-link opent als gewone video."
+  },
+  "theme": {
+    "message": "Weergave"
+  },
+  "themeAuto": {
+    "message": "Automatisch"
+  },
+  "themeLight": {
+    "message": "Licht"
+  },
+  "themeDark": {
+    "message": "Donker"
+  },
+  "shortcutDecrease": {
+    "message": "Verlagen"
+  },
+  "shortcutIncrease": {
+    "message": "Verhogen"
+  }
+}
