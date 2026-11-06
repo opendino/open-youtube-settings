@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Настройки Open Youtube"
+  },
+  "appDesc": {
+    "message": "Скорость, цветовые фильтры, обрезка, клипы, отключение Shorts и блокировка каналов на YouTube — прямо в плеере."
+  },
+  "brightness": {
+    "message": "Яркость"
+  },
+  "blueLightFilter": {
+    "message": "Фильтр синего света"
+  },
+  "hideHomeFeed": {
+    "message": "Скрыть ленту главной"
+  },
+  "hideSidebar": {
+    "message": "Скрыть боковую панель"
+  },
+  "hidePlaylist": {
+    "message": "Скрыть плейлист"
+  },
+  "autoHideControls": {
+    "message": "Автоскрытие элементов управления"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Скрыть анимацию воспроизведения/паузы"
+  },
+  "hideSkipAnim": {
+    "message": "Скрыть анимацию перемотки"
+  },
+  "resetDefaults": {
+    "message": "Сбросить настройки"
+  },
+  "tabShortcuts": {
+    "message": "Сочетания клавиш"
+  },
+  "tabLanguage": {
+    "message": "Язык"
+  },
+  "modalTitle": {
+    "message": "Нужно обновить страницу"
+  },
+  "modalDesc": {
+    "message": "Чтобы скрыть анимацию перемотки, страницу YouTube нужно обновить. Обновить сейчас?"
+  },
+  "modalCancel": {
+    "message": "Отмена"
+  },
+  "modalConfirm": {
+    "message": "Обновить"
+  },
+  "shortcutRecording": {
+    "message": "Нажмите клавишу..."
+  },
+  "tabSpeed": {
+    "message": "Скорость"
+  },
+  "sectionColor": {
+    "message": "Цвет"
+  },
+  "sectionLayout": {
+    "message": "Макет"
+  },
+  "sectionCrop": {
+    "message": "Обрезка видео"
+  },
+  "sectionClip": {
+    "message": "Клипы"
+  },
+  "invertColors": {
+    "message": "Инвертировать цвета"
+  },
+  "invertHint": {
+    "message": "Превращает светлую лекцию с белой доской в тёмную, сохраняя различимые оттенки."
+  },
+  "applyToShorts": {
+    "message": "Применять к Shorts"
+  },
+  "originalColors": {
+    "message": "Исходные цвета"
+  },
+  "allowPanels": {
+    "message": "Разрешить боковые панели"
+  },
+  "allowPanelsHint": {
+    "message": "Главы, расшифровка и панель ИИ по-прежнему открываются по запросу и закрываются на следующем видео."
+  },
+  "speedEnabled": {
+    "message": "Управление скоростью"
+  },
+  "speedEnabledHint": {
+    "message": "Выключите, чтобы скоростью воспроизведения управлял YouTube или другое расширение. Пока функция выключена, ничего не меняется."
+  },
+  "speedOverlay": {
+    "message": "Показывать скорость в плеере"
+  },
+  "speedDefault": {
+    "message": "Скорость по умолчанию"
+  },
+  "speedStep": {
+    "message": "Шаг"
+  },
+  "speedPersist": {
+    "message": "Сохранять скорость между видео"
+  },
+  "speedPresetHint": {
+    "message": "Готовые значения задают скорость по умолчанию. Мелкие шаги — на кнопке скорости в плеере и в сочетаниях клавиш."
+  },
+  "cropEnabled": {
+    "message": "Обрезка видео"
+  },
+  "cropTool": {
+    "message": "Инструмент обрезки"
+  },
+  "cropHint": {
+    "message": "Добавляет кнопку обрезки в элементы управления плеера. Выделите на видео область, которую нужно оставить: она заполнит плеер, а видео продолжит играть. Нажмите кнопку ещё раз, чтобы увидеть всё видео. Обрезка сбрасывается, когда видео заканчивается."
+  },
+  "cropFit": {
+    "message": "Если форма области отличается от плеера"
+  },
+  "cropFitContain": {
+    "message": "Сохранить пропорции, показать всё"
+  },
+  "cropFitCover": {
+    "message": "Сохранить пропорции, заполнить плеер"
+  },
+  "clipEnabled": {
+    "message": "Клипы"
+  },
+  "clipHint": {
+    "message": "Открывает панель клипов в плеере. Отметьте начало и конец и сохраните — фрагмент записывается в реальном времени из вашего воспроизведения и скачивается как видеофайл."
+  },
+  "channelAutoVideos": {
+    "message": "Открывать каналы на вкладке «Видео»"
+  },
+  "channelAutoVideosHint": {
+    "message": "Ссылки на каналы ведут сразу на вкладку «Видео», а не на главную страницу канала."
+  },
+  "shortcutSpeedReset": {
+    "message": "Сбросить скорость"
+  },
+  "shortcutClipToggle": {
+    "message": "Панель клипов"
+  },
+  "shortcutClipIn": {
+    "message": "Начало клипа"
+  },
+  "shortcutClipOut": {
+    "message": "Конец клипа"
+  },
+  "shortcutClipSave": {
+    "message": "Сохранить клип"
+  },
+  "focusMode": {
+    "message": "Режим фокуса включён — лента главной скрыта."
+  },
+  "speedLabel": {
+    "message": "Скорость"
+  },
+  "speedReset": {
+    "message": "Сброс"
+  },
+  "clipTitle": {
+    "message": "Клип"
+  },
+  "clipSetIn": {
+    "message": "Начало"
+  },
+  "clipSetOut": {
+    "message": "Конец"
+  },
+  "clipPreview": {
+    "message": "Просмотр"
+  },
+  "clipSave": {
+    "message": "Сохранить"
+  },
+  "clipClose": {
+    "message": "Закрыть"
+  },
+  "clipRecording": {
+    "message": "Запись…"
+  },
+  "clipSaved": {
+    "message": "Клип сохранён"
+  },
+  "clipFailed": {
+    "message": "Не удалось записать клип"
+  },
+  "clipNoRange": {
+    "message": "Сначала отметьте начало и конец"
+  },
+  "sectionAds": {
+    "message": "Реклама"
+  },
+  "muteAds": {
+    "message": "Без звука в рекламе"
+  },
+  "muteAdsHint": {
+    "message": "Реклама идёт без звука; звук возвращается с прежней громкостью, как только реклама заканчивается."
+  },
+  "sectionBlocked": {
+    "message": "Заблокированные каналы"
+  },
+  "blockedEmpty": {
+    "message": "Заблокированных каналов пока нет. Наведите курсор на рекомендуемое видео и нажмите 🚫, чтобы заблокировать его канал."
+  },
+  "unblockChannel": {
+    "message": "Разблокировать"
+  },
+  "blockChannel": {
+    "message": "Заблокировать канал"
+  },
+  "blockedChannel": {
+    "message": "Канал заблокирован"
+  },
+  "cropTitle": {
+    "message": "Обрезать видео"
+  },
+  "cropRemove": {
+    "message": "Показать всё видео"
+  },
+  "cropSelectHint": {
+    "message": "Выделите на видео область, которую нужно оставить · Esc — отмена"
+  },
+  "masterToggle": {
+    "message": "Включить или выключить расширение"
+  },
+  "offNotice": {
+    "message": "Пауза — YouTube работает без изменений, пока вы снова не включите расширение."
+  },
+  "searchPlaceholder": {
+    "message": "Поиск настроек"
+  },
+  "searchEmpty": {
+    "message": "Ничего не найдено."
+  },
+  "back": {
+    "message": "Назад"
+  },
+  "moreInfo": {
+    "message": "Подробнее"
+  },
+  "setShortcut": {
+    "message": "Назначить сочетание клавиш"
+  },
+  "clearShortcut": {
+    "message": "Удалить сочетание клавиш"
+  },
+  "filtersEnabled": {
+    "message": "Применять настройки цвета"
+  },
+  "sectionChannels": {
+    "message": "Каналы"
+  },
+  "statusOn": {
+    "message": "Вкл."
+  },
+  "statusOff": {
+    "message": "Выкл."
+  },
+  "statusOriginal": {
+    "message": "Исходные"
+  },
+  "statusInverted": {
+    "message": "Инвертированы"
+  },
+  "statusSpeed": {
+    "message": "{n}× по умолчанию"
+  },
+  "statusCount": {
+    "message": "Включено: {n}"
+  },
+  "statusDefault": {
+    "message": "По умолчанию"
+  },
+  "statusMuting": {
+    "message": "Реклама без звука"
+  },
+  "statusBlocked": {
+    "message": "Заблокировано: {n}"
+  },
+  "statusNoBlocks": {
+    "message": "Нет блокировок"
+  },
+  "introTitle1": {
+    "message": "Новые кнопки в плеере"
+  },
+  "introText1": {
+    "message": "Скорость, клипы и обрезка находятся на панели управления YouTube, рядом с настройками."
+  },
+  "introTitle2": {
+    "message": "Блокировка канала в один клик"
+  },
+  "introText2": {
+    "message": "Наведите курсор на рекомендуемое видео и нажмите 🚫. С этого момента видео канала будут скрыты."
+  },
+  "introTitle3": {
+    "message": "Всё в одном месте"
+  },
+  "introText3": {
+    "message": "Откройте карточку, чтобы изменить её, ищите любые настройки и нажимайте значок клавиатуры рядом с настройкой, чтобы назначить сочетание клавиш."
+  },
+  "introNext": {
+    "message": "Далее"
+  },
+  "introDone": {
+    "message": "Начать"
+  },
+  "introSkip": {
+    "message": "Пропустить"
+  },
+  "hideShorts": {
+    "message": "Полностью отключить Shorts"
+  },
+  "hideShortsHint": {
+    "message": "Убирает полки Shorts, результаты поиска, пункт меню и вкладку канала. Ссылка на Shorts открывается как обычное видео."
+  },
+  "theme": {
+    "message": "Оформление"
+  },
+  "themeAuto": {
+    "message": "Автоматически"
+  },
+  "themeLight": {
+    "message": "Светлое"
+  },
+  "themeDark": {
+    "message": "Тёмное"
+  },
+  "shortcutDecrease": {
+    "message": "Уменьшить"
+  },
+  "shortcutIncrease": {
+    "message": "Увеличить"
+  }
+}

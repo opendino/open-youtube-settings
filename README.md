@@ -60,7 +60,7 @@ Brightness, a blue-light filter and colour inversion for every video, with short
 - **Search** across every setting.
 - A **keyboard shortcut** for almost every setting.
 - Light, dark or automatic appearance.
-- 8 languages: English, Türkçe, Deutsch, Español, Français, हिन्दी, 日本語, Português (Brasil).
+- 20 languages: English, Türkçe, Deutsch, Español, Français, Italiano, Português (Brasil), Nederlands, Polski, Русский, Українська, العربية, हिन्दी, Bahasa Indonesia, Tiếng Việt, ไทย, 한국어, 日本語, 简体中文, 繁體中文.
 
 ## Install
 

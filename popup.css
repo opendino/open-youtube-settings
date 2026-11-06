@@ -175,7 +175,7 @@ button { font: inherit; color: inherit; }
 .theme-menu {
   position: absolute;
   top: calc(100% + 6px);
-  right: -4px;
+  inset-inline-end: -4px;
   z-index: 20;
   min-width: 168px;
   padding: 5px;
@@ -192,7 +192,7 @@ button { font: inherit; color: inherit; }
   border: none;
   border-radius: 9px;
   background: none;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
 }
 .theme-menu button span { flex: 1; }
@@ -218,7 +218,7 @@ body.ext-off .cards { opacity: 0.45; filter: saturate(0.4); }
 }
 .search .icon {
   position: absolute;
-  left: 12px;
+  inset-inline-start: 12px;
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
@@ -230,7 +230,8 @@ body.ext-off .cards { opacity: 0.45; filter: saturate(0.4); }
 .search input {
   width: 100%;
   height: 34px;
-  padding: 0 12px 0 33px;
+  padding-block: 0;
+  padding-inline: 33px 12px;
   border-radius: 999px;
   color: var(--text);
   font: inherit;
@@ -288,7 +289,7 @@ body[data-view="search"] .page .miss { display: none; }
   min-height: 88px;
   padding: 12px;
   border-radius: 18px;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
   overflow: hidden;
   transition: transform 0.18s ease, background 0.18s ease;
@@ -355,7 +356,7 @@ body[data-view="search"] .page .miss { display: none; }
   justify-content: center;
   width: 28px;
   height: 28px;
-  margin-left: -2px;
+  margin-inline-start: -2px;
   padding: 0;
   border: 1px solid var(--rim);
   border-radius: 50%;
@@ -376,7 +377,7 @@ body[data-view="search"] .page .miss { display: none; }
 }
 .page-body > :last-child,
 .page-body > div:last-child > .row:last-child { border-bottom: none; }
-.row.sub { padding-left: 28px; }
+.row.sub { padding-inline-start: 28px; }
 .row-main {
   display: flex;
   align-items: center;
@@ -493,7 +494,7 @@ body[data-view="search"] .page .miss { display: none; }
 .toggle-slider::before {
   content: '';
   position: absolute;
-  left: 2px;
+  inset-inline-start: 2px;
   top: 2px;
   width: 18px;
   height: 18px;
@@ -508,6 +509,10 @@ input:focus-visible + .toggle-slider { box-shadow: 0 0 0 4px var(--accent-soft);
 .switch.master { width: 44px; height: 26px; }
 .switch.master .toggle-slider::before { width: 22px; height: 22px; }
 .switch.master input:checked + .toggle-slider::before { transform: translateX(18px); }
+/* Right-to-left languages: switches slide and arrows point the other way. */
+[dir="rtl"] input:checked + .toggle-slider::before { transform: translateX(-16px); }
+[dir="rtl"] .switch.master input:checked + .toggle-slider::before { transform: translateX(-18px); }
+[dir="rtl"] .back-btn .icon { transform: scaleX(-1); }
 
 /* --- sliders --- */
 .slider {

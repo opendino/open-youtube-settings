@@ -212,6 +212,27 @@ test.describe('popup home', () => {
     await expect(popup.locator('.lang-btn[data-lang="de"]')).toHaveClass(/active/);
   });
 
+  for (const [ui, lang, dir] of [
+    ['tr-TR', 'tr', 'ltr'],
+    ['zh-HK', 'zh_TW', 'ltr'],
+    ['pt-PT', 'pt_BR', 'ltr'],
+    ['ar-EG', 'ar', 'rtl'],
+    ['sv-SE', 'en', 'ltr']
+  ]) {
+    test(`with no language chosen, a ${ui} browser opens the popup in ${lang}`, async ({ context, extension, harness }) => {
+      await harness.set({ introSeen: true });
+      const popup = await context.newPage();
+      await popup.addInitScript((value) => {
+        chrome.i18n.getUILanguage = () => value;
+      }, ui);
+      await popup.goto(`chrome-extension://${extension.id}/popup.html`);
+      await expect(popup.locator(`.lang-btn[data-lang="${lang}"]`)).toHaveClass(/active/);
+      await expect(popup.locator('html')).toHaveAttribute('dir', dir);
+      // Following the browser is not a choice; nothing is saved.
+      expect((await harness.get(['language'])).language).toBeUndefined();
+    });
+  }
+
   test('search lists matching settings from every page, descriptions included', async ({ openPopup }) => {
     const popup = await openPopup();
     const search = popup.locator('#search');

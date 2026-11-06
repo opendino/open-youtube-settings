@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Налаштування Open Youtube"
+  },
+  "appDesc": {
+    "message": "Швидкість, кольорові фільтри, обрізка, кліпи, вимкнення Shorts і блокування каналів на YouTube — просто в плеєрі."
+  },
+  "brightness": {
+    "message": "Яскравість"
+  },
+  "blueLightFilter": {
+    "message": "Фільтр синього світла"
+  },
+  "hideHomeFeed": {
+    "message": "Сховати стрічку головної"
+  },
+  "hideSidebar": {
+    "message": "Сховати бічну панель"
+  },
+  "hidePlaylist": {
+    "message": "Сховати плейлист"
+  },
+  "autoHideControls": {
+    "message": "Автоприховування елементів керування"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Сховати анімацію відтворення/паузи"
+  },
+  "hideSkipAnim": {
+    "message": "Сховати анімацію перемотування"
+  },
+  "resetDefaults": {
+    "message": "Скинути налаштування"
+  },
+  "tabShortcuts": {
+    "message": "Сполучення клавіш"
+  },
+  "tabLanguage": {
+    "message": "Мова"
+  },
+  "modalTitle": {
+    "message": "Потрібно оновити сторінку"
+  },
+  "modalDesc": {
+    "message": "Щоб сховати анімацію перемотування, сторінку YouTube треба оновити. Оновити зараз?"
+  },
+  "modalCancel": {
+    "message": "Скасувати"
+  },
+  "modalConfirm": {
+    "message": "Оновити"
+  },
+  "shortcutRecording": {
+    "message": "Натисніть клавішу..."
+  },
+  "tabSpeed": {
+    "message": "Швидкість"
+  },
+  "sectionColor": {
+    "message": "Колір"
+  },
+  "sectionLayout": {
+    "message": "Макет"
+  },
+  "sectionCrop": {
+    "message": "Обрізка відео"
+  },
+  "sectionClip": {
+    "message": "Кліпи"
+  },
+  "invertColors": {
+    "message": "Інвертувати кольори"
+  },
+  "invertHint": {
+    "message": "Перетворює світлу лекцію з білою дошкою на темну, зберігаючи відтінки розбірливими."
+  },
+  "applyToShorts": {
+    "message": "Застосовувати до Shorts"
+  },
+  "originalColors": {
+    "message": "Початкові кольори"
+  },
+  "allowPanels": {
+    "message": "Дозволити бічні панелі"
+  },
+  "allowPanelsHint": {
+    "message": "Розділи, транскрипція та панель ШІ так само відкриваються на запит і закриваються на наступному відео."
+  },
+  "speedEnabled": {
+    "message": "Керування швидкістю"
+  },
+  "speedEnabledHint": {
+    "message": "Вимкніть, щоб швидкістю відтворення керував YouTube або інше розширення. Поки функцію вимкнено, нічого не змінюється."
+  },
+  "speedOverlay": {
+    "message": "Показувати швидкість у плеєрі"
+  },
+  "speedDefault": {
+    "message": "Швидкість за замовчуванням"
+  },
+  "speedStep": {
+    "message": "Крок"
+  },
+  "speedPersist": {
+    "message": "Зберігати швидкість між відео"
+  },
+  "speedPresetHint": {
+    "message": "Готові значення задають швидкість за замовчуванням. Дрібні кроки — на кнопці швидкості в плеєрі та в сполученнях клавіш."
+  },
+  "cropEnabled": {
+    "message": "Обрізка відео"
+  },
+  "cropTool": {
+    "message": "Інструмент обрізки"
+  },
+  "cropHint": {
+    "message": "Додає кнопку обрізки до елементів керування плеєра. Виділіть на відео область, яку треба залишити: вона заповнить плеєр, а відео й далі гратиме. Натисніть кнопку ще раз, щоб побачити все відео. Обрізка скидається, коли відео закінчується."
+  },
+  "cropFit": {
+    "message": "Якщо форма області відрізняється від плеєра"
+  },
+  "cropFitContain": {
+    "message": "Зберегти пропорції, показати все"
+  },
+  "cropFitCover": {
+    "message": "Зберегти пропорції, заповнити плеєр"
+  },
+  "clipEnabled": {
+    "message": "Кліпи"
+  },
+  "clipHint": {
+    "message": "Відкриває панель кліпів у плеєрі. Позначте початок і кінець та збережіть — фрагмент записується в реальному часі з вашого відтворення і завантажується як відеофайл."
+  },
+  "channelAutoVideos": {
+    "message": "Відкривати канали на вкладці «Відео»"
+  },
+  "channelAutoVideosHint": {
+    "message": "Посилання на канали ведуть одразу на вкладку «Відео», а не на головну сторінку каналу."
+  },
+  "shortcutSpeedReset": {
+    "message": "Скинути швидкість"
+  },
+  "shortcutClipToggle": {
+    "message": "Панель кліпів"
+  },
+  "shortcutClipIn": {
+    "message": "Початок кліпу"
+  },
+  "shortcutClipOut": {
+    "message": "Кінець кліпу"
+  },
+  "shortcutClipSave": {
+    "message": "Зберегти кліп"
+  },
+  "focusMode": {
+    "message": "Режим фокусу ввімкнено — стрічку головної сховано."
+  },
+  "speedLabel": {
+    "message": "Швидкість"
+  },
+  "speedReset": {
+    "message": "Скинути"
+  },
+  "clipTitle": {
+    "message": "Кліп"
+  },
+  "clipSetIn": {
+    "message": "Початок"
+  },
+  "clipSetOut": {
+    "message": "Кінець"
+  },
+  "clipPreview": {
+    "message": "Перегляд"
+  },
+  "clipSave": {
+    "message": "Зберегти"
+  },
+  "clipClose": {
+    "message": "Закрити"
+  },
+  "clipRecording": {
+    "message": "Запис…"
+  },
+  "clipSaved": {
+    "message": "Кліп збережено"
+  },
+  "clipFailed": {
+    "message": "Не вдалося записати кліп"
+  },
+  "clipNoRange": {
+    "message": "Спершу позначте початок і кінець"
+  },
+  "sectionAds": {
+    "message": "Реклама"
+  },
+  "muteAds": {
+    "message": "Вимикати звук реклами"
+  },
+  "muteAdsHint": {
+    "message": "Реклама йде без звуку; звук повертається з тією ж гучністю, щойно реклама закінчиться."
+  },
+  "sectionBlocked": {
+    "message": "Заблоковані канали"
+  },
+  "blockedEmpty": {
+    "message": "Заблокованих каналів поки немає. Наведіть курсор на рекомендоване відео й натисніть 🚫, щоб заблокувати його канал."
+  },
+  "unblockChannel": {
+    "message": "Розблокувати"
+  },
+  "blockChannel": {
+    "message": "Заблокувати канал"
+  },
+  "blockedChannel": {
+    "message": "Канал заблоковано"
+  },
+  "cropTitle": {
+    "message": "Обрізати відео"
+  },
+  "cropRemove": {
+    "message": "Показати все відео"
+  },
+  "cropSelectHint": {
+    "message": "Виділіть на відео область, яку треба залишити · Esc — скасувати"
+  },
+  "masterToggle": {
+    "message": "Увімкнути або вимкнути розширення"
+  },
+  "offNotice": {
+    "message": "Пауза — YouTube працює без змін, доки ви знову не ввімкнете розширення."
+  },
+  "searchPlaceholder": {
+    "message": "Пошук налаштувань"
+  },
+  "searchEmpty": {
+    "message": "Нічого не знайдено."
+  },
+  "back": {
+    "message": "Назад"
+  },
+  "moreInfo": {
+    "message": "Докладніше"
+  },
+  "setShortcut": {
+    "message": "Призначити сполучення клавіш"
+  },
+  "clearShortcut": {
+    "message": "Видалити сполучення клавіш"
+  },
+  "filtersEnabled": {
+    "message": "Застосовувати налаштування кольору"
+  },
+  "sectionChannels": {
+    "message": "Канали"
+  },
+  "statusOn": {
+    "message": "Увімк."
+  },
+  "statusOff": {
+    "message": "Вимк."
+  },
+  "statusOriginal": {
+    "message": "Початкові"
+  },
+  "statusInverted": {
+    "message": "Інвертовані"
+  },
+  "statusSpeed": {
+    "message": "{n}× за замовчуванням"
+  },
+  "statusCount": {
+    "message": "Увімкнено: {n}"
+  },
+  "statusDefault": {
+    "message": "За замовчуванням"
+  },
+  "statusMuting": {
+    "message": "Реклама без звуку"
+  },
+  "statusBlocked": {
+    "message": "Заблоковано: {n}"
+  },
+  "statusNoBlocks": {
+    "message": "Немає блокувань"
+  },
+  "introTitle1": {
+    "message": "Нові кнопки в плеєрі"
+  },
+  "introText1": {
+    "message": "Швидкість, кліпи й обрізка — на панелі керування YouTube, поруч із налаштуваннями."
+  },
+  "introTitle2": {
+    "message": "Блокування каналу одним кліком"
+  },
+  "introText2": {
+    "message": "Наведіть курсор на рекомендоване відео й натисніть 🚫. Відтепер відео цього каналу буде приховано."
+  },
+  "introTitle3": {
+    "message": "Усе в одному місці"
+  },
+  "introText3": {
+    "message": "Відкрийте картку, щоб змінити її, шукайте будь-які налаштування й натискайте значок клавіатури біля налаштування, щоб призначити сполучення клавіш."
+  },
+  "introNext": {
+    "message": "Далі"
+  },
+  "introDone": {
+    "message": "Почати"
+  },
+  "introSkip": {
+    "message": "Пропустити"
+  },
+  "hideShorts": {
+    "message": "Повністю вимкнути Shorts"
+  },
+  "hideShortsHint": {
+    "message": "Прибирає полиці Shorts, результати пошуку, пункт меню та вкладку каналу. Посилання на Shorts відкривається як звичайне відео."
+  },
+  "theme": {
+    "message": "Вигляд"
+  },
+  "themeAuto": {
+    "message": "Автоматично"
+  },
+  "themeLight": {
+    "message": "Світлий"
+  },
+  "themeDark": {
+    "message": "Темний"
+  },
+  "shortcutDecrease": {
+    "message": "Зменшити"
+  },
+  "shortcutIncrease": {
+    "message": "Збільшити"
+  }
+}
