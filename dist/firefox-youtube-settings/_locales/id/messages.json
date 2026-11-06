@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Pengaturan Open Youtube"
+  },
+  "appDesc": {
+    "message": "Kecepatan, filter warna, potong video, klip, mematikan Shorts dan blokir channel di YouTube, langsung di pemutar."
+  },
+  "brightness": {
+    "message": "Kecerahan"
+  },
+  "blueLightFilter": {
+    "message": "Filter Cahaya Biru"
+  },
+  "hideHomeFeed": {
+    "message": "Sembunyikan Feed Beranda"
+  },
+  "hideSidebar": {
+    "message": "Sembunyikan Sidebar"
+  },
+  "hidePlaylist": {
+    "message": "Sembunyikan Playlist"
+  },
+  "autoHideControls": {
+    "message": "Sembunyikan Kontrol Otomatis"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Sembunyikan Animasi Putar/Jeda"
+  },
+  "hideSkipAnim": {
+    "message": "Sembunyikan Animasi Lompat"
+  },
+  "resetDefaults": {
+    "message": "Kembalikan Default"
+  },
+  "tabShortcuts": {
+    "message": "Pintasan"
+  },
+  "tabLanguage": {
+    "message": "Bahasa"
+  },
+  "modalTitle": {
+    "message": "Perlu Muat Ulang"
+  },
+  "modalDesc": {
+    "message": "Halaman YouTube perlu dimuat ulang untuk menyembunyikan animasi lompat. Muat ulang sekarang?"
+  },
+  "modalCancel": {
+    "message": "Batal"
+  },
+  "modalConfirm": {
+    "message": "Muat Ulang"
+  },
+  "shortcutRecording": {
+    "message": "Tekan tombol..."
+  },
+  "tabSpeed": {
+    "message": "Kecepatan"
+  },
+  "sectionColor": {
+    "message": "Warna"
+  },
+  "sectionLayout": {
+    "message": "Tata Letak"
+  },
+  "sectionCrop": {
+    "message": "Potong Video"
+  },
+  "sectionClip": {
+    "message": "Alat Klip"
+  },
+  "invertColors": {
+    "message": "Balik Warna"
+  },
+  "invertHint": {
+    "message": "Mengubah kuliah papan tulis putih yang terang menjadi gelap tanpa membuat warnanya sulit dibaca."
+  },
+  "applyToShorts": {
+    "message": "Terapkan ke Shorts"
+  },
+  "originalColors": {
+    "message": "Warna Asli"
+  },
+  "allowPanels": {
+    "message": "Izinkan Panel Samping"
+  },
+  "allowPanelsHint": {
+    "message": "Bab, transkrip, dan panel AI tetap terbuka saat diminta, lalu tertutup lagi di video berikutnya."
+  },
+  "speedEnabled": {
+    "message": "Kontrol Kecepatan"
+  },
+  "speedEnabledHint": {
+    "message": "Matikan untuk menyerahkan kecepatan putar ke YouTube atau ekstensi lain. Selama mati, tidak ada yang diubah."
+  },
+  "speedOverlay": {
+    "message": "Tampilkan Kecepatan di Kontrol Pemutar"
+  },
+  "speedDefault": {
+    "message": "Kecepatan Default"
+  },
+  "speedStep": {
+    "message": "Ukuran Langkah"
+  },
+  "speedPersist": {
+    "message": "Pertahankan Kecepatan Antar-Video"
+  },
+  "speedPresetHint": {
+    "message": "Preset mengatur kecepatan default. Langkah halus ada di tombol kecepatan pada pemutar dan di pintasan."
+  },
+  "cropEnabled": {
+    "message": "Potong Video"
+  },
+  "cropTool": {
+    "message": "Alat Potong"
+  },
+  "cropHint": {
+    "message": "Menambahkan tombol potong ke kontrol pemutar. Seret di atas video untuk memilih area yang ingin disimpan; area itu memenuhi pemutar sementara video tetap berjalan. Klik tombol lagi untuk melihat seluruh video. Potongan berakhir saat video selesai."
+  },
+  "cropFit": {
+    "message": "Jika bentuk area berbeda dari pemutar"
+  },
+  "cropFitContain": {
+    "message": "Pertahankan proporsi, tampilkan semua"
+  },
+  "cropFitCover": {
+    "message": "Pertahankan proporsi, penuhi pemutar"
+  },
+  "clipEnabled": {
+    "message": "Alat Klip"
+  },
+  "clipHint": {
+    "message": "Membuka bilah klip di pemutar. Tandai awal dan akhir, lalu simpan — rentang itu direkam secara real time dari pemutaran Anda dan diunduh sebagai file video."
+  },
+  "channelAutoVideos": {
+    "message": "Buka Channel di Tab Video"
+  },
+  "channelAutoVideosHint": {
+    "message": "Tautan channel langsung membuka tab Video, bukan beranda channel."
+  },
+  "shortcutSpeedReset": {
+    "message": "Reset Kecepatan"
+  },
+  "shortcutClipToggle": {
+    "message": "Bilah Klip"
+  },
+  "shortcutClipIn": {
+    "message": "Atur Awal Klip"
+  },
+  "shortcutClipOut": {
+    "message": "Atur Akhir Klip"
+  },
+  "shortcutClipSave": {
+    "message": "Simpan Klip"
+  },
+  "focusMode": {
+    "message": "Mode fokus aktif — feed beranda disembunyikan."
+  },
+  "speedLabel": {
+    "message": "Kecepatan"
+  },
+  "speedReset": {
+    "message": "Reset"
+  },
+  "clipTitle": {
+    "message": "Klip"
+  },
+  "clipSetIn": {
+    "message": "Awal"
+  },
+  "clipSetOut": {
+    "message": "Akhir"
+  },
+  "clipPreview": {
+    "message": "Pratinjau"
+  },
+  "clipSave": {
+    "message": "Simpan"
+  },
+  "clipClose": {
+    "message": "Tutup"
+  },
+  "clipRecording": {
+    "message": "Merekam…"
+  },
+  "clipSaved": {
+    "message": "Klip disimpan"
+  },
+  "clipFailed": {
+    "message": "Gagal merekam klip"
+  },
+  "clipNoRange": {
+    "message": "Atur titik awal dan akhir terlebih dahulu"
+  },
+  "sectionAds": {
+    "message": "Iklan"
+  },
+  "muteAds": {
+    "message": "Bisukan Iklan"
+  },
+  "muteAdsHint": {
+    "message": "Iklan diputar tanpa suara; suara kembali dengan volume yang sama begitu iklan selesai."
+  },
+  "sectionBlocked": {
+    "message": "Channel yang Diblokir"
+  },
+  "blockedEmpty": {
+    "message": "Belum ada channel yang diblokir. Arahkan kursor ke video rekomendasi dan tekan 🚫 untuk memblokir channelnya."
+  },
+  "unblockChannel": {
+    "message": "Buka blokir"
+  },
+  "blockChannel": {
+    "message": "Blokir channel"
+  },
+  "blockedChannel": {
+    "message": "Channel diblokir"
+  },
+  "cropTitle": {
+    "message": "Potong video"
+  },
+  "cropRemove": {
+    "message": "Tampilkan seluruh video"
+  },
+  "cropSelectHint": {
+    "message": "Seret di atas video untuk memilih area yang disimpan · Esc membatalkan"
+  },
+  "masterToggle": {
+    "message": "Aktifkan atau matikan ekstensi"
+  },
+  "offNotice": {
+    "message": "Dijeda — YouTube berjalan apa adanya sampai Anda menyalakannya lagi."
+  },
+  "searchPlaceholder": {
+    "message": "Cari pengaturan"
+  },
+  "searchEmpty": {
+    "message": "Tidak ada pengaturan yang cocok."
+  },
+  "back": {
+    "message": "Kembali"
+  },
+  "moreInfo": {
+    "message": "Info lebih lanjut"
+  },
+  "setShortcut": {
+    "message": "Atur pintasan"
+  },
+  "clearShortcut": {
+    "message": "Hapus pintasan"
+  },
+  "filtersEnabled": {
+    "message": "Terapkan Pengaturan Warna"
+  },
+  "sectionChannels": {
+    "message": "Channel"
+  },
+  "statusOn": {
+    "message": "Aktif"
+  },
+  "statusOff": {
+    "message": "Mati"
+  },
+  "statusOriginal": {
+    "message": "Asli"
+  },
+  "statusInverted": {
+    "message": "Dibalik"
+  },
+  "statusSpeed": {
+    "message": "Default {n}×"
+  },
+  "statusCount": {
+    "message": "{n} aktif"
+  },
+  "statusDefault": {
+    "message": "Default"
+  },
+  "statusMuting": {
+    "message": "Iklan dibisukan"
+  },
+  "statusBlocked": {
+    "message": "{n} diblokir"
+  },
+  "statusNoBlocks": {
+    "message": "Tidak ada yang diblokir"
+  },
+  "introTitle1": {
+    "message": "Tombol baru di pemutar"
+  },
+  "introText1": {
+    "message": "Kecepatan, klip, dan potong ada di bilah kontrol YouTube, di samping pengaturan."
+  },
+  "introTitle2": {
+    "message": "Blokir channel dengan satu klik"
+  },
+  "introText2": {
+    "message": "Arahkan kursor ke video rekomendasi dan tekan 🚫. Sejak itu video dari channel tersebut ditutupi."
+  },
+  "introTitle3": {
+    "message": "Semua di satu tempat"
+  },
+  "introText3": {
+    "message": "Buka kartu untuk mengubahnya, cari pengaturan apa pun, dan tekan ikon keyboard di samping pengaturan untuk memberinya pintasan."
+  },
+  "introNext": {
+    "message": "Berikutnya"
+  },
+  "introDone": {
+    "message": "Mulai"
+  },
+  "introSkip": {
+    "message": "Lewati"
+  },
+  "hideShorts": {
+    "message": "Matikan Shorts Sepenuhnya"
+  },
+  "hideShortsHint": {
+    "message": "Menghapus rak Shorts, hasil penelusuran, entri menu, dan tab channel. Tautan Shorts dibuka sebagai video biasa."
+  },
+  "theme": {
+    "message": "Tampilan"
+  },
+  "themeAuto": {
+    "message": "Otomatis"
+  },
+  "themeLight": {
+    "message": "Terang"
+  },
+  "themeDark": {
+    "message": "Gelap"
+  },
+  "shortcutDecrease": {
+    "message": "Kurangi"
+  },
+  "shortcutIncrease": {
+    "message": "Tambah"
+  }
+}

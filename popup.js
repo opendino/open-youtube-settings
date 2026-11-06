@@ -163,6 +163,7 @@ const langBtns = document.querySelectorAll('.lang-btn');
 const shortcutBtns = document.querySelectorAll('.shortcut-btn');
 
 let currentLang = 'en';
+const RTL_LANGUAGES = ['ar'];
 let currentMessages = null;
 let recordingShortcutFor = null;
 /** Settings to go back to when the reload prompt is cancelled. */
@@ -555,7 +556,7 @@ browser.storage.local
             ? Number(result[key])
             : result[key];
     }
-    if (result.language) currentLang = result.language;
+    currentLang = result.language || browserLanguage();
 
     renderAll();
     loadLanguage(currentLang);
@@ -814,6 +815,21 @@ function applyTranslations(messages) {
   if (searchInput.value) runSearch();
 }
 
+/** The browser's language if the popup offers it, else English. */
+function browserLanguage() {
+  const offered = [...langBtns].map((btn) => btn.dataset.lang);
+  const ui = (browser.i18n?.getUILanguage?.() || navigator.language || 'en').replace('-', '_');
+  const base = ui.split('_')[0];
+  const candidates = [
+    ui,
+    // Chinese splits by script, not by base language.
+    base === 'zh' ? (/_(TW|HK|MO|Hant)/i.test(ui) ? 'zh_TW' : 'zh_CN') : null,
+    base === 'pt' ? 'pt_BR' : null,
+    base
+  ];
+  return candidates.find((lang) => lang && offered.includes(lang)) || 'en';
+}
+
 async function loadLanguage(lang) {
   try {
     const response = await fetch(`_locales/${lang}/messages.json`);
@@ -830,6 +846,7 @@ async function loadLanguage(lang) {
       if (btn.dataset.lang === lang) document.getElementById('lang-name').textContent = btn.textContent;
     }
     document.documentElement.lang = lang.replace('_', '-');
+    document.documentElement.dir = RTL_LANGUAGES.includes(lang) ? 'rtl' : 'ltr';
 
     // Hand the on-page strings to the content script.
     const contentStrings = buildContentStrings();

@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "การตั้งค่า Open Youtube"
+  },
+  "appDesc": {
+    "message": "ความเร็ว ฟิลเตอร์สี ครอปวิดีโอ คลิป ปิด Shorts และบล็อกช่องสำหรับ YouTube ได้ในเพลเยอร์เลย"
+  },
+  "brightness": {
+    "message": "ความสว่าง"
+  },
+  "blueLightFilter": {
+    "message": "ฟิลเตอร์แสงสีฟ้า"
+  },
+  "hideHomeFeed": {
+    "message": "ซ่อนฟีดหน้าแรก"
+  },
+  "hideSidebar": {
+    "message": "ซ่อนแถบด้านข้าง"
+  },
+  "hidePlaylist": {
+    "message": "ซ่อนเพลย์ลิสต์"
+  },
+  "autoHideControls": {
+    "message": "ซ่อนตัวควบคุมอัตโนมัติ"
+  },
+  "hidePlayPauseAnim": {
+    "message": "ซ่อนแอนิเมชันเล่น/หยุดชั่วคราว"
+  },
+  "hideSkipAnim": {
+    "message": "ซ่อนแอนิเมชันข้าม"
+  },
+  "resetDefaults": {
+    "message": "คืนค่าเริ่มต้น"
+  },
+  "tabShortcuts": {
+    "message": "ปุ่มลัด"
+  },
+  "tabLanguage": {
+    "message": "ภาษา"
+  },
+  "modalTitle": {
+    "message": "ต้องรีเฟรชหน้า"
+  },
+  "modalDesc": {
+    "message": "ต้องรีเฟรชหน้า YouTube เพื่อซ่อนแอนิเมชันข้าม รีเฟรชเลยไหม"
+  },
+  "modalCancel": {
+    "message": "ยกเลิก"
+  },
+  "modalConfirm": {
+    "message": "รีเฟรชเลย"
+  },
+  "shortcutRecording": {
+    "message": "กดปุ่ม..."
+  },
+  "tabSpeed": {
+    "message": "ความเร็ว"
+  },
+  "sectionColor": {
+    "message": "สี"
+  },
+  "sectionLayout": {
+    "message": "เลย์เอาต์"
+  },
+  "sectionCrop": {
+    "message": "ครอปวิดีโอ"
+  },
+  "sectionClip": {
+    "message": "เครื่องมือคลิป"
+  },
+  "invertColors": {
+    "message": "กลับสี"
+  },
+  "invertHint": {
+    "message": "เปลี่ยนการบรรยายบนไวต์บอร์ดที่สว่างให้เป็นโทนมืด โดยยังอ่านสีได้ชัด"
+  },
+  "applyToShorts": {
+    "message": "ใช้กับ Shorts ด้วย"
+  },
+  "originalColors": {
+    "message": "สีต้นฉบับ"
+  },
+  "allowPanels": {
+    "message": "อนุญาตแผงด้านข้าง"
+  },
+  "allowPanelsHint": {
+    "message": "บท ข้อความถอดเสียง และแผง AI ยังเปิดได้เมื่อคุณเรียกใช้ และจะปิดเองในวิดีโอถัดไป"
+  },
+  "speedEnabled": {
+    "message": "ตัวควบคุมความเร็ว"
+  },
+  "speedEnabledHint": {
+    "message": "ปิดเพื่อให้ YouTube หรือส่วนขยายอื่นจัดการความเร็วการเล่น ขณะปิดจะไม่มีการเปลี่ยนแปลงใดๆ"
+  },
+  "speedOverlay": {
+    "message": "แสดงความเร็วในตัวควบคุมเพลเยอร์"
+  },
+  "speedDefault": {
+    "message": "ความเร็วเริ่มต้น"
+  },
+  "speedStep": {
+    "message": "ขนาดขั้น"
+  },
+  "speedPersist": {
+    "message": "คงความเร็วไว้ระหว่างวิดีโอ"
+  },
+  "speedPresetHint": {
+    "message": "ค่าที่ตั้งไว้ใช้กำหนดความเร็วเริ่มต้น ส่วนการปรับละเอียดอยู่ที่ปุ่มความเร็วในเพลเยอร์และปุ่มลัด"
+  },
+  "cropEnabled": {
+    "message": "ครอปวิดีโอ"
+  },
+  "cropTool": {
+    "message": "เครื่องมือครอป"
+  },
+  "cropHint": {
+    "message": "เพิ่มปุ่มครอปในตัวควบคุมเพลเยอร์ ลากบนวิดีโอเพื่อเลือกส่วนที่ต้องการเก็บไว้ ส่วนนั้นจะเต็มเพลเยอร์ขณะที่วิดีโอยังเล่นต่อ กดปุ่มอีกครั้งเพื่อดูทั้งวิดีโอ การครอปจะสิ้นสุดเมื่อวิดีโอจบ"
+  },
+  "cropFit": {
+    "message": "เมื่อรูปทรงของพื้นที่ต่างจากเพลเยอร์"
+  },
+  "cropFitContain": {
+    "message": "คงสัดส่วน แสดงทั้งหมด"
+  },
+  "cropFitCover": {
+    "message": "คงสัดส่วน เต็มเพลเยอร์"
+  },
+  "clipEnabled": {
+    "message": "เครื่องมือคลิป"
+  },
+  "clipHint": {
+    "message": "เปิดแถบคลิปบนเพลเยอร์ กำหนดจุดเริ่มและจุดจบแล้วบันทึก ช่วงนั้นจะถูกอัดแบบเรียลไทม์จากการเล่นของคุณและดาวน์โหลดเป็นไฟล์วิดีโอ"
+  },
+  "channelAutoVideos": {
+    "message": "เปิดช่องที่แท็บวิดีโอ"
+  },
+  "channelAutoVideosHint": {
+    "message": "ลิงก์ช่องจะไปที่แท็บวิดีโอโดยตรงแทนหน้าแรกของช่อง"
+  },
+  "shortcutSpeedReset": {
+    "message": "รีเซ็ตความเร็ว"
+  },
+  "shortcutClipToggle": {
+    "message": "แถบคลิป"
+  },
+  "shortcutClipIn": {
+    "message": "ตั้งจุดเริ่มคลิป"
+  },
+  "shortcutClipOut": {
+    "message": "ตั้งจุดจบคลิป"
+  },
+  "shortcutClipSave": {
+    "message": "บันทึกคลิป"
+  },
+  "focusMode": {
+    "message": "โหมดโฟกัสเปิดอยู่ ฟีดหน้าแรกถูกซ่อน"
+  },
+  "speedLabel": {
+    "message": "ความเร็ว"
+  },
+  "speedReset": {
+    "message": "รีเซ็ต"
+  },
+  "clipTitle": {
+    "message": "คลิป"
+  },
+  "clipSetIn": {
+    "message": "เริ่ม"
+  },
+  "clipSetOut": {
+    "message": "จบ"
+  },
+  "clipPreview": {
+    "message": "ดูตัวอย่าง"
+  },
+  "clipSave": {
+    "message": "บันทึก"
+  },
+  "clipClose": {
+    "message": "ปิด"
+  },
+  "clipRecording": {
+    "message": "กำลังอัด…"
+  },
+  "clipSaved": {
+    "message": "บันทึกคลิปแล้ว"
+  },
+  "clipFailed": {
+    "message": "อัดคลิปไม่สำเร็จ"
+  },
+  "clipNoRange": {
+    "message": "ตั้งจุดเริ่มและจุดจบก่อน"
+  },
+  "sectionAds": {
+    "message": "โฆษณา"
+  },
+  "muteAds": {
+    "message": "ปิดเสียงโฆษณา"
+  },
+  "muteAdsHint": {
+    "message": "โฆษณาจะเล่นแบบไม่มีเสียง และเสียงจะกลับมาที่ระดับเดิมทันทีที่โฆษณาจบ"
+  },
+  "sectionBlocked": {
+    "message": "ช่องที่บล็อก"
+  },
+  "blockedEmpty": {
+    "message": "ยังไม่มีช่องที่บล็อก วางเมาส์บนวิดีโอแนะนำแล้วกด 🚫 เพื่อบล็อกช่องนั้น"
+  },
+  "unblockChannel": {
+    "message": "เลิกบล็อก"
+  },
+  "blockChannel": {
+    "message": "บล็อกช่อง"
+  },
+  "blockedChannel": {
+    "message": "ช่องที่ถูกบล็อก"
+  },
+  "cropTitle": {
+    "message": "ครอปวิดีโอ"
+  },
+  "cropRemove": {
+    "message": "แสดงทั้งวิดีโอ"
+  },
+  "cropSelectHint": {
+    "message": "ลากบนวิดีโอเพื่อเลือกส่วนที่จะเก็บ · Esc เพื่อยกเลิก"
+  },
+  "masterToggle": {
+    "message": "เปิดหรือปิดส่วนขยาย"
+  },
+  "offNotice": {
+    "message": "หยุดชั่วคราว — YouTube ทำงานตามปกติจนกว่าคุณจะเปิดอีกครั้ง"
+  },
+  "searchPlaceholder": {
+    "message": "ค้นหาการตั้งค่า"
+  },
+  "searchEmpty": {
+    "message": "ไม่พบการตั้งค่าที่ตรงกัน"
+  },
+  "back": {
+    "message": "กลับ"
+  },
+  "moreInfo": {
+    "message": "ข้อมูลเพิ่มเติม"
+  },
+  "setShortcut": {
+    "message": "ตั้งปุ่มลัด"
+  },
+  "clearShortcut": {
+    "message": "ล้างปุ่มลัด"
+  },
+  "filtersEnabled": {
+    "message": "ใช้การตั้งค่าสี"
+  },
+  "sectionChannels": {
+    "message": "ช่อง"
+  },
+  "statusOn": {
+    "message": "เปิด"
+  },
+  "statusOff": {
+    "message": "ปิด"
+  },
+  "statusOriginal": {
+    "message": "ต้นฉบับ"
+  },
+  "statusInverted": {
+    "message": "กลับสีแล้ว"
+  },
+  "statusSpeed": {
+    "message": "ค่าเริ่มต้น {n}×"
+  },
+  "statusCount": {
+    "message": "เปิด {n} รายการ"
+  },
+  "statusDefault": {
+    "message": "ค่าเริ่มต้น"
+  },
+  "statusMuting": {
+    "message": "ปิดเสียงโฆษณาอยู่"
+  },
+  "statusBlocked": {
+    "message": "บล็อก {n} ช่อง"
+  },
+  "statusNoBlocks": {
+    "message": "ไม่มีช่องที่บล็อก"
+  },
+  "introTitle1": {
+    "message": "ปุ่มใหม่บนเพลเยอร์"
+  },
+  "introText1": {
+    "message": "ความเร็ว คลิป และครอปอยู่บนแถบควบคุมของ YouTube ข้างปุ่มการตั้งค่า"
+  },
+  "introTitle2": {
+    "message": "บล็อกช่องได้ในคลิกเดียว"
+  },
+  "introText2": {
+    "message": "วางเมาส์บนวิดีโอแนะนำแล้วกด 🚫 จากนั้นวิดีโอของช่องนั้นจะถูกปิดบัง"
+  },
+  "introTitle3": {
+    "message": "ทุกอย่างในที่เดียว"
+  },
+  "introText3": {
+    "message": "เปิดการ์ดเพื่อปรับเปลี่ยน ค้นหาการตั้งค่าใดก็ได้ และกดไอคอนแป้นพิมพ์ข้างการตั้งค่าเพื่อกำหนดปุ่มลัด"
+  },
+  "introNext": {
+    "message": "ถัดไป"
+  },
+  "introDone": {
+    "message": "เริ่มใช้งาน"
+  },
+  "introSkip": {
+    "message": "ข้าม"
+  },
+  "hideShorts": {
+    "message": "ปิด Shorts ทั้งหมด"
+  },
+  "hideShortsHint": {
+    "message": "นำชั้นวาง Shorts ผลการค้นหา เมนู และแท็บช่องออก ลิงก์ Shorts จะเปิดเป็นวิดีโอปกติ"
+  },
+  "theme": {
+    "message": "รูปลักษณ์"
+  },
+  "themeAuto": {
+    "message": "อัตโนมัติ"
+  },
+  "themeLight": {
+    "message": "สว่าง"
+  },
+  "themeDark": {
+    "message": "มืด"
+  },
+  "shortcutDecrease": {
+    "message": "ลด"
+  },
+  "shortcutIncrease": {
+    "message": "เพิ่ม"
+  }
+}

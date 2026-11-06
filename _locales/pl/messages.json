@@ -1,0 +1,338 @@
+{
+  "appName": {
+    "message": "Ustawienia Open Youtube"
+  },
+  "appDesc": {
+    "message": "Prędkość, filtry kolorów, kadrowanie, klipy, wyłączanie Shorts i blokowanie kanałów w YouTube — prosto w odtwarzaczu."
+  },
+  "brightness": {
+    "message": "Jasność"
+  },
+  "blueLightFilter": {
+    "message": "Filtr światła niebieskiego"
+  },
+  "hideHomeFeed": {
+    "message": "Ukryj stronę główną"
+  },
+  "hideSidebar": {
+    "message": "Ukryj pasek boczny"
+  },
+  "hidePlaylist": {
+    "message": "Ukryj playlistę"
+  },
+  "autoHideControls": {
+    "message": "Automatycznie ukrywaj sterowanie"
+  },
+  "hidePlayPauseAnim": {
+    "message": "Ukryj animację odtwarzania/pauzy"
+  },
+  "hideSkipAnim": {
+    "message": "Ukryj animację przewijania"
+  },
+  "resetDefaults": {
+    "message": "Przywróć domyślne"
+  },
+  "tabShortcuts": {
+    "message": "Skróty"
+  },
+  "tabLanguage": {
+    "message": "Język"
+  },
+  "modalTitle": {
+    "message": "Wymagane odświeżenie"
+  },
+  "modalDesc": {
+    "message": "Aby ukryć animację przewijania, trzeba odświeżyć stronę YouTube. Odświeżyć teraz?"
+  },
+  "modalCancel": {
+    "message": "Anuluj"
+  },
+  "modalConfirm": {
+    "message": "Odśwież teraz"
+  },
+  "shortcutRecording": {
+    "message": "Naciśnij klawisz..."
+  },
+  "tabSpeed": {
+    "message": "Prędkość"
+  },
+  "sectionColor": {
+    "message": "Kolor"
+  },
+  "sectionLayout": {
+    "message": "Układ"
+  },
+  "sectionCrop": {
+    "message": "Kadrowanie wideo"
+  },
+  "sectionClip": {
+    "message": "Narzędzie klipów"
+  },
+  "invertColors": {
+    "message": "Odwróć kolory"
+  },
+  "invertHint": {
+    "message": "Zmienia jasny wykład przy białej tablicy w ciemny, zachowując czytelne barwy."
+  },
+  "applyToShorts": {
+    "message": "Stosuj w Shorts"
+  },
+  "originalColors": {
+    "message": "Oryginalne kolory"
+  },
+  "allowPanels": {
+    "message": "Zezwalaj na panele boczne"
+  },
+  "allowPanelsHint": {
+    "message": "Rozdziały, transkrypcja i panel AI nadal otwierają się na żądanie i zamykają przy następnym filmie."
+  },
+  "speedEnabled": {
+    "message": "Sterowanie prędkością"
+  },
+  "speedEnabledHint": {
+    "message": "Wyłącz, aby oddać prędkość odtwarzania YouTube lub innemu rozszerzeniu. Gdy jest wyłączone, nic nie jest zmieniane."
+  },
+  "speedOverlay": {
+    "message": "Pokazuj prędkość w odtwarzaczu"
+  },
+  "speedDefault": {
+    "message": "Domyślna prędkość"
+  },
+  "speedStep": {
+    "message": "Krok"
+  },
+  "speedPersist": {
+    "message": "Zachowaj prędkość między filmami"
+  },
+  "speedPresetHint": {
+    "message": "Gotowe wartości ustawiają prędkość domyślną. Drobne kroki są pod przyciskiem prędkości w odtwarzaczu i w skrótach."
+  },
+  "cropEnabled": {
+    "message": "Kadruj wideo"
+  },
+  "cropTool": {
+    "message": "Narzędzie kadrowania"
+  },
+  "cropHint": {
+    "message": "Dodaje przycisk kadrowania do sterowania odtwarzacza. Zaznacz na filmie obszar do zachowania; wypełni on odtwarzacz, a film będzie grał dalej. Naciśnij przycisk ponownie, aby zobaczyć cały film. Kadrowanie kończy się wraz z filmem."
+  },
+  "cropFit": {
+    "message": "Gdy kształt obszaru różni się od odtwarzacza"
+  },
+  "cropFitContain": {
+    "message": "Zachowaj proporcje, pokaż całość"
+  },
+  "cropFitCover": {
+    "message": "Zachowaj proporcje, wypełnij odtwarzacz"
+  },
+  "clipEnabled": {
+    "message": "Narzędzie klipów"
+  },
+  "clipHint": {
+    "message": "Otwiera pasek klipów w odtwarzaczu. Zaznacz początek i koniec, a potem zapisz — fragment jest nagrywany na żywo z Twojego odtwarzania i pobierany jako plik wideo."
+  },
+  "channelAutoVideos": {
+    "message": "Otwieraj kanały na karcie Filmy"
+  },
+  "channelAutoVideosHint": {
+    "message": "Linki do kanałów prowadzą od razu do karty Filmy zamiast do strony głównej kanału."
+  },
+  "shortcutSpeedReset": {
+    "message": "Resetuj prędkość"
+  },
+  "shortcutClipToggle": {
+    "message": "Pasek klipów"
+  },
+  "shortcutClipIn": {
+    "message": "Ustaw początek klipu"
+  },
+  "shortcutClipOut": {
+    "message": "Ustaw koniec klipu"
+  },
+  "shortcutClipSave": {
+    "message": "Zapisz klip"
+  },
+  "focusMode": {
+    "message": "Tryb skupienia włączony — strona główna jest ukryta."
+  },
+  "speedLabel": {
+    "message": "Prędkość"
+  },
+  "speedReset": {
+    "message": "Resetuj"
+  },
+  "clipTitle": {
+    "message": "Klip"
+  },
+  "clipSetIn": {
+    "message": "Początek"
+  },
+  "clipSetOut": {
+    "message": "Koniec"
+  },
+  "clipPreview": {
+    "message": "Podgląd"
+  },
+  "clipSave": {
+    "message": "Zapisz"
+  },
+  "clipClose": {
+    "message": "Zamknij"
+  },
+  "clipRecording": {
+    "message": "Nagrywanie…"
+  },
+  "clipSaved": {
+    "message": "Klip zapisany"
+  },
+  "clipFailed": {
+    "message": "Nie udało się nagrać klipu"
+  },
+  "clipNoRange": {
+    "message": "Najpierw ustaw początek i koniec"
+  },
+  "sectionAds": {
+    "message": "Reklamy"
+  },
+  "muteAds": {
+    "message": "Wyciszaj reklamy"
+  },
+  "muteAdsHint": {
+    "message": "Reklamy grają bez dźwięku; dźwięk wraca z tą samą głośnością, gdy tylko reklama się skończy."
+  },
+  "sectionBlocked": {
+    "message": "Zablokowane kanały"
+  },
+  "blockedEmpty": {
+    "message": "Brak zablokowanych kanałów. Najedź na polecany film i naciśnij 🚫, aby zablokować jego kanał."
+  },
+  "unblockChannel": {
+    "message": "Odblokuj"
+  },
+  "blockChannel": {
+    "message": "Zablokuj kanał"
+  },
+  "blockedChannel": {
+    "message": "Kanał zablokowany"
+  },
+  "cropTitle": {
+    "message": "Kadruj wideo"
+  },
+  "cropRemove": {
+    "message": "Pokaż cały film"
+  },
+  "cropSelectHint": {
+    "message": "Zaznacz na filmie obszar do zachowania · Esc anuluje"
+  },
+  "masterToggle": {
+    "message": "Włącz lub wyłącz rozszerzenie"
+  },
+  "offNotice": {
+    "message": "Wstrzymane — YouTube działa bez zmian, dopóki go ponownie nie włączysz."
+  },
+  "searchPlaceholder": {
+    "message": "Szukaj w ustawieniach"
+  },
+  "searchEmpty": {
+    "message": "Żadne ustawienie nie pasuje do wyszukiwania."
+  },
+  "back": {
+    "message": "Wstecz"
+  },
+  "moreInfo": {
+    "message": "Więcej informacji"
+  },
+  "setShortcut": {
+    "message": "Ustaw skrót"
+  },
+  "clearShortcut": {
+    "message": "Usuń skrót"
+  },
+  "filtersEnabled": {
+    "message": "Stosuj ustawienia kolorów"
+  },
+  "sectionChannels": {
+    "message": "Kanały"
+  },
+  "statusOn": {
+    "message": "Wł."
+  },
+  "statusOff": {
+    "message": "Wył."
+  },
+  "statusOriginal": {
+    "message": "Oryginalne"
+  },
+  "statusInverted": {
+    "message": "Odwrócone"
+  },
+  "statusSpeed": {
+    "message": "{n}× domyślnie"
+  },
+  "statusCount": {
+    "message": "Włączone: {n}"
+  },
+  "statusDefault": {
+    "message": "Domyślne"
+  },
+  "statusMuting": {
+    "message": "Reklamy wyciszone"
+  },
+  "statusBlocked": {
+    "message": "Zablokowane: {n}"
+  },
+  "statusNoBlocks": {
+    "message": "Brak blokad"
+  },
+  "introTitle1": {
+    "message": "Nowe przyciski w odtwarzaczu"
+  },
+  "introText1": {
+    "message": "Prędkość, klipy i kadrowanie są na pasku sterowania YouTube, obok ustawień."
+  },
+  "introTitle2": {
+    "message": "Zablokuj kanał jednym kliknięciem"
+  },
+  "introText2": {
+    "message": "Najedź na polecany film i naciśnij 🚫. Od tej chwili filmy tego kanału będą zakryte."
+  },
+  "introTitle3": {
+    "message": "Wszystko w jednym miejscu"
+  },
+  "introText3": {
+    "message": "Otwórz kartę, aby ją zmienić, wyszukaj dowolne ustawienie i naciśnij ikonę klawiatury obok ustawienia, aby przypisać mu skrót."
+  },
+  "introNext": {
+    "message": "Dalej"
+  },
+  "introDone": {
+    "message": "Zaczynamy"
+  },
+  "introSkip": {
+    "message": "Pomiń"
+  },
+  "hideShorts": {
+    "message": "Całkowicie wyłącz Shorts"
+  },
+  "hideShortsHint": {
+    "message": "Usuwa półki Shorts, wyniki wyszukiwania, pozycję w menu i kartę kanału. Link do Shorts otwiera się jak zwykły film."
+  },
+  "theme": {
+    "message": "Wygląd"
+  },
+  "themeAuto": {
+    "message": "Automatyczny"
+  },
+  "themeLight": {
+    "message": "Jasny"
+  },
+  "themeDark": {
+    "message": "Ciemny"
+  },
+  "shortcutDecrease": {
+    "message": "Zmniejsz"
+  },
+  "shortcutIncrease": {
+    "message": "Zwiększ"
+  }
+}

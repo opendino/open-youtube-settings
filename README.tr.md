@@ -60,7 +60,7 @@ Her video için parlaklık, mavi ışık filtresi ve renkleri tersine çevirme; 
 - Tüm ayarlarda **arama**.
 - Neredeyse her ayar için **klavye kısayolu**.
 - Açık, koyu ya da otomatik görünüm.
-- 8 dil: English, Türkçe, Deutsch, Español, Français, हिन्दी, 日本語, Português (Brasil).
+- 20 dil: English, Türkçe, Deutsch, Español, Français, Italiano, Português (Brasil), Nederlands, Polski, Русский, Українська, العربية, हिन्दी, Bahasa Indonesia, Tiếng Việt, ไทย, 한국어, 日本語, 简体中文, 繁體中文.
 
 ## Kurulum
 
