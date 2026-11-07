@@ -2,7 +2,7 @@
   <img src="icon_128.png" width="96" height="96" alt="">
 </p>
 
-<h1 align="center">Open Youtube Ayarları</h1>
+<h1 align="center">Open Youtube Settings</h1>
 
 <p align="center">
   YouTube için hız, renk, kırpma ve klip — doğrudan oynatıcıda.<br>

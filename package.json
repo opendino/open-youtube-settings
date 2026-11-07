@@ -1,6 +1,6 @@
 {
   "name": "open-youtube-settings",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "Premium YouTube Enhancer browser extension optimized for Google Chrome and Mozilla Firefox.",
   "type": "module",
   "scripts": {
