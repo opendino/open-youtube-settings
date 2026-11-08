@@ -50,13 +50,16 @@
   ],
   "browser_specific_settings": {
     "gecko": {
-      "id": "{d6bda0cb-108c-4f14-bf0c-ad6a808add13}",
-      "strict_min_version": "128.0",
+      "id": "{f236f51a-23e8-4cac-a3d8-826971e8bbae}",
+      "strict_min_version": "140.0",
       "data_collection_permissions": {
         "required": [
           "none"
         ]
       }
+    },
+    "gecko_android": {
+      "strict_min_version": "142.0"
     }
   }
 }

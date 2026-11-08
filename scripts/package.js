@@ -101,10 +101,10 @@ export function prepareDirectory(targetDir, isChrome = false, manifestOverrides 
       if (manifest.browser_specific_settings && manifest.browser_specific_settings.gecko) {
         // Clean any non-standard Gecko keys
         const gecko = manifest.browser_specific_settings.gecko;
-        // world: "MAIN" content scripts (page-bridge.js) need Firefox 128+.
+        // data_collection_permissions needs Firefox 140+ (Android 142+); world: "MAIN" needs 128+.
         manifest.browser_specific_settings.gecko = {
           id: gecko.id,
-          strict_min_version: gecko.strict_min_version || '128.0',
+          strict_min_version: gecko.strict_min_version || '140.0',
           // Firefox requires a data-collection declaration; this add-on collects nothing.
           data_collection_permissions: gecko.data_collection_permissions || { required: ['none'] }
         };
