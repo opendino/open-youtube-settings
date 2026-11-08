@@ -3,7 +3,7 @@
     "message": "Open Youtube Settings"
   },
   "appDesc": {
-    "message": "Velocidad, filtros de color, recorte, clips, ocultar Shorts y bloquear canales en YouTube, directamente en el reproductor."
+    "message": "Bloquea canales de YouTube con un clic, además de velocidad, recorte, clips y color. Código abierto, limpio y sin recopilar datos."
   },
   "brightness": {
     "message": "Brillo"

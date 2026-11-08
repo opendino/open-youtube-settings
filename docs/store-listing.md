@@ -84,12 +84,15 @@ Mağaza, sayfayı kullanıcının Chrome dil ayarına göre gösterir. Kendi met
 ### Kısa açıklama
 Mağazalar bunu eklentinin içinden (`appDesc`) her dil için otomatik alır.
 
-> Speed control, colour filters, video crop, clips, Shorts blocking and channel blocking for YouTube — right in the player.
+> Block YouTube channels in one click, plus speed, crop, clips and colour. Open source, clean and collects no data.
 
 ### Uzun açıklama (English)
 
 ```
 Open Youtube Settings puts the controls you wish YouTube had right into its own player.
+
+✓ Open source  ✓ Clean interface  ✓ Collects no data
+https://github.com/opendino/open-youtube-settings
 
 BLOCK CHANNELS
 • Hover over a recommended video and press 🚫 — every video from that channel is covered on home, search and the end screen.
@@ -132,6 +135,9 @@ No data is collected or sent anywhere. Settings stay in your browser.
 ```
 Open Youtube Settings, YouTube'da olmasını istediğin kontrolleri doğrudan oynatıcıya getirir.
 
+✓ Açık kaynak  ✓ Sade arayüz  ✓ Veri toplamaz
+https://github.com/opendino/open-youtube-settings
+
 KANAL ENGELLEME
 • Önerilen bir videonun üzerine gel ve 🚫 düğmesine bas — o kanalın tüm videoları ana sayfada, aramada ve video sonunda örtülür.
 • Engeli istediğin zaman eklenti penceresinden kaldır.
@@ -172,6 +178,9 @@ Hiçbir veri toplanmaz ve hiçbir yere gönderilmez. Ayarlar tarayıcında kalı
 
 ```
 Open Youtube Settings bringt die Steuerelemente, die YouTube fehlen, direkt in den eigenen Player.
+
+✓ Open Source  ✓ Aufgeräumte Oberfläche  ✓ Sammelt keine Daten
+https://github.com/opendino/open-youtube-settings
 
 KANÄLE BLOCKIEREN
 • Fahre mit der Maus über ein empfohlenes Video und drücke 🚫 – alle Videos dieses Kanals werden auf der Startseite, in der Suche und im Abspann verdeckt.
@@ -214,6 +223,9 @@ Es werden keine Daten gesammelt oder irgendwohin gesendet. Die Einstellungen ble
 ```
 Open Youtube Settings lleva al propio reproductor de YouTube los controles que te gustaría que tuviera.
 
+✓ Código abierto  ✓ Interfaz limpia  ✓ No recopila datos
+https://github.com/opendino/open-youtube-settings
+
 BLOQUEAR CANALES
 • Pasa el ratón sobre un vídeo recomendado y pulsa 🚫: todos los vídeos de ese canal quedan cubiertos en la página de inicio, en la búsqueda y en la pantalla final.
 • Desbloquéalo cuando quieras desde la ventana de la extensión.
@@ -254,6 +266,9 @@ No se recopila ni se envía ningún dato. Los ajustes se quedan en tu navegador.
 
 ```
 Open Youtube Settings ajoute directement dans le lecteur de YouTube les commandes qui lui manquent.
+
+✓ Open source  ✓ Interface épurée  ✓ Aucune collecte de données
+https://github.com/opendino/open-youtube-settings
 
 BLOQUER DES CHAÎNES
 • Survolez une vidéo recommandée et appuyez sur 🚫 : toutes les vidéos de cette chaîne sont masquées sur l'accueil, dans la recherche et sur l'écran de fin.
@@ -296,6 +311,9 @@ Aucune donnée n'est collectée ni envoyée. Vos réglages restent dans votre na
 ```
 Open Youtube Settings coloca no próprio player do YouTube os controles que você gostaria que ele tivesse.
 
+✓ Código aberto  ✓ Interface limpa  ✓ Não coleta dados
+https://github.com/opendino/open-youtube-settings
+
 BLOQUEAR CANAIS
 • Passe o mouse sobre um vídeo recomendado e clique em 🚫 — todos os vídeos desse canal ficam cobertos na página inicial, na busca e na tela final.
 • Desbloqueie quando quiser pela janela da extensão.
@@ -336,6 +354,9 @@ Nenhum dado é coletado ou enviado. As configurações ficam no seu navegador.
 
 ```
 Open Youtube Settings は、YouTube にあったらいいのにと思う操作を、YouTube のプレーヤーそのものに追加します。
+
+✓ オープンソース  ✓ すっきりした画面  ✓ データを収集しない
+https://github.com/opendino/open-youtube-settings
 
 チャンネルのブロック
 • おすすめ動画にカーソルを合わせて 🚫 を押すだけ。そのチャンネルの動画は、ホーム、検索結果、終了画面でまとめて隠れます。
@@ -378,6 +399,9 @@ Open Youtube Settings は、YouTube にあったらいいのにと思う操作�
 ```
 Open Youtube Settings वे कंट्रोल सीधे YouTube के अपने प्लेयर में ले आता है, जिनकी कमी आपको YouTube में खलती है।
 
+✓ ओपन सोर्स  ✓ साफ़-सुथरा इंटरफ़ेस  ✓ कोई डेटा इकट्ठा नहीं करता
+https://github.com/opendino/open-youtube-settings
+
 चैनल ब्लॉक करें
 • किसी सुझाए गए वीडियो पर माउस ले जाएँ और 🚫 दबाएँ — उस चैनल के सभी वीडियो होम पेज, सर्च और एंड स्क्रीन पर ढक जाते हैं।
 • पॉपअप से कभी भी अनब्लॉक करें।
@@ -418,6 +442,9 @@ Open Youtube Settings वे कंट्रोल सीधे YouTube के �
 
 ```
 Open Youtube Settings porta direttamente nel player di YouTube i controlli che vorresti avesse.
+
+✓ Open source  ✓ Interfaccia pulita  ✓ Nessuna raccolta di dati
+https://github.com/opendino/open-youtube-settings
 
 BLOCCA I CANALI
 • Passa il mouse su un video consigliato e premi 🚫: tutti i video di quel canale vengono coperti nella home, nella ricerca e nella schermata finale.
@@ -460,6 +487,9 @@ Nessun dato viene raccolto o inviato. Le impostazioni restano nel tuo browser.
 ```
 Open Youtube Settings добавляет в плеер YouTube те элементы управления, которых вам в нём не хватало.
 
+✓ Открытый исходный код  ✓ Чистый интерфейс  ✓ Не собирает данные
+https://github.com/opendino/open-youtube-settings
+
 БЛОКИРОВКА КАНАЛОВ
 • Наведите курсор на рекомендуемое видео и нажмите 🚫 — все видео этого канала будут скрыты на главной, в поиске и на конечной заставке.
 • Разблокировать канал можно в любой момент во всплывающем окне.
@@ -500,6 +530,9 @@ Open Youtube Settings добавляет в плеер YouTube те элемен
 
 ```
 Open Youtube Settings додає у плеєр YouTube ті елементи керування, яких вам у ньому бракувало.
+
+✓ Відкритий код  ✓ Чистий інтерфейс  ✓ Не збирає дані
+https://github.com/opendino/open-youtube-settings
 
 БЛОКУВАННЯ КАНАЛІВ
 • Наведіть курсор на рекомендоване відео й натисніть 🚫 — усі відео цього каналу буде приховано на головній, у пошуку та на кінцевій заставці.
@@ -542,6 +575,9 @@ Open Youtube Settings додає у плеєр YouTube ті елементи к�
 ```
 Open Youtube Settings dodaje do odtwarzacza YouTube elementy sterowania, których w nim brakuje.
 
+✓ Open source  ✓ Przejrzysty interfejs  ✓ Nie zbiera danych
+https://github.com/opendino/open-youtube-settings
+
 BLOKOWANIE KANAŁÓW
 • Najedź na polecany film i naciśnij 🚫 — wszystkie filmy tego kanału zostaną zakryte na stronie głównej, w wyszukiwarce i na ekranie końcowym.
 • Odblokujesz go w każdej chwili w oknie rozszerzenia.
@@ -582,6 +618,9 @@ PRYWATNOŚĆ
 
 ```
 Open Youtube Settings zet de bediening die je in YouTube mist direct in de eigen speler.
+
+✓ Open source  ✓ Overzichtelijke interface  ✓ Verzamelt geen gegevens
+https://github.com/opendino/open-youtube-settings
 
 KANALEN BLOKKEREN
 • Beweeg over een aanbevolen video en druk op 🚫: alle video's van dat kanaal worden afgedekt op de startpagina, in de zoekresultaten en op het eindscherm.
@@ -624,6 +663,9 @@ Er worden geen gegevens verzameld of verstuurd. Je instellingen blijven in je br
 ```
 Open Youtube Settings menambahkan kontrol yang Anda harapkan ada di YouTube, langsung ke pemutarnya sendiri.
 
+✓ Sumber terbuka  ✓ Antarmuka bersih  ✓ Tidak mengumpulkan data
+https://github.com/opendino/open-youtube-settings
+
 BLOKIR CHANNEL
 • Arahkan kursor ke video rekomendasi dan tekan 🚫 — semua video dari channel itu ditutupi di beranda, penelusuran, dan layar akhir.
 • Buka blokir kapan saja dari jendela ekstensi.
@@ -664,6 +706,9 @@ Tidak ada data yang dikumpulkan atau dikirim ke mana pun. Pengaturan tetap di br
 
 ```
 Open Youtube Settings đưa những điều khiển bạn mong YouTube có vào ngay trình phát của YouTube.
+
+✓ Mã nguồn mở  ✓ Giao diện gọn gàng  ✓ Không thu thập dữ liệu
+https://github.com/opendino/open-youtube-settings
 
 CHẶN KÊNH
 • Di chuột lên một video đề xuất và nhấn 🚫 — mọi video của kênh đó sẽ bị che ở trang chủ, kết quả tìm kiếm và màn hình kết thúc.
@@ -706,6 +751,9 @@ Không thu thập hay gửi bất kỳ dữ liệu nào. Cài đặt nằm trong
 ```
 Open Youtube Settings เพิ่มตัวควบคุมที่คุณอยากให้ YouTube มี ลงในเพลเยอร์ของ YouTube โดยตรง
 
+✓ โอเพนซอร์ส  ✓ หน้าตาเรียบง่าย  ✓ ไม่เก็บข้อมูล
+https://github.com/opendino/open-youtube-settings
+
 บล็อกช่อง
 • วางเมาส์บนวิดีโอแนะนำแล้วกด 🚫 วิดีโอทั้งหมดของช่องนั้นจะถูกปิดบังในหน้าแรก ผลการค้นหา และหน้าจอตอนจบ
 • เลิกบล็อกได้ทุกเมื่อจากหน้าต่างส่วนขยาย
@@ -746,6 +794,9 @@ YOUTUBE ที่สงบขึ้น
 
 ```
 Open Youtube Settings는 YouTube에 있었으면 하는 기능을 YouTube 플레이어에 바로 더해 줍니다.
+
+✓ 오픈 소스  ✓ 깔끔한 인터페이스  ✓ 데이터 수집 없음
+https://github.com/opendino/open-youtube-settings
 
 채널 차단
 • 추천 동영상에 마우스를 올리고 🚫를 누르면 그 채널의 모든 동영상이 홈, 검색 결과, 최종 화면에서 가려집니다.
@@ -788,6 +839,9 @@ Open Youtube Settings는 YouTube에 있었으면 하는 기능을 YouTube 플레
 ```
 Open Youtube Settings 把你希望 YouTube 拥有的控件，直接加到 YouTube 自己的播放器里。
 
+✓ 开源  ✓ 界面简洁  ✓ 不收集数据
+https://github.com/opendino/open-youtube-settings
+
 屏蔽频道
 • 将鼠标悬停在推荐视频上并按 🚫，该频道的所有视频都会在首页、搜索结果和片尾画面中被遮住。
 • 随时可以在扩展窗口中取消屏蔽。
@@ -829,6 +883,9 @@ Open Youtube Settings 把你希望 YouTube 拥有的控件，直接加到 YouTub
 ```
 Open Youtube Settings 把你希望 YouTube 擁有的控制項，直接加到 YouTube 自己的播放器裡。
 
+✓ 開放原始碼  ✓ 介面簡潔  ✓ 不收集資料
+https://github.com/opendino/open-youtube-settings
+
 封鎖頻道
 • 將滑鼠停在推薦影片上並按 🚫，該頻道的所有影片都會在首頁、搜尋結果和片尾畫面中被遮住。
 • 隨時可以在擴充功能視窗中解除封鎖。
@@ -869,6 +926,9 @@ Open Youtube Settings 把你希望 YouTube 擁有的控制項，直接加到 You
 
 ```
 يضيف Open Youtube Settings عناصر التحكم التي تتمنى وجودها في YouTube مباشرة إلى مشغل YouTube نفسه.
+
+✓ مفتوح المصدر  ✓ واجهة نظيفة  ✓ لا تجمع أي بيانات
+https://github.com/opendino/open-youtube-settings
 
 حظر القنوات
 • مرّر المؤشر فوق فيديو مقترح واضغط 🚫 — تُغطّى كل فيديوهات تلك القناة في الصفحة الرئيسية ونتائج البحث وشاشة النهاية.
