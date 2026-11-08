@@ -5,18 +5,31 @@
 <h1 align="center">Open Youtube Settings</h1>
 
 <p align="center">
-  Speed, colour, crop and clips for YouTube — right in the player.<br>
-  A browser extension for <b>Chrome</b> and <b>Firefox</b>. Free, no ads, no tracking.
+  Block YouTube channels in one click — plus speed, crop, clips and colour, right in the player.<br>
+  A free browser extension for <b>Chrome</b> and <b>Firefox</b>.
 </p>
 
 <p align="center">
-  <a href="../../releases/latest"><b>Download the latest release</b></a> ·
-  <a href="README.tr.md">Türkçe</a>
+  ✅ <b>Open source</b> &nbsp;·&nbsp; ✅ <b>Clean interface</b> &nbsp;·&nbsp; ✅ <b>Collects no data</b>
 </p>
+
+<p align="center">
+  <a href="https://chromewebstore.google.com/detail/open-youtube-settings/commphgoijegmlhbkkbgbfbnemihdjod"><b>Chrome Web Store</b></a> ·
+  <a href="../../releases/latest">Latest release</a> ·
+  <a href="https://www.youtube.com/watch?v=0iPOj1_EBRU">Demo video</a>
+</p>
+
+<p align="center"><sub><b>English</b> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.es.md">Español</a> · <a href="README.fr.md">Français</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt-BR.md">Português (Brasil)</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.pl.md">Polski</a> · <a href="README.ru.md">Русский</a> · <a href="README.uk.md">Українська</a> · <a href="README.ar.md">العربية</a> · <a href="README.hi.md">हिन्दी</a> · <a href="README.id.md">Bahasa Indonesia</a> · <a href="README.vi.md">Tiếng Việt</a> · <a href="README.th.md">ไทย</a> · <a href="README.ko.md">한국어</a> · <a href="README.ja.md">日本語</a> · <a href="README.zh-CN.md">简体中文</a> · <a href="README.zh-TW.md">繁體中文</a></sub></p>
 
 <p align="center">
   <img src="docs/images/en/1-hero.jpg" alt="The extension's popup in light and dark mode">
 </p>
+
+## Why Open Youtube Settings
+
+- **Open source:** all of the code is here on GitHub under the MIT licence, so anyone can check exactly what the extension does.
+- **Clean interface:** one small popup and controls inside YouTube's own player. No pop-ups, no ads, no upsells.
+- **Collects no data:** no account, no analytics, no server. Your settings never leave your browser.
 
 ## Features
 
@@ -49,7 +62,6 @@ Brightness, a blue-light filter and colour inversion for every video, with short
 - **Turn off Shorts completely:** shelves, search results, the menu entry and the channel tab disappear; a Shorts link opens as a normal video.
 - Hide the home feed, the sidebar or the playlist panel.
 - Hide the control bar, the play/pause and the skip animations.
-- **Block channels:** hover over a recommended video and press 🚫. That channel's videos are covered from then on.
 - Mute ads automatically; the sound comes back as soon as the ad ends.
 - Open channel links straight on the Videos tab.
 
@@ -64,12 +76,14 @@ Brightness, a blue-light filter and colour inversion for every video, with short
 
 ## Install
 
-**From the stores:** Chrome Web Store and Firefox Add-ons links will be added here once the listings are approved.
+**Chrome / Edge / Brave:** install it from the [Chrome Web Store](https://chromewebstore.google.com/detail/open-youtube-settings/commphgoijegmlhbkkbgbfbnemihdjod).
+
+**Firefox:** the Firefox Add-ons listing is on its way. Until then, install it from a release as described below.
 
 **From a release (manual):** download the zip for your browser from [Releases](../../releases/latest).
 
 - **Chrome / Edge / Brave:** unzip it, open `chrome://extensions`, turn on *Developer mode*, choose *Load unpacked* and select the unzipped folder.
-- **Firefox:** open `about:debugging#/runtime/this-firefox`, choose *Load Temporary Add-on…* and select the zip. Temporary add-ons are removed when Firefox restarts; use the Firefox Add-ons version for a permanent install.
+- **Firefox:** open `about:debugging#/runtime/this-firefox`, choose *Load Temporary Add-on…* and select the zip. Temporary add-ons are removed when Firefox restarts.
 
 ## Privacy
 
@@ -90,6 +104,10 @@ npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefo
 1. Raise `version` in `manifest.json` (and `package.json`).
 2. Push a matching tag, for example `git tag v0.9 && git push origin v0.9`. GitHub Actions runs the tests and publishes a release with both zips.
 3. *Actions → Publish to stores → Run workflow* uploads that release to the Chrome Web Store and Firefox Add-ons.
+
+## Licence
+
+[MIT](LICENSE). Bug reports and ideas are welcome in [Issues](../../issues).
 
 ---
 
