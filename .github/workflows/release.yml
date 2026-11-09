@@ -1,6 +1,6 @@
-# Pushing a tag such as v0.8 tests, packages and publishes a GitHub Release with
-# both zips. Nothing goes to the stores here; that is the "Publish to stores"
-# workflow, started by hand.
+# Pushing a tag such as v0.13 tests, packages and publishes a GitHub Release
+# with both zips, then hands it to publish.yml for the stores. The repository
+# variable STORES picks where it goes: both (default), chrome, firefox or none.
 name: Release
 
 on:
@@ -49,3 +49,12 @@ jobs:
           cp dist/chrome-youtube-settings.zip "release/open-youtube-settings-chrome-$GITHUB_REF_NAME.zip"
           cp dist/firefox-youtube-settings.zip "release/open-youtube-settings-firefox-$GITHUB_REF_NAME.zip"
           gh release create "$GITHUB_REF_NAME" release/*.zip --title "$GITHUB_REF_NAME" --generate-notes
+
+  publish:
+    needs: release
+    if: vars.STORES != 'none'
+    uses: ./.github/workflows/publish.yml
+    with:
+      tag: ${{ github.ref_name }}
+      store: ${{ vars.STORES || 'both' }}
+    secrets: inherit
