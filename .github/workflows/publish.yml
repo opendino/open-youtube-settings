@@ -1,13 +1,31 @@
-# Started by hand (Actions → Publish to stores → Run workflow). Uploads the zips
-# of an existing GitHub Release to the Chrome Web Store and addons.mozilla.org
-# and submits them for review. Each store publishes the version once approved.
+# Uploads the zips of an existing GitHub Release to the Chrome Web Store and
+# addons.mozilla.org and submits them for review. Each store publishes the
+# version once approved.
+#
+# Two ways in:
+# - Automatically after every release: release.yml calls this workflow. Which
+#   stores it goes to comes from the repository variable STORES (both, chrome,
+#   firefox or none; unset = both). A store whose secrets are missing is
+#   skipped with a warning, so the release itself never fails on it.
+# - By hand: Actions → Publish to stores → Run workflow. Here missing secrets
+#   are an error.
 name: Publish to stores
 
 on:
+  workflow_call:
+    inputs:
+      tag:
+        description: Release tag to publish, e.g. v0.13
+        type: string
+        required: true
+      store:
+        description: both, chrome, firefox or none
+        type: string
+        default: both
   workflow_dispatch:
     inputs:
       tag:
-        description: Release tag to publish, e.g. v0.8 (empty = latest release)
+        description: Release tag to publish, e.g. v0.13 (empty = latest release)
         required: false
       store:
         description: Store
@@ -20,9 +38,12 @@ permissions:
 
 env:
   GH_TOKEN: ${{ github.token }}
+  # Called from release.yml the event is the tag push, not workflow_dispatch.
+  MANUAL: ${{ github.event_name == 'workflow_dispatch' }}
 
 jobs:
   resolve:
+    if: inputs.store == 'both' || inputs.store == 'chrome' || inputs.store == 'firefox'
     runs-on: ubuntu-latest
     outputs:
       tag: ${{ steps.tag.outputs.tag }}
@@ -38,7 +59,7 @@ jobs:
 
   chrome:
     needs: resolve
-    if: inputs.store != 'firefox'
+    if: inputs.store == 'both' || inputs.store == 'chrome'
     runs-on: ubuntu-latest
     env:
       TAG: ${{ needs.resolve.outputs.tag }}
@@ -49,20 +70,25 @@ jobs:
       REFRESH_TOKEN: ${{ secrets.CHROME_REFRESH_TOKEN }}
     steps:
       - name: Check Chrome Web Store secrets
+        id: secrets
         run: |
           for name in EXTENSION_ID PUBLISHER_ID CLIENT_ID CLIENT_SECRET REFRESH_TOKEN; do
             [ -n "${!name}" ] || missing="$missing CHROME_$name"
           done
-          if [ -n "$missing" ]; then echo "::error::Missing repository secrets:$missing"; exit 1; fi
+          if [ -z "$missing" ]; then echo "ready=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$MANUAL" = true ]; then echo "::error::Missing repository secrets:$missing"; exit 1; fi
+          echo "::warning::Chrome Web Store skipped, missing repository secrets:$missing"
 
-      - run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern '*-chrome-*.zip' --output chrome.zip
+      - if: steps.secrets.outputs.ready == 'true'
+        run: gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern '*-chrome-*.zip' --output chrome.zip
 
       - name: Upload and submit for review
+        if: steps.secrets.outputs.ready == 'true'
         run: npx --yes chrome-webstore-upload-cli@4.0.2 --source chrome.zip
 
   firefox:
     needs: resolve
-    if: inputs.store != 'chrome'
+    if: inputs.store == 'both' || inputs.store == 'firefox'
     runs-on: ubuntu-latest
     env:
       TAG: ${{ needs.resolve.outputs.tag }}
@@ -70,16 +96,21 @@ jobs:
       WEB_EXT_API_SECRET: ${{ secrets.AMO_API_SECRET }}
     steps:
       - name: Check addons.mozilla.org secrets
+        id: secrets
         run: |
           [ -n "$WEB_EXT_API_KEY" ] || missing="$missing AMO_API_KEY"
           [ -n "$WEB_EXT_API_SECRET" ] || missing="$missing AMO_API_SECRET"
-          if [ -n "$missing" ]; then echo "::error::Missing repository secrets:$missing"; exit 1; fi
+          if [ -z "$missing" ]; then echo "ready=true" >> "$GITHUB_OUTPUT"; exit 0; fi
+          if [ "$MANUAL" = true ]; then echo "::error::Missing repository secrets:$missing"; exit 1; fi
+          echo "::warning::addons.mozilla.org skipped, missing repository secrets:$missing"
 
       - name: Unpack the release zip
+        if: steps.secrets.outputs.ready == 'true'
         run: |
           gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern '*-firefox-*.zip' --output firefox.zip
           unzip -q firefox.zip -d firefox
 
       # Listed submissions are signed by Mozilla after review, so don't wait for it.
       - name: Upload and submit for review
+        if: steps.secrets.outputs.ready == 'true'
         run: npx --yes web-ext@10.8.0 sign --channel listed --source-dir firefox --artifacts-dir web-ext-artifacts --approval-timeout 0
