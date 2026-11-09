@@ -95,14 +95,14 @@ L'estensione non raccoglie dati e non invia nulla. Le tue impostazioni restano n
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` esegue alcuni test rapidi sul vero youtube.com.
 
 ### Pubblicare una versione
 1. Aumenta `version` in `manifest.json` (e `package.json`).
-2. Invia un tag corrispondente, per esempio `git tag v0.9 && git push origin v0.9`. GitHub Actions esegue i test e pubblica una versione con entrambi gli zip.
+2. Invia un tag corrispondente, per esempio `git tag v0.13 && git push origin v0.13`. GitHub Actions esegue i test e pubblica una versione con entrambi gli zip.
 3. *Actions → Publish to stores → Run workflow* carica quella versione sul Chrome Web Store e su Firefox Add-ons.
 
 ## Licenza

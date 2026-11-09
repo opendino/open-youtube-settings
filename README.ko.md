@@ -95,14 +95,14 @@
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live`는 실제 youtube.com에서 몇 가지 빠른 테스트를 실행합니다.
 
 ### 릴리스하기
 1. `manifest.json`(과 `package.json`)의 `version`을 올리세요.
-2. 같은 번호의 태그를 푸시하세요. 예: `git tag v0.9 && git push origin v0.9`. GitHub Actions가 테스트를 실행하고 두 zip 파일로 릴리스를 게시합니다.
+2. 같은 번호의 태그를 푸시하세요. 예: `git tag v0.13 && git push origin v0.13`. GitHub Actions가 테스트를 실행하고 두 zip 파일로 릴리스를 게시합니다.
 3. *Actions → Publish to stores → Run workflow*가 그 릴리스를 Chrome 웹 스토어와 Firefox Add-ons에 업로드합니다.
 
 ## 라이선스

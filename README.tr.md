@@ -95,14 +95,14 @@ Eklenti hiçbir veri toplamaz ve hiçbir yere bir şey göndermez. Ayarların ta
 npm ci
 npm run test:install   # Playwright Chromium ve Firefox, bir kez
 npm test               # çevrimdışı YouTube taklidine karşı statik, Chromium ve Firefox testleri
-npm run package        # dist/chrome-youtube-settings.zip ve dist/firefox-youtube-settings.zip üretir
+npm run package        # iki mağaza zip'ini dist/ içine üretir
 ```
 
 `npm run test:live` gerçek youtube.com üzerinde birkaç hızlı test çalıştırır.
 
 ### Sürüm çıkarma
 1. `manifest.json` (ve `package.json`) içindeki `version` değerini yükselt.
-2. Aynı numarayla bir etiket gönder, örneğin `git tag v0.9 && git push origin v0.9`. GitHub Actions testleri çalıştırır ve iki zip ile bir sürüm yayımlar.
+2. Aynı numarayla bir etiket gönder, örneğin `git tag v0.13 && git push origin v0.13`. GitHub Actions testleri çalıştırır ve iki zip ile bir sürüm yayımlar.
 3. *Actions → Publish to stores → Run workflow* o sürümü Chrome Web Mağazası'na ve Firefox Eklentileri'ne yükler.
 
 ## Lisans

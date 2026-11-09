@@ -95,14 +95,14 @@ Die Erweiterung sammelt keine Daten und sendet nichts. Deine Einstellungen bleib
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` führt einige Schnelltests gegen das echte youtube.com aus.
 
 ### Veröffentlichen
 1. Erhöhe `version` in `manifest.json` (und `package.json`).
-2. Pushe ein passendes Tag, zum Beispiel `git tag v0.9 && git push origin v0.9`. GitHub Actions führt die Tests aus und veröffentlicht eine Version mit beiden ZIP-Dateien.
+2. Pushe ein passendes Tag, zum Beispiel `git tag v0.13 && git push origin v0.13`. GitHub Actions führt die Tests aus und veröffentlicht eine Version mit beiden ZIP-Dateien.
 3. *Actions → Publish to stores → Run workflow* lädt diese Version in den Chrome Web Store und zu Firefox Add-ons hoch.
 
 ## Lizenz

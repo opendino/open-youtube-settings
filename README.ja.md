@@ -95,14 +95,14 @@
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` は実際の youtube.com でいくつかの簡単なテストを実行します。
 
 ### リリース手順
 1. `manifest.json`(と `package.json`)の `version` を上げます。
-2. 同じ番号のタグをプッシュします。例: `git tag v0.9 && git push origin v0.9`。GitHub Actions がテストを実行し、2 つの zip を含むリリースを公開します。
+2. 同じ番号のタグをプッシュします。例: `git tag v0.13 && git push origin v0.13`。GitHub Actions がテストを実行し、2 つの zip を含むリリースを公開します。
 3. *Actions → Publish to stores → Run workflow* でそのリリースを Chrome ウェブストアと Firefox Add-ons にアップロードします。
 
 ## ライセンス
