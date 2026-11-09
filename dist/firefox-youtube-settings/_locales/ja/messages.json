@@ -3,7 +3,7 @@
     "message": "Open Youtube Settings"
   },
   "appDesc": {
-    "message": "YouTube の再生速度、色フィルター、動画の切り抜き、クリップ、ショート非表示、チャンネルブロックをプレーヤー上で。"
+    "message": "ワンクリックで YouTube チャンネルをブロック。速度、トリミング、クリップ、色も調整。オープンソース、すっきり、データ収集なし。"
   },
   "brightness": {
     "message": "明るさ"
