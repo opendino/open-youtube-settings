@@ -95,14 +95,14 @@
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 يشغّل `npm run test:live` بعض الاختبارات السريعة على youtube.com الحقيقي.
 
 ### إصدار نسخة جديدة
 1. ارفع قيمة `version` في `manifest.json` (و`package.json`).
-2. ادفع وسمًا مطابقًا، مثل `git tag v0.9 && git push origin v0.9`. تشغّل GitHub Actions الاختبارات وتنشر إصدارًا يضم ملفَّي zip.
+2. ادفع وسمًا مطابقًا، مثل `git tag v0.13 && git push origin v0.13`. تشغّل GitHub Actions الاختبارات وتنشر إصدارًا يضم ملفَّي zip.
 3. يرفع *Actions → Publish to stores → Run workflow* هذا الإصدار إلى سوق Chrome الإلكتروني وFirefox Add-ons.
 
 ## الترخيص

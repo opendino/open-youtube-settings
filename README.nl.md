@@ -95,14 +95,14 @@ De extensie verzamelt geen gegevens en verstuurt niets. Je instellingen blijven 
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` voert een paar snelle tests uit op het echte youtube.com.
 
 ### Een versie uitbrengen
 1. Verhoog `version` in `manifest.json` (en `package.json`).
-2. Push een bijbehorende tag, bijvoorbeeld `git tag v0.9 && git push origin v0.9`. GitHub Actions voert de tests uit en publiceert een versie met beide zips.
+2. Push een bijbehorende tag, bijvoorbeeld `git tag v0.13 && git push origin v0.13`. GitHub Actions voert de tests uit en publiceert een versie met beide zips.
 3. *Actions → Publish to stores → Run workflow* uploadt die versie naar de Chrome Web Store en Firefox Add-ons.
 
 ## Licentie

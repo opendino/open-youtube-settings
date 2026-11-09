@@ -95,14 +95,14 @@ The extension collects no data and sends nothing anywhere. Your settings stay in
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` runs a few smoke tests against the real youtube.com.
 
 ### Releasing
 1. Raise `version` in `manifest.json` (and `package.json`).
-2. Push a matching tag, for example `git tag v0.9 && git push origin v0.9`. GitHub Actions runs the tests and publishes a release with both zips.
+2. Push a matching tag, for example `git tag v0.13 && git push origin v0.13`. GitHub Actions runs the tests and publishes a release with both zips.
 3. *Actions → Publish to stores → Run workflow* uploads that release to the Chrome Web Store and Firefox Add-ons.
 
 ## Licence

@@ -95,14 +95,14 @@
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` असली youtube.com पर कुछ तेज़ टेस्ट चलाता है।
 
 ### रिलीज़ करना
 1. `manifest.json` (और `package.json`) में `version` बढ़ाएँ।
-2. मेल खाता टैग पुश करें, जैसे `git tag v0.9 && git push origin v0.9`। GitHub Actions टेस्ट चलाता है और दोनों zip के साथ रिलीज़ प्रकाशित करता है।
+2. मेल खाता टैग पुश करें, जैसे `git tag v0.13 && git push origin v0.13`। GitHub Actions टेस्ट चलाता है और दोनों zip के साथ रिलीज़ प्रकाशित करता है।
 3. *Actions → Publish to stores → Run workflow* उस रिलीज़ को Chrome Web Store और Firefox Add-ons पर अपलोड करता है।
 
 ## लाइसेंस

@@ -95,14 +95,14 @@ Tiện ích không thu thập dữ liệu và không gửi gì đi đâu cả. C
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` chạy vài bài kiểm tra nhanh trên youtube.com thật.
 
 ### Phát hành phiên bản
 1. Tăng `version` trong `manifest.json` (và `package.json`).
-2. Đẩy một thẻ tương ứng, ví dụ `git tag v0.9 && git push origin v0.9`. GitHub Actions chạy kiểm tra và xuất bản bản phát hành kèm cả hai tệp zip.
+2. Đẩy một thẻ tương ứng, ví dụ `git tag v0.13 && git push origin v0.13`. GitHub Actions chạy kiểm tra và xuất bản bản phát hành kèm cả hai tệp zip.
 3. *Actions → Publish to stores → Run workflow* tải bản phát hành đó lên Chrome Web Store và Firefox Add-ons.
 
 ## Giấy phép

@@ -95,14 +95,14 @@ Ekstensi ini tidak mengumpulkan data dan tidak mengirim apa pun ke mana pun. Pen
 npm ci
 npm run test:install   # Playwright Chromium and Firefox, once
 npm test               # static, Chromium and Firefox tests against an offline YouTube fixture
-npm run package        # builds dist/chrome-youtube-settings.zip and dist/firefox-youtube-settings.zip
+npm run package        # builds both store zips in dist/
 ```
 
 `npm run test:live` menjalankan beberapa tes cepat di youtube.com yang asli.
 
 ### Merilis versi
 1. Naikkan `version` di `manifest.json` (dan `package.json`).
-2. Push tag yang sesuai, misalnya `git tag v0.9 && git push origin v0.9`. GitHub Actions menjalankan tes dan menerbitkan rilis dengan kedua file zip.
+2. Push tag yang sesuai, misalnya `git tag v0.13 && git push origin v0.13`. GitHub Actions menjalankan tes dan menerbitkan rilis dengan kedua file zip.
 3. *Actions → Publish to stores → Run workflow* mengunggah rilis itu ke Chrome Web Store dan Firefox Add-ons.
 
 ## Lisensi
